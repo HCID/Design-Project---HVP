@@ -1,52 +1,92 @@
 {
-	"event" : {
-		"id": "123",
-		"name": "Hjejhejhje",
-		"session": {
-			"name": "asdasd", 
-			"id": "2313"},
-		"authors": [
-			{"Author name": "Harrison Ford"},
-			{"Second Author": "Morgan Freeman"}
-		],
-		"place": "room1",
-		"startTime": "2001 12:21",
-		"endTime": "2002 2:12",
-		"bookmarks": 123,
-		"prize": [{}],
-		"type": 2,
-		"keywords": ["hci", "getures"],
-		"communities": ["3rd world", "design"],
-		"links": [1,2,3],
-		"video": "chi0108-file5.mp4",
-		"papers": ["paper 1"],
-		"abstract": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
-		"shortAbstract": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
-	}
+	   "event":{
+	      "id":"123",
+	      "name":"Hjejhejhje",
+	      "session":{
+	         "name":"asdasd",
+	         "id":"2313"
+	      },
+	      "authors":[
+	         {
+	            "Author name":"Harrison Ford"
+	         },
+	         {
+	            "Second Author":"Morgan Freeman"
+	         }
+	      ],
+	      "place":"room1",
+	      "startTime":"2001 12:21",
+	      "endTime":"2002 2:12",
+	      "bookmarks":123,
+	      "prize":[
+	         {
 
-	"event" : {
-		"id": "124",
-		"name": "Sarandonga",
-		"session": {
-			"name": "gaming", 
-			"id": "3921"},
-		"authors": [
-			{"Author name": "Paco de Lucia"},
-			{"Second Author": "Camarón de la Isla"}
-		],
-		"place": "room2",
-		"startTime": "2001 12:21",
-		"endTime": "2002 2:12",
-		"bookmarks": 20,
-		"prize": [{}],
-		"type": 2,
-		"keywords": ["viz", "musica"],
-		"communities": ["3rd world", "design"],
-		"links": [1,2,3],
-		"video": "chi0114-file5.mp4",
-		"papers": ["Playing guitar for visualizing data on the air."],
-		"abstract": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
-		"shortAbstract": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
-	}
+	         }
+	      ],
+	      "type":2,
+	      "keywords":[
+	         "hci",
+	         "getures"
+	      ],
+	      "communities":[
+	         "3rd world",
+	         "design"
+	      ],
+	      "links":[
+	         1,
+	         2,
+	         3
+	      ],
+	      "video":"chi0108-file5.mp4",
+	      "papers":[
+	         "paper 1"
+	      ],
+	      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
+	      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+	   },
+	   "event":{
+	      "id":"124",
+	      "name":"Sarandonga",
+	      "session":{
+	         "name":"gaming",
+	         "id":"3921"
+	      },
+	      "authors":[
+	         {
+	            "Author name":"Paco de Lucia"
+	         },
+	         {
+	            "Second Author":"Camarón de la Isla"
+	         }
+	      ],
+	      "place":"room2",
+	      "startTime":"2001 12:21",
+	      "endTime":"2002 2:12",
+	      "bookmarks":20,
+	      "prize":[
+	         {
 
-}
+	         }
+	      ],
+	      "type":2,
+	      "keywords":[
+	         "viz",
+	         "musica"
+	      ],
+	      "communities":[
+	         "3rd world",
+	         "design"
+	      ],
+	      "links":[
+	         1,
+	         2,
+	         3
+	      ],
+	      "video":"chi0114-file5.mp4",
+	      "papers":[
+	         "Playing guitar for visualizing data on the air."
+	      ],
+	      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
+	      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+	   }
+	}
