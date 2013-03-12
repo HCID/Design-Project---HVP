@@ -4,8 +4,25 @@
 		<script type="text/javascript" src="d3.v3/d3.v3.min.js"></script>
 
 			    <script src="jquery-1.7.2.js"></script>
-    <script src="lodash.js"></script>
-    <script src="socket.io.js"></script>
+	    <script src="lodash.js"></script>
+	    <script src="socket.io.js"></script>
+	    <link href="css/chi.css" type="text/css" rel="stylesheet" />
+
+	    <script>
+	      $(document).ready(function() {
+	        $(".size_button").on("click", function() {
+	          if (parseInt($(this).data("size")) === 16) {
+	            sixteenFuntion();
+	          } else if (parseInt($(this).data("size")) === 4) {
+	            fourFuntion();
+	          } else if (parseInt($(this).data("size")) === 2) {
+	            twoFuntion();
+	          } else {
+	          	schedule();
+	          }
+	        });
+	      });
+	    </script>
 
 		<script type="text/javascript" src="Tuio.min.js"></script>
 
@@ -54,7 +71,7 @@
 
 		<script>
 		
-
+		var fill = d3.scale.category20();
 		var circleSelection;
 		var force = d3
 						.layout
@@ -73,7 +90,99 @@
 
 		function yay () {
 
-			var data = [{"a": "20", "c":"#f4545f"},{"a": "30", "c":"#123456"},{"a": "40", "c":"#123400"},{"a": "50", "c":"#fff222"},{"a": "60", "c":"#f12343"}];
+			var data = [
+			{
+			   "event":{
+			      "id":"123",
+			      "name":"Hjejhejhje",
+			      "session":{
+			         "name":"asdasd",
+			         "id":"2313"
+			      },
+			      "authors":[
+			         {
+			            "Author name":"Harrison Ford"
+			         },
+			         {
+			            "Second Author":"Morgan Freeman"
+			         }
+			      ],
+			      "place":"room1",
+			      "startTime":"2001 12:21",
+			      "endTime":"2002 2:12",
+			      "bookmarks":123,
+			      "prize":[
+			         {
+
+			         }
+			      ],
+			      "type":2,
+			      "keywords":[
+			         "hci",
+			         "getures"
+			      ],
+			      "communities":[
+			         "3rd world",
+			         "design"
+			      ],
+			      "links":[
+			         1,
+			         2,
+			         3
+			      ],
+			      "video":"chi0108-file5.mp4",
+			      "papers":[
+			         "paper 1"
+			      ],
+			      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
+			      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+			   }},
+			   {"event":{
+			      "id":"124",
+			      "name":"Sarandonga",
+			      "session":{
+			         "name":"gaming",
+			         "id":"3921"
+			      },
+			      "authors":[
+			         {
+			            "Author name":"Paco de Lucia"
+			         },
+			         {
+			            "Second Author":"Camarón de la Isla"
+			         }
+			      ],
+			      "place":"room2",
+			      "startTime":"2001 12:21",
+			      "endTime":"2002 2:12",
+			      "bookmarks":20,
+			      "prize":[
+			         {
+
+			         }
+			      ],
+			      "type":2,
+			      "keywords":[
+			         "viz",
+			         "musica"
+			      ],
+			      "communities":[
+			         "3rd world",
+			         "design"
+			      ],
+			      "links":[
+			         1,
+			         2,
+			         3
+			      ],
+			      "video":"chi0114-file5.mp4",
+			      "papers":[
+			         "Playing guitar for visualizing data on the air."
+			      ],
+			      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
+			      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+			   }
+			}];
 
 
 			force.nodes(data).start();
@@ -82,30 +191,14 @@
 				data
 			).enter().append("circle")
 			.attr("r", function (d) {
-				return d.a;})
-			.attr("fill", function (d) {
-				return d.c;})
-
-
-			circleSelection
-				.transition()
-				.duration(3000)
-				.style("stroke", "white")
-				.style("stroke-width", 2)
-				.transition()
-				.duration(3000)
-				.delay(3000)
-					.style("stroke", "blue")
-					.style("stroke-width", 5)
-				.transition()
-	            .duration( 750 )
-	            .attr("cx", 100)
-			      .attr("cy", -100)
-			      .attr("r", 12)
-			      .attr("transform", "translate(200,200)");
+				console.log(d);
+				return d.event.bookmarks;})
+			.style("fill", function (d, i) {
+				return fill(i);})
+			.style("stroke-width", 2)
+			.style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
+			.call(force.drag);
 	                    
-
-
 			circleSelection.exit().remove();
 
 		}
@@ -117,6 +210,10 @@
 		</script>
 	</head>
 	<body onload="yay()">
+		<button class="size_button" data-size="16">Map</button>
+	    <button class="size_button" data-size="4">Author</button>
+	    <button class="size_button" data-size="2">Keyword</button>
+	    <button class="size_button" data-size="0">Schedule</button>
 		<script>
 			d3.select("body").transition().style("background-color", "black");
 		</script>
