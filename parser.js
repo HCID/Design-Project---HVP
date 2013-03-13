@@ -6,7 +6,7 @@ var submissions = require('./data/20feb13/submissions-2013-2-20-12-25-16.json');
 var _ = require('underscore');
 var fs = require('fs');
 
-var outputFilename = '/data/data.json';
+var outputFilename = 'data/data.json';
 
 
 
@@ -22,7 +22,7 @@ _.forEach(submissions.rows, function(ev) {
     cbStatement: ev.value.cbStatement,
     bookmarks: Math.floor((Math.random()*200)),
     keywords: ev.value.authorKeywords ? ev.value.authorKeywords.split("; ") : [],
-    communities: ev.value.communities
+    communities: ev.value.communities,
   }
   
   // Video
@@ -49,6 +49,7 @@ _.forEach(submissions.rows, function(ev) {
       event.room = sch.value.room;
       event.starTime = sch.value.time.split("-")[0];
       event.endTime = sch.value.time.split("-")[1];
+      event.day = sch.value.day;
     }
 
   }

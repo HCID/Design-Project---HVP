@@ -8,21 +8,7 @@
 	    <script src="socket.io.js"></script>
 	    <link href="css/chi.css" type="text/css" rel="stylesheet" />
 
-	    <script>
-	      $(document).ready(function() {
-	        $(".size_button").on("click", function() {
-	          if (parseInt($(this).data("size")) === 16) {
-	            sixteenFuntion();
-	          } else if (parseInt($(this).data("size")) === 4) {
-	            fourFuntion();
-	          } else if (parseInt($(this).data("size")) === 2) {
-	            twoFuntion();
-	          } else {
-	          	schedule();
-	          }
-	        });
-	      });
-	    </script>
+
 
 		<script type="text/javascript" src="Tuio.min.js"></script>
 
@@ -30,14 +16,50 @@
 
 		<script>
 
+
+    
+    var mode = 2;
+      
+      $(document).ready(function() {
+        $(".size_button").on("click", function() {
+          if (parseInt($(this).data("size")) === 16) {
+            sixteenFuntion();
+          } else if (parseInt($(this).data("size")) === 4) {
+            fourFuntion();
+          } else if (parseInt($(this).data("size")) === 2) {
+            twoFuntion();
+          } else {
+            mode = 16;
+          	schedule();
+          }
+        });
+      });
+
+
+var schedule = function () {
+  num = 63;
+  groupFill = function(d, i) { return fill(i & num); };
+  groups = d3.nest().key(function(d) { return d & num }).entries(force.nodes());
+  // Makes all the nodes move when clicking
+  d3.select("body")//.on("click", function() {
+    force.nodes().forEach(function(o, i) {
+      o.x += (Math.random() - .5) * 80;
+      o.y += (Math.random() - .5) * 80;
+    });
+    scheduleForce.resume();
+ // });
+};
+
  var data = [];
+ 
+ var scheduleForce;
  
  $(document).ready(function() {
    $("svg").attr("height", window.screen.availHeight);
       $("svg").attr("width", window.screen.availWidth);
  })
  
-    var rScale = d3.scale.sqrt().range([0, 20]);
+    var rScale = d3.scale.sqrt().range([0, 15]);
 		var height = window.screen.availHeight,
 			width = window.screen.availWidth;
 		
@@ -45,7 +67,146 @@
 		var fill = d3.scale.category20();
 		var circleSelection;
 		var force;
+    
+    
+    
+    
+    
+    var scheduleSplitter = function (o, i, k) {
+      var bit = (i % 16);
 
+      if (bit == 0) { 
+        o.x += k;
+        o.y += k;
+      } else if (bit == 1) {
+        o.x += k;
+        o.y -= k;
+      } else if (bit == 2) {
+        o.x -= k;
+        o.y += k;
+      } else if (bit == 3) {
+        o.x -= k;
+        o.y -= k;
+      } else if (bit == 4) {
+        o.x += 2*k;
+        o.y += 2*k;
+      } else if (bit == 5) {
+        o.x += 2*k;
+        o.y -= 2*k;
+      } else if (bit == 6) {
+        o.x -= 2*k;
+        o.y += 2*k;
+      } else if (bit == 7) { 
+        o.x -= 2*k;
+        o.y -= 2*k;
+      } else if (bit == 8) { //purple
+        o.x += 2*k;
+        o.y += k;
+      } else if (bit == 9) {
+        o.x += 2*k;
+        o.y -= k;
+      } else if (bit == 10) {
+        o.x -= 2*k;
+        o.y += k;
+      } else if (bit == 11) {
+        o.x -= 2*k;
+        o.y -= k;
+      } else if (bit == 12) {
+        o.x += k;
+        o.y += 2*k;
+      } else if (bit == 13) {
+        o.x += k;
+        o.y -= 2*k;
+      } else if (bit == 14) {
+        o.x -= k;
+        o.y += 2*k;
+      } else {
+        o.x -= k;
+        o.y -= 2*k;
+      }  
+      
+    }
+    
+    var twoSplitter = function (o, i, k) {
+	    var bit = (i % mode);
+
+	    if (bit == 0) { 
+	      o.x += k;
+	      o.y += k;
+	    } else {
+	      o.x -= k;
+	      o.y -= k;
+	    } 
+    }
+    
+    
+ 		var tick = function (e) {
+
+ 		  // Push different nodes in different directions for clustering.
+ 		  var k = 10 * e.alpha;
+ 		  //console.log("e "+e);
+ 		  //console.log("k "+k);
+
+		  
+ 		  // d3.select("#our_id").selectAll("g").each(function(o){
+ 		  // 	console.log("hohoho", o);
+ 		  // });
+
+
+       d3.select("#our_id").selectAll("g")
+         .attr("cx", function(d) { return d.x = Math.max(0, Math.min(width, d.x)); })
+          .attr("cy", function(d) { return d.y = Math.max(0, Math.min(height, d.y)); });
+
+
+ 		  d3.select("#our_id").selectAll("g").each(function(o, i) {
+
+
+        if(mode == 16) {
+          scheduleSplitter(o, i, k);
+        } else if(mode == 2) {
+          twoSplitter(o, i, k);
+        }
+
+
+ 	
+         /*
+ 		     console.log ("o " + o);
+ 		     console.log ("o.name " + o.name);
+ 		     console.log ("o.x " + o.x);
+ 		     console.log ("o.y " + o.y);
+ 		     console.log ("i " + i);
+          */
+ 		  });
+
+
+
+       ///// ERRORR!!!!! /// 
+       if(circleSelection) {
+   		  circleSelection.attr("cx", function(d) { return d.x; })
+   		      .attr("cy", function(d) { return d.y; })
+   		      .call(force.drag);
+        
+       }
+		  
+
+
+ 		  // vis.selectAll("path")
+ 		  // 	.remove();
+
+ 		  // vis.selectAll("path")
+ 		  //   .data(groups)
+ 		  //     .attr("d", groupPath)
+ 		  //   .enter().insert("path", "circle")
+ 		  //     .style("fill", groupFill)
+ 		  //     .style("stroke", groupFill)
+ 		  //     .style("stroke-width", 40)
+ 		  //     .style("stroke-linejoin", "round")
+ 		  //     .style("opacity", .2)
+ 		  //     .attr("d", groupPath)
+ 		  //     .on("click", function(d) {
+ 		  //         return selectionPath(d);
+ 		  //     });
+ 		};
 		function yay () {
      
       d3.json('data/data.json', function (importedData) {
@@ -64,14 +225,23 @@
        force = d3
       						.layout
       						.force()
-      					//	.gravity(0.05)
+      						.gravity(0.3)
       						.distance(500)
       						.charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
-               //   .friction(0.7)
+//                  .friction(1)
       						// .charge(-100)
-      						.size([width,height]);
+      						.size([width,height]).on("tick", tick);
                   
+             
                   
+      scheduleForce = 	d3.layout
+      						.force()
+      						.gravity(0.3)
+      						.distance(500)
+      						.charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
+//                  .friction(1)
+      						// .charge(-100)
+      						.size([width,height]).on("tick", tick).start();
                   
      force.nodes(data);
         force.nodes().forEach(function(d, i) {
@@ -82,79 +252,7 @@
 		
 
 
-     		force.on("tick", function(e) {
-
-     		  // Push different nodes in different directions for clustering.
-     		  var k = 15 * e.alpha;
-     		  //console.log("e "+e);
-     		  //console.log("k "+k);
-
-		  
-     		  // d3.select("#our_id").selectAll("g").each(function(o){
-     		  // 	console.log("hohoho", o);
-     		  // });
-
-
-           d3.select("#our_id").selectAll("g")
-             .attr("cx", function(d) { return d.x = Math.max(0, Math.min(width, d.x)); })
-              .attr("cy", function(d) { return d.y = Math.max(0, Math.min(height, d.y)); });
-
-
-     		  d3.select("#our_id").selectAll("g").each(function(o, i) {
-
-
-            
-
-            
-
-
-     		    var bit = (i % 2);
-
-     		    if (bit == 0) { 
-     		      o.x += k;
-     		      o.y += k;
-     		    } else {
-     		      o.x -= k;
-     		      o.y -= k;
-     		    }  
-             /*
-     		     console.log ("o " + o);
-     		     console.log ("o.name " + o.name);
-     		     console.log ("o.x " + o.x);
-     		     console.log ("o.y " + o.y);
-     		     console.log ("i " + i);
-              */
-     		  });
-
-
-
-           ///// ERRORR!!!!! /// 
-           if(circleSelection) {
-       		  circleSelection.attr("cx", function(d) { return d.x; })
-       		      .attr("cy", function(d) { return d.y; })
-       		      .call(force.drag);
-        
-           }
-		  
-
-
-     		  // vis.selectAll("path")
-     		  // 	.remove();
-
-     		  // vis.selectAll("path")
-     		  //   .data(groups)
-     		  //     .attr("d", groupPath)
-     		  //   .enter().insert("path", "circle")
-     		  //     .style("fill", groupFill)
-     		  //     .style("stroke", groupFill)
-     		  //     .style("stroke-width", 40)
-     		  //     .style("stroke-linejoin", "round")
-     		  //     .style("opacity", .2)
-     		  //     .attr("d", groupPath)
-     		  //     .on("click", function(d) {
-     		  //         return selectionPath(d);
-     		  //     });
-     		});
+     		
         
   			circleSelection = d3.select("#our_id").selectAll("g").data(data)
   				.enter().append("g")
