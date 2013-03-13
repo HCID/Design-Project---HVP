@@ -36,6 +36,7 @@
     </script>
 
 		<script>
+    /*
 			var client = new Tuio.Client({
 			    host: "http://localhost:5000"
 			}),
@@ -76,6 +77,7 @@
 			client.on("removeTuioObject", onRemoveTuioObject);
 			client.on("refresh", onRefresh);
 			client.connect();
+      */
 		</script>
 
 		<script>
@@ -145,9 +147,15 @@
 		     console.log ("i " + i);
 		  });
 
+
+
+      ///// ERRORR!!!!! /// 
+      /*
 		  circleSelection.attr("cx", function(d) { return d.x; })
 		      .attr("cy", function(d) { return d.y; })
 		      .call(force.drag);
+*/
+
 
 		  // vis.selectAll("path")
 		  // 	.remove();
@@ -370,7 +378,7 @@
 					.style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
 					.call(force.drag);
 	                    
-			circleSelection.exit().remove();
+			//circleSelection.exit().remove();
 
 		}
 
