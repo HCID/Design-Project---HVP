@@ -79,22 +79,92 @@
 		</script>
 
 		<script>
-		
+
+		// var maxRadius = 100;
+		// var idvalue = function (d) { return d._id};
+		// var rScale = d3.scale.sqrt().range([0, maxRadius]);
+		// var rValue = function (d){
+		// 	return parseInt(d.event.bookmarks);
+		// }
+
+		var height = 1000,
+			width = 1000;
+		// 	minCollisionRadius = 12,
+		// 	maxDomainValue = d3.max(data, function(d) {
+	 //         	return rValue(d);
+	 //        });
+
+		// rScale.domain([0, maxDomainValue]);
+	      
+	 // 	data.forEach(function(d, i) {
+	 //        d.forceR = Math.max(minCollisionRadius, rScale(rValue(d)));
+	 //    });
+
 		var fill = d3.scale.category20();
 		var circleSelection;
 		var force = d3
 						.layout
 						.force()
 						.gravity(0.1)
-						.distance(300)
-						.charge(function (d) { return d.a *10} )
-						.size([1000,1000])
-						.on("tick", function(){
-			circleSelection.attr("transform", function (d) {				
-				return "translate("+d.x+", " + d.y + ")";	
-			});
+						//.distance(300)
+						.charge(function (d) { return -(100)} )
+						// .charge(-100)
+						.size([height,width])				
+						.start();
+		
 
 
+		force.on("tick", function(e) {
+
+		  // Push different nodes in different directions for clustering.
+		  var k = 10 * e.alpha;
+		  console.log("e "+e);
+		  console.log("k "+k);
+
+		  
+		  // d3.select("#our_id").selectAll("g").each(function(o){
+		  // 	console.log("hohoho", o);
+		  // });
+
+
+		  d3.select("#our_id").selectAll("g").each(function(o, i) {
+
+		    var bit = (i % 2);
+
+		    if (bit == 0) { 
+		      o.x += k;
+		      o.y += k;
+		    } else {
+		      o.x -= k;
+		      o.y -= k;
+		    }  
+		     console.log ("o " + o);
+		     console.log ("o.name " + o.name);
+		     console.log ("o.x " + o.x);
+		     console.log ("o.y " + o.y);
+		     console.log ("i " + i);
+		  });
+
+		  circleSelection.attr("cx", function(d) { return d.x; })
+		      .attr("cy", function(d) { return d.y; })
+		      .call(force.drag);
+
+		  // vis.selectAll("path")
+		  // 	.remove();
+
+		  // vis.selectAll("path")
+		  //   .data(groups)
+		  //     .attr("d", groupPath)
+		  //   .enter().insert("path", "circle")
+		  //     .style("fill", groupFill)
+		  //     .style("stroke", groupFill)
+		  //     .style("stroke-width", 40)
+		  //     .style("stroke-linejoin", "round")
+		  //     .style("opacity", .2)
+		  //     .attr("d", groupPath)
+		  //     .on("click", function(d) {
+		  //         return selectionPath(d);
+		  //     });
 		});
 
 		function yay () {
@@ -191,22 +261,114 @@
 			      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
 			      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
 			   }
+			}, 
+			{"event":{
+			      "id":"125",
+			      "name":"Kuchi kuchi",
+			      "session":{
+			         "name":"fun",
+			         "id":"3934"
+			      },
+			      "authors":[
+			         {
+			            "Author name":"Joaquin Sabina"
+			         },
+			         {
+			            "Second Author":"Fito"
+			         }
+			      ],
+			      "place":"room4",
+			      "startTime":"2001 12:21",
+			      "endTime":"2002 2:12",
+			      "bookmarks":100,
+			      "prize":[
+			         {
+
+			         }
+			      ],
+			      "type":2,
+			      "keywords":[
+			         "viz",
+			         "musica"
+			      ],
+			      "communities":[
+			         "3rd world",
+			         "design"
+			      ],
+			      "links":[
+			         1,
+			         2,
+			         3
+			      ],
+			      "video":"chi0114-file5.mp4",
+			      "papers":[
+			         "Playing guitar for visualizing data on the air."
+			      ],
+			      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
+			      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+			   }
+			},
+			{"event":{
+			      "id":"134",
+			      "name":"Marvel",
+			      "session":{
+			         "name":"comic",
+			         "id":"3921"
+			      },
+			      "authors":[
+			         {
+			            "Author name":"Spiderman"
+			         },
+			         {
+			            "Second Author":"Thor"
+			         }
+			      ],
+			      "place":"room6",
+			      "startTime":"2001 12:21",
+			      "endTime":"2002 2:12",
+			      "bookmarks":39,
+			      "prize":[
+			         {
+
+			         }
+			      ],
+			      "type":2,
+			      "keywords":[
+			         "viz",
+			         "musica"
+			      ],
+			      "communities":[
+			         "3rd world",
+			         "design"
+			      ],
+			      "links":[
+			         1,
+			         2,
+			         3
+			      ],
+			      "video":"chi0114-file5.mp4",
+			      "papers":[
+			         "Playing guitar for visualizing data on the air."
+			      ],
+			      "abstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",
+			      "shortAbstract":"Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto"
+			   }
 			}];
 
-
 			force.nodes(data).start();
-
-			circleSelection = d3.select("#our_id").selectAll("circle").data(
-				data
-			).enter().append("circle")
-			.attr("r", function (d) {
-				console.log(d);
-				return d.event.bookmarks;})
-			.style("fill", function (d, i) {
-				return fill(i);})
-			.style("stroke-width", 2)
-			.style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-			.call(force.drag);
+// (force.nodes(), function (d) {return idvalue(d);})
+			circleSelection = d3.select("#our_id").selectAll("g").data(data)
+				.enter().append("g")
+					.attr("id", function(d, i){return i;})
+				.append("circle")
+					.attr("r", function (d) {
+						console.log(d);
+						return d.event.bookmarks;})
+					.style("fill", function (d, i) {
+						return fill(i);})
+					.style("stroke-width", 2)
+					.style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
+					.call(force.drag);
 	                    
 			circleSelection.exit().remove();
 
