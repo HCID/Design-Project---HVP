@@ -1,12 +1,12 @@
-var authors = require('./20feb13/authors-2013-2-20-12-25-28.json');
-var groups = require('./20feb13/groups-2013-2-20-15-23-30.json');
-var schedule = require('./20feb13/schedule-2013-2-20-12-25-24.json');
-var sessions = require('./20feb13/sessions-2013-2-20-12-25-20.json');
-var submissions = require('./20feb13/submissions-2013-2-20-12-25-16.json');
+var authors = require('./data/20feb13/authors-2013-2-20-12-25-28.json');
+var groups = require('./data/20feb13/groups-2013-2-20-15-23-30.json');
+var schedule = require('./data/20feb13/schedule-2013-2-20-12-25-24.json');
+var sessions = require('./data/20feb13/sessions-2013-2-20-12-25-20.json');
+var submissions = require('./data/20feb13/submissions-2013-2-20-12-25-16.json');
 var _ = require('underscore');
 var fs = require('fs');
 
-var outputFilename = 'data.json';
+var outputFilename = '/data/data.json';
 
 
 
