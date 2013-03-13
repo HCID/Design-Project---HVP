@@ -126,7 +126,7 @@
  		  });
       */
 
-       d3.selectAll("g.circle_class")
+       d3.selectAll("g")
           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })   		    
    		    
         
@@ -166,13 +166,7 @@
          .on("tick", tick)
       	   
                   
-        force[1] = d3
-         .layout
-         .force()
-         .gravity(0.3)
-         .distance(500)
-         .charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
-         .on("tick", tick)
+        force[1] = force[0];
         
         var forceData = [[],[]];
         
@@ -188,8 +182,8 @@
         force[0].nodes(forceData[0]);
         force[1].nodes(forceData[1]);      
         
-        force[0].size([width,height]);
-        force[1].size([width,height]);
+        force[0].size([100,200]);
+        force[1].size([600,500]);
               
         force.forEach(function(o) {
           o.nodes().forEach(function(d, i) {
@@ -202,16 +196,13 @@
         
         force[0].start();
         force[1].start();
-      
         
-  			circleSelection[0] = d3.select("#our_id").selectAll("g").data(force[0].nodes(), function (d) {return d.id; } );
-        circleSelection[1] = d3.select("#our_id2").selectAll("g").data(force[1].nodes(), function (d) {return d.id; });
+  			circleSelection[0] = d3.select("#our_id").selectAll("g").data(force[0].nodes());
+        circleSelection[1] = d3.select("#our_id").selectAll("g").data(force[1].nodes());
         
-     
         
   				circleSelection[0].enter().append("g")
-  				  .attr("id", function(d, i){return d.id;})
-            .attr("class", "circle_class")
+  				  .attr("id", function(d, i){return i;})
   				  .append("circle")
   					.attr("r", function (d) {
   						return d.forceR;})
@@ -222,8 +213,7 @@
   					.call(force[0].drag);
             
   				circleSelection[1].enter().append("g")
-  				  .attr("id", function(d, i){return d.id;})
-            .attr("class", "circle_class")
+  				  .attr("id", function(d, i){return i;})
   				  .append("circle")
   					.attr("r", function (d) {
   						return d.forceR;})
@@ -235,9 +225,6 @@
   
             circleSelection[0].exit().remove();
             circleSelection[1].exit().remove();
-            
-            
-            d3.select("#our_id").attr("transform", "translate(-380, -100)");
             
           
     };
@@ -286,31 +273,15 @@ var map = function () {
  var data = [];
  
  var mapForce;
-var height = window.screen.availHeight,
-	width = window.screen.availWidth;
-  
-  var redraw = function () {
-    d3.select("svg").attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
-  };
-  
-  
-  
-  
- d3.select("svg").call(d3.behavior.zoom().on("zoom", redraw))
  
  $(document).ready(function() {
-   $("svg").attr("height", height + "px");
-   $("svg").attr("width", width + "px");
-   
-   $("#bgimg").attr("height", height);
-   $("#bgimg").attr("width", width);
+   $("svg").attr("height", window.screen.availHeight);
+      $("svg").attr("width", window.screen.availWidth);
  })
  
- 
- 
- 
     var rScale = d3.scale.sqrt().range([0, 15]);
-
+		var height = window.screen.availHeight,
+			width = window.screen.availWidth;
 		
 
 		var fill = d3.scale.category20();
@@ -372,26 +343,14 @@ twoFuntion();
 	    <button class="size_button" data-grouping="map">Map</button>
     </div>
 		<script>
-
+			d3.select("body").transition().style("background-color", "black");
 		</script>
-    <svg >
-      
-      <g>
-        <image id="bgimg" xlink:href="bg.png" x="0" y="0"/>
-      </g>
-      
 
-		<g id="our_id" transform="translate(0, 0)">
+		<svg id="our_id">
 		
 					
 			
-		</g>
-		<g id="our_id2" transform="translate(400, 0)">
-		
-					
-			
-		</g>
-  </svg>
+		</svg>
 		<script>
 
 			/*
