@@ -26,6 +26,15 @@
 
 		<script type="text/javascript" src="Tuio.min.js"></script>
 
+
+    <script>
+    var data = [];
+    d3.json('data/data.json', function (importedData) {
+      data = importedData;
+    });
+    
+    </script>
+
 		<script>
 			var client = new Tuio.Client({
 			    host: "http://localhost:5000"
