@@ -1,6 +1,7 @@
 var data = [],
     height = window.screen.availHeight,
 	  width = window.screen.availWidth,
+    grouping = 2;
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20();
   
@@ -12,83 +13,84 @@ var tick = function (e) {
 };
     
 var twoFuntion = function () {
+  grouping = 2;
   var force = [];
-  force[0] = d3
-    .layout
-    .force()
-    .gravity(0.3)
-    .distance(500)
-    .charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
-    .on("tick", tick)
-      	                 
-  force[1] = d3
-    .layout
-    .force()
-    .gravity(0.3)
-    .distance(500)
-    .charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
-    .on("tick", tick)
-        
-    var forceData = [[],[]];     
-    data.forEach(function(o, i) {
-      if( i % 2) {
-        forceData[0].push(o);
-      } else {
-        forceData[1].push(o);
-      }
-    });
 
-    force[0].nodes(forceData[0]);
-    force[1].nodes(forceData[1]);      
-        
-    force[0].size([width,height]);
-    force[1].size([width,height]);
-              
-    force.forEach(function(o) {
-      o.nodes().forEach(function(d, i) {
-         d.forceR = Math.max(5, 20);
-     });
-    });
-         
-    circleSelection = [];
-        
-    force[0].start();
-    force[1].start();
-       
-		circleSelection[0] = d3.select("#our_id").selectAll("g").data(force[0].nodes(), function (d) {return d.id; } );
-    circleSelection[1] = d3.select("#our_id2").selectAll("g").data(force[1].nodes(), function (d) {return d.id; });
-        
-     
-        
-		circleSelection[0].enter().append("g")
-		  .attr("id", function(d, i){return d.id;})
-      .attr("class", "circle_class")
-		  .append("circle")
-			.attr("r", function (d) {
-				return d.forceR;})
-			.style("fill", function (d, i) {
-				return fill(i);})
-			.style("stroke-width", 2)
-			.style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-			.call(force[0].drag);
-            
-		circleSelection[1].enter().append("g")
-		  .attr("id", function(d, i){return d.id;})
-      .attr("class", "circle_class")
-		  .append("circle")
-			.attr("r", function (d) {
-				return d.forceR;})
-			.style("fill", function (d, i) {
-				return fill(i);})
-			.style("stroke-width", 2)
-			.style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-			.call(force[1].drag);  
+  for (var i=0;i<grouping;i++) { 
   
-      circleSelection[0].exit().remove();
-      circleSelection[1].exit().remove();
-                              
-      d3.select("#our_id").attr("transform", "translate(-380, -100)");
-      d3.select("#our_id2").attr("transform", "translate(300, -100)");          
+    force[i] = d3
+    .layout
+    .force()
+    .gravity(0.3)
+    .distance(500)
+    .charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
+    .on("tick", tick)
+
+  }
+  
+  // Array of forces 
+  var forceData = []; 
+
+  // Creating the number force arrays inside the forceData
+  for (var i=0;i<grouping;i++) { 
+    forceData.push([]);
+  }
+
+  // Setting the data in each array
+  data.forEach(function(o, i) {
+    if( i % 2) {
+      forceData[0].push(o);
+    } else {
+      forceData[1].push(o);
+    }
+  });
+
+  // Configuring forces
+  for (var i=0;i<grouping;i++) {   
+    force[i].nodes(forceData[i]);
+    force[i].size([width,height]);
+  }
+      
+  force.forEach(function(o) {
+    o.nodes().forEach(function(d, i) {
+      d.forceR = Math.max(5, 20);
+    });
+  });
+         
+  circleSelection = [];
+  
+  // Starting forces
+  for (var i=0;i<grouping;i++) { 
+    force[i].start();
+  }
+  
+  // Creating the big groups
+  for (var i=0;i<grouping;i++) { 
+    circleSelection[i] = d3.select("body").select("svg").append("g").attr("id", function(d) { return "our_id" + i;}).selectAll("g").data(force[i].nodes(), function (d) {return d.id; } );
+  }
+
+  // Creating the g > circle inside the big groups
+  for (var j=0;j<grouping;j++) { 
+    circleSelection[j].enter().append("g")
+      .attr("id", function(d, i){return d.id;})
+      .attr("class", "circle_class")
+      .append("circle")
+      .attr("r", function (d) {
+        return d.forceR;})
+      .style("fill", function (d, i) {
+        return fill(i);})
+      .style("stroke-width", 2)
+      .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
+      .call(force[j].drag); 
+
+    circleSelection[j].exit().remove();
+  }         
+  
+  // Custom positioning
+  // Don't put into a loop
+
+  d3.select("#our_id0").attr("transform", "translate(-380, -100)");
+  d3.select("#our_id1").attr("transform", "translate(300, -100)");          
 };
     
     
