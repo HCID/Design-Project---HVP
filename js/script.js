@@ -5,15 +5,37 @@ var data = [],
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20();
   
+// Array of forces 
+var forceData = [];
 
 var tick = function (e) {
   var k = 10 * e.alpha;
    d3.selectAll("g.circle_class")
     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })   		    
 };
-    
+  
+var split = function (dt, number) { 
+
+  // Creating the number force arrays inside the forceData
+  for (var i=0;i<number;i++) { 
+    forceData.push([]);
+  }
+
+  // Setting the data in each array
+  dt.forEach(function(o, i) {
+    if( (i % number)==0) {
+      forceData[0].push(o);
+    } else if( (i % number)==1) {
+      forceData[1].push(o);
+    } else {
+      forceData[2].push(o);
+    }
+  });
+
+};
+
 var twoFuntion = function () {
-  grouping = 2;
+  grouping = 3;
   var force = [];
 
   for (var i=0;i<grouping;i++) { 
@@ -24,26 +46,12 @@ var twoFuntion = function () {
     .gravity(0.3)
     .distance(500)
     .charge(function (d) { return d.forceR ? d.forceR*-4 : -35; } )
-    .on("tick", tick)
+    .on("tick", tick);
 
   }
   
-  // Array of forces 
-  var forceData = []; 
-
-  // Creating the number force arrays inside the forceData
-  for (var i=0;i<grouping;i++) { 
-    forceData.push([]);
-  }
-
-  // Setting the data in each array
-  data.forEach(function(o, i) {
-    if( i % 2) {
-      forceData[0].push(o);
-    } else {
-      forceData[1].push(o);
-    }
-  });
+  //Time for spliting data or filtering
+  split(data, 3);
 
   // Configuring forces
   for (var i=0;i<grouping;i++) {   
@@ -66,7 +74,15 @@ var twoFuntion = function () {
   
   // Creating the big groups
   for (var i=0;i<grouping;i++) { 
-    circleSelection[i] = d3.select("body").select("svg").append("g").attr("id", function(d) { return "our_id" + i;}).selectAll("g").data(force[i].nodes(), function (d) {return d.id; } );
+    circleSelection[i] = d3
+    .select("body")
+    .select("svg")
+      .append("g")
+      .attr("id", function(d) { return "our_id" + i;})
+      // "idea" -> create "path" instead of "g"
+      // .attr("d","M150 0 L75 200 L225 200 Z") //fix the shape
+        .selectAll("g")
+        .data(force[i].nodes(), function (d) {return d.id; } );
   }
 
   // Creating the g > circle inside the big groups
@@ -81,20 +97,26 @@ var twoFuntion = function () {
         return fill(i);})
       .style("stroke-width", 2)
       .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-      .call(force[j].drag); 
+      .on("click", function(d) {alert("circle ", d);});
+//.call(force[j].drag); 
 
     circleSelection[j].exit().remove();
   }         
   
   // Custom positioning
   // Don't put into a loop
-
-  d3.select("#our_id0").attr("transform", "translate(-380, -100)");
-  d3.select("#our_id1").attr("transform", "translate(300, -100)");          
+  if (grouping == 2) {
+    d3.select("#our_id0").attr("transform", "translate(-380, -100)");
+    d3.select("#our_id1").attr("transform", "translate(300, -100)"); 
+  }
+  if (grouping == 3) {
+    d3.select("#our_id0").attr("transform", "translate(-380, -100)");
+    d3.select("#our_id1").attr("transform", "translate(300, -100)");
+    d3.select("#our_id2").attr("transform", "translate(100, -200)"); 
+  }
+           
 };
     
-    
-
       
   $(document).ready(function() {
     $(".size_button").on("click", function() {
