@@ -6,7 +6,7 @@ app.use(express["static"](__dirname + "/../"));
 app.listen(5000);
 
 tuio.init({
-	oscPort: 3333,
+	oscPort: 5502,
 	oscHost: "localhost",
 	socketPort: app
 });
