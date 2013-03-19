@@ -165,4 +165,12 @@ function yay () {
   });
 }
 
-		
+function filterJSON(json, key, value) {
+  var result = {};
+  for (var index in json) {
+    if (json[index][key] === value) {
+      result[index] = json[index];
+    }
+  }
+  return result;
+}
