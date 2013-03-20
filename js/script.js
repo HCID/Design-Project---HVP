@@ -102,9 +102,34 @@ var restart = function() {
 
   selectedData = [];
   selectedData = data.slice(0);
+
+  var t = d3.select("body").select("svg");
+  // $(t).fadeOut(400);
+  
+  clean();
+
+  grouping = 3; // TODO: it should be 1 or data.length. I'm not sure yet
   twoFuntion();
 
 };
+
+var clean = function () {
+
+  var t = d3.select("body").select("svg");
+  // $(t).fadeOut(400);
+
+  for (var i=0;i<grouping;i++) { 
+    t.selectAll("#our_id"+i).transition().duration(2000).style("opacity", 0);
+  }
+
+  // setTimeout(function(){
+  for (var i=0;i<grouping;i++) { 
+    // circleSelection[i].remove();
+    t.selectAll("#our_id"+i).remove();
+  }
+  // }, 500);
+
+}
 
 var circleClicked = function(dt){
 
@@ -125,22 +150,9 @@ var circleClicked = function(dt){
   selectedData = forceData[n].slice(0);
   console.log("selectedData " + selectedData.length);
   // d3.select("body").remove();
-
-  var t = d3.select("body").select("svg");
-  // $(t).fadeOut(400);
   
-  for (var i=0;i<grouping;i++) { 
-    t.selectAll("#our_id"+i).transition().duration(2000).style("opacity", 0);
-  }
-
-  // setTimeout(function(){
-    for (var i=0;i<grouping;i++) { 
-      // circleSelection[i].remove();
-      t.selectAll("#our_id"+i).remove();
-    }
-  // }, 500);
+  clean();
   
-
   // t.transition().duration(500).style("opacity", 1);
 
   grouping = 1;
@@ -249,6 +261,8 @@ var twoFuntion = function () {
         twoFuntion();
       } else if($(this).data("grouping") == "map"){
         map();
+      } else if($(this).data("grouping") == "restart"){
+        restart();
       }
     });
   });
