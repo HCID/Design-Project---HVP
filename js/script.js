@@ -288,7 +288,7 @@ $(document).ready(function() {
   $("#bgimg").attr("width", width);
 });
  
-function yay () {
+$(documenmt).ready(function() {
   d3.json('data/data.json', function (importedData) {
     data = importedData;
     console.log("selectedData " + selectedData.length);
@@ -299,7 +299,9 @@ function yay () {
     rScale.domain([0, maxDomainValue]);
     restart();
   });
-}
+})
+
+
 
 function filterJSON(json, key, value) {
   var result = {};
