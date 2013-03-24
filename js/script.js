@@ -93,6 +93,11 @@ var force = d3.layout.force()
 // var force;
 // var selectedData = [];
 var foci = [{x: 200, y: 200}, {x: 350, y: 250}, {x: 700, y: 400}];
+var fociSchedule = 
+[{x: 200, y: 200}, {x: 400, y: 200}, {x: 600, y: 200}, {x: 800, y: 200},
+{x: 200, y: 400}, {x: 400, y: 400}, {x: 600, y: 400}, {x: 800, y: 400},
+{x: 200, y: 600}, {x: 400, y: 600}, {x: 600, y: 600}, {x: 800, y: 600},
+{x: 200, y: 800}, {x: 400, y: 800}, {x: 600, y: 800}, {x: 800, y: 800},];
 
 // var x = d3.scale.linear().domain([0, width]).range([0, width]),
 //     y = d3.scale.linear().domain([0, height]).range([0, height]);
@@ -116,7 +121,7 @@ var restart = function() {
 
 };
 
-var twoFuntion = function () {
+var twoFuntion = function (fociUsed) {
 
   vis = d3.select("body").append("svg:svg")
     .attr("width", width)
@@ -130,8 +135,8 @@ var twoFuntion = function () {
     console.log("Tick function");
     var k = .1 * e.alpha;
     force.nodes().forEach(function(o, i) {
-      o.y += (foci[o.id % 3].y - o.y) * k;
-      o.x += (foci[o.id % 3].x - o.x) * k;
+      o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
+      o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
     });
 
     vis.selectAll("circle")
@@ -139,7 +144,20 @@ var twoFuntion = function () {
         .attr("cy", function(d) { return d.y; });
   });
 
+  
+  selectedData = data;
+  console.log("selectedData length" + selectedData.length);
+  //Time for spliting data or filtering
+
+  groupJSON(selectedData, "room", "351");
+
+  //console.log("before Filter:" + selectedData.length);
+  //selectedData = filterJSON(selectedData, "room", "351");
+  //console.log("after Filter: " + selectedData.length);
+  //toggleVisibility();
+
   force.start();
+
 
   vis.selectAll("g")
     .data(data)
@@ -271,5 +289,8 @@ var groupJSON = function (json, key) {
       }
     })
   }
+  return forceData;
 }
+
+
 
