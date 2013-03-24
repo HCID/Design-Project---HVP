@@ -134,10 +134,12 @@ var twoFuntion = function (fociUsed) {
     // Push nodes toward their designated focus.
     console.log("Tick function");
     var k = .1 * e.alpha;
-    force.nodes().forEach(function(o, i) {
+    getSchedulePosition(k);
+    /*force.nodes().forEach(function(o, i) {
+
       o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
       o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
-    });
+    });*/
 
     vis.selectAll("circle")
         .attr("cx", function(d) { return d.x; })
@@ -227,7 +229,7 @@ $(document).ready(function() {
  
 
 
-function filterJSON(json, key, value) {
+var filterJSON = function(json, key, value) {
   var result = [];
   
   json.forEach(function (row) {
@@ -244,14 +246,14 @@ function filterJSON(json, key, value) {
   return result;
 }
 
-function toggleVisibility(force, key, value){
+var toggleVisibility = function(force, key, value){
     force.selectAll("g").attr("visibility", function(d) {
       console.log(d[key] === value);
       return d[key] === value ? "visible" : "hidden";
   });
 }
 
-function countDifferentValuesForKey(json, key) {
+var countDifferentValuesForKey = function(json, key) {
   var differentValues = [];
   
   json.forEach(function (row) {
@@ -290,6 +292,80 @@ var groupJSON = function (json, key) {
     })
   }
   return forceData;
+}
+
+
+var getSchedulePosition = function (k) { 
+
+
+  //calculate index
+    force.nodes().forEach(function(o, i) {
+      console.log("day: " + o["day"]);
+      console.log("time: " + o["starTime"]);
+      var index = 0;
+      if(o["day"] === "Monday"){
+        if(o["starTime"] ==="09:00"){
+            index = 0;
+        }
+        else if(o["starTime"] ==="11:00"){
+            index = 4;
+        }
+        else if(o["starTime"] ==="14:00"){
+            index = 8;
+        }
+        else{
+            index = 12;
+        }
+      }
+
+      else if(o["day"] === "Tuesday"){
+        if(o["starTime"] ==="09:00"){
+            index = 1;
+        }
+        else if(o["starTime"] ==="11:00"){
+            index = 5;
+        }
+        else if(o["starTime"] ==="14:00"){
+            index = 9;
+        }
+        else{
+            index = 13;
+        }
+      }
+
+      else if(o["day"] === "Wednesday"){
+        if(o["starTime"] ==="09:00"){
+            index = 2;
+        }
+        else if(o["starTime"] ==="11:00"){
+            index = 6;
+        }
+        else if(o["starTime"] ==="14:00"){
+            index = 10;
+        }
+        else{
+            index = 14;
+        }
+      }
+
+      else if(o["day"] === "Thursday"){
+        if(o["starTime"] ==="09:00"){
+            index = 3;
+        }
+        else if(o["starTime"] ==="11:00"){
+            index = 7;
+        }
+        else if(o["starTime"] ==="14:00"){
+            index = 11;
+        }
+        else{
+            index = 15;
+        }
+      }
+
+      o.y += (fociSchedule[index].y - o.y) * k;
+      o.x += (fociSchedule[index].x - o.x) * k;
+    });
 }
 
 
