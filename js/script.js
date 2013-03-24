@@ -209,12 +209,11 @@ $(document).ready(function() {
  
 
 
-
 function filterJSON(json, key, value) {
   var result = [];
   
   json.forEach(function (row) {
-    console.log(row);
+    //console.log(row);
     if (row[key] === value) {
       result.push(row);
     }
@@ -226,3 +225,51 @@ function filterJSON(json, key, value) {
   console.log("result of filter function " + result.length);
   return result;
 }
+
+function toggleVisibility(force, key, value){
+    force.selectAll("g").attr("visibility", function(d) {
+      console.log(d[key] === value);
+      return d[key] === value ? "visible" : "hidden";
+  });
+}
+
+function countDifferentValuesForKey(json, key) {
+  var differentValues = [];
+  
+  json.forEach(function (row) {
+    //console.log(row);
+    if (differentValues.indexOf(row[key]) == -1) {
+      differentValues.push(row[key]);
+    }
+  })
+  console.log(differentValues.length + " different values for key:" + key);
+  return differentValues.length;
+}
+
+var groupJSON = function (json, key) { 
+
+  var differentValues = [];
+  
+  json.forEach(function (row) {
+    //console.log(row);
+    if (differentValues.indexOf(row[key]) == -1) {
+      differentValues.push(row[key]);
+    }
+  })
+  console.log(differentValues.length + " different values for key:" + key);
+  number =  differentValues.length;
+
+  // Creating the number force arrays inside the forceData
+  forceData = [];
+
+  for (var i=0;i<number;i++) { 
+    forceData.push([]);
+    json.forEach(function (row) {
+      //console.log(row);
+      if (differentValues.indexOf(row[key]) == i) {
+        forceData[i].push(row);
+      }
+    })
+  }
+}
+
