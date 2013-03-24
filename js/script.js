@@ -100,6 +100,15 @@ var fociSchedule =
 {x: 200, y: 600}, {x: 400, y: 600}, {x: 600, y: 600}, {x: 800, y: 600},
 {x: 200, y: 800}, {x: 400, y: 800}, {x: 600, y: 800}, {x: 800, y: 800},];
 
+var fociMap = { "353": {x: 200, y: 200}, "352": {x: 200, y: 400}, "351":{x: 200, y: 600},
+"Havane": {x:300, y:600}, "Bordeaux":{x:300, y:700},
+"362": {x: 400, y: 200}, "361": {x: 400, y: 350}, "343":{x: 400, y: 500}, "342A":{x: 400, y: 600},
+// level 2
+"253": {x: 800, y: 200}, "252B": {x: 800, y: 400}, "252A":{x: 800, y: 600},
+"Blue": {x:950, y:200},
+"243":{x: 1000, y: 200}, "242": {x: 1000, y: 400}, "241":{x: 1000, y: 600},
+"undefined":{x: 1200, y: 200},};
+
 // var x = d3.scale.linear().domain([0, width]).range([0, width]),
 //     y = d3.scale.linear().domain([0, height]).range([0, height]);
 
@@ -144,7 +153,17 @@ var main = function (fociUsed) {
         o.y += (fociFree[0].y - o.y) * k;
         o.x += (fociFree[0].x - o.x) * k;
       });
+    } else if (mode == "map") {
+      getMapPosition(k);
 
+    }
+    // var bordeau = filterJSON(data,"room", "Bordeaux");
+    // console.log("talks in Bordeaux: " + countDifferentValuesForKey(bordeau,"name"));
+    /*force.nodes().forEach(function(o, i) {
+
+      o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
+      o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
+    });*/
     }
   
     vis.selectAll("circle")
@@ -153,11 +172,11 @@ var main = function (fociUsed) {
   });
 
   
-  selectedData = data;
-  console.log("selectedData length" + selectedData.length);
+  //selectedData = data;
+  //console.log("selectedData length" + selectedData.length);
   //Time for spliting data or filtering
 
-  groupJSON(selectedData, "room", "351");
+  //groupJSON(selectedData, "room", "351");
 
   //console.log("before Filter:" + selectedData.length);
   //selectedData = filterJSON(selectedData, "room", "351");
@@ -311,8 +330,8 @@ var getSchedulePosition = function (k) {
 
   //calculate index
     force.nodes().forEach(function(o, i) {
-      console.log("day: " + o["day"]);
-      console.log("time: " + o["starTime"]);
+      //console.log("day: " + o["day"]);
+      //console.log("time: " + o["starTime"]);
       var index = 0;
       if(o["day"] === "Monday"){
         if(o["starTime"] ==="09:00"){
@@ -378,6 +397,24 @@ var getSchedulePosition = function (k) {
       o.x += (fociSchedule[index].x - o.x) * k;
     });
 }
+
+var getMapPosition = function (k) { 
+  force.nodes().forEach(function(o, i) {
+    console.log(o["room"]);
+    console.log(fociMap[o["room"]]);
+    if(fociMap[o["room"]]!== undefined){
+      o.y += (fociMap[o["room"]].y - o.y) * k;
+      o.x += (fociMap[o["room"]].x - o.x) * k;
+    }
+    else{
+      console.log(o);
+       o.y += (fociMap["undefined"].y - o.y) * k;
+       o.x += (fociMap["undefined"].x - o.x) * k;
+    }
+  });
+}
+
+
 
 
 
