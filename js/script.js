@@ -1,74 +1,74 @@
 //////////// PATRIK'S TUIO CORNER  ///////////////////
-var client = new Tuio.Client({
-    host: "http://localhost:5000"
-}),
+// var client = new Tuio.Client({
+//     host: "http://localhost:5000"
+// }),
 
-onAddTuioCursor = function(addCursor) {
-  console.log(addCursor.xPos*$(window).width());
-  console.log(addCursor.yPos*$(window).height()); 
+// onAddTuioCursor = function(addCursor) {
+//   console.log(addCursor.xPos*$(window).width());
+//   console.log(addCursor.yPos*$(window).height()); 
 
-  console.log($(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())));
-  $(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())).trigger("bap");    $("#circle").css("left", addCursor.xPos*$(window).width()-30 + "px");
-  $("#circle").css("top", addCursor.yPos*$(window).height()-10 + "px"); 
-  $("#circle").fadeIn();
-  console.log(addCursor);
-},
+//   console.log($(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())));
+//   $(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())).trigger("bap");    $("#circle").css("left", addCursor.xPos*$(window).width()-30 + "px");
+//   $("#circle").css("top", addCursor.yPos*$(window).height()-10 + "px"); 
+//   $("#circle").fadeIn();
+//   console.log(addCursor);
+// },
 
-onUpdateTuioCursor = function(updateCursor) {
-  //console.log(updateCursor);
-  $("#circle").css("left", updateCursor.xPos*$(window).width()-30 + "px");
-  $("#circle").css("top", updateCursor.yPos*$(window).height()-10 + "px"); 
-},
+// onUpdateTuioCursor = function(updateCursor) {
+//   //console.log(updateCursor);
+//   $("#circle").css("left", updateCursor.xPos*$(window).width()-30 + "px");
+//   $("#circle").css("top", updateCursor.yPos*$(window).height()-10 + "px"); 
+// },
 
-onRemoveTuioCursor = function(removeCursor) {
-  //console.log(removeCursor);
-  $("#circle").fadeOut()
-},
+// onRemoveTuioCursor = function(removeCursor) {
+//   //console.log(removeCursor);
+//   $("#circle").fadeOut()
+// },
 
-onAddTuioObject = function(addObject) {
-    //console.log(addObject);
-},
+// onAddTuioObject = function(addObject) {
+//     //console.log(addObject);
+// },
 
-onUpdateTuioObject = function(updateObject) {
-    //console.log(updateObject);
-},
+// onUpdateTuioObject = function(updateObject) {
+//     //console.log(updateObject);
+// },
 
-onRemoveTuioObject = function(removeObject) {
-    //console.log(removeObject);
-},
+// onRemoveTuioObject = function(removeObject) {
+//     //console.log(removeObject);
+// },
 
-onRefresh = function(time) {
-  //console.log(time);
-};
+// onRefresh = function(time) {
+//   //console.log(time);
+// };
 
-client.on("addTuioCursor", onAddTuioCursor);
-client.on("updateTuioCursor", onUpdateTuioCursor);
-client.on("removeTuioCursor", onRemoveTuioCursor);
-client.on("addTuioObject", onAddTuioObject);
-client.on("updateTuioObject", onUpdateTuioObject);
-client.on("removeTuioObject", onRemoveTuioObject);
-client.on("refresh", onRefresh);
-client.connect();
+// client.on("addTuioCursor", onAddTuioCursor);
+// client.on("updateTuioCursor", onUpdateTuioCursor);
+// client.on("removeTuioCursor", onRemoveTuioCursor);
+// client.on("addTuioObject", onAddTuioObject);
+// client.on("updateTuioObject", onUpdateTuioObject);
+// client.on("removeTuioObject", onRemoveTuioObject);
+// client.on("refresh", onRefresh);
+// client.connect();
 
-$(document).ready(function() {
-  $("*").on("click", function(e){
-    e.stopPropagation();
-  })
+// $(document).ready(function() {
+//   $("*").on("click", function(e){
+//     e.stopPropagation();
+//   })
   
-  $("div#box").on("bap", function(){
+//   $("div#box").on("bap", function(){
     
-    if($(this).hasClass("blue")) {
+//     if($(this).hasClass("blue")) {
       
-     $(this).attr("class", "red");
-      $(this).css("background-color", "red");
-    } else {
+//      $(this).attr("class", "red");
+//       $(this).css("background-color", "red");
+//     } else {
       
-      $(this).attr("class", "blue");
-        $(this).css("background-color", "blue");
-    }
+//       $(this).attr("class", "blue");
+//         $(this).css("background-color", "blue");
+//     }
     
-  })
-})
+//   })
+// })
 
 
 
@@ -92,14 +92,12 @@ var force = d3.layout.force()
 // var circleSelection;
 // var force;
 // var selectedData = [];
-var foci = [{x: 150, y: 150}, {x: 350, y: 250}, {x: 700, y: 400}];
+var foci = [{x: 200, y: 200}, {x: 350, y: 250}, {x: 700, y: 400}];
 
 // var x = d3.scale.linear().domain([0, width]).range([0, width]),
 //     y = d3.scale.linear().domain([0, height]).range([0, height]);
 
-var vis = d3.select("body").append("svg:svg")
-    .attr("width", width)
-    .attr("height", height);
+var vis;
 
 
 // Restarts the data
@@ -120,27 +118,9 @@ var restart = function() {
 
 var twoFuntion = function () {
 
-  var vis = d3.select("body").append("svg:svg")
-      .attr("width", width)
-      .attr("height", height);
-
-<<<<<<< HEAD
-  }
-  
-  console.log("selectedData twoFuntion" + selectedData.length);
-  //Time for spliting data or filtering
-  split(selectedData, grouping);
-  console.log("before Filter:" + selectedData.length);
-  selectedData = filterJSON(selectedData, "room", "351");
-  console.log("after Filter: " + selectedData.length);
-
-=======
-  // force = d3.layout.force()
-  //     .nodes(data)
-  //     .links([])
-  //     .gravity(0)
-  //     .size([width, height]);
->>>>>>> new way
+  vis = d3.select("body").append("svg:svg")
+    .attr("width", width)
+    .attr("height", height);
 
   force.nodes(data);
 
