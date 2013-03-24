@@ -77,16 +77,17 @@
 
 
 var data = [],
-    height = window.screen.availHeight,
-	  width = window.screen.availWidth,
+    height = $(window).height(),
+	  width = $(window).width(),
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
     mode = "free";
 
 var force = d3.layout.force()
       .links([])
-      .gravity(0)
-      .size([width, height]);
+      .gravity(0.03)
+      .size([width, height])
+      .charge(-25);
   
 // var forceData;
 // var circleSelection;
@@ -94,11 +95,16 @@ var force = d3.layout.force()
 // var selectedData = [];
 var foci = [{x: 200, y: 200}, {x: 350, y: 250}, {x: 700, y: 400}];
 var fociFree = [{x: width/2, y: height/2}];
+var xSchedule = 600;
+var ySchedule = 400;
+var xSpace = 150;
+var ySpace = 100;
+
 var fociSchedule = 
-[{x: 200, y: 200}, {x: 400, y: 200}, {x: 600, y: 200}, {x: 800, y: 200},
-{x: 200, y: 400}, {x: 400, y: 400}, {x: 600, y: 400}, {x: 800, y: 400},
-{x: 200, y: 600}, {x: 400, y: 600}, {x: 600, y: 600}, {x: 800, y: 600},
-{x: 200, y: 800}, {x: 400, y: 800}, {x: 600, y: 800}, {x: 800, y: 800},];
+[{x: xSchedule, y: ySchedule},          {x: xSchedule + xSpace, y: ySchedule},           {x: xSchedule + xSpace*2, y: ySchedule},           {x: xSchedule + xSpace*3, y: ySchedule},
+{x: xSchedule, y: ySchedule + ySpace},   {x: xSchedule + xSpace, y: ySchedule + ySpace},   {x: xSchedule + xSpace*2, y: ySchedule + ySpace},   {x: xSchedule + xSpace*3, y: ySchedule + ySpace},
+{x: xSchedule, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*2},
+{x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3}];
 
 var fociMap = { "353": {x: 200, y: 200}, "352": {x: 200, y: 400}, "351":{x: 200, y: 600},
 "Havane": {x:300, y:600}, "Bordeaux":{x:300, y:700},
@@ -134,9 +140,12 @@ var restart = function() {
 
 var main = function (fociUsed) {
 
-  vis = d3.select("body").select("svg")
-    .attr("width", width)
-    .attr("height", height);
+  vis = d3.select("body").select("svg");
+    // .attr("width", width)
+    // .attr("height", height);
+
+  console.log("width ", width);
+  console.log("height ", height);
 
   force.nodes(data);
   
@@ -155,8 +164,9 @@ var main = function (fociUsed) {
       });
     } else if (mode == "map") {
       getMapPosition(k);
-
     }
+
+    changeImage();
     // var bordeau = filterJSON(data,"room", "Bordeaux");
     // console.log("talks in Bordeaux: " + countDifferentValuesForKey(bordeau,"name"));
     /*force.nodes().forEach(function(o, i) {
@@ -164,7 +174,6 @@ var main = function (fociUsed) {
       o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
       o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
     });*/
-    }
   
     vis.selectAll("circle")
         .attr("cx", function(d) { return d.x; })
@@ -208,19 +217,14 @@ var main = function (fociUsed) {
   $(document).ready(function() {
     $(".size_button").on("click", function() {
       if (parseInt($(this).data("grouping")) === 16) {
-        console.log("button 16");
       } else if (parseInt($(this).data("grouping")) === 4) {
-        console.log("button 4");
       } else if ($(this).data("grouping") == "schedule") {
-        console.log("button schedule");
         mode = "schedule";
         main();
       } else if($(this).data("grouping") == "map"){
-        console.log("button map");
         mode = "map";
         main();
       } else if($(this).data("grouping") == "restart"){
-        console.log("button restart");
         restart();
       }
     });
@@ -400,21 +404,31 @@ var getSchedulePosition = function (k) {
 
 var getMapPosition = function (k) { 
   force.nodes().forEach(function(o, i) {
-    console.log(o["room"]);
-    console.log(fociMap[o["room"]]);
+    // console.log(o["room"]);
+    // console.log(fociMap[o["room"]]);
     if(fociMap[o["room"]]!== undefined){
       o.y += (fociMap[o["room"]].y - o.y) * k;
       o.x += (fociMap[o["room"]].x - o.x) * k;
     }
     else{
-      console.log(o);
+      // console.log(o);
        o.y += (fociMap["undefined"].y - o.y) * k;
        o.x += (fociMap["undefined"].x - o.x) * k;
     }
   });
 }
 
-
+// Changes the background image
+function changeImage() {
+  if (mode == "schedule") {
+      d3.select("body").select("svg").select("image")
+        .attr("xlink:href", "img/schedule.svg");
+      // document.getElementById("image").src="img/schedule.svg";
+  } else {
+      d3.select("body").select("svg").select("image")
+        .attr("xlink:href", "");  
+  }
+};
 
 
 
