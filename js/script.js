@@ -286,9 +286,6 @@ $(document).ready(function() {
   $("svg").attr("width", width + "px");
   $("#bgimg").attr("height", height);
   $("#bgimg").attr("width", width);
-});
- 
-$(documenmt).ready(function() {
   d3.json('data/data.json', function (importedData) {
     data = importedData;
     console.log("selectedData " + selectedData.length);
@@ -299,7 +296,8 @@ $(documenmt).ready(function() {
     rScale.domain([0, maxDomainValue]);
     restart();
   });
-})
+});
+ 
 
 
 
