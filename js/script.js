@@ -258,6 +258,10 @@ var twoFuntion = function () {
   console.log("selectedData twoFuntion" + selectedData.length);
   //Time for spliting data or filtering
   split(selectedData, grouping);
+  console.log("before Filter:" + selectedData.length);
+  selectedData = filterJSON(selectedData, "room", "351");
+  console.log("after Filter: " + selectedData.length);
+
 
   console.log("forceData " + selectedData.length);
 
@@ -380,11 +384,18 @@ $(document).ready(function() {
 
 
 function filterJSON(json, key, value) {
-  var result = {};
-  for (var index in json) {
-    if (json[index][key] === value) {
-      result[index] = json[index];
+  var result = [];
+  
+  json.forEach(function (row) {
+    console.log(row);
+    if (row[key] === value) {
+      result.push(row);
     }
-  }
+    else{
+      console.log("removed one");
+    }
+
+  })
+  console.log("result of filter function " + result.length);
   return result;
 }
