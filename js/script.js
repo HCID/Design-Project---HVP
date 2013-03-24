@@ -79,9 +79,9 @@
 var data = [],
     height = window.screen.availHeight,
 	  width = window.screen.availWidth,
-    grouping = 3;
     rScale = d3.scale.sqrt().range([0, 15]),
-    fill = d3.scale.category20();
+    fill = d3.scale.category20(),
+    mode = "free";
 
 var force = d3.layout.force()
       .links([])
@@ -93,6 +93,7 @@ var force = d3.layout.force()
 // var force;
 // var selectedData = [];
 var foci = [{x: 200, y: 200}, {x: 350, y: 250}, {x: 700, y: 400}];
+var fociFree = [{x: width/2, y: height/2}];
 var fociSchedule = 
 [{x: 200, y: 200}, {x: 400, y: 200}, {x: 600, y: 200}, {x: 800, y: 200},
 {x: 200, y: 400}, {x: 400, y: 400}, {x: 600, y: 400}, {x: 800, y: 400},
@@ -117,30 +118,35 @@ var restart = function() {
   // clean();
 
   // grouping = 3; // TODO: it should be 1 or data.length. I'm not sure yet
-  twoFuntion();
+  mode = "free";
+  main();
 
 };
 
-var twoFuntion = function (fociUsed) {
+var main = function (fociUsed) {
 
-  vis = d3.select("body").append("svg:svg")
+  vis = d3.select("body").select("svg")
     .attr("width", width)
     .attr("height", height);
 
   force.nodes(data);
+  
+  console.log ("mode on force: " + mode);
 
   force.on("tick", function(e) {
 
     // Push nodes toward their designated focus.
-    console.log("Tick function");
     var k = .1 * e.alpha;
-    getSchedulePosition(k);
-    /*force.nodes().forEach(function(o, i) {
+    if (mode == "schedule") {
+      getSchedulePosition(k);
+    } else if (mode == "free") {
+      force.nodes().forEach(function(o, i) {
+        o.y += (fociFree[0].y - o.y) * k;
+        o.x += (fociFree[0].x - o.x) * k;
+      });
 
-      o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
-      o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
-    });*/
-
+    }
+  
     vis.selectAll("circle")
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
@@ -183,32 +189,37 @@ var twoFuntion = function (fociUsed) {
   $(document).ready(function() {
     $(".size_button").on("click", function() {
       if (parseInt($(this).data("grouping")) === 16) {
-        sixteenFuntion();
+        console.log("button 16");
       } else if (parseInt($(this).data("grouping")) === 4) {
-        fourFuntion();
-      } else if (parseInt($(this).data("grouping")) === 2) {
-        twoFuntion();
+        console.log("button 4");
+      } else if ($(this).data("grouping") == "schedule") {
+        console.log("button schedule");
+        mode = "schedule";
+        main();
       } else if($(this).data("grouping") == "map"){
-        map();
+        console.log("button map");
+        mode = "map";
+        main();
       } else if($(this).data("grouping") == "restart"){
+        console.log("button restart");
         restart();
       }
     });
   });
 
 
-var map = function () {
-  num = 63;
-  groupFill = function(d, i) { return fill(i & num); };
-  groups = d3.nest().key(function(d) { return d & num }).entries(force.nodes());
-  // Makes all the nodes move when clicking
-  d3.select("body")//.on("click", function() {
-    force.nodes().forEach(function(o, i) {
-      o.x += (Math.random() - .5) * 80;
-      o.y += (Math.random() - .5) * 80;
-    });
-  mapForce.resume();
-};
+// var map = function () {
+//   num = 63;
+//   groupFill = function(d, i) { return fill(i & num); };
+//   groups = d3.nest().key(function(d) { return d & num }).entries(force.nodes());
+//   // Makes all the nodes move when clicking
+//   d3.select("body")//.on("click", function() {
+//     force.nodes().forEach(function(o, i) {
+//       o.x += (Math.random() - .5) * 80;
+//       o.y += (Math.random() - .5) * 80;
+//     });
+//   mapForce.resume();
+// };
 
 $(document).ready(function() {
   $("svg").attr("height", height + "px");
