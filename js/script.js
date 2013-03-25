@@ -1,74 +1,129 @@
 //////////// PATRIK'S TUIO CORNER  ///////////////////
-// var client = new Tuio.Client({
-//     host: "http://localhost:5000"
-// }),
 
-// onAddTuioCursor = function(addCursor) {
-//   console.log(addCursor.xPos*$(window).width());
-//   console.log(addCursor.yPos*$(window).height()); 
+var fingers = [];
 
-//   console.log($(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())));
-//   $(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())).trigger("bap");    $("#circle").css("left", addCursor.xPos*$(window).width()-30 + "px");
-//   $("#circle").css("top", addCursor.yPos*$(window).height()-10 + "px"); 
-//   $("#circle").fadeIn();
-//   console.log(addCursor);
-// },
 
-// onUpdateTuioCursor = function(updateCursor) {
-//   //console.log(updateCursor);
-//   $("#circle").css("left", updateCursor.xPos*$(window).width()-30 + "px");
-//   $("#circle").css("top", updateCursor.yPos*$(window).height()-10 + "px"); 
-// },
+var client = new Tuio.Client({
+    host: "http://localhost:5000"
+}),
 
-// onRemoveTuioCursor = function(removeCursor) {
-//   //console.log(removeCursor);
-//   $("#circle").fadeOut()
-// },
 
-// onAddTuioObject = function(addObject) {
-//     //console.log(addObject);
-// },
 
-// onUpdateTuioObject = function(updateObject) {
-//     //console.log(updateObject);
-// },
 
-// onRemoveTuioObject = function(removeObject) {
-//     //console.log(removeObject);
-// },
 
-// onRefresh = function(time) {
-//   //console.log(time);
-// };
 
-// client.on("addTuioCursor", onAddTuioCursor);
-// client.on("updateTuioCursor", onUpdateTuioCursor);
-// client.on("removeTuioCursor", onRemoveTuioCursor);
-// client.on("addTuioObject", onAddTuioObject);
-// client.on("updateTuioObject", onUpdateTuioObject);
-// client.on("removeTuioObject", onRemoveTuioObject);
-// client.on("refresh", onRefresh);
-// client.connect();
 
-// $(document).ready(function() {
-//   $("*").on("click", function(e){
-//     e.stopPropagation();
-//   })
+onAddTuioCursor = function(addCursor) {
+
+
+
+
+
+var element = $(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())); 
+var el = null;
+if(element.get(0).tagName == "circle") {
+  console.log(element.parents("g").attr("id"));
+
+  el = d3.select("#" + element.parents("g").attr("id") + " circle");
+
+console.log(el);
+var event = document.createEvent("MouseEvent");
+event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height(),addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height());
+el[0][0].dispatchEvent(event);
+
   
-//   $("div#box").on("bap", function(){
-    
-//     if($(this).hasClass("blue")) {
+}
+  fingers[addCursor.sessionId] = {
+    cursor: addCursor,
+    el: el,
+    fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*$(window).width() + "px; top: " + addCursor.yPos*$(window).height() + "px; border-radius: 40px; '></div>").appendTo($("body"))
+  };
+/*
+
+  console.log($(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())));
+     
+   $("#circle").css("left", addCursor.xPos*$(window).width()-30 + "px");
+  $("#circle").css("top", addCursor.yPos*$(window).height()-10 + "px"); 
+  $("#circle").fadeIn();
+  console.log("cursor", addCursor);
+  */
+},
+
+onUpdateTuioCursor = function(updateCursor) {
+  //console.log(updateCursor);
+  if(fingers[updateCursor.sessionId]) {
+    fingers[updateCursor.sessionId].cursor = updateCursor;
+    fingers[updateCursor.sessionId].fingerCircle.css("left", updateCursor.xPos*$(window).width()-20 + "px");
+    fingers[updateCursor.sessionId].fingerCircle.css("top", updateCursor.yPos*$(window).height()-25 + "px");
+    if (fingers[updateCursor.sessionId].el) {
+      var event = document.createEvent("MouseEvent");
+      event.initMouseEvent("mousemove",true,true, window, 1, updateCursor.xPos*$(window).width(), updateCursor.yPos*$(window).height(),updateCursor.xPos*$(window).width(), updateCursor.yPos*$(window).height());
+      fingers[updateCursor.sessionId].el[0][0].dispatchEvent(event);
+     // fingers[updateCursor.sessionId].el.on("drag")();
+    }
+  }
+},
+
+onRemoveTuioCursor = function(removeCursor) {
+  //console.log(removeCursor);
+    if(fingers[removeCursor.sessionId]) {
+      if (fingers[removeCursor.sessionId].el) {
+      var event = document.createEvent("MouseEvent");
+      event.initMouseEvent("mouseup",true,true, window, 1, removeCursor.xPos*$(window).width(), removeCursor.yPos*$(window).height(),removeCursor.xPos*$(window).width(), removeCursor.yPos*$(window).height());
+      fingers[removeCursor.sessionId].el[0][0].dispatchEvent(event);
+     
+    }
+      fingers[removeCursor.sessionId].fingerCircle.remove();
+      fingers[removeCursor.sessionId] = null;      
+    }
       
-//      $(this).attr("class", "red");
-//       $(this).css("background-color", "red");
-//     } else {
-      
-//       $(this).attr("class", "blue");
-//         $(this).css("background-color", "blue");
-//     }
     
-//   })
-// })
+    
+  
+},
+
+onAddTuioObject = function(addObject) {
+    //console.log(addObject);
+},
+
+onUpdateTuioObject = function(updateObject) {
+    //console.log(updateObject);
+},
+
+onRemoveTuioObject = function(removeObject) {
+    //console.log(removeObject);
+},
+
+onRefresh = function(time) {
+  //console.log(time);
+};
+
+client.on("addTuioCursor", onAddTuioCursor);
+client.on("updateTuioCursor", onUpdateTuioCursor);
+client.on("removeTuioCursor", onRemoveTuioCursor);
+client.on("addTuioObject", onAddTuioObject);
+client.on("updateTuioObject", onUpdateTuioObject);
+client.on("removeTuioObject", onRemoveTuioObject);
+client.on("refresh", onRefresh);
+client.connect();
+
+
+console.log(d3.behavior.drag());
+
+var node_drag = d3.behavior.drag()
+        .on("dragstart", function(){ console.log("started dragging!"); })
+        .on("drag", function(d, i){ 
+          console.log("dragging!",  d); 
+console.log(d3.event);
+          d.x += d3.event.x
+            d.y += d3.event.y
+            d3.select(this).attr("transform", function(d,i){
+                return "translate(" + [ d.x,d.y ] + ")"
+            })
+
+        })
+        .on("dragend", function(){ console.log("stopped dragging!");});
+
 
 
 
@@ -198,7 +253,7 @@ var main = function (fociUsed) {
   vis.selectAll("g")
     .data(data)
     .enter().append("g")
-      .attr("id", function(d, i){return d.id;})
+      .attr("id", function(d, i){return "g"+d.id;})
       .attr("class", "circle_class")
       .on("click", function(d){ circleClicked(d) } )
       // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
