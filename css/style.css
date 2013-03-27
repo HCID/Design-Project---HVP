@@ -63,6 +63,11 @@ h3 {
   font-size: 18px;
 }
 
+.legend {
+  position: absolute;
+  top: 300px;
+}
+
 .invert {
   background: #1f1f1f;
   color: #dcdccc;

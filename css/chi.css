@@ -18,3 +18,20 @@
 	text-decoration:none;
 	background:#333
 }
+
+.legend {
+  	position: absolute;
+  	top: 110px;
+  	font-family: arial, sans-serif;
+  	font-size:18px;
+}
+
+.typesClass{
+	list-style: none; 
+	margin-bottom: 10px; 
+	padding: 5px; 
+	border-radius: 5px; 
+	color: #eee; 
+	text-align:center;  
+	width:150px;
+}

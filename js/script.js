@@ -154,7 +154,7 @@ var xSchedule = 600;
 var ySchedule = 400;
 var xSpace = 150;
 var ySpace = 100;
-
+var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
 var fociSchedule = 
 [{x: xSchedule, y: ySchedule},          {x: xSchedule + xSpace, y: ySchedule},           {x: xSchedule + xSpace*2, y: ySchedule},           {x: xSchedule + xSpace*3, y: ySchedule},
 {x: xSchedule, y: ySchedule + ySpace},   {x: xSchedule + xSpace, y: ySchedule + ySpace},   {x: xSchedule + xSpace*2, y: ySchedule + ySpace},   {x: xSchedule + xSpace*3, y: ySchedule + ySpace},
@@ -248,7 +248,16 @@ var main = function (fociUsed) {
   //toggleVisibility();
 
   force.start();
+      var items = [];
 
+     $.each(getDifferentValuesForKey(data,"type"), function(i, item) {
+            console.log(item);
+
+            items.push('<li class="typesClass" style="background-color:' + fill(item) + '">' + item + '</li>');
+
+     });  // close each()
+
+     $(".types").html( items.join('') );
 
   vis.selectAll("g")
     .data(data)
@@ -261,15 +270,18 @@ var main = function (fociUsed) {
       .attr("r", function (d) {
         return 10})
       .style("fill", function (d, i) {
-        return fill(i);})
+        
+        return fill(d["type"]  );
+
+      })
       .style("stroke-width", 2)
       .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
       .call(force.drag);
-
 };
     
       
   $(document).ready(function() {
+    console.log("document_ready");
     $(".size_button").on("click", function() {
       if (parseInt($(this).data("grouping")) === 16) {
       } else if (parseInt($(this).data("grouping")) === 4) {
@@ -283,6 +295,7 @@ var main = function (fociUsed) {
         restart();
       }
     });
+
   });
 
 
@@ -353,6 +366,19 @@ var countDifferentValuesForKey = function(json, key) {
   })
   console.log(differentValues.length + " different values for key:" + key);
   return differentValues.length;
+}
+
+var getDifferentValuesForKey = function(json, key) {
+  var differentValues = [];
+  
+  json.forEach(function (row) {
+    //console.log(row);
+    if (differentValues.indexOf(row[key]) == -1) {
+      differentValues.push(row[key]);
+    }
+  })
+  console.log(differentValues.length + " different values for key:" + key);
+  return differentValues;
 }
 
 var groupJSON = function (json, key) { 
