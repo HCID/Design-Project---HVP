@@ -159,7 +159,7 @@ var fociSchedule =
 [{x: xSchedule, y: ySchedule},          {x: xSchedule + xSpace, y: ySchedule},           {x: xSchedule + xSpace*2, y: ySchedule},           {x: xSchedule + xSpace*3, y: ySchedule},
 {x: xSchedule, y: ySchedule + ySpace},   {x: xSchedule + xSpace, y: ySchedule + ySpace},   {x: xSchedule + xSpace*2, y: ySchedule + ySpace},   {x: xSchedule + xSpace*3, y: ySchedule + ySpace},
 {x: xSchedule, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*2},
-{x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3}];
+{x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*5, y: ySchedule + ySpace}];
 
 var fociMap = { "353": {x: 200, y: 200}, "352": {x: 200, y: 400}, "351":{x: 200, y: 600},
 "Havane": {x:300, y:600}, "Bordeaux":{x:300, y:700},
@@ -385,25 +385,30 @@ var groupJSON = function (json, key) {
 
 
 var getSchedulePosition = function (k) { 
-
+  console.log("getSchedulePosition");
 
   //calculate index
     force.nodes().forEach(function(o, i) {
       //console.log("day: " + o["day"]);
       //console.log("time: " + o["starTime"]);
-      var index = 0;
+      // undefined talks will end up in the 16th 
+      var index = 16;
       if(o["day"] === "Monday"){
         if(o["starTime"] ==="09:00"){
+          //console.log("09:00");
             index = 0;
         }
         else if(o["starTime"] ==="11:00"){
             index = 4;
+            //console.log("11:00");
         }
         else if(o["starTime"] ==="14:00"){
             index = 8;
+            //console.log("14:00");
         }
         else{
             index = 12;
+            //console.log("16:00");
         }
       }
 
@@ -439,6 +444,7 @@ var getSchedulePosition = function (k) {
 
       else if(o["day"] === "Thursday"){
         if(o["starTime"] ==="09:00"){
+
             index = 3;
         }
         else if(o["starTime"] ==="11:00"){
@@ -451,9 +457,10 @@ var getSchedulePosition = function (k) {
             index = 15;
         }
       }
-
-      o.y += (fociSchedule[index].y - o.y) * k;
-      o.x += (fociSchedule[index].x - o.x) * k;
+        
+        o.y += (fociSchedule[index].y - o.y) * k;
+        o.x += (fociSchedule[index].x - o.x) * k;
+      
     });
 }
 
