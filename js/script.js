@@ -531,12 +531,18 @@ function changeImage() {
   if (mode == "schedule") {
       d3.select("body").select("svg").select("image")
         .attr("xlink:href", "img/schedule.svg");
+        .attr("opacity", 1);
+      // document.getElementById("image").src="img/schedule.svg";
+  } else if (mode == "schedule") {
+      d3.select("body").select("svg").select("image")
+        .attr("xlink:href", "img/map_bg.svg");
+        .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else {
       d3.select("body").select("svg").select("image")
         .attr("xlink:href", "");  
+        .attr("opacity", 0);
+
   }
 };
-
-
 
