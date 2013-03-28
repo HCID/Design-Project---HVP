@@ -111,18 +111,26 @@ client.connect();
 console.log(d3.behavior.drag());
 
 var node_drag = d3.behavior.drag()
-        .on("dragstart", function(){ console.log("started dragging!"); })
+        .on("dragstart", function(d){ d.fixed = true;})
         .on("drag", function(d, i){ 
-          console.log("dragging!",  d); 
-console.log(d3.event);
-          d.x += d3.event.x
-            d.y += d3.event.y
-            d3.select(this).attr("transform", function(d,i){
+
+         // d.x = d3.event.x // +=
+          //  d.y = d3.event.y // +=
+           /* d3.select(this).attr("transform", function(d,i){
                 return "translate(" + [ d.x,d.y ] + ")"
-            })
+            })*/
+
+        d.px += d3.event.dx;
+    d.py += d3.event.dy;
+    d.x += d3.event.dx;
+    d.y += d3.event.dy; 
+    tick(); 
+
+
+           
 
         })
-        .on("dragend", function(){ console.log("stopped dragging!");});
+        .on("dragend", function(d){  });
 
 
 
@@ -193,22 +201,10 @@ var restart = function() {
 
 };
 
-var main = function (fociUsed) {
 
-  vis = d3.select("body").select("svg");
-    // .attr("width", width)
-    // .attr("height", height);
-
-  console.log("width ", width);
-  console.log("height ", height);
-
-  force.nodes(data);
-  
-  console.log ("mode on force: " + mode);
-
-  force.on("tick", function(e) {
-
-    // Push nodes toward their designated focus.
+var tick = function(e) {
+  if(e !== undefined) {
+        // Push nodes toward their designated focus.
     var k = .1 * e.alpha;
     if (mode == "schedule") {
       getSchedulePosition(k);
@@ -222,6 +218,8 @@ var main = function (fociUsed) {
     }
 
     changeImage();
+  }
+
     // var bordeau = filterJSON(data,"room", "Bordeaux");
     // console.log("talks in Bordeaux: " + countDifferentValuesForKey(bordeau,"name"));
     /*force.nodes().forEach(function(o, i) {
@@ -229,11 +227,33 @@ var main = function (fociUsed) {
       o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
       o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
     });*/
-  
+  /*
     vis.selectAll("circle")
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
-  });
+
+  */
+
+
+    vis.selectAll("circle").attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+
+};
+
+var main = function (fociUsed) {
+
+  vis = d3.select("body").select("svg");
+    // .attr("width", width)
+    // .attr("height", height);
+
+  console.log("width ", width);
+  console.log("height ", height);
+
+  force.nodes(data);
+  
+  console.log ("mode on force: " + mode);
+
+  force.on("tick", tick);
 
   
   //selectedData = data;
@@ -264,7 +284,7 @@ var main = function (fociUsed) {
     .enter().append("g")
       .attr("id", function(d, i){return "g"+d.id;})
       .attr("class", "circle_class")
-      .on("click", function(d){ circleClicked(d) } )
+      //.on("click", function(d){ circleClicked(d) } )
       // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
       .append("circle")
       .attr("r", function (d) {
@@ -276,7 +296,7 @@ var main = function (fociUsed) {
       })
       .style("stroke-width", 2)
       .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-      .call(force.drag);
+      .call(node_drag);
 };
     
       
