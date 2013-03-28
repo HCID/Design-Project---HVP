@@ -130,7 +130,7 @@ var node_drag = d3.behavior.drag()
            
 
         })
-        .on("dragend", function(d){  });
+        .on("dragend", function(d){ d.fixed = false; });
 
 
 
