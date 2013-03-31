@@ -183,6 +183,10 @@ var fociMap = { "353": {x: 200, y: 200}, "352": {x: 200, y: 400}, "351":{x: 200,
 
 var vis;
 
+var gCom = {
+  'coms': [],
+  'amount': 0
+};
 
 // Restarts the data
 var restart = function() {
@@ -304,6 +308,8 @@ var main = function (fociUsed) {
     console.log("document_ready");
     $(".size_button").on("click", function() {
       if (parseInt($(this).data("grouping")) === 16) {
+        console.log("communities function");
+        communities();
       } else if (parseInt($(this).data("grouping")) === 4) {
       } else if ($(this).data("grouping") == "schedule") {
         mode = "schedule";
@@ -530,19 +536,105 @@ var getMapPosition = function (k) {
 function changeImage() {
   if (mode == "schedule") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "img/schedule.svg");
+        .attr("xlink:href", "img/schedule.svg")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else if (mode == "schedule") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "img/map_bg.svg");
+        .attr("xlink:href", "img/map_bg.svg")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "");  
+        .attr("xlink:href", "") 
         .attr("opacity", 0);
 
   }
 };
 
+var communities = function() {
+
+  var gComs = [];
+
+  data.forEach(function(d) {
+
+    if (gComs.length == 0) {
+      var gCom = new Object();
+      gCom.coms = d.communities ? d.communities : [];
+      gCom.amount = 1;
+      gComs.push(gCom);
+    } else {
+
+      var i = 0;
+      var found = false;
+      var length = gComs.length;
+
+      while (i<length && !found) { 
+
+        var auxArray = d.communities ? d.communities : [];
+
+        if (compareArrays(gComs[i].coms, auxArray)) {
+          gComs[i].amount ++;
+          found = true;
+        } 
+        i++;
+      }
+
+      if (!found) {
+        var gCom = new Object();
+        gCom.coms = d.communities ? d.communities : [];
+        gCom.amount = 1;
+        gComs.push(gCom);
+      }
+
+    }
+
+  })
+
+  // console.log("gComs ", gComs);
+  // console.log("gComs.length ", gComs.length);
+
+  gComs.forEach( function (d) {
+    console.log ("coms ", d.coms);
+    console.log ("amount ", d.amount);
+  })
+
+}
+
+var compareArrays = function (a,b) {
+
+  var aLength = a.length;
+  var bLength = b.length;
+  var result = false;
+  
+  if (aLength == bLength) {
+
+    var i = 0; 
+    var follow = true;
+
+    while ((i < aLength) && follow) {
+      follow = containsElement(b,a[i]);
+      i++;
+    }
+    
+    result = follow;
+
+  }
+
+  return result;
+
+}
+
+var containsElement = function (array, b) {
+
+  var i = 0;
+  var found = false;
+
+  while ((i < array.length) && !found) {
+    found = (array[i].toLowerCase() === b.toLowerCase());
+    i++;
+  }
+
+  return found;
+
+}
