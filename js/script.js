@@ -16,7 +16,7 @@ var client = new Tuio.Client({
 onAddTuioCursor = function(addCursor) {
 
 
-
+var circleEl = false;
 
 
 var element = $(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())); 
@@ -30,13 +30,13 @@ console.log(el);
 var event = document.createEvent("MouseEvent");
 event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height(),addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height());
 el[0][0].dispatchEvent(event);
-
+circleEl = true;
   
 }
   fingers[addCursor.sessionId] = {
     cursor: addCursor,
     el: el,
-    fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*$(window).width() + "px; top: " + addCursor.yPos*$(window).height() + "px; border-radius: 40px; '></div>").appendTo($("body"))
+    fingerCircle: circleEl ? $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*$(window).width() + "px; top: " + addCursor.yPos*$(window).height() + "px; border-radius: 40px; '></div>").appendTo($("body")) : null
   };
 /*
 
@@ -83,7 +83,7 @@ onRemoveTuioCursor = function(removeCursor) {
 },
 
 onAddTuioObject = function(addObject) {
-    //console.log(addObject);
+    console.log(addObject);
 },
 
 onUpdateTuioObject = function(updateObject) {
