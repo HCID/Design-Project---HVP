@@ -244,6 +244,33 @@ var tick = function(e) {
         .attr("cy", function(d) { return d.y; });
 
 };
+var nodes;
+
+var update = function () {
+  nodes = vis.selectAll("g")
+    .data(force.nodes(), function(d){ return d.id;} )
+    
+    nodes.enter().append("g")
+      .attr("id", function(d, i){return "g"+d.id;})
+      .attr("class", "circle_class")
+      .on("click", function(d){ circleClicked(d) } )
+      // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
+      .append("circle")
+      .attr("r", function (d) {
+        return 10})
+      .style("fill", function (d, i) {
+        
+        return fill(d["type"]  );
+
+      })
+      .style("stroke-width", 2)
+      .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
+      .call(node_drag);
+  
+  nodes.exit().remove();
+  force.start();
+  
+}
 
 var main = function (fociUsed) {
 
@@ -272,6 +299,8 @@ var main = function (fociUsed) {
   //console.log("after Filter: " + selectedData.length);
   //toggleVisibility();
 
+  update();
+
   force.start();
       var items = [];
 
@@ -284,26 +313,7 @@ var main = function (fociUsed) {
 
      $(".types").html( items.join('') );
 
-  vis.selectAll("g")
-    .data(data, function (d) {return "g"+d.id;} )
-    .enter().append("g")
-      .attr("id", function(d, i){return "g"+d.id;})
-      .attr("class", "circle_class")
-      .on("click", function(d){ circleClicked(d) } )
-      // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
-      .append("circle")
-      .attr("r", function (d) {
-        return 10})
-      .style("fill", function (d, i) {
-        
-        return fill(d["type"]  );
-
-      })
-      .style("stroke-width", 2)
-      .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-      .call(node_drag);
-  vis.selectAll("g")
-      .exit().fadeOut(function () { this.remove() });
+  
 };
     
       
@@ -668,8 +678,12 @@ var circleClicked = function (circle) {
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
     console.log(newData);
     //d3.selectAll... remove filtered data
-    vis.selectAll("g")
-      .data(newData, function (d) {return "g"+d.id;} );
+    
+    force.nodes(newData);
+    
+  update();
+
+
 
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
