@@ -597,9 +597,10 @@ var communities = function() {
   })
 
   var commNodes = createCommNodesArray(gComs);
+  var commLinks = linking(commNodes);
 
-  console.log("commNodes.length ", commNodes.length);
-  console.log("commNodes ", commNodes);
+  console.log("commLinks.length ", commLinks.length);
+  console.log("commLinks ", commLinks);
 
   // gComs.forEach( function (d) {
 
@@ -639,14 +640,16 @@ var linking = function (nodes){
   nodes.forEach( function (e){
     if(e.id >10){
       for (var i=0;i<=10;i++) { 
-        if (e.coms.indexOf(nodes[i].coms)!= -1){
+        if (e.coms.indexOf(nodes[i].coms[0])!= -1){
           var newLink = {"source":e.id,"target": nodes[i].id,"value":1};
           link.push(newLink);
             // add a link to link array from e to nodes[i]
         }
       }
     }
-  })
+  });
+
+  return link;
 }  
 
 var circleClicked = function (circle) {
@@ -735,36 +738,21 @@ var createCommNodesArray = function (a) {
 
   array.push(gCom, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7, gCom8, gCom9, gCom10);    
 
-  // console.log("auxArray ", array);
-  // console.log("auxArray ", array.length);
   var id = 11;
 
   a.forEach(function (d) {
 
     if (d.coms.length <= 1) {
-      console.log("2 iguales");
-      console.log("d.coms.length ", d.coms.length);
-
       if (d.coms.length == 0) {
-        console.log("empty array");
         array[0].amount = d.amount;
       } else { 
-        console.log("d.coms top ", d.coms);
-
         var i = 0;
         var length = 11;
         var found2 = false;
         while (i < length && !found2) {
-          console.log("auxArray.coms top ", array[i].coms);
           found2 = compareArrays(d.coms, array[i].coms);
           if (found2) {
-            console.log("found");
             array[i].amount = d.amount;
-            console.log("amount ", array[i].amount);
-          } else {
-            console.log("not found");
-            console.log("d.coms ", d.coms);
-            console.log("auxArray.coms ", array[i].coms);
           }
           i++;
         }
