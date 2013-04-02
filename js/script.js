@@ -204,6 +204,10 @@ var restart = function() {
   mode = "free";
   main();
 
+  // TODO: COMMENT PREVIOUS AND UNCOMMENT THE NEXT
+  // communities();
+
+
 };
 
 
@@ -599,17 +603,10 @@ var communities = function() {
 
   })
 
-  var commNodes = createCommNodesArray(gComs);
-  var commLinks = linking(commNodes);
+  var nodes = createCommNodesArray(gComs);
+  var links = linking(nodes);
 
-  console.log("commLinks.length ", commLinks.length);
-  console.log("commLinks ", commLinks);
-
-  // gComs.forEach( function (d) {
-
-  //   console.log ("coms ", d.coms);
-  //   console.log ("amount ", d.amount);
-  // })
+  updateToCommunitiesView(nodes, links);
 
 }
 
@@ -644,7 +641,8 @@ var linking = function (nodes){
     if(e.id >10){
       for (var i=0;i<=10;i++) { 
         if (e.coms.indexOf(nodes[i].coms[0])!= -1){
-          var newLink = {"source":e.id,"target": nodes[i].id,"value":1};
+          var newLink = {"source":e.id,"target": nodes[i].id,"value":5};
+          console.log("newLink", newLink);
           link.push(newLink);
             // add a link to link array from e to nodes[i]
         }
@@ -786,3 +784,49 @@ var createCommNodesArray = function (a) {
 
   return array;
 }
+
+
+var updateToCommunitiesView = function (n, l) {
+
+  var force = d3.layout.force()
+    .charge(-500)
+    .linkDistance(50)
+    .size([width, height])
+    .nodes(n)
+    .links(l)
+    .start();
+  
+  var svg = d3.select("body").select("svg");
+
+  var link = svg.selectAll(".link")
+      .data(l)
+    .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return 100; })
+      .style("fill", "#f2345f");
+
+  var node = svg.selectAll(".node")
+      .data(n)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", function(d) { console.log("node ", d.amount); return (d.amount < 5) ? d.amount*10 : 5; })
+      .style("fill", function(d) {
+        return (d.id < 11) ? fill(d.id) : "#22225f"; })
+      .call(force.drag)
+      .on("click", function(d) {alert(d.id);});
+
+  node.append("title")
+      .text(function(d) { return "Ball ", d.id; });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  });
+
+}
+
