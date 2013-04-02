@@ -305,8 +305,8 @@ var main = function (fociUsed) {
       })
       .style("stroke-width", 2)
       .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-      .call(node_drag)
-      .exit().fadeOut(function () { this.remove() });
+      .call(node_drag);
+  vis.selectAll("g").exit().fadeOut(function () { this.remove() });
 };
     
       
@@ -666,9 +666,7 @@ var circleClicked = function (circle) {
     console.log(newData);
     //d3.selectAll... remove filtered data
     vis.selectAll("g")
-      .data(newData, function (d) {return "g"+d.id;} )
-      .remove();
-    ;
+      .data(newData, function (d) {return "g"+d.id;} );
 
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
