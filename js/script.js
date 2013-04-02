@@ -625,6 +625,40 @@ var compareArrays = function (a,b) {
 
 }
 
+var linking = function (nodes){
+  var link = [];
+
+  nodes.forEach( function (e){
+    if(e.id >10){
+      for (var i=0;i<=10;i++) { 
+        if (e.coms.indexOf(nodes[i].coms)!= -1){
+          var newLink = {"source":e.id,"target": nodes[i].id,"value":1};
+          link.push(newLink);
+            // add a link to link array from e to nodes[i]
+        }
+      }
+    }
+  })
+}  
+
+if (differentValues.indexOf(row[key]) == i) {
+        forceData[i].push(row);
+      }
+
+  json.forEach(function (row) {
+    //console.log(row);
+    if (row[key] === value) {
+      result.push(row);
+    }
+    else{
+      console.log("removed one");
+    }
+
+  })
+
+
+}
+
 var containsElement = function (array, b) {
 
   var i = 0;
