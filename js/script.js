@@ -223,7 +223,7 @@ var tick = function(e) {
       getMapPosition(k);
     }
 
-    changeImage();
+    //changeImage();
   }
 
     // var bordeau = filterJSON(data,"room", "Bordeaux");
