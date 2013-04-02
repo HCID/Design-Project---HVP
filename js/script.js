@@ -659,16 +659,17 @@ var circleClicked = function (circle) {
   if (mode == "schedule") {
     console.log("day: " + circle["day"]);
     console.log("starTime: " + circle["starTime"]);
-    var newData = filterJSON(data, "day", circle["day"]);
+    console.log(vis.selectAll("g").data());
+    var newData = filterJSON(vis.selectAll("g").data(), "day", circle["day"]);
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
-    console.log(newData);
+    console.log(data);
     //d3.selectAll... remove filtered data
     vis.selectAll("g")
     .data(newData)
     .remove();
 
   } else if (mode == "map") {
-    var newData = filterJSON(data, "room", circle["room"]);
+    var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
   } else {
 
   }
