@@ -654,10 +654,21 @@ var linking = function (nodes){
 
 var circleClicked = function (circle) {
   console.log("clicked on: " + circle);
+  console.dir(circle);
   console.log("mode : " + mode);
   if (mode == "schedule") {
-    //console.log("mode : " + mode);
+    console.log("day: " + circle["day"]);
+    console.log("starTime: " + circle["starTime"]);
+    var newData = filterJSON(data, "day", circle["day"]);
+    var newData = filterJSON(newData, "starTime", circle["starTime"]);
+    console.log(newData);
+    //d3.selectAll... remove filtered data
+    vis.selectAll("g")
+    .data(newData)
+    .remove();
+
   } else if (mode == "map") {
+    var newData = filterJSON(data, "room", circle["room"]);
   } else {
 
   }
