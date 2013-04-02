@@ -288,7 +288,7 @@ var main = function (fociUsed) {
     .enter().append("g")
       .attr("id", function(d, i){return "g"+d.id;})
       .attr("class", "circle_class")
-      //.on("click", function(d){ circleClicked(d) } )
+      .on("click", function(d){ circleClicked(d) } )
       // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
       .append("circle")
       .attr("r", function (d) {
@@ -641,21 +641,15 @@ var linking = function (nodes){
   })
 }  
 
-if (differentValues.indexOf(row[key]) == i) {
-        forceData[i].push(row);
-      }
+var circleClicked = function (circle) {
+  console.log("clicked on: " + circle);
+  console.log("mode : " + mode);
+  if (mode == "schedule") {
+    //console.log("mode : " + mode);
+  } else if (mode == "map") {
+  } else {
 
-  json.forEach(function (row) {
-    //console.log(row);
-    if (row[key] === value) {
-      result.push(row);
-    }
-    else{
-      console.log("removed one");
-    }
-
-  })
-
+  }
 
 }
 
