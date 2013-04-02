@@ -301,7 +301,8 @@ var main = function (fociUsed) {
       })
       .style("stroke-width", 2)
       .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
-      .call(node_drag);
+      .call(node_drag)
+      .exit().fadeOut(function () { this.remove() });
 };
     
       
@@ -364,6 +365,7 @@ var filterJSON = function(json, key, value) {
   json.forEach(function (row) {
     //console.log(row);
     if (row[key] === value) {
+      console.log("equals value " + value);
       result.push(row);
     }
     else{
@@ -371,7 +373,8 @@ var filterJSON = function(json, key, value) {
     }
 
   })
-  console.log("result of filter function " + result.length);
+  console.log("result of filter function: ");
+  console.dir(result);
   return result;
 }
 
@@ -662,11 +665,12 @@ var circleClicked = function (circle) {
     console.log(vis.selectAll("g").data());
     var newData = filterJSON(vis.selectAll("g").data(), "day", circle["day"]);
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
-    console.log(data);
+    console.log(newData);
     //d3.selectAll... remove filtered data
     vis.selectAll("g")
-    .data(newData)
-    .remove();
+      .data(newData, function (d) {return "g"+d.id;} )
+      .remove();
+    ;
 
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
