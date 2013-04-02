@@ -222,7 +222,7 @@ var force = d3.layout.force()
       .links([])
       .gravity(0.03)
       .size([width, height])
-      .charge(-25);
+      .charge(function (d) { return -25; });
   
 // var forceData;
 // var circleSelection;
@@ -330,7 +330,12 @@ var update = function () {
       // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
       .append("circle")
       .attr("r", function (d) {
-        return 10})
+        console.log("force.nodes().length: " + force.nodes().length);
+        var n = force.nodes().length;
+        var s = 10 + (1 - (n/533))*10;
+        console.log("s: " + s);
+        return s;
+      })
       .style("fill", function (d, i) {
         
         return fill(d["type"]  );
