@@ -678,15 +678,12 @@ var circleClicked = function (circle) {
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
     console.log(newData);
     //d3.selectAll... remove filtered data
-    
     force.nodes(newData);
-    
-  update();
-
-
-
+    update();
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
+    force.nodes(newData);   
+    update();
   } else {
 
   }
