@@ -1,8 +1,14 @@
 //////////// PATRIK'S TUIO CORNER  ///////////////////
+var windowHeight = $(window).height();
+var windowWidth = $(window).width();
+
+
+
+console.log(window);
 
 var fingers = [];
 
-
+var once = true;
 var client = new Tuio.Client({
     host: "http://localhost:5000"
 }),
@@ -16,10 +22,10 @@ var client = new Tuio.Client({
 onAddTuioCursor = function(addCursor) {
 
 
-var circleEl = false;
 
 
-var element = $(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())); 
+
+var element = $(document.elementFromPoint(addCursor.xPos*windowWidth, addCursor.yPos*windowHeight)); 
 var el = null;
 if(element.get(0).tagName == "circle") {
   console.log(element.parents("g").attr("id"));
@@ -28,16 +34,25 @@ if(element.get(0).tagName == "circle") {
 
 console.log(el);
 var event = document.createEvent("MouseEvent");
-event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height(),addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height());
+event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*windowWidth, addCursor.yPos*windowHeight,addCursor.xPos*windowWidth, addCursor.yPos*windowHeight);
 el[0][0].dispatchEvent(event);
-circleEl = true;
+
+  
+} else if (element.hasClass("size_button")) {
+var event = document.createEvent("MouseEvent");
+event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*windowWidth, addCursor.yPos*windowHeight,addCursor.xPos*windowWidth, addCursor.yPos*windowHeight);
+element.get(0).dispatchEvent(event);
   
 }
   fingers[addCursor.sessionId] = {
     cursor: addCursor,
     el: el,
-    fingerCircle: circleEl ? $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*$(window).width() + "px; top: " + addCursor.yPos*$(window).height() + "px; border-radius: 40px; '></div>").appendTo($("body")) : null
+    fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*windowWidth + "px; top: " + addCursor.yPos*windowHeight + "px; border-radius: 40px; '></div>").appendTo($("body"))
   };
+
+
+
+
 /*
 
   console.log($(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())));
@@ -50,16 +65,53 @@ circleEl = true;
 },
 
 onUpdateTuioCursor = function(updateCursor) {
-  //console.log(updateCursor);
+  
+//console.log("x: " + updateCursor.xPos*windowWidth + ", y: " + updateCursor.yPos*windowHeight)
+
   if(fingers[updateCursor.sessionId]) {
     fingers[updateCursor.sessionId].cursor = updateCursor;
-    fingers[updateCursor.sessionId].fingerCircle.css("left", updateCursor.xPos*$(window).width()-20 + "px");
-    fingers[updateCursor.sessionId].fingerCircle.css("top", updateCursor.yPos*$(window).height()-25 + "px");
+    fingers[updateCursor.sessionId].fingerCircle.css("left", (updateCursor.xPos*windowWidth)-20 + "px");
+    fingers[updateCursor.sessionId].fingerCircle.css("top", (updateCursor.yPos*windowHeight)-25 + "px");
     if (fingers[updateCursor.sessionId].el) {
       var event = document.createEvent("MouseEvent");
-      event.initMouseEvent("mousemove",true,true, window, 1, updateCursor.xPos*$(window).width(), updateCursor.yPos*$(window).height(),updateCursor.xPos*$(window).width(), updateCursor.yPos*$(window).height());
+      event.initMouseEvent("mousemove",true,true, window, 1, updateCursor.xPos*windowWidth, updateCursor.yPos*windowHeight,updateCursor.xPos*windowWidth, updateCursor.yPos*windowHeight);
       fingers[updateCursor.sessionId].el[0][0].dispatchEvent(event);
      // fingers[updateCursor.sessionId].el.on("drag")();
+/*  
+console.log(fingers[updateCursor.sessionId].el);
+  var d = fingers[updateCursor.sessionId].el;
+
+
+
+if(d.px == NaN) {
+  d.px = 0;
+}
+
+if(d.py == NaN) {
+  d.py = 0;
+}
+
+if(d.x == NaN) {
+  d.x = 0;
+}
+
+if(d.y == NaN) {
+  d.y = 0;
+}
+
+
+  var dx = parseFloat(updateCursor.xPos*$(window).width()) - parseFloat(d.x);
+  var dy = parseFloat(updateCursor.yPos*$(window).height()) - parseFloat(d.y);
+    
+console.log(d.x);
+
+  d.px += dx;
+    d.py += dy;
+    d.x  += dx;
+    d.y  += dy; 
+    tick(); 
+
+*/
     }
   }
 },
@@ -69,7 +121,7 @@ onRemoveTuioCursor = function(removeCursor) {
     if(fingers[removeCursor.sessionId]) {
       if (fingers[removeCursor.sessionId].el) {
       var event = document.createEvent("MouseEvent");
-      event.initMouseEvent("mouseup",true,true, window, 1, removeCursor.xPos*$(window).width(), removeCursor.yPos*$(window).height(),removeCursor.xPos*$(window).width(), removeCursor.yPos*$(window).height());
+      event.initMouseEvent("mouseup",true,true, window, 1, removeCursor.xPos*windowWidth, removeCursor.yPos*windowHeight,removeCursor.xPos*windowWidth, removeCursor.yPos*windowHeight);
       fingers[removeCursor.sessionId].el[0][0].dispatchEvent(event);
      
     }
@@ -94,6 +146,23 @@ onRemoveTuioObject = function(removeObject) {
     //console.log(removeObject);
 },
 
+onAddTuioHand = function(addHand) {
+if(once) {
+  console.log(addHand);
+once = false;
+}
+
+
+},
+
+onUpdateTuioHand = function(updateHand) {
+    //console.log(updateHand);
+},
+
+onRemoveTuioHand = function(removeHand) {
+    //console.log(removeHand);
+},
+
 onRefresh = function(time) {
   //console.log(time);
 };
@@ -104,6 +173,9 @@ client.on("removeTuioCursor", onRemoveTuioCursor);
 client.on("addTuioObject", onAddTuioObject);
 client.on("updateTuioObject", onUpdateTuioObject);
 client.on("removeTuioObject", onRemoveTuioObject);
+client.on("addTuioHand", onAddTuioHand);
+client.on("updateTuioHand", onUpdateTuioHand);
+client.on("removeTuioHand", onRemoveTuioHand);
 client.on("refresh", onRefresh);
 client.connect();
 
@@ -111,7 +183,7 @@ client.connect();
 console.log(d3.behavior.drag());
 
 var node_drag = d3.behavior.drag()
-        .on("dragstart", function(d){ d.fixed = true;})
+        .on("dragstart", function(d){ /* d.fixed = true; */})
         .on("drag", function(d, i){ 
 
          // d.x = d3.event.x // +=
@@ -124,13 +196,13 @@ var node_drag = d3.behavior.drag()
     d.py += d3.event.dy;
     d.x += d3.event.dx;
     d.y += d3.event.dy; 
-    tick(); 
+  //  tick(); 
 
 
            
 
         })
-        .on("dragend", function(d){ d.fixed = false; });
+        .on("dragend", function(d){ /* d.fixed = false; */ force.resume() });
 
 
 
