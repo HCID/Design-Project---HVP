@@ -202,6 +202,7 @@ var restart = function() {
 
   // grouping = 3; // TODO: it should be 1 or data.length. I'm not sure yet
   mode = "free";
+  force.nodes(data);
   main();
 
 };
@@ -280,13 +281,8 @@ var main = function (fociUsed) {
 
   console.log("width ", width);
   console.log("height ", height);
-
-  force.nodes(data);
-  
   console.log ("mode on force: " + mode);
-
   force.on("tick", tick);
-
   
   //selectedData = data;
   //console.log("selectedData length" + selectedData.length);
