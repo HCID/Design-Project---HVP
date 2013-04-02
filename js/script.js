@@ -185,7 +185,8 @@ var vis;
 
 var gCom = {
   'coms': [],
-  'amount': 0
+  'amount': 0,
+  'id': 0
 };
 
 // Restarts the data
@@ -555,13 +556,15 @@ function changeImage() {
 var communities = function() {
 
   var gComs = [];
-
+  var id = 0;
   data.forEach(function(d) {
 
     if (gComs.length == 0) {
       var gCom = new Object();
       gCom.coms = d.communities ? d.communities : [];
-      gCom.amount = 1;
+      gCom.amount = 1
+      gCom.id = id;
+      id++;
       gComs.push(gCom);
     } else {
 
@@ -584,6 +587,8 @@ var communities = function() {
         var gCom = new Object();
         gCom.coms = d.communities ? d.communities : [];
         gCom.amount = 1;
+        gCom.id = id;
+        id++;
         gComs.push(gCom);
       }
 
@@ -591,13 +596,16 @@ var communities = function() {
 
   })
 
-  // console.log("gComs ", gComs);
-  // console.log("gComs.length ", gComs.length);
+  var commNodes = createCommNodesArray(gComs);
 
-  gComs.forEach( function (d) {
-    console.log ("coms ", d.coms);
-    console.log ("amount ", d.amount);
-  })
+  console.log("commNodes.length ", commNodes.length);
+  console.log("commNodes ", commNodes);
+
+  // gComs.forEach( function (d) {
+
+  //   console.log ("coms ", d.coms);
+  //   console.log ("amount ", d.amount);
+  // })
 
 }
 
@@ -662,7 +670,115 @@ var containsElement = function (array, b) {
     found = (array[i].toLowerCase() === b.toLowerCase());
     i++;
   }
-
+  
   return found;
+}
 
+var createCommNodesArray = function (a) {
+
+  var array = [];
+
+  var gCom = new Object();
+      gCom.coms = [];
+      gCom.amount = 0;
+      gCom.id = 0;
+
+  var gCom1 = new Object();
+      gCom1.coms = ["engineering"];
+      gCom1.amount = 0;
+      gCom1.id = 1;
+
+  var gCom2 = new Object();
+      gCom2.coms = ["ux"];
+      gCom2.amount = 0;
+      gCom2.id = 2;
+
+  var gCom3 = new Object();
+      gCom3.coms = ["sustainability"];
+      gCom3.amount = 0;
+      gCom3.id = 3;
+
+  var gCom4 = new Object();
+      gCom4.coms = ["HCI4d"];
+      gCom4.amount = 0;
+      gCom4.id = 4;
+
+  var gCom5 = new Object();
+      gCom5.coms = ["games"];
+      gCom5.amount = 0;
+      gCom5.id = 5;
+
+  var gCom6 = new Object();
+      gCom6.coms = ["cci"];
+      gCom6.amount = 0;
+      gCom6.id = 6;
+
+  var gCom7 = new Object();
+      gCom7.coms = ["arts"];
+      gCom7.amount = 0;
+      gCom7.id = 7;
+
+  var gCom8 = new Object();
+      gCom8.coms = ["health"];
+      gCom8.amount = 0;
+      gCom8.id = 8;
+
+  var gCom9 = new Object();
+      gCom9.coms = ["management"];
+      gCom9.amount = 0;
+      gCom9.id = 9;
+
+  var gCom10 = new Object();
+      gCom10.coms = ["design"];
+      gCom10.amount = 0;
+      gCom10.id = 10;
+
+  array.push(gCom, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7, gCom8, gCom9, gCom10);    
+
+  // console.log("auxArray ", array);
+  // console.log("auxArray ", array.length);
+  var id = 11;
+
+  a.forEach(function (d) {
+
+    if (d.coms.length <= 1) {
+      console.log("2 iguales");
+      console.log("d.coms.length ", d.coms.length);
+
+      if (d.coms.length == 0) {
+        console.log("empty array");
+        array[0].amount = d.amount;
+      } else { 
+        console.log("d.coms top ", d.coms);
+
+        var i = 0;
+        var length = 11;
+        var found2 = false;
+        while (i < length && !found2) {
+          console.log("auxArray.coms top ", array[i].coms);
+          found2 = compareArrays(d.coms, array[i].coms);
+          if (found2) {
+            console.log("found");
+            array[i].amount = d.amount;
+            console.log("amount ", array[i].amount);
+          } else {
+            console.log("not found");
+            console.log("d.coms ", d.coms);
+            console.log("auxArray.coms ", array[i].coms);
+          }
+          i++;
+        }
+          
+      }
+
+    } else {
+      gCom = d;
+      gCom.id = id;
+      array.push(d);
+      id ++;
+    }
+
+  });
+
+  return array;
 }
