@@ -356,14 +356,17 @@ var update = function () {
         return fill(d["type"]  );
 
       })
-      .style("stroke-width", 2)
-      .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
+      .style("stroke-width", 1)
+      .style("stroke", "#ffffff")
       .call(node_drag);
   
 nodes.selectAll("circle").attr("r", function (d) {
         console.log("force.nodes().length: " + force.nodes().length);
         var n = force.nodes().length;
-        var s = 10 + (1 - (n/data.length))*20;
+        var space = width * height;
+        var spaceN = Math.sqrt(space / n);
+        var s = 0.3 * spaceN;
+        //var s = 10 + (1 - (n/data.length))*20;
         console.log("size: " + s);
         return s;
       });
@@ -899,7 +902,7 @@ var createCommNodesArray = function (a) {
 }
 
 
-
+/**
 var updateToCommunitiesView = function (n, l) {
 
   var force = d3.layout.force()
@@ -923,7 +926,10 @@ var updateToCommunitiesView = function (n, l) {
       .data(n)
     .enter().append("circle")
       .attr("class", "node")
-      .attr("r", function(d) { console.log("node " + d.id + " amount " + d.amount + " coms " + d.coms); return (d.amount < 10) ? d.amount*10 : 10; })
+      .attr("r", function(d) { 
+        console.log("node " + d.id + " amount " + d.amount + " coms " + d.coms); 
+        return (d.amount < 10) ? d.amount*10 : 10; 
+      })
       .style("fill", function(d) {
         return (d.id < 11) ? fill(d.id) : "#22225f"; })
       .style("stroke-width", 1)
@@ -944,4 +950,4 @@ var updateToCommunitiesView = function (n, l) {
         .attr("cy", function(d) { return d.y; });
   });
 
-}
+}**/
