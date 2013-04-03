@@ -22,7 +22,7 @@ _.forEach(submissions.rows, function(ev) {
     cbStatement: ev.value.cbStatement,
     bookmarks: Math.floor((Math.random()*200)),
     keywords: ev.value.authorKeywords ? ev.value.authorKeywords.split("; ") : [],
-    communities: ev.value.communities,
+    communities: _.map(ev.value.communities, function (a) {return a.toLowerCase()}) ,
   }
   
   // Video
@@ -46,7 +46,7 @@ _.forEach(submissions.rows, function(ev) {
       return ev.value.session == sched.value.session
     });
     if(sch) {
-      event.room = sch.value.room;
+      event.room = sch.value.room.toLowerCase();
       event.starTime = sch.value.time.split("-")[0];
       event.endTime = sch.value.time.split("-")[1];
       event.day = sch.value.day;

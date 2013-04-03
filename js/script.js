@@ -1,7 +1,7 @@
 //////////// PATRIK'S TUIO CORNER  ///////////////////
 var windowHeight = $(window).height();
 var windowWidth = $(window).width();
-
+var showMenu = false;
 
 
 console.log(window);
@@ -27,7 +27,7 @@ onAddTuioCursor = function(addCursor) {
 
 var element = $(document.elementFromPoint(addCursor.xPos*windowWidth, addCursor.yPos*windowHeight)); 
 var el = null;
-if(element.get(0).tagName == "circle") {
+if(element.get(0).tagName == "circle" && !showMenu) {
   console.log(element.parents("g").attr("id"));
 
   el = d3.select("#" + element.parents("g").attr("id") + " circle");
@@ -38,7 +38,7 @@ event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*windowWidt
 el[0][0].dispatchEvent(event);
 
   
-} else if (element.hasClass("size_button")) {
+} else {
 var event = document.createEvent("MouseEvent");
 event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*windowWidth, addCursor.yPos*windowHeight,addCursor.xPos*windowWidth, addCursor.yPos*windowHeight);
 element.get(0).dispatchEvent(event);
@@ -50,6 +50,9 @@ element.get(0).dispatchEvent(event);
     fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*windowWidth + "px; top: " + addCursor.yPos*windowHeight + "px; border-radius: 40px; '></div>").appendTo($("body"))
   };
 
+
+
+// gabriel.scherer@gmail.com
 
 
 
@@ -147,20 +150,30 @@ onRemoveTuioObject = function(removeObject) {
 },
 
 onAddTuioHand = function(addHand) {
-if(once) {
-  console.log(addHand);
-once = false;
-}
+
+
+
 
 
 },
 
 onUpdateTuioHand = function(updateHand) {
-    //console.log(updateHand);
+if(updateHand.fingers.indexOf(-1) === -1 ) {
+if(!showMenu) {
+console.log(updateHand)
+
+  $("#mainMenu").css("top", (updateHand.yPos*windowHeight)-300 + "px").css("left", (updateHand.xPos*windowWidth)-300 + "px").show()
+showMenu = true
+}
+  
+}
+
 },
 
 onRemoveTuioHand = function(removeHand) {
     //console.log(removeHand);
+$("#mainMenu").hide()
+showMenu = false
 },
 
 onRefresh = function(time) {
@@ -213,7 +226,7 @@ var node_drag = d3.behavior.drag()
 
 var data = [],
     height = $(window).height(),
-	  width = $(window).width(),
+    width = $(window).width(),
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
     mode = "free";
@@ -222,7 +235,15 @@ var force = d3.layout.force()
       .links([])
       .gravity(0.03)
       .size([width, height])
-      .charge(function (d) { return -25; });
+      .charge(function (d) {
+
+        var n = force.nodes().length;
+        var s = 25 + (1 - (n/data.length))*100;
+        console.log("s: " + s);
+        return -s;
+
+
+ });
   
 // var forceData;
 // var circleSelection;
@@ -326,16 +347,10 @@ var update = function () {
     nodes.enter().append("g")
       .attr("id", function(d, i){return "g"+d.id;})
       .attr("class", "circle_class")
-      .on("click", function(d){ circleClicked(d) } )
+      
       // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
-      .append("circle")
-      .attr("r", function (d) {
-        console.log("force.nodes().length: " + force.nodes().length);
-        var n = force.nodes().length;
-        var s = 10 + (1 - (n/533))*10;
-        console.log("s: " + s);
-        return s;
-      })
+      .append("circle").on("mousedown", function(d){ circleClicked(d) } )
+     
       .style("fill", function (d, i) {
         
         return fill(d["type"]  );
@@ -345,6 +360,14 @@ var update = function () {
       .style("stroke", function(d, i) { return d3.rgb(fill(i)).darker(2); })
       .call(node_drag);
   
+nodes.selectAll("circle").attr("r", function (d) {
+        console.log("force.nodes().length: " + force.nodes().length);
+        var n = force.nodes().length;
+        var s = 10 + (1 - (n/data.length))*20;
+        console.log("size: " + s);
+        return s;
+      });
+
   nodes.exit().remove();
   force.start();
   
@@ -392,7 +415,7 @@ var main = function (fociUsed) {
       
   $(document).ready(function() {
     console.log("document_ready");
-    $(".size_button").on("click", function() {
+    $(".size_button").on("mousedown", function() {
       if (parseInt($(this).data("grouping")) === 16) {
         console.log("communities function");
         communities();
@@ -406,6 +429,7 @@ var main = function (fociUsed) {
       } else if($(this).data("grouping") == "restart"){
         restart();
       }
+  changeImage();
     });
 
   });
@@ -624,12 +648,12 @@ var getMapPosition = function (k) {
 function changeImage() {
   if (mode == "schedule") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "img/schedule.svg")
+        .attr("xlink:href", "/img/schedule.svg")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
-  } else if (mode == "schedule") {
+  } else if (mode == "map") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "img/map_bg.svg")
+        .attr("xlink:href", "/img/map_bg.svg")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else {
@@ -753,10 +777,14 @@ var circleClicked = function (circle) {
     //d3.selectAll... remove filtered data
     force.nodes(newData);
     update();
+mode = null;
+changeImage();
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
     force.nodes(newData);   
     update();
+mode = null;
+changeImage();
   } else {
 
   }
@@ -868,4 +896,52 @@ var createCommNodesArray = function (a) {
   });
 
   return array;
+}
+
+
+
+var updateToCommunitiesView = function (n, l) {
+
+  var force = d3.layout.force()
+    .charge(-500)
+    .linkDistance(50)
+    .size([width, height])
+    .nodes(n)
+    .links(l)
+    .start();
+  
+  var svg = d3.select("body").select("svg");
+
+  var link = svg.selectAll(".link")
+      .data(l)
+    .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return 100; })
+      .style("fill", "#f2345f");
+
+  var node = svg.selectAll(".node")
+      .data(n)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", function(d) { console.log("node " + d.id + " amount " + d.amount + " coms " + d.coms); return (d.amount < 10) ? d.amount*10 : 10; })
+      .style("fill", function(d) {
+        return (d.id < 11) ? fill(d.id) : "#22225f"; })
+      .style("stroke-width", 1)
+      .style("stroke", "#ffffff")
+      .call(force.drag)
+      .on("mousedown", function(d) {alert("Ball " + d.coms + ", Amount " + d.amount);});
+
+  node.append("title")
+      .text(function(d) { return "Ball " + d.coms + ", Amount " + d.amount; });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  });
+
 }
