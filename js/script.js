@@ -336,13 +336,14 @@ var tick = function(e) {
         o.x += (fociFree[0].x - o.x) * k;        
       });
 
+      force.nodes().forEach(collide(0.2));
       
 
     } else if (mode == "map") {
       getMapPosition(k);
     }
 
-force.nodes().forEach(collide(0.2));
+
     //changeImage();
   }
 
@@ -812,13 +813,13 @@ var circleClicked = function (circle) {
     //d3.selectAll... remove filtered data
     force.nodes(newData);
     update();
-    mode = null;
+    mode = "free";
     changeImage();
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
     force.nodes(newData);   
     update();
-    mode = null;
+    mode = "free";
     changeImage();
   } else {
 
