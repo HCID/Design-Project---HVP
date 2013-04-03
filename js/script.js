@@ -561,7 +561,7 @@ var getSchedulePosition = function (k) {
       // undefined talks will end up in the 16th 
       var index = 16;
       if(o["day"] === "Monday"){
-        if(o["starTime"] ==="09:00"){
+        if(o["starTime"] ==="9:00"){
           //console.log("09:00");
             index = 0;
         }
@@ -580,7 +580,8 @@ var getSchedulePosition = function (k) {
       }
 
       else if(o["day"] === "Tuesday"){
-        if(o["starTime"] ==="09:00"){
+
+        if(o["starTime"] ==="9:00"){
             index = 1;
         }
         else if(o["starTime"] ==="11:00"){
@@ -595,7 +596,7 @@ var getSchedulePosition = function (k) {
       }
 
       else if(o["day"] === "Wednesday"){
-        if(o["starTime"] ==="09:00"){
+        if(o["starTime"] ==="9:00"){
             index = 2;
         }
         else if(o["starTime"] ==="11:00"){
@@ -610,7 +611,7 @@ var getSchedulePosition = function (k) {
       }
 
       else if(o["day"] === "Thursday"){
-        if(o["starTime"] ==="09:00"){
+        if(o["starTime"] ==="9:00"){
 
             index = 3;
         }
@@ -624,9 +625,11 @@ var getSchedulePosition = function (k) {
             index = 15;
         }
       }
+
+      // console.log("day " + o["day"] + " starTime " + o["starTime"] + " index " + index);
         
-        o.y += (fociSchedule[index].y - o.y) * k;
-        o.x += (fociSchedule[index].x - o.x) * k;
+      o.y += (fociSchedule[index].y - o.y) * k;
+      o.x += (fociSchedule[index].x - o.x) * k;
       
     });
 }
@@ -780,14 +783,14 @@ var circleClicked = function (circle) {
     //d3.selectAll... remove filtered data
     force.nodes(newData);
     update();
-mode = null;
-changeImage();
+    mode = null;
+    changeImage();
   } else if (mode == "map") {
     var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
     force.nodes(newData);   
     update();
-mode = null;
-changeImage();
+    mode = null;
+    changeImage();
   } else {
 
   }
@@ -900,7 +903,6 @@ var createCommNodesArray = function (a) {
 
   return array;
 }
-
 
 /**
 var updateToCommunitiesView = function (n, l) {
