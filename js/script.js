@@ -233,9 +233,10 @@ var data = [],
 
 var force = d3.layout.force()
       .links([])
-      .gravity(0.03)
+      .gravity(0)
       .size([width, height])
-      .charge(function (d) {
+      .charge(0)
+     /* .charge(function (d) {
 
         var n = force.nodes().length;
         var s = 25 + (1 - (n/data.length))*100;
@@ -243,7 +244,7 @@ var force = d3.layout.force()
         return -s;
 
 
- });
+ }); */
   
 // var forceData;
 // var circleSelection;
@@ -251,10 +252,10 @@ var force = d3.layout.force()
 // var selectedData = [];
 var foci = [{x: 200, y: 200}, {x: 350, y: 250}, {x: 700, y: 400}];
 var fociFree = [{x: width/2, y: height/2}];
-var xSchedule = 600;
-var ySchedule = 400;
-var xSpace = 150;
-var ySpace = 100;
+var xSchedule = 730;
+var ySchedule = 200;
+var xSpace = 280;
+var ySpace = 220;
 var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
 var fociSchedule = 
 [{x: xSchedule, y: ySchedule},          {x: xSchedule + xSpace, y: ySchedule},           {x: xSchedule + xSpace*2, y: ySchedule},           {x: xSchedule + xSpace*3, y: ySchedule},
@@ -302,20 +303,46 @@ var restart = function() {
 
 
 var tick = function(e) {
+ nodes.each(function(d) {
+
+        if(d.y <= 0) {
+          d.y += 1;
+        }
+
+        if(d.y >= height) {
+          d.y -= 1;
+        }
+
+        if(d.x <= 0) {
+          d.x += 1;
+        }
+
+        if(d.x >= width) {
+          d.x -= 1;
+        }
+
+      })
+
+
   if(e !== undefined) {
         // Push nodes toward their designated focus.
     var k = .1 * e.alpha;
     if (mode == "schedule") {
       getSchedulePosition(k);
     } else if (mode == "free") {
+
       force.nodes().forEach(function(o, i) {
         o.y += (fociFree[0].y - o.y) * k;
-        o.x += (fociFree[0].x - o.x) * k;
+        o.x += (fociFree[0].x - o.x) * k;        
       });
+
+      
+
     } else if (mode == "map") {
       getMapPosition(k);
     }
 
+force.nodes().forEach(collide(0.2));
     //changeImage();
   }
 
@@ -340,6 +367,15 @@ var tick = function(e) {
 };
 var nodes;
 
+
+var calculateR = function (d) {
+  var n = force.nodes().length;
+  var s = 10 + (1 - (n/data.length))*20;
+  return s;
+}
+
+
+
 var update = function () {
   nodes = vis.selectAll("g")
     .data(force.nodes(), function(d){ return d.id;} )
@@ -360,21 +396,15 @@ var update = function () {
       .style("stroke", "#ffffff")
       .call(node_drag);
   
-nodes.selectAll("circle").attr("r", function (d) {
-        console.log("force.nodes().length: " + force.nodes().length);
-        var n = force.nodes().length;
-        var space = width * height;
-        var spaceN = Math.sqrt(space / n);
-        var s = 0.3 * spaceN;
-        //var s = 10 + (1 - (n/data.length))*20;
-        console.log("size: " + s);
-        return s;
-      });
+
+nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 
   nodes.exit().remove();
   force.start();
   
 }
+
+
 
 var main = function (fociUsed) {
 
@@ -580,7 +610,6 @@ var getSchedulePosition = function (k) {
       }
 
       else if(o["day"] === "Tuesday"){
-
         if(o["starTime"] ==="9:00"){
             index = 1;
         }
@@ -902,12 +931,12 @@ var createCommNodesArray = function (a) {
   });
 
   return array;
-}
+};
 
-/**
+
+/*
 var updateToCommunitiesView = function (n, l) {
-
-  var force = d3.layout.force()
+  var force = d3.layout.force()
     .charge(-500)
     .linkDistance(50)
     .size([width, height])
@@ -952,4 +981,31 @@ var updateToCommunitiesView = function (n, l) {
         .attr("cy", function(d) { return d.y; });
   });
 
-}**/
+
+}
+*/
+
+var collisionPadding = 5;
+
+function collide(jitter) {
+  return function(d) {
+    return data.forEach(function(d2) {
+      var distance, minDistance, moveX, moveY, x, y;
+      if (d !== d2) {
+        x = d.x - d2.x;
+        y = d.y - d2.y;
+        distance = Math.sqrt(x * x + y * y);
+        minDistance = d.radius + d2.radius + collisionPadding;
+        if (distance < minDistance) {
+          distance = (distance - minDistance) / distance * jitter;
+          moveX = x * distance;
+          moveY = y * distance;
+          d.x -= moveX;
+          d.y -= moveY;
+          d2.x += moveX;
+          return d2.y += moveY;
+        }
+      }
+    });
+  };
+};
