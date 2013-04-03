@@ -328,6 +328,11 @@ var tick = function(e) {
         // Push nodes toward their designated focus.
     var k = .1 * e.alpha;
     if (mode == "schedule") {
+      force.nodes().forEach(function(d) { 
+        d.r = 40;
+
+      });
+      vis.selectAll("circle").attr("r", 40);
       getSchedulePosition(k);
     } else if (mode == "free") {
 
@@ -340,8 +345,15 @@ var tick = function(e) {
       
 
     } else if (mode == "map") {
+      force.nodes().forEach(function(d) { 
+        d.r = 20;
+
+      });
+      vis.selectAll("circle").attr("r", 20);
       getMapPosition(k);
     }
+
+
 
 
     //changeImage();
