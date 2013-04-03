@@ -44,17 +44,16 @@ for (var i=0; i<Math.pow(2, 8); i++)
 
 var D=0, E=1, F=2, G=3, H=4, I=5, J=6, K=7;
 
+
 data[1<<D] = 22; 
 data[1<<E] = 7; 
 data[1<<F] = 8;
-data[1<<G] = 20;
+data[1<<G] = 24;
 data[1<<H] = 11; 
-data[1<<I] = 11;
+data[1<<I] = 16;
 data[1<<J] = 6;
 data[1<<K] = 142;
 
-data[1<<I] += 5;
-data[1<<G] += 4;
 data[1<<E] += 3;
 data[1<<I] += 1;
 data[1<<D] += 2;
@@ -110,6 +109,10 @@ data[1<<D|1<<E|1<<F] = 1;
 
 data[1<<D|1<<H|1<<E|1<<I] = 1;
 data[1<<G|1<<D|1<<H|1<<F] = 1;
+
+data.forEach(function(d) {
+    console.log("data ", d);
+});
 
 // Standard D3
 var color = d3.scale.category10();

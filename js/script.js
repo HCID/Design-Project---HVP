@@ -261,14 +261,15 @@ var fociSchedule =
 [{x: xSchedule, y: ySchedule},          {x: xSchedule + xSpace, y: ySchedule},           {x: xSchedule + xSpace*2, y: ySchedule},           {x: xSchedule + xSpace*3, y: ySchedule},
 {x: xSchedule, y: ySchedule + ySpace},   {x: xSchedule + xSpace, y: ySchedule + ySpace},   {x: xSchedule + xSpace*2, y: ySchedule + ySpace},   {x: xSchedule + xSpace*3, y: ySchedule + ySpace},
 {x: xSchedule, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*2},
-{x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*5, y: ySchedule + ySpace}];
+{x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3},
+{x: xSchedule + xSpace*4, y: ySchedule + ySpace*2}];
 
 var fociMap = { "353": {x: 200, y: 200}, "352": {x: 200, y: 400}, "351":{x: 200, y: 600},
-"Havane": {x:300, y:600}, "Bordeaux":{x:300, y:700},
-"362": {x: 400, y: 200}, "361": {x: 400, y: 350}, "343":{x: 400, y: 500}, "342A":{x: 400, y: 600},
+"havane": {x:300, y:600}, "bordeaux":{x:300, y:700},
+"362": {x: 400, y: 200}, "361": {x: 400, y: 350}, "343":{x: 400, y: 500}, "342a":{x: 400, y: 600},
 // level 2
-"253": {x: 800, y: 200}, "252B": {x: 800, y: 400}, "252A":{x: 800, y: 600},
-"Blue": {x:950, y:200},
+"253": {x: 800, y: 200}, "252b": {x: 800, y: 400}, "252a":{x: 800, y: 600},
+"blue": {x:950, y:200},
 "243":{x: 1000, y: 200}, "242": {x: 1000, y: 400}, "241":{x: 1000, y: 600},
 "undefined":{x: 1200, y: 200},};
 
@@ -296,8 +297,10 @@ var restart = function() {
 
   // grouping = 3; // TODO: it should be 1 or data.length. I'm not sure yet
   mode = "free";
-  force.nodes(data);
-  main();
+  // force.nodes(data);
+  // main();
+
+  communities();
 
 };
 
@@ -343,7 +346,6 @@ var tick = function(e) {
 
       force.nodes().forEach(collide(0.2));
       
-
     } else if (mode == "map") {
       force.nodes().forEach(function(d) { 
         d.r = 20;
@@ -352,10 +354,6 @@ var tick = function(e) {
       vis.selectAll("circle").attr("r", 20);
       getMapPosition(k);
     }
-
-
-
-
     //changeImage();
   }
 
@@ -519,22 +517,22 @@ var filterJSON = function(json, key, value) {
   json.forEach(function (row) {
     //console.log(row);
     if (row[key] === value) {
-      console.log("equals value " + value);
+//      console.log("equals value " + value);
       result.push(row);
     }
     else{
-      console.log("removed one");
+//      console.log("removed one");
     }
 
   })
-  console.log("result of filter function: ");
-  console.dir(result);
+  // console.log("result of filter function: ");
+  // console.dir(result);
   return result;
 }
 
 var toggleVisibility = function(force, key, value){
     force.selectAll("g").attr("visibility", function(d) {
-      console.log(d[key] === value);
+      // console.log(d[key] === value);
       return d[key] === value ? "visible" : "hidden";
   });
 }
@@ -595,80 +593,52 @@ var groupJSON = function (json, key) {
 
 
 var getSchedulePosition = function (k) { 
-  console.log("getSchedulePosition");
 
   //calculate index
     force.nodes().forEach(function(o, i) {
-      //console.log("day: " + o["day"]);
-      //console.log("time: " + o["starTime"]);
       // undefined talks will end up in the 16th 
       var index = 16;
       if(o["day"] === "Monday"){
         if(o["starTime"] ==="9:00"){
-          //console.log("09:00");
             index = 0;
-        }
-        else if(o["starTime"] ==="11:00"){
+        } else if(o["starTime"] ==="11:00"){
             index = 4;
-            //console.log("11:00");
-        }
-        else if(o["starTime"] ==="14:00"){
+        } else if(o["starTime"] ==="14:00"){
             index = 8;
-            //console.log("14:00");
-        }
-        else{
+        } else{
             index = 12;
-            //console.log("16:00");
         }
-      }
-
-      else if(o["day"] === "Tuesday"){
+      } else if(o["day"] === "Tuesday"){
         if(o["starTime"] ==="9:00"){
             index = 1;
-        }
-        else if(o["starTime"] ==="11:00"){
+        } else if(o["starTime"] ==="11:00"){
             index = 5;
-        }
-        else if(o["starTime"] ==="14:00"){
+        } else if(o["starTime"] ==="14:00"){
             index = 9;
-        }
-        else{
+        } else{
             index = 13;
         }
-      }
-
-      else if(o["day"] === "Wednesday"){
+      } else if(o["day"] === "Wednesday"){
         if(o["starTime"] ==="9:00"){
             index = 2;
-        }
-        else if(o["starTime"] ==="11:00"){
+        } else if(o["starTime"] ==="11:00"){
             index = 6;
-        }
-        else if(o["starTime"] ==="14:00"){
+        } else if(o["starTime"] ==="14:00"){
             index = 10;
-        }
-        else{
+        } else{
             index = 14;
         }
-      }
-
-      else if(o["day"] === "Thursday"){
+      } else if(o["day"] === "Thursday"){
         if(o["starTime"] ==="9:00"){
-
             index = 3;
-        }
-        else if(o["starTime"] ==="11:00"){
+        } else if(o["starTime"] ==="11:00"){
             index = 7;
-        }
-        else if(o["starTime"] ==="14:00"){
+        } else if(o["starTime"] ==="14:00"){
             index = 11;
-        }
-        else{
+        } else{
             index = 15;
         }
       }
-
-      // console.log("day " + o["day"] + " starTime " + o["starTime"] + " index " + index);
         
       o.y += (fociSchedule[index].y - o.y) * k;
       o.x += (fociSchedule[index].x - o.x) * k;
@@ -678,16 +648,13 @@ var getSchedulePosition = function (k) {
 
 var getMapPosition = function (k) { 
   force.nodes().forEach(function(o, i) {
-    // console.log(o["room"]);
-    // console.log(fociMap[o["room"]]);
+
     if(fociMap[o["room"]]!== undefined){
       o.y += (fociMap[o["room"]].y - o.y) * k;
       o.x += (fociMap[o["room"]].x - o.x) * k;
-    }
-    else{
-      // console.log(o);
-       o.y += (fociMap["undefined"].y - o.y) * k;
-       o.x += (fociMap["undefined"].x - o.x) * k;
+    } else{
+      o.y += (fociMap["undefined"].y - o.y) * k;
+      o.x += (fociMap["undefined"].x - o.x) * k;
     }
   });
 }
@@ -756,10 +723,10 @@ var communities = function() {
   })
 
   var commNodes = createCommNodesArray(gComs);
-  var commLinks = linking(commNodes);
+  // var commLinks = linking(commNodes);
 
-  console.log("commLinks.length ", commLinks.length);
-  console.log("commLinks ", commLinks);
+  // console.log("commLinks.length ", commLinks.length);
+  // console.log("commLinks ", commLinks);
 
   // gComs.forEach( function (d) {
 
@@ -786,11 +753,8 @@ var compareArrays = function (a,b) {
     }
     
     result = follow;
-
   }
-
   return result;
-
 }
 
 var linking = function (nodes){
@@ -812,16 +776,16 @@ var linking = function (nodes){
 }  
 
 var circleClicked = function (circle) {
-  console.log("clicked on: " + circle);
-  console.dir(circle);
-  console.log("mode : " + mode);
+  // console.log("clicked on: " + circle);
+  // console.dir(circle);
+  // console.log("mode : " + mode);
   if (mode == "schedule") {
-    console.log("day: " + circle["day"]);
-    console.log("starTime: " + circle["starTime"]);
-    console.log(vis.selectAll("g").data());
+    // console.log("day: " + circle["day"]);
+    // console.log("starTime: " + circle["starTime"]);
+    // console.log(vis.selectAll("g").data());
     var newData = filterJSON(vis.selectAll("g").data(), "day", circle["day"]);
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
-    console.log(newData);
+    // console.log(newData);
     //d3.selectAll... remove filtered data
     force.nodes(newData);
     update();
@@ -854,96 +818,205 @@ var containsElement = function (array, b) {
 
 var createCommNodesArray = function (a) {
 
-  var array = [];
+  a.forEach (function (d) {
 
-  var gCom = new Object();
-      gCom.coms = [];
-      gCom.amount = 0;
-      gCom.id = 0;
-
-  var gCom1 = new Object();
-      gCom1.coms = ["engineering"];
-      gCom1.amount = 0;
-      gCom1.id = 1;
-
-  var gCom2 = new Object();
-      gCom2.coms = ["ux"];
-      gCom2.amount = 0;
-      gCom2.id = 2;
-
-  var gCom3 = new Object();
-      gCom3.coms = ["sustainability"];
-      gCom3.amount = 0;
-      gCom3.id = 3;
-
-  var gCom4 = new Object();
-      gCom4.coms = ["HCI4d"];
-      gCom4.amount = 0;
-      gCom4.id = 4;
-
-  var gCom5 = new Object();
-      gCom5.coms = ["games"];
-      gCom5.amount = 0;
-      gCom5.id = 5;
-
-  var gCom6 = new Object();
-      gCom6.coms = ["cci"];
-      gCom6.amount = 0;
-      gCom6.id = 6;
-
-  var gCom7 = new Object();
-      gCom7.coms = ["arts"];
-      gCom7.amount = 0;
-      gCom7.id = 7;
-
-  var gCom8 = new Object();
-      gCom8.coms = ["health"];
-      gCom8.amount = 0;
-      gCom8.id = 8;
-
-  var gCom9 = new Object();
-      gCom9.coms = ["management"];
-      gCom9.amount = 0;
-      gCom9.id = 9;
-
-  var gCom10 = new Object();
-      gCom10.coms = ["design"];
-      gCom10.amount = 0;
-      gCom10.id = 10;
-
-  array.push(gCom, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7, gCom8, gCom9, gCom10);    
-
-  var id = 11;
-
-  a.forEach(function (d) {
-
-    if (d.coms.length <= 1) {
-      if (d.coms.length == 0) {
-        array[0].amount = d.amount;
-      } else { 
-        var i = 0;
-        var length = 11;
-        var found2 = false;
-        while (i < length && !found2) {
-          found2 = compareArrays(d.coms, array[i].coms);
-          if (found2) {
-            array[i].amount = d.amount;
-          }
-          i++;
-        }
-          
-      }
-
-    } else {
-      gCom = d;
-      gCom.id = id;
-      array.push(d);
-      id ++;
+    if (d.coms.length > 0) {
+      var i = d.coms.indexOf("ux");
+      if (i >= 0) d.coms.splice(i, 1);
+      i = d.coms.indexOf("design");
+      if (i >= 0) d.coms.splice(i, 1);
+      i = d.coms.indexOf("engineering");
+      if (i >= 0) d.coms.splice(i, 1);
     }
 
   });
 
-  return array;
+  var array = [];
+
+  // var gCom0 = {"coms":[], "amount":0, "id":0};
+  // var gCom1 = {"coms":["sustainability"], "amount":0, "id":1};
+  // var gCom2 = {"coms":["hci4d"], "amount":0, "id":2};
+  // var gCom3 = {"coms":["games"], "amount":0, "id":3};
+  // var gCom4 = {"coms":["cci"], "amount":0, "id":4};
+  // var gCom5 = {"coms":["arts"], "amount":0, "id":5};
+  // var gCom6 = {"coms":["health"], "amount":0, "id":6};
+  // var gCom7 = {"coms":["management"], "amount":0, "id":7};
+    var gCom0 = new Object();
+      gCom0.coms = [];
+      gCom0.amount = 0;
+      gCom0.id = 0;
+
+  var gCom1 = new Object();
+      gCom1.coms = ["sustainability"];
+      gCom1.amount = 0;
+      gCom1.id = 1;
+
+  var gCom2 = new Object();
+      gCom2.coms = ["hci4d"];
+      gCom2.amount = 0;
+      gCom2.id = 2;
+
+  var gCom3 = new Object();
+      gCom3.coms = ["games"];
+      gCom3.amount = 0;
+      gCom3.id = 3;
+
+  var gCom4 = new Object();
+      gCom4.coms = ["cci"];
+      gCom4.amount = 0;
+      gCom4.id = 4;
+
+  var gCom5 = new Object();
+      gCom5.coms = ["arts"];
+      gCom5.amount = 0;
+      gCom5.id = 5;
+
+  var gCom6 = new Object();
+      gCom6.coms = ["health"];
+      gCom6.amount = 0;
+      gCom6.id = 6;
+
+  var gCom7 = new Object();
+      gCom7.coms = ["management"];
+      gCom7.amount = 0;
+      gCom7.id = 7;
+
+  array.push(gCom0, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7);    
+
+  console.log("array top ", array);
+  console.log("array top length ", array.length);
+
+  var id = 8;
+
+  a.forEach(function (d) {
+
+    var i = 0;
+    var found = false;
+    var length = array.length;
+
+    while (i<length && !found) {
+      found = compareArrays(d.coms, array[i].coms);
+      if (found) {array[i].amount += d.amount};
+      i++;
+    }
+
+    if (!found) {
+      var c = {"coms":d.coms, "amount":d.amount, "id":id};
+      id++;
+      array.push(c);
+    }
+  });
+
+  // Info to fill and use later
+  var groups = ["general", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
+  var vennData = [];
+  for (var i=0; i<Math.pow(2, 8); i++) {
+    vennData[i] = 0;
+  }
+  
+  array.forEach(function (d) {
+    console.log("array id " + d.id + " coms " + d.coms + " amount " + d.amount);
+
+    var i1 = 0;
+    var i2 = 0;
+    var i3 = 0;
+    var i4 = 0;
+    
+    console.log("d ", d);
+
+    if (d.coms.length == 0) { //general
+      console.log("undefined");
+      i1 = 1 << 0; 
+      vennData[i1] = d.amount;
+      console.log("i1 ", i1);
+      console.log("vennData[i1] ", vennData[i1]);
+    } else if (d.coms.length == 1) {
+      console.log("1");
+      i1 = 1 << groups.indexOf(d.coms[0]);
+      vennData[i1] = d.amount;
+      console.log("i1 ", i1);
+      console.log("vennData[i1] ", vennData[i1]);
+    } else if (d.coms.length == 2) {
+      console.log("2");
+      i1 = 1 << groups.indexOf(d.coms[0]);
+      i2 = 1 << groups.indexOf(d.coms[1]);
+      vennData[i1|i2] = d.amount;
+      console.log("i1|i2 ", i1|i2);
+      console.log("vennData[i1|i2] ", vennData[i1|i2]);
+    } else if (d.coms.length == 3) {
+      console.log("3");
+      i1 = 1 << groups.indexOf(d.coms[0]);
+      i2 = 1 << groups.indexOf(d.coms[1]);
+      i3 = 1 << groups.indexOf(d.coms[2]);
+      vennData[i1|i2|i3] = d.amount;
+      console.log("i1|i2|i3 ", i1|i2|i3);
+      console.log("vennData[i1|i2|i3] ", vennData[i1|i2|i3]);
+    } else if (d.coms.length == 4) {
+      console.log("4");
+      i1 = 1 << groups.indexOf(d.coms[0]);
+      i2 = 1 << groups.indexOf(d.coms[1]);
+      i3 = 1 << groups.indexOf(d.coms[2]);
+      i4 = 1 << groups.indexOf(d.coms[3]);
+      vennData[i1|i2|i3|i4] = d.amount;
+      console.log("i1|i2|i3|i4 ", i1|i2|i3|i4);
+      console.log("vennData[i1|i2|i3|i4] ", vennData[i1|i2|i3|i4]);
+    }
+
+  });
+
+  console.log("vennData array ", vennData.length);
+    console.log("vennData array ", vennData);
+
+  vennData.forEach(function(d) {
+    console.log("data ", d);
+  });
+
+  // console.log("HERE " + array[0].coms);
+  // array.forEach(function (d) {
+
+
+  // });
+
+  // vennData.forEach(function (d) {
+  //    console.log("elto " + d);
+  // });
+  var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight]);
+  var circle = d3.svg.arc().innerRadius(0).startAngle(0).endAngle(2*Math.PI);
+  
+  vis = d3.select("body").select("svg")
+    .data([vennData])
+      .attr("width", width).attr("height", height);
+
+  var circles = vis.selectAll("g.arc")
+      .data(venn)              
+    .enter().append("g")
+      .attr("class", "arc")
+      .attr("transform", function(d, i){ return "translate(" + (50 + d.x) + "," + (50 + d.y) + ")"; });
+  circles.append("path")
+      .attr("fill", function(d, i) { return fill(i); })
+      .attr("opacity", 0.5)
+      .attr("d", circle);
+  circles.append("text")
+      .attr("text-anchor", "middle")
+      .text(function(d, i) { return groups[i]; })
+      .attr("fill", function(d, i) { return fill(i); })
+      .attr("x", function(d, i) { return d.labelX; })
+      .attr("y", function(d, i) { return d.labelY; });
+      
+
+  // D3 animation
+  vis.selectAll("path")
+      .data(venn).transition().duration(2000).delay(1000)
+      .attr("d", circle);
+  vis.selectAll("g.arc")
+      .data(venn).transition().duration(2000).delay(1000)
+      .attr("transform", function(d, i){ return "translate(" + (50 + d.x) + "," + (50 + d.y) + ")"; }); 
+  vis.selectAll("text")
+      .data(venn).transition().duration(2000).delay(1000)
+      .attr("x", function(d, i) { return d.labelX; })
+      .attr("y", function(d, i) { return d.labelY; });
+
+  // return array;
 };
 
 
