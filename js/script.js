@@ -286,22 +286,11 @@ var gCom = {
 
 // Restarts the data
 var restart = function() {
-
-  // selectedData = [];
-  // selectedData = data.slice(0);
-
-  // var t = d3.select("body").select("svg");
-  // $(t).fadeOut(400);
-  
-  // clean();
-
-  // grouping = 3; // TODO: it should be 1 or data.length. I'm not sure yet
   mode = "free";
-  // force.nodes(data);
-  // main();
-
-  communities();
-
+  force.nodes(data);
+  main();
+  // TODO:
+  // communities();
 };
 
 
