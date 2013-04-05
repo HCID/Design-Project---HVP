@@ -17,7 +17,29 @@ var circleClicked = function (circle) {
     update();    
     changeImage();
     addFilterHistory();
+  } else if (mode == "comm") {
+    mode = "comm";
+    communities();
   } else {
 
   }
 }
+
+
+var menuHandler = function () {
+
+    if ($(this).data("grouping") == "comm") {
+      mode = "comm";
+      communities();
+    } else if (parseInt($(this).data("grouping")) === 4) {
+    } else if ($(this).data("grouping") == "schedule") {
+      mode = "schedule";
+      main();
+    } else if($(this).data("grouping") == "map"){
+      mode = "map";
+      main();
+    } else if($(this).data("grouping") == "restart"){
+      restart();
+    }
+    changeImage();
+};

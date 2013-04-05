@@ -28,21 +28,7 @@ var restart = function() {
 };
 
 $(document).ready(function() {
-  $(".size_button").on("mousedown", function() {
-    if (parseInt($(this).data("grouping")) === 16) {
-      communities();
-    } else if (parseInt($(this).data("grouping")) === 4) {
-    } else if ($(this).data("grouping") == "schedule") {
-      mode = "schedule";
-      main();
-    } else if($(this).data("grouping") == "map"){
-      mode = "map";
-      main();
-    } else if($(this).data("grouping") == "restart"){
-      restart();
-    }
-    changeImage();
-  });
+  $(".size_button").on("mousedown", menuHandler);
   $("svg").attr("height", height + "px");
   $("svg").attr("width", width + "px");
   $("#bgimg").attr("height", height);
