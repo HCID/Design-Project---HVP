@@ -45,8 +45,9 @@ var update = function () {
   nodes = vis.selectAll("g")
     .data(force.nodes(), function(d){ return d.id;} )
     
-    nodes.enter().append("g")
-      .attr("id", function(d, i){return "g"+d.id;})
+    var nodeEnterG = nodes.enter().append("g");
+
+      nodeEnterG.attr("id", function(d, i){return "g"+d.id;})
       .attr("class", "circle_class")
       
       // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
@@ -60,6 +61,11 @@ var update = function () {
       .style("stroke-width", 1)
       .style("stroke", "#ffffff")
       .call(node_drag);
+
+    nodeEnterG.append("title")
+      .text(function(d) { 
+        return d.name;
+      });
   
 
 nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );

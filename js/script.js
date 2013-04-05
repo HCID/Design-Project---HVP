@@ -1,7 +1,6 @@
+
 var vis;
 var data = [],
-    height = $(window).height(),
-    width = $(window).width(),
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
     mode = "free";
@@ -24,8 +23,6 @@ var restart = function() {
   mode = "free";
   force.nodes(data);
   main();
-  filterHistory = [];
-  $("#filter_list").html("");
   // TODO:
   // communities();
 };
