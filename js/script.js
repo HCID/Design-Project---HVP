@@ -1,4 +1,3 @@
-
 var vis;
 var data = [],
     height = $(window).height(),

@@ -15,7 +15,14 @@ var client = new Tuio.Client({
 
 
 
+
+
+
+
 onAddTuioCursor = function(addCursor) {
+
+
+
 
 
 var element = $(document.elementFromPoint(addCursor.xPos*windowWidth, addCursor.yPos*windowHeight)); 
@@ -27,13 +34,13 @@ if(element.get(0).tagName == "circle" && !showMenu) {
 
 console.log(el);
 var event = document.createEvent("MouseEvent");
-event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*windowWidth, addCursor.yPos*windowHeight,addCursor.xPos*windowWidth, addCursor.yPos*windowHeight);
+event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos * windowWidth, addCursor.yPos * windowHeight,addCursor.xPos * windowWidth, addCursor.yPos * windowHeight);
 el[0][0].dispatchEvent(event);
 
   
 } else {
 var event = document.createEvent("MouseEvent");
-event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos*windowWidth, addCursor.yPos*windowHeight,addCursor.xPos*windowWidth, addCursor.yPos*windowHeight);
+event.initMouseEvent("mousedown",true,true, window, 1, addCursor.xPos * windowWidth, addCursor.yPos * windowHeight,addCursor.xPos * windowWidth, addCursor.yPos * windowHeight);
 element.get(0).dispatchEvent(event);
   
 }
@@ -42,9 +49,16 @@ element.get(0).dispatchEvent(event);
     el: el,
     fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*windowWidth + "px; top: " + addCursor.yPos*windowHeight + "px; border-radius: 40px; '></div>").appendTo($("body"))
   };
+
+
+
+// gabriel.scherer@gmail.com
+
 },
 
 onUpdateTuioCursor = function(updateCursor) {
+  
+//console.log("x: " + updateCursor.xPos*windowWidth + ", y: " + updateCursor.yPos*windowHeight)
 
   if(fingers[updateCursor.sessionId]) {
     fingers[updateCursor.sessionId].cursor = updateCursor;
@@ -54,11 +68,48 @@ onUpdateTuioCursor = function(updateCursor) {
       var event = document.createEvent("MouseEvent");
       event.initMouseEvent("mousemove",true,true, window, 1, updateCursor.xPos*windowWidth, updateCursor.yPos*windowHeight,updateCursor.xPos*windowWidth, updateCursor.yPos*windowHeight);
       fingers[updateCursor.sessionId].el[0][0].dispatchEvent(event);
+     // fingers[updateCursor.sessionId].el.on("drag")();
+/*  
+console.log(fingers[updateCursor.sessionId].el);
+  var d = fingers[updateCursor.sessionId].el;
+
+
+
+if(d.px == NaN) {
+  d.px = 0;
+}
+
+if(d.py == NaN) {
+  d.py = 0;
+}
+
+if(d.x == NaN) {
+  d.x = 0;
+}
+
+if(d.y == NaN) {
+  d.y = 0;
+}
+
+
+  var dx = parseFloat(updateCursor.xPos*$(window).width()) - parseFloat(d.x);
+  var dy = parseFloat(updateCursor.yPos*$(window).height()) - parseFloat(d.y);
+    
+console.log(d.x);
+
+  d.px += dx;
+    d.py += dy;
+    d.x  += dx;
+    d.y  += dy; 
+    tick(); 
+
+*/
     }
   }
 },
 
 onRemoveTuioCursor = function(removeCursor) {
+  //console.log(removeCursor);
     if(fingers[removeCursor.sessionId]) {
       if (fingers[removeCursor.sessionId].el) {
       var event = document.createEvent("MouseEvent");

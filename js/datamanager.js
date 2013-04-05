@@ -1,10 +1,19 @@
-var filterJSON = function(json, key, value) {
+var filterJSON = function(json, key, value, defilter) {
+  if (defilter == undefined) {
+    defilter = false;
+  }
   var result = [];
-  json.forEach(function (row) {
-    if (row[key] === value) {
-      result.push(row);
-    }
-  })
+  json.forEach(function (row) {    
+    if(!defilter) {
+      if (row[key] === value) {
+        result.push(row);
+      }
+    } else {
+      if (row[key] !== value) {
+        result.push(row);
+      }
+    }  
+  });
   return result;
 }
 

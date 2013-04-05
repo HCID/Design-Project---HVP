@@ -12,13 +12,17 @@
     <script type="text/javascript" src="js/datamanager.js"></script></script>  
     <script type="text/javascript" src="js/view.js"></script></script> 
     <script type="text/javascript" src="js/clickhandler.js"></script></script> 
-    <script type="text/javascript" src="js/tuio.coffee"></script></script> 
+    <script type="text/javascript" src="js/tuiohnadler.js"></script></script> 
     <script type="text/javascript" src="js/script.js"></script></script>        
     <script src="js/lodash.js"></script>
     <script type="text/javascript" src="js/numeric-1.2.6.js"></script>
     <script type="text/javascript" src="js/venn.js"></script>
 	</head>
 	<body>
+        
+    
+        <ul id="filter_list" style="position: absolute; top: 30px; right: 30px; list-style: none; padding: 0px; margin: 0px; height: 1000px; width: 200px;  "></ul>
+    
     <div style="position: fixed; top: 0px; /* display: none; */" id="mainMenu">  <!-- TODO -->
 		<button class="size_button" data-grouping="16">16</button>
 	    <button class="size_button" data-grouping="4">4</button>
