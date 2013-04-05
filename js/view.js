@@ -3,6 +3,7 @@ var ySchedule = 200;
 var xSpace = 280;
 var ySpace = 220;
 var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
+var filterHistory = [];
 
 // Changes the background image
 function changeImage() {
@@ -70,4 +71,29 @@ nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = ca
   nodes.exit().remove();
   force.start();
   
+}
+
+
+
+function addFilterHistory() {
+  var toppy = 30 + ($("#filter_list li").size()*60);
+
+
+  $("<li class='new_filter' id='filter_"+(filterHistory.length-1)+"' style='width: 200px; margin-top: 10px; list-style: none; height: 50px; background-color: red;  position: absolute; z-index: 100; border-radius: 10px; right: "+d3.event.clientX+"px; top: "+d3.event.clientY+"px;'><div class='remove_filter'>x</div>"+filterHistory[filterHistory.length-1].name+"</li>").appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
+    $(this).appendTo($("#filter_list"));
+    $(this).css("position", "static");
+    $(this).css("float", "left");
+    $(this).css("top", null);
+    $(this).css("left", null);
+  });
+
+$(".remove_filter").on("mousedown", function () {
+  var id = $(this).parent().attr("id").substring(7,$(this).parent().attr("id").length);
+  $(this).parent().remove();
+  mode = filterHistory[id].name;
+  _.forEach(filterHistory[id].data, function(d) {
+    force.nodes().push(d);
+  });
+  update();
+});
 }
