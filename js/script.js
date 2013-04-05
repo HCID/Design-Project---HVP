@@ -284,7 +284,7 @@ var gCom = {
   'id': 0
 };
 
-// Restarts the data
+// Restarts the data 
 var restart = function() {
   mode = "free";
   force.nodes(data);
