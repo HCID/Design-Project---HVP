@@ -1,7 +1,3 @@
-var xSchedule = 730;
-var ySchedule = 200;
-var xSpace = 280;
-var ySpace = 220;
 var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
 var filterHistory = [];
 
@@ -37,7 +33,7 @@ var generateLegend = function () {
 var calculateR = function (d) {
   if(mode == "free"){
     var n = force.nodes().length;
-    var s = 0.3 * Math.sqrt((width*height)/n);
+    var s = 0.2 * Math.sqrt((width*height)/n);
     return s;
   } else {
     return 5;
