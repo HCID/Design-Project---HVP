@@ -17,9 +17,6 @@ var circleClicked = function (circle) {
     update();    
     changeImage();
     addFilterHistory();
-  } else if (mode == "comm") {
-    mode = "comm";
-    communities();
   } else {
 
   }
@@ -30,6 +27,8 @@ var menuHandler = function () {
 
     if ($(this).data("grouping") == "comm") {
       mode = "comm";
+      force.nodes([]);
+      update();
       communities();
     } else if (parseInt($(this).data("grouping")) === 4) {
     } else if ($(this).data("grouping") == "schedule") {
