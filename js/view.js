@@ -90,7 +90,6 @@ function addFilterHistory() {
 $(".remove_filter").on("mousedown", function () {
   var id = $(this).parent().attr("id").substring(7,$(this).parent().attr("id").length);
   $(this).parent().remove();
-  mode = filterHistory[id].name;
   _.forEach(filterHistory[id].data, function(d) {
     force.nodes().push(d);
   });
