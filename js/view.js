@@ -94,6 +94,7 @@ $(".remove_filter").on("mousedown", function () {
   _.forEach(filterHistory[id].data, function(d) {
     force.nodes().push(d);
   });
+  delete filterHistory[id];
   update();
 });
 }
