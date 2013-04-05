@@ -24,11 +24,10 @@ var circleClicked = function (circle) {
 
 
 var menuHandler = function () {
-
+  d3.selectAll("circle").attr("opacity", 1)
     if ($(this).data("grouping") == "comm") {
       mode = "comm";
-      force.nodes([]);
-      update();
+      d3.selectAll("circle").attr("opacity", 0)
       communities();
     } else if (parseInt($(this).data("grouping")) === 4) {
     } else if ($(this).data("grouping") == "schedule") {
