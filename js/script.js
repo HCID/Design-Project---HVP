@@ -114,11 +114,9 @@ var nodes;
 
 
 var calculateR = function (d) {
-  console.log(mode);
   if(mode == "free"){
     var n = force.nodes().length;
     var s = 0.3 * Math.sqrt((width*height)/n);
-    console.log("S: " + s);
     return s;
   } else {
     return 5;
@@ -352,7 +350,7 @@ function changeImage() {
   }
 };
 
-var communities = function() {
+/*var communities = function() {
 
   var gComs = [];
   var id = 0;
@@ -397,7 +395,7 @@ var communities = function() {
 
   var commNodes = createCommNodesArray(gComs);
 
-}
+}*/
 
 var compareArrays = function (a,b) {
 
@@ -420,46 +418,6 @@ var compareArrays = function (a,b) {
   return result;
 }
 
-var linking = function (nodes){
-  var link = [];
-
-  nodes.forEach( function (e){
-    if(e.id >10){
-      for (var i=0;i<=10;i++) { 
-        if (e.coms.indexOf(nodes[i].coms[0])!= -1){
-          var newLink = {"source":e.id,"target": nodes[i].id,"value":1};
-          link.push(newLink);
-            // add a link to link array from e to nodes[i]
-        }
-      }
-    }
-  });
-
-  return link;
-}  
-
-var circleClicked = function (circle) {
-
-  if (mode == "schedule") {
-    mode = "free";
-    var newData = filterJSON(vis.selectAll("g").data(), "day", circle["day"]);
-    var newData = filterJSON(newData, "starTime", circle["starTime"]);
-    force.nodes(newData);
-    update();
-    
-    changeImage();
-  } else if (mode == "map") {
-    mode = "free";
-    var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
-    force.nodes(newData);   
-    update();
-    changeImage();
-  } else {
-
-  }
-
-}
-
 var containsElement = function (array, b) {
 
   var i = 0;
@@ -469,7 +427,6 @@ var containsElement = function (array, b) {
     found = (array[i].toLowerCase() === b.toLowerCase());
     i++;
   }
-  
   return found;
 }
 
