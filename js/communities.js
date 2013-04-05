@@ -1,4 +1,8 @@
-
+var gCom = {
+  'coms': [],
+  'amount': 0,
+  'id': 0
+};
 
 var communities = function() {
 
@@ -68,4 +72,183 @@ var compareArrays = function (a,b) {
     result = follow;
   }
   return result;
+}
+
+
+var createCommNodesArray = function (a) {
+
+  a.forEach (function (d) {
+
+    if (d.coms.length > 0) {
+      var i = d.coms.indexOf("ux");
+      if (i >= 0) d.coms.splice(i, 1);
+      i = d.coms.indexOf("design");
+      if (i >= 0) d.coms.splice(i, 1);
+      i = d.coms.indexOf("engineering");
+      if (i >= 0) d.coms.splice(i, 1);
+    }
+
+  });
+
+  var array = [];
+
+
+  var gCom0 = new Object();
+      gCom0.coms = [];
+      gCom0.amount = 0;
+      gCom0.id = 0;
+
+  var gCom1 = new Object();
+      gCom1.coms = ["sustainability"];
+      gCom1.amount = 0;
+      gCom1.id = 1;
+
+  var gCom2 = new Object();
+      gCom2.coms = ["hci4d"];
+      gCom2.amount = 0;
+      gCom2.id = 2;
+
+  var gCom3 = new Object();
+      gCom3.coms = ["games"];
+      gCom3.amount = 0;
+      gCom3.id = 3;
+
+  var gCom4 = new Object();
+      gCom4.coms = ["cci"];
+      gCom4.amount = 0;
+      gCom4.id = 4;
+
+  var gCom5 = new Object();
+      gCom5.coms = ["arts"];
+      gCom5.amount = 0;
+      gCom5.id = 5;
+
+  var gCom6 = new Object();
+      gCom6.coms = ["health"];
+      gCom6.amount = 0;
+      gCom6.id = 6;
+
+  var gCom7 = new Object();
+      gCom7.coms = ["management"];
+      gCom7.amount = 0;
+      gCom7.id = 7;
+
+  array.push(gCom0, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7);    
+
+  var id = 8;
+
+  a.forEach(function (d) {
+
+    var i = 0;
+    var found = false;
+    var length = array.length;
+
+    while (i<length && !found) {
+      found = compareArrays(d.coms, array[i].coms);
+      if (found) {array[i].amount += d.amount};
+      i++;
+    }
+
+    if (!found) {
+      var c = {"coms":d.coms, "amount":d.amount, "id":id};
+      id++;
+      array.push(c);
+    }
+  });
+
+  // Info to fill and use later
+  var groups = ["general", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
+  var vennData = [];
+  for (var i=0; i<Math.pow(2, 8); i++) {
+    vennData[i] = 0;
+  }
+  
+  t = 1;
+
+  array.forEach(function (d) {
+
+    var i1 = 0;
+    var i2 = 0;
+    var i3 = 0;
+    var i4 = 0;
+  
+    if (d.coms.length == 0) { //general
+      i1 = t << 0; 
+      vennData[i1] = 8;//0;//d.amount;
+    } else if (d.coms.length == 1) {
+      i1 = t << groups.indexOf(d.coms[0]);
+      vennData[i1] = 8;//d.amount/2;
+    } else if (d.coms.length == 2) {
+      i1 = t << groups.indexOf(d.coms[0]);
+      i2 = t << groups.indexOf(d.coms[1]);
+      vennData[i1|i2] = 6;//d.amount/2;
+    } else if (d.coms.length == 3) {
+      i1 = t << groups.indexOf(d.coms[0]);
+      i2 = t << groups.indexOf(d.coms[1]);
+      i3 = t << groups.indexOf(d.coms[2]);
+      vennData[i1|i2|i3] = 4;//d.amount/2;  
+    } else if (d.coms.length == 4) {
+      i1 = t << groups.indexOf(d.coms[0]);
+      i2 = t << groups.indexOf(d.coms[1]);
+      i3 = t << groups.indexOf(d.coms[2]);
+      i4 = t << groups.indexOf(d.coms[3]);
+      vennData[i1|i2|i3|i4] = 4;//d.amount/2;
+    }
+
+  });
+
+
+  var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight]);
+  var circle = d3.svg.arc().innerRadius(0).startAngle(0).endAngle(2*Math.PI);
+  
+  vis = d3.select("body").select("svg")
+    .data([vennData])
+      .attr("width", width).attr("height", height);
+
+  var vennSpace = 100;
+
+  var circles = vis.selectAll("g.arc")
+      .data(venn)              
+    .enter().append("g")
+      .attr("class", "arc")
+      .attr("transform", function(d, i){ return "translate(" + (d.x) + "," + (vennSpace + d.y) + ")"; });
+  circles.append("path")
+      .attr("fill", function(d, i) { return fill(i); })
+      .attr("opacity", 0.5)
+      .attr("d", circle);
+  circles.append("text")
+      .attr("text-anchor", "middle")
+      .text(function(d, i) { return groups[i]; })
+      .attr("fill", function(d, i) { return fill(i); })
+      .attr("x", function(d, i) { return d.labelX; })
+      .attr("y", function(d, i) { return d.labelY; });
+      
+
+  // D3 animation
+  vis.selectAll("path")
+      .data(venn).transition().duration(2000).delay(1000)
+      .attr("d", circle);
+  vis.selectAll("g.arc")
+      .data(venn).transition().duration(2000).delay(1000)
+      .attr("transform", function(d, i){ return "translate(" + (d.x) + "," + (vennSpace + d.y) + ")"; }); 
+  vis.selectAll("text")
+      .data(venn).transition().duration(2000).delay(1000)
+      .attr("x", function(d, i) { return d.labelX; })
+      .attr("y", function(d, i) { return d.labelY; });
+
+  // return array;
+};
+
+
+
+var containsElement = function (array, b) {
+
+  var i = 0;
+  var found = false;
+
+  while ((i < array.length) && !found) {
+    found = (array[i].toLowerCase() === b.toLowerCase());
+    i++;
+  }
+  return found;
 }

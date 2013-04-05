@@ -1,4 +1,3 @@
-
 var filterJSON = function(json, key, value) {
   var result = [];
   json.forEach(function (row) {
@@ -9,15 +8,6 @@ var filterJSON = function(json, key, value) {
   return result;
 }
 
-var removeFromJSON = function(json, key, value) {
-  var result = [];
-  json.forEach(function (row) {
-    if (row[key] != value) {
-      result.push(row);
-    }
-  })
-  return result;
-}
 
 var countDifferentValuesForKey = function(json, key) {
   var differentValues = [];
