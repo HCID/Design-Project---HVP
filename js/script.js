@@ -15,14 +15,7 @@ var client = new Tuio.Client({
 
 
 
-
-
-
-
 onAddTuioCursor = function(addCursor) {
-
-
-
 
 
 var element = $(document.elementFromPoint(addCursor.xPos*windowWidth, addCursor.yPos*windowHeight)); 
@@ -49,27 +42,9 @@ element.get(0).dispatchEvent(event);
     el: el,
     fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos*windowWidth + "px; top: " + addCursor.yPos*windowHeight + "px; border-radius: 40px; '></div>").appendTo($("body"))
   };
-
-
-
-// gabriel.scherer@gmail.com
-
-
-
-/*
-
-  console.log($(document.elementFromPoint(addCursor.xPos*$(window).width(), addCursor.yPos*$(window).height())));
-     
-   $("#circle").css("left", addCursor.xPos*$(window).width()-30 + "px");
-  $("#circle").css("top", addCursor.yPos*$(window).height()-10 + "px"); 
-  $("#circle").fadeIn();
-  console.log("cursor", addCursor);
-  */
 },
 
 onUpdateTuioCursor = function(updateCursor) {
-  
-//console.log("x: " + updateCursor.xPos*windowWidth + ", y: " + updateCursor.yPos*windowHeight)
 
   if(fingers[updateCursor.sessionId]) {
     fingers[updateCursor.sessionId].cursor = updateCursor;
@@ -79,48 +54,11 @@ onUpdateTuioCursor = function(updateCursor) {
       var event = document.createEvent("MouseEvent");
       event.initMouseEvent("mousemove",true,true, window, 1, updateCursor.xPos*windowWidth, updateCursor.yPos*windowHeight,updateCursor.xPos*windowWidth, updateCursor.yPos*windowHeight);
       fingers[updateCursor.sessionId].el[0][0].dispatchEvent(event);
-     // fingers[updateCursor.sessionId].el.on("drag")();
-/*  
-console.log(fingers[updateCursor.sessionId].el);
-  var d = fingers[updateCursor.sessionId].el;
-
-
-
-if(d.px == NaN) {
-  d.px = 0;
-}
-
-if(d.py == NaN) {
-  d.py = 0;
-}
-
-if(d.x == NaN) {
-  d.x = 0;
-}
-
-if(d.y == NaN) {
-  d.y = 0;
-}
-
-
-  var dx = parseFloat(updateCursor.xPos*$(window).width()) - parseFloat(d.x);
-  var dy = parseFloat(updateCursor.yPos*$(window).height()) - parseFloat(d.y);
-    
-console.log(d.x);
-
-  d.px += dx;
-    d.py += dy;
-    d.x  += dx;
-    d.y  += dy; 
-    tick(); 
-
-*/
     }
   }
 },
 
 onRemoveTuioCursor = function(removeCursor) {
-  //console.log(removeCursor);
     if(fingers[removeCursor.sessionId]) {
       if (fingers[removeCursor.sessionId].el) {
       var event = document.createEvent("MouseEvent");
@@ -236,20 +174,7 @@ var force = d3.layout.force()
       .gravity(0)
       .size([width, height])
       .charge(0)
-     /* .charge(function (d) {
 
-        var n = force.nodes().length;
-        var s = 25 + (1 - (n/data.length))*100;
-        console.log("s: " + s);
-        return -s;
-
-
- }); */
-  
-// var forceData;
-// var circleSelection;
-// var force;
-// var selectedData = [];
 var foci = [{x: 200, y: 200}, {x: 350, y: 250}, {x: 700, y: 400}];
 var fociFree = [{x: width/2, y: height/2}];
 var xSchedule = 730;
@@ -343,24 +268,7 @@ var tick = function(e) {
       vis.selectAll("circle").attr("r", 20);
       getMapPosition(k);
     }
-    //changeImage();
   }
-
-    // var bordeau = filterJSON(data,"room", "Bordeaux");
-    // console.log("talks in Bordeaux: " + countDifferentValuesForKey(bordeau,"name"));
-    /*force.nodes().forEach(function(o, i) {
-
-      o.y += (fociUsed[o.id % fociUsed.length].y - o.y) * k;
-      o.x += (fociUsed[o.id % fociUsed.length].x - o.x) * k;
-    });*/
-  /*
-    vis.selectAll("circle")
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-
-  */
-
-
     vis.selectAll("circle").attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
 
@@ -369,9 +277,14 @@ var nodes;
 
 
 var calculateR = function (d) {
-  var n = force.nodes().length;
-  var s = 10 + (1 - (n/data.length))*20;
-  return s;
+  //if(mode === "free"){
+    var n = force.nodes().length;
+    var s = 0.3 * Math.sqrt((width*height)/n);
+    console.log("S: " + s);
+    return s;
+  //} else {
+  //  return 5;
+  //} 
 }
 
 
@@ -407,50 +320,21 @@ nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = ca
 
 
 var main = function (fociUsed) {
-
   vis = d3.select("body").select("svg");
-    // .attr("width", width)
-    // .attr("height", height);
-
-  console.log("width ", width);
-  console.log("height ", height);
-  console.log ("mode on force: " + mode);
   force.on("tick", tick);
-  
-  //selectedData = data;
-  //console.log("selectedData length" + selectedData.length);
-  //Time for spliting data or filtering
-
-  //groupJSON(selectedData, "room", "351");
-
-  //console.log("before Filter:" + selectedData.length);
-  //selectedData = filterJSON(selectedData, "room", "351");
-  //console.log("after Filter: " + selectedData.length);
-  //toggleVisibility();
-
   update();
-
   force.start();
       var items = [];
-
      $.each(getDifferentValuesForKey(data,"type"), function(i, item) {
-            console.log(item);
-
             items.push('<li class="typesClass" style="background-color:' + fill(item) + '">' + item + '</li>');
-
      });  // close each()
-
      $(".types").html( items.join('') );
-
-  
 };
     
       
   $(document).ready(function() {
-    console.log("document_ready");
     $(".size_button").on("mousedown", function() {
       if (parseInt($(this).data("grouping")) === 16) {
-        console.log("communities function");
         communities();
       } else if (parseInt($(this).data("grouping")) === 4) {
       } else if ($(this).data("grouping") == "schedule") {
@@ -468,19 +352,6 @@ var main = function (fociUsed) {
   });
 
 
-// var map = function () {
-//   num = 63;
-//   groupFill = function(d, i) { return fill(i & num); };
-//   groups = d3.nest().key(function(d) { return d & num }).entries(force.nodes());
-//   // Makes all the nodes move when clicking
-//   d3.select("body")//.on("click", function() {
-//     force.nodes().forEach(function(o, i) {
-//       o.x += (Math.random() - .5) * 80;
-//       o.y += (Math.random() - .5) * 80;
-//     });
-//   mapForce.resume();
-// };
-
 $(document).ready(function() {
   $("svg").attr("height", height + "px");
   $("svg").attr("width", width + "px");
@@ -488,7 +359,6 @@ $(document).ready(function() {
   $("#bgimg").attr("width", width);
   d3.json('data/data.json', function (importedData) {
     data = importedData;
-    // console.log("selectedData " + selectedData.length);
     minCollisionRadius = 5,
     maxDomainValue = d3.max(data, function(d) {
       return d.bookmarks;
@@ -502,26 +372,16 @@ $(document).ready(function() {
 
 var filterJSON = function(json, key, value) {
   var result = [];
-  
   json.forEach(function (row) {
-    //console.log(row);
     if (row[key] === value) {
-//      console.log("equals value " + value);
       result.push(row);
     }
-    else{
-//      console.log("removed one");
-    }
-
   })
-  // console.log("result of filter function: ");
-  // console.dir(result);
   return result;
 }
 
 var toggleVisibility = function(force, key, value){
     force.selectAll("g").attr("visibility", function(d) {
-      // console.log(d[key] === value);
       return d[key] === value ? "visible" : "hidden";
   });
 }
@@ -530,25 +390,20 @@ var countDifferentValuesForKey = function(json, key) {
   var differentValues = [];
   
   json.forEach(function (row) {
-    //console.log(row);
     if (differentValues.indexOf(row[key]) == -1) {
       differentValues.push(row[key]);
     }
   })
-  console.log(differentValues.length + " different values for key:" + key);
   return differentValues.length;
 }
 
 var getDifferentValuesForKey = function(json, key) {
   var differentValues = [];
-  
   json.forEach(function (row) {
-    //console.log(row);
     if (differentValues.indexOf(row[key]) == -1) {
       differentValues.push(row[key]);
     }
   })
-  console.log(differentValues.length + " different values for key:" + key);
   return differentValues;
 }
 
@@ -557,12 +412,10 @@ var groupJSON = function (json, key) {
   var differentValues = [];
   
   json.forEach(function (row) {
-    //console.log(row);
     if (differentValues.indexOf(row[key]) == -1) {
       differentValues.push(row[key]);
     }
   })
-  console.log(differentValues.length + " different values for key:" + key);
   number =  differentValues.length;
 
   // Creating the number force arrays inside the forceData
@@ -571,7 +424,6 @@ var groupJSON = function (json, key) {
   for (var i=0;i<number;i++) { 
     forceData.push([]);
     json.forEach(function (row) {
-      //console.log(row);
       if (differentValues.indexOf(row[key]) == i) {
         forceData[i].push(row);
       }
@@ -712,16 +564,6 @@ var communities = function() {
   })
 
   var commNodes = createCommNodesArray(gComs);
-  // var commLinks = linking(commNodes);
-
-  // console.log("commLinks.length ", commLinks.length);
-  // console.log("commLinks ", commLinks);
-
-  // gComs.forEach( function (d) {
-
-  //   console.log ("coms ", d.coms);
-  //   console.log ("amount ", d.amount);
-  // })
 
 }
 
@@ -765,17 +607,10 @@ var linking = function (nodes){
 }  
 
 var circleClicked = function (circle) {
-  // console.log("clicked on: " + circle);
-  // console.dir(circle);
-  // console.log("mode : " + mode);
+
   if (mode == "schedule") {
-    // console.log("day: " + circle["day"]);
-    // console.log("starTime: " + circle["starTime"]);
-    // console.log(vis.selectAll("g").data());
     var newData = filterJSON(vis.selectAll("g").data(), "day", circle["day"]);
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
-    // console.log(newData);
-    //d3.selectAll... remove filtered data
     force.nodes(newData);
     update();
     mode = "free";
@@ -822,14 +657,7 @@ var createCommNodesArray = function (a) {
 
   var array = [];
 
-  // var gCom0 = {"coms":[], "amount":0, "id":0};
-  // var gCom1 = {"coms":["sustainability"], "amount":0, "id":1};
-  // var gCom2 = {"coms":["hci4d"], "amount":0, "id":2};
-  // var gCom3 = {"coms":["games"], "amount":0, "id":3};
-  // var gCom4 = {"coms":["cci"], "amount":0, "id":4};
-  // var gCom5 = {"coms":["arts"], "amount":0, "id":5};
-  // var gCom6 = {"coms":["health"], "amount":0, "id":6};
-  // var gCom7 = {"coms":["management"], "amount":0, "id":7};
+
     var gCom0 = new Object();
       gCom0.coms = [];
       gCom0.amount = 0;
@@ -872,9 +700,6 @@ var createCommNodesArray = function (a) {
 
   array.push(gCom0, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7);    
 
-  console.log("array top ", array);
-  console.log("array top length ", array.length);
-
   var id = 8;
 
   a.forEach(function (d) {
@@ -906,86 +731,38 @@ var createCommNodesArray = function (a) {
   t = 1;
 
   array.forEach(function (d) {
-    // console.log("array id " + d.id + " coms " + d.coms + " amount " + d.amount);
 
     var i1 = 0;
     var i2 = 0;
     var i3 = 0;
     var i4 = 0;
-    
-    // console.log("d ", d);
-      console.log("d ", d.id);
+  
     if (d.coms.length == 0) { //general
-      // console.log("undefined");
       i1 = t << 0; 
       vennData[i1] = 8;//0;//d.amount;
-      // console.log("d ", d.id);
-      console.log("i1 ", i1);
-      // console.log("vennData[i1] ", vennData[i1]);
     } else if (d.coms.length == 1) {
-      // console.log("1");
       i1 = t << groups.indexOf(d.coms[0]);
       vennData[i1] = 8;//d.amount/2;
-      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
-      // console.log("d ", d.id);
-      console.log("i1 ", i1);
-      // console.log("vennData[i1] ", vennData[i1]);
     } else if (d.coms.length == 2) {
-      // console.log("2");
       i1 = t << groups.indexOf(d.coms[0]);
       i2 = t << groups.indexOf(d.coms[1]);
       vennData[i1|i2] = 6;//d.amount/2;
-      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
-      // console.log("groups.indexOf(d.coms[1]) ", groups.indexOf(d.coms[1]));
-      // console.log("d ", d.id);
-      console.log("i1|i2 ", i1|i2);
-      // console.log("vennData[i1|i2] ", vennData[i1|i2]);
     } else if (d.coms.length == 3) {
-      // console.log("3");
       i1 = t << groups.indexOf(d.coms[0]);
       i2 = t << groups.indexOf(d.coms[1]);
       i3 = t << groups.indexOf(d.coms[2]);
-      vennData[i1|i2|i3] = 4;//d.amount/2;
-      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
-      // console.log("groups.indexOf(d.coms[1]) ", groups.indexOf(d.coms[1]));
-      // console.log("groups.indexOf(d.coms[2]) ", groups.indexOf(d.coms[2]));
-      // console.log("d ", d.id);
-      console.log("i1|i2|i3 ", i1|i2|i3);
-      // console.log("vennData[i1|i2|i3] ", vennData[i1|i2|i3]);
+      vennData[i1|i2|i3] = 4;//d.amount/2;  
     } else if (d.coms.length == 4) {
-      // console.log("4");
       i1 = t << groups.indexOf(d.coms[0]);
       i2 = t << groups.indexOf(d.coms[1]);
       i3 = t << groups.indexOf(d.coms[2]);
       i4 = t << groups.indexOf(d.coms[3]);
       vennData[i1|i2|i3|i4] = 4;//d.amount/2;
-      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
-      // console.log("groups.indexOf(d.coms[1]) ", groups.indexOf(d.coms[1]));
-      // console.log("groups.indexOf(d.coms[2]) ", groups.indexOf(d.coms[2]));
-      // console.log("groups.indexOf(d.coms[3]) ", groups.indexOf(d.coms[3]));
-      // console.log("d ", d.id);
-      console.log("i1|i2|i3|i4 ", i1|i2|i3|i4);
-      // console.log("vennData[i1|i2|i3|i4] ", vennData[i1|i2|i3|i4]);
     }
 
   });
 
-  // console.log("vennData array ", vennData.length);
-  //   console.log("vennData array ", vennData);
 
-  // vennData.forEach(function(d) {
-  //   console.log("data ", d);
-  // });
-
-  // console.log("HERE " + array[0].coms);
-  // array.forEach(function (d) {
-
-
-  // });
-
-  // vennData.forEach(function (d) {
-  //    console.log("elto " + d);
-  // });
   var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight]);
   var circle = d3.svg.arc().innerRadius(0).startAngle(0).endAngle(2*Math.PI);
   
@@ -1026,58 +803,6 @@ var createCommNodesArray = function (a) {
 
   // return array;
 };
-
-
-/*
-var updateToCommunitiesView = function (n, l) {
-  var force = d3.layout.force()
-    .charge(-500)
-    .linkDistance(50)
-    .size([width, height])
-    .nodes(n)
-    .links(l)
-    .start();
-  
-  var svg = d3.select("body").select("svg");
-
-  var link = svg.selectAll(".link")
-      .data(l)
-    .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return 100; })
-      .style("fill", "#f2345f");
-
-  var node = svg.selectAll(".node")
-      .data(n)
-    .enter().append("circle")
-      .attr("class", "node")
-      .attr("r", function(d) { 
-        console.log("node " + d.id + " amount " + d.amount + " coms " + d.coms); 
-        return (d.amount < 10) ? d.amount*10 : 10; 
-      })
-      .style("fill", function(d) {
-        return (d.id < 11) ? fill(d.id) : "#22225f"; })
-      .style("stroke-width", 1)
-      .style("stroke", "#ffffff")
-      .call(force.drag)
-      .on("mousedown", function(d) {alert("Ball " + d.coms + ", Amount " + d.amount);});
-
-  node.append("title")
-      .text(function(d) { return "Ball " + d.coms + ", Amount " + d.amount; });
-
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-  });
-
-
-}
-*/
 
 var collisionPadding = 5;
 
