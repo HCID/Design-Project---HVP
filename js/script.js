@@ -24,6 +24,8 @@ var restart = function() {
   mode = "free";
   force.nodes(data);
   main();
+  filterHistory = [];
+  $("#filter_list").html();
   // TODO:
   // communities();
 };
