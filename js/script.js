@@ -903,62 +903,79 @@ var createCommNodesArray = function (a) {
     vennData[i] = 0;
   }
   
+  t = 1;
+
   array.forEach(function (d) {
-    console.log("array id " + d.id + " coms " + d.coms + " amount " + d.amount);
+    // console.log("array id " + d.id + " coms " + d.coms + " amount " + d.amount);
 
     var i1 = 0;
     var i2 = 0;
     var i3 = 0;
     var i4 = 0;
     
-    console.log("d ", d);
-
+    // console.log("d ", d);
+      console.log("d ", d.id);
     if (d.coms.length == 0) { //general
-      console.log("undefined");
-      i1 = 1 << 0; 
-      vennData[i1] = d.amount;
+      // console.log("undefined");
+      i1 = t << 0; 
+      vennData[i1] = 8;//0;//d.amount;
+      // console.log("d ", d.id);
       console.log("i1 ", i1);
-      console.log("vennData[i1] ", vennData[i1]);
+      // console.log("vennData[i1] ", vennData[i1]);
     } else if (d.coms.length == 1) {
-      console.log("1");
-      i1 = 1 << groups.indexOf(d.coms[0]);
-      vennData[i1] = d.amount;
+      // console.log("1");
+      i1 = t << groups.indexOf(d.coms[0]);
+      vennData[i1] = 8;//d.amount/2;
+      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
+      // console.log("d ", d.id);
       console.log("i1 ", i1);
-      console.log("vennData[i1] ", vennData[i1]);
+      // console.log("vennData[i1] ", vennData[i1]);
     } else if (d.coms.length == 2) {
-      console.log("2");
-      i1 = 1 << groups.indexOf(d.coms[0]);
-      i2 = 1 << groups.indexOf(d.coms[1]);
-      vennData[i1|i2] = d.amount;
+      // console.log("2");
+      i1 = t << groups.indexOf(d.coms[0]);
+      i2 = t << groups.indexOf(d.coms[1]);
+      vennData[i1|i2] = 6;//d.amount/2;
+      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
+      // console.log("groups.indexOf(d.coms[1]) ", groups.indexOf(d.coms[1]));
+      // console.log("d ", d.id);
       console.log("i1|i2 ", i1|i2);
-      console.log("vennData[i1|i2] ", vennData[i1|i2]);
+      // console.log("vennData[i1|i2] ", vennData[i1|i2]);
     } else if (d.coms.length == 3) {
-      console.log("3");
-      i1 = 1 << groups.indexOf(d.coms[0]);
-      i2 = 1 << groups.indexOf(d.coms[1]);
-      i3 = 1 << groups.indexOf(d.coms[2]);
-      vennData[i1|i2|i3] = d.amount;
+      // console.log("3");
+      i1 = t << groups.indexOf(d.coms[0]);
+      i2 = t << groups.indexOf(d.coms[1]);
+      i3 = t << groups.indexOf(d.coms[2]);
+      vennData[i1|i2|i3] = 4;//d.amount/2;
+      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
+      // console.log("groups.indexOf(d.coms[1]) ", groups.indexOf(d.coms[1]));
+      // console.log("groups.indexOf(d.coms[2]) ", groups.indexOf(d.coms[2]));
+      // console.log("d ", d.id);
       console.log("i1|i2|i3 ", i1|i2|i3);
-      console.log("vennData[i1|i2|i3] ", vennData[i1|i2|i3]);
+      // console.log("vennData[i1|i2|i3] ", vennData[i1|i2|i3]);
     } else if (d.coms.length == 4) {
-      console.log("4");
-      i1 = 1 << groups.indexOf(d.coms[0]);
-      i2 = 1 << groups.indexOf(d.coms[1]);
-      i3 = 1 << groups.indexOf(d.coms[2]);
-      i4 = 1 << groups.indexOf(d.coms[3]);
-      vennData[i1|i2|i3|i4] = d.amount;
+      // console.log("4");
+      i1 = t << groups.indexOf(d.coms[0]);
+      i2 = t << groups.indexOf(d.coms[1]);
+      i3 = t << groups.indexOf(d.coms[2]);
+      i4 = t << groups.indexOf(d.coms[3]);
+      vennData[i1|i2|i3|i4] = 4;//d.amount/2;
+      // console.log("groups.indexOf(d.coms[0]) ", groups.indexOf(d.coms[0]));
+      // console.log("groups.indexOf(d.coms[1]) ", groups.indexOf(d.coms[1]));
+      // console.log("groups.indexOf(d.coms[2]) ", groups.indexOf(d.coms[2]));
+      // console.log("groups.indexOf(d.coms[3]) ", groups.indexOf(d.coms[3]));
+      // console.log("d ", d.id);
       console.log("i1|i2|i3|i4 ", i1|i2|i3|i4);
-      console.log("vennData[i1|i2|i3|i4] ", vennData[i1|i2|i3|i4]);
+      // console.log("vennData[i1|i2|i3|i4] ", vennData[i1|i2|i3|i4]);
     }
 
   });
 
-  console.log("vennData array ", vennData.length);
-    console.log("vennData array ", vennData);
+  // console.log("vennData array ", vennData.length);
+  //   console.log("vennData array ", vennData);
 
-  vennData.forEach(function(d) {
-    console.log("data ", d);
-  });
+  // vennData.forEach(function(d) {
+  //   console.log("data ", d);
+  // });
 
   // console.log("HERE " + array[0].coms);
   // array.forEach(function (d) {
@@ -976,11 +993,13 @@ var createCommNodesArray = function (a) {
     .data([vennData])
       .attr("width", width).attr("height", height);
 
+  var vennSpace = 100;
+
   var circles = vis.selectAll("g.arc")
       .data(venn)              
     .enter().append("g")
       .attr("class", "arc")
-      .attr("transform", function(d, i){ return "translate(" + (50 + d.x) + "," + (50 + d.y) + ")"; });
+      .attr("transform", function(d, i){ return "translate(" + (d.x) + "," + (vennSpace + d.y) + ")"; });
   circles.append("path")
       .attr("fill", function(d, i) { return fill(i); })
       .attr("opacity", 0.5)
@@ -999,7 +1018,7 @@ var createCommNodesArray = function (a) {
       .attr("d", circle);
   vis.selectAll("g.arc")
       .data(venn).transition().duration(2000).delay(1000)
-      .attr("transform", function(d, i){ return "translate(" + (50 + d.x) + "," + (50 + d.y) + ")"; }); 
+      .attr("transform", function(d, i){ return "translate(" + (d.x) + "," + (vennSpace + d.y) + ")"; }); 
   vis.selectAll("text")
       .data(venn).transition().duration(2000).delay(1000)
       .attr("x", function(d, i) { return d.labelX; })
