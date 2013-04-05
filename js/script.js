@@ -25,7 +25,7 @@ var restart = function() {
   force.nodes(data);
   main();
   filterHistory = [];
-  $("#filter_list").html();
+  $("#filter_list").html("");
   // TODO:
   // communities();
 };
