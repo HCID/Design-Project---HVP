@@ -142,9 +142,6 @@ var createCommNodesArray = function (a) {
 
   array.push(gCom0, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7);    
 
-  console.log("array top ", array);
-  console.log("array top length ", array.length);
-
   var id = 8;
 
   a.forEach(function (d) {
@@ -282,6 +279,7 @@ var vennClick = function (e, d, f, g) {
     }
   });
 
+  //TODO: return array to successive steps
   console.log(array);
 }
 

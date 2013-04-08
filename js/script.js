@@ -9,12 +9,21 @@ var force = d3.layout.force()
       .gravity(0)
       .size([width, height])
       .charge(0)
+      .on("tick", tick);
 
 var main = function (fociUsed) {
   vis = d3.select("body").select("svg");
-  force.on("tick", tick);
+  if (mode === "schedule") {
+    var array = groupSchedule();
+    parallelData = force.nodes().slice(0);
+    force.nodes(array);
+  } else if (mode === "map") {
+    var array = groupMap();
+    parallelData = force.nodes().slice(0);
+    force.nodes(array);
+  }
   update();
-  force.start();
+  // force.start();
   generateLegend();
 };
       

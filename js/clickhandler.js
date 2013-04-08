@@ -1,18 +1,23 @@
+/* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
   
   if (mode == "schedule") {
-    filterHistory.push({name: mode, data: filterJSON(vis.selectAll("g").data(), "day", circle["day"], true)});   
+    force.nodes(parallelData);
+    parallelData = [];
+    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "day", circle["day"], true)});   
     mode = "free";   
-    var newData = filterJSON(vis.selectAll("g").data(), "day", circle["day"]);
+    var newData = filterJSON(force.nodes(), "day", circle["day"]);
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
     force.nodes(newData);
     update();    
     changeImage();
     addFilterHistory();
   } else if (mode == "map") {
-    filterHistory.push({name: mode, data: filterJSON(vis.selectAll("g").data(), "room", circle["room"], true)});
+    force.nodes(parallelData);
+    parallelData = [];
+    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
     mode = "free";    
-    var newData = filterJSON(vis.selectAll("g").data(), "room", circle["room"]);
+    var newData = filterJSON(force.nodes(), "room", circle["room"]);
     force.nodes(newData);   
     update();    
     changeImage();
@@ -22,14 +27,13 @@ var circleClicked = function (circle) {
   }
 }
 
-
+/* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
   d3.selectAll("circle").attr("opacity", 1)
     if ($(this).data("grouping") == "comm") {
       mode = "comm";
       d3.selectAll("circle").attr("opacity", 0)
       communities();
-    } else if (parseInt($(this).data("grouping")) === 4) {
     } else if ($(this).data("grouping") == "schedule") {
       mode = "schedule";
       main();

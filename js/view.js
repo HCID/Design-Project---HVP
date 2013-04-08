@@ -31,10 +31,13 @@ var generateLegend = function () {
 
 
 var calculateR = function (d) {
-  if(mode == "free"){
+  
+  if(mode === "free"){
     var n = force.nodes().length;
     var s = 0.2 * Math.sqrt((width*height)/n);
     return s;
+  } else if (mode === "schedule") {
+    return 10;//d.radius;
   } else {
     return 5;
   } 
@@ -42,33 +45,38 @@ var calculateR = function (d) {
 
 
 var update = function () {
+
   nodes = vis.selectAll("g")
     .data(force.nodes(), function(d){ return d.id;} )
     
-    var nodeEnterG = nodes.enter().append("g");
+  var nodeEnterG = nodes.enter().append("g");
 
-      nodeEnterG.attr("id", function(d, i){return "g"+d.id;})
-      .attr("class", "circle_class")
+  nodeEnterG.attr("id", function(d, i){return "g" + d.id})
+    .attr("class", "circle_class")
+    
+    // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
+    .append("circle")
+    .on("mousedown", function(d){ circleClicked(d) } )
+    .style("fill", function (d, i) {
+
+      if (mode !== "free") {
+        return fill(d.types[0]);
+      } else {
+        return fill(d["type"] );
+      }
       
-      // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
-      .append("circle").on("mousedown", function(d){ circleClicked(d) } )
-     
-      .style("fill", function (d, i) {
-        
-        return fill(d["type"]  );
+    })
+    .style("stroke-width", 1)
+    .style("stroke", "#ffffff")
+    .call(node_drag);
 
-      })
-      .style("stroke-width", 1)
-      .style("stroke", "#ffffff")
-      .call(node_drag);
-
-    nodeEnterG.append("title")
-      .text(function(d) { 
-        return d.name;
-      });
+  nodeEnterG.append("title")
+    .text(function(d) { 
+      return d.name;
+    });
   
+  nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 
-nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 
   nodes.exit().remove();
   force.start();
