@@ -1,6 +1,6 @@
 /* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
-  
+  console.log("circleClicked");
   if (mode == "schedule") {
     force.nodes(parallelData);
     parallelData = [];
@@ -30,6 +30,12 @@ var circleClicked = function (circle) {
 /* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
   d3.selectAll("circle").attr("opacity", 1)
+
+    console.log("menuHandler");
+    if ((mode === "schedule") || (mode === "map")) {
+      if (parallelData.length > 0) force.nodes(parallelData);
+    }
+    
     if ($(this).data("grouping") == "comm") {
       mode = "comm";
       d3.selectAll("circle").attr("opacity", 0)

@@ -19,14 +19,27 @@ var fociSchedule =
 {x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3},
 {x: xSchedule + xSpace*4, y: ySchedule + ySpace*2}];
 
-var fociMap = { "353": {x: 200, y: 200}, "352": {x: 200, y: 400}, "351":{x: 200, y: 600},
-"havane": {x:300, y:600}, "bordeaux":{x:300, y:700},
-"362": {x: 400, y: 200}, "361": {x: 400, y: 350}, "343":{x: 400, y: 500}, "342a":{x: 400, y: 600},
+var fociMap = { 
+  "352": {x: 200, y: 200}, 
+  "351": {x: 200, y: 400}, 
+  "havane":{x: 200, y: 600},
+  "bordeaux": {x:300, y:600}, 
+  "342a":{x:300, y:700},
+  "343": {x: 400, y: 200},
+  "361": {x: 400, y: 350},
+  "362":{x: 400, y: 500},
 // level 2
-"253": {x: 800, y: 200}, "252b": {x: 800, y: 400}, "252a":{x: 800, y: 600},
-"blue": {x:950, y:200},
-"243":{x: 1000, y: 200}, "242": {x: 1000, y: 400}, "241":{x: 1000, y: 600},
-"undefined":{x: 1200, y: 200},};
+  "253":{x: 400, y: 600},
+  "252b": {x: 800, y: 200}, 
+  "252a": {x: 800, y: 400}, 
+  "251":{x: 800, y: 600},
+  "maillot": {x:950, y:200},
+  "241":{x: 1000, y: 200}, 
+  "242a": {x: 1000, y: 400}, 
+  "242b":{x: 1000, y: 600},
+  "243":{x: 1000, y: 600},
+  "blue":{x: 1000, y: 600},
+  "undefined":{x: 1200, y: 200}};
 
 /* Schedule element object */
 function Sch (day, time, id) {
@@ -79,7 +92,8 @@ var tick = function(e) {
         d.r = 40;
 
       });
-      vis.selectAll("circle").attr("r", 40);
+      // vis.selectAll("circle").attr("r", d.radius);
+      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 
       getSchedulePosition(k);
 
@@ -97,7 +111,8 @@ var tick = function(e) {
         d.r = 20;
 
       });
-      vis.selectAll("circle").attr("r", 20);
+      // vis.selectAll("circle").attr("r", d.radius);
+      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
       getMapPosition(k);
     }
   }
@@ -210,7 +225,7 @@ var groupSchedule = function () {
 
   });
 
-  return auxArray2;
+  return auxArray2.reverse();
 }
 
 // Returns the index position of a data element in the schedule view
@@ -306,6 +321,8 @@ var groupMap = function () {
 
   });
 
+  console.log(auxArray);
+
   // Creates all the entries in the array to have concentric circles
   auxArray.forEach(function(o, i) {
     var radius = 20;
@@ -321,7 +338,7 @@ var groupMap = function () {
 
   });
 
-  return auxArray2;
+  return auxArray2.reverse();
 }
 
 /* Given an array "a" and an object "o"

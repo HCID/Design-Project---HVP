@@ -10,7 +10,7 @@ function changeImage() {
       // document.getElementById("image").src="img/schedule.svg";
   } else if (mode == "map") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "/img/map_bg.svg")
+        .attr("xlink:href", "/img/map_bg_v2.png")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else {
@@ -36,11 +36,12 @@ var calculateR = function (d) {
     var n = force.nodes().length;
     var s = 0.2 * Math.sqrt((width*height)/n);
     return s;
-  } else if (mode === "schedule") {
-    return 10;//d.radius;
+  } else if ((mode === "schedule") || (mode === "map")) {
+    return d.radius;
   } else {
     return 5;
   } 
+
 }
 
 
