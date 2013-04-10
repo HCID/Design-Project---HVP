@@ -1,8 +1,11 @@
-var authors = require('./data/20feb13/authors-2013-2-20-12-25-28.json');
-var groups = require('./data/20feb13/groups-2013-2-20-15-23-30.json');
-var schedule = require('./data/20feb13/schedule-2013-2-20-12-25-24.json');
-var sessions = require('./data/20feb13/sessions-2013-2-20-12-25-20.json');
-var submissions = require('./data/20feb13/submissions-2013-2-20-12-25-16.json');
+var folder = "10apr13";
+
+var authors = require('./data/'+folder+'/authors.json');
+var groups = require('./data/'+folder+'/groups.json');
+var schedule = require('./data/'+folder+'/schedule.json');
+var sessions = require('./data/'+folder+'/sessions.json');
+var submissions = require('./data/'+folder+'/submissions.json');
+
 var _ = require('underscore');
 var fs = require('fs');
 

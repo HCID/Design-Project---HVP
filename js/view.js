@@ -10,7 +10,7 @@ function changeImage() {
       // document.getElementById("image").src="img/schedule.svg";
   } else if (mode == "map") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "/img/map_bg_v2.png")
+        .attr("xlink:href", "/img/map_bg.svg")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else {
