@@ -70,13 +70,16 @@ var update = function () {
     .style("stroke-width", 1)
     .style("stroke", "#ffffff")
     .call(node_drag);
-
-  nodeEnterG.append("text")
-    .text(function(d) { 
-      var displayName = d.name = d.name.length > 27 ? d.name.substring(0, 27) + "..." : d.name;
-      console.log(displayName);
-      return  displayName;
-    });
+    console.log("force.nodes().length: " + force.nodes().length);
+    if(force.nodes().length < 11){
+      nodeEnterG.append("text")
+        .text(function(d) { 
+          console.log(d.name);
+          var displayName = d.name = d.name.length > 27 ? d.name.substring(0, 27) + "..." : d.name;
+          console.log(displayName);
+          return  displayName;
+        });
+      }
   
   nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 

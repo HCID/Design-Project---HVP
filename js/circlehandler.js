@@ -116,11 +116,10 @@ var tick = function(e) {
       getMapPosition(k);
     }
   }
-    //d3.selectAll("g").attr("x", function(d) { return d.x; })
-      //  .attr("y", function(d) { return d.y; });
+
+
     d3.selectAll("g").attr("transform", function(d) {
       return "translate(" + d.x + "," + d.y + ")";});
-
 };
 var nodes;
 
