@@ -71,9 +71,11 @@ var update = function () {
     .style("stroke", "#ffffff")
     .call(node_drag);
 
-  nodeEnterG.append("title")
+  nodeEnterG.append("text")
     .text(function(d) { 
-      return d.name;
+      var displayName = d.name = d.name.length > 27 ? d.name.substring(0, 27) + "..." : d.name;
+      console.log(displayName);
+      return  displayName;
     });
   
   nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
