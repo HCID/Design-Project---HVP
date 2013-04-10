@@ -323,8 +323,6 @@ var groupMap = function () {
 
   });
 
-  console.log(auxArray);
-
   // Creates all the entries in the array to have concentric circles
   auxArray.forEach(function(o, i) {
     var radius = 20;

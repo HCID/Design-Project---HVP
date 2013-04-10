@@ -3,16 +3,32 @@ var filterJSON = function(json, key, value, defilter) {
     defilter = false;
   }
   var result = [];
-  json.forEach(function (row) {    
-    if(!defilter) {
-      if (row[key] === value) {
-        result.push(row);
-      }
+  json.forEach(function (row) {
+
+    if(value.constructor === Array) {
+      
+      if(!defilter) {
+        if (row[key].sort().join() == value.sort().join()) {
+          result.push(row);
+        }
+      } else {
+        if (row[key].sort().join() != value.sort().join()) {
+          result.push(row);
+        }
+      } 
+
     } else {
-      if (row[key] !== value) {
-        result.push(row);
-      }
-    }  
+      if(!defilter) {
+        if (row[key] === value) {
+          result.push(row);
+        }
+      } else {
+        if (row[key] !== value) {
+          result.push(row);
+        }
+      }  
+    }
+    
   });
   return result;
 }

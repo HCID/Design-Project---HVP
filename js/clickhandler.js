@@ -1,6 +1,5 @@
 /* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
-  console.log("circleClicked");
   if (mode == "schedule") {
     force.nodes(parallelData);
     parallelData = [];
@@ -27,11 +26,37 @@ var circleClicked = function (circle) {
   }
 }
 
+/* Returns the circle intersection classes */
+var vennClick = function (e, d, f, g) {
+
+  var array = [];
+  //TODO: FI
+  $list = $('svg g.arc').filter(function() {
+
+    var bbox = $(this).get(0).getBBox();
+    if (pointInCirclePath($(this), d3.event)) {
+      array.push($(this).get(0).id);
+    }
+  });
+
+  if (array.length > 0) {
+    filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
+    mode = "free";    
+    var newData = filterJSON(force.nodes(), "communities", array);
+    force.nodes(newData);  
+    d3.selectAll("circle").attr("opacity", 1); 
+    update();    
+    changeImage();
+    addFilterHistory();
+  }
+
+  //TODO: return array to successive steps
+}
+
 /* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
   d3.selectAll("circle").attr("opacity", 1)
 
-    console.log("menuHandler");
     if ((mode === "schedule") || (mode === "map")) {
       if (parallelData.length > 0) force.nodes(parallelData);
     }

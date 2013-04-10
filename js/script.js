@@ -14,7 +14,6 @@ var force = d3.layout.force()
 
 var main = function (fociUsed) {
 
-  console.log("main");
   vis = d3.select("body").select("svg");
   if (mode === "schedule") {
     var array = groupSchedule();

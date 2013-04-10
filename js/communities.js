@@ -245,23 +245,6 @@ var containsElement = function (array, b) {
   return found;
 }
 
-/* Returns the circle intersection classes */
-var vennClick = function (e, d, f, g) {
-
-  var array = [];
-  //TODO: FI
-  $list = $('svg g.arc').filter(function() {
-
-    var bbox = $(this).get(0).getBBox();
-    if (pointInCirclePath($(this), d3.event)) {
-      array.push($(this).get(0).id);
-    }
-  });
-
-  //TODO: return array to successive steps
-  console.log(array);
-}
-
 /* Tells if a point is inside a circle path or not */
 var pointInCirclePath = function (b, p) {
 
