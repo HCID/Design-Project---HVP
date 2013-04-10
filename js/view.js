@@ -74,10 +74,15 @@ var update = function () {
     if(force.nodes().length < 11){
       nodeEnterG.append("text")
         .text(function(d) { 
-          console.log(d.name);
-          var displayName = d.name = d.name.length > 27 ? d.name.substring(0, 27) + "..." : d.name;
-          console.log(displayName);
-          return  displayName;
+          if(d.name!=undefined){
+            console.log(d.name);
+            var words = d.name.split(" ");
+            var displayName =  words[0] + " " + words[1] + " " + words[2] + " " + words[3] + "...";
+            
+            console.log(displayName);
+            return  displayName;
+          }
+          
         });
       }
   
