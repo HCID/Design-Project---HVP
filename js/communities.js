@@ -249,8 +249,8 @@ var containsElement = function (array, b) {
 var vennClick = function (e, d, f, g) {
 
   var array = [];
-
-  $list = $('svg g').filter(function() {
+  //TODO: FI
+  $list = $('svg g.arc').filter(function() {
 
     var bbox = $(this).get(0).getBBox();
     if (pointInCirclePath($(this), d3.event)) {
