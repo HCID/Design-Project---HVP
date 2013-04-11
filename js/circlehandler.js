@@ -210,6 +210,7 @@ var groupSchedule = function () {
 
     if (create) {
       var sch = new Sch(o.day, o.starTime, id);
+      sch.types.push(o.type);
       id++;
       auxArray.push(sch);
     } else {
@@ -226,6 +227,7 @@ var groupSchedule = function () {
     if (o.types.length == 0) {
       var sch = new Sch(o.day, o.starTime, id2);
       sch.radius = radius;
+      sch.types.push(o.type);
       radius += 10;
       id2++;
       auxArray2.push(sch);
@@ -328,6 +330,7 @@ var groupMap = function () {
     var create = index < 0;
     if (create) {
       var mapElt = new MapElt(o.room, id);
+      mapElt.types.push(o.type);
       id++;
       auxArray.push(mapElt);
     } else {
@@ -347,6 +350,7 @@ var groupMap = function () {
     if (o.types.length == 0) {
       var mapElt = new MapElt(o.room, id2);
       mapElt.radius = radius;
+      mapElt.types.push(o.type);
       radius += 10;
       id2++;
       auxArray2.push(mapElt);
