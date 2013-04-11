@@ -7,15 +7,38 @@ var filterJSON = function(json, key, value, defilter) {
 
     if(value.constructor === Array) {
       
-      if(!defilter) {
-        if (row[key].sort().join() == value.sort().join()) {
-          result.push(row);
-        }
+      if (value[0] === "general") {
+        if(!defilter) {
+          var indUx = row[key].indexOf("ux");
+          var indDes = row[key].indexOf("design");
+          var indEng = row[key].indexOf("engineering");
+          if ((indUx >= 0) || (indDes >= 0) || (indEng >= 0) || (row[key] == [])){
+            result.push(row);
+          }
+        } else {
+          if ((row[key] == ["sustainability"]) || 
+            (row[key] == ["hci4d"]) || 
+            (row[key] == ["games"]) || 
+            (row[key] == ["cci"]) || 
+            (row[key] == ["arts"]) || 
+            (row[key] == ["health"]) || 
+            (row[key] == ["management"])){
+            result.push(row);
+          }
+        } 
+
       } else {
-        if (row[key].sort().join() != value.sort().join()) {
-          result.push(row);
-        }
-      } 
+
+        if(!defilter) {
+          if (row[key].sort().join() == value.sort().join()) {
+            result.push(row);
+          }
+        } else {
+          if (row[key].sort().join() != value.sort().join()) {
+            result.push(row);
+          }
+        } 
+      }
 
     } else {
       if(!defilter) {

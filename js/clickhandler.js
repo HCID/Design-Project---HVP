@@ -41,7 +41,7 @@ var vennClick = function (e, d, f, g) {
 
   if (array.length > 0) {
     filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
-    mode = "free";    
+    mode = "free"; 
     var newData = filterJSON(force.nodes(), "communities", array);
     force.nodes(newData);  
     d3.selectAll("circle").attr("opacity", 1); 
@@ -49,30 +49,28 @@ var vennClick = function (e, d, f, g) {
     changeImage();
     addFilterHistory();
   }
-
-  //TODO: return array to successive steps
 }
 
 /* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
   d3.selectAll("circle").attr("opacity", 1)
 
-    if ((mode === "schedule") || (mode === "map")) {
-      if (parallelData.length > 0) force.nodes(parallelData);
-    }
-    
-    if ($(this).data("grouping") == "comm") {
-      mode = "comm";
-      d3.selectAll("circle").attr("opacity", 0)
-      communities();
-    } else if ($(this).data("grouping") == "schedule") {
-      mode = "schedule";
-      main();
-    } else if($(this).data("grouping") == "map"){
-      mode = "map";
-      main();
-    } else if($(this).data("grouping") == "restart"){
-      restart();
-    }
-    changeImage();
+  if ((mode === "schedule") || (mode === "map")) {
+    if (parallelData.length > 0) force.nodes(parallelData);
+  }
+  
+  if ($(this).data("grouping") == "comm") {
+    mode = "comm";
+    d3.selectAll("circle").attr("opacity", 0)
+    communities();
+  } else if ($(this).data("grouping") == "schedule") {
+    mode = "schedule";
+    main();
+  } else if($(this).data("grouping") == "map"){
+    mode = "map";
+    main();
+  } else if($(this).data("grouping") == "restart"){
+    restart();
+  }
+  changeImage();
 };
