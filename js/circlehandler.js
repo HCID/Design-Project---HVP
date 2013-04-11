@@ -6,7 +6,7 @@ var ySchedule = 200;
 var xSpace = 280;
 var ySpace = 220;
 var parallelData;
-
+var mapXSpace = 200;
 
 /* Positions array */
 
@@ -20,26 +20,35 @@ var fociSchedule =
 {x: xSchedule + xSpace*4, y: ySchedule + ySpace*2}];
 
 var fociMap = { 
-  "352": {x: 200, y: 200}, 
-  "351": {x: 200, y: 400}, 
-  "havane":{x: 200, y: 600},
-  "bordeaux": {x:300, y:600}, 
-  "342a":{x:300, y:700},
-  "343": {x: 400, y: 200},
-  "361": {x: 400, y: 350},
-  "362":{x: 400, y: 500},
-// level 2
-  "253":{x: 400, y: 600},
-  "252b": {x: 800, y: 200}, 
-  "252a": {x: 800, y: 400}, 
-  "251":{x: 800, y: 600},
-  "maillot": {x:950, y:200},
-  "241":{x: 1000, y: 200}, 
-  "242a": {x: 1000, y: 400}, 
-  "242b":{x: 1000, y: 600},
-  "243":{x: 1000, y: 600},
-  "blue":{x: 1000, y: 600},
-  "undefined":{x: 1200, y: 200}};
+  //level 3
+  //Yellow
+  "352ab": {x: mapXSpace+200, y: 200}, 
+  "351": {x: mapXSpace+200, y: 400},
+  "havane":{x: mapXSpace+200, y: 600},
+  //red
+  "362/363":{x: mapXSpace+400, y: 200},
+  "361": {x: mapXSpace+400, y: 400},
+  "343": {x: mapXSpace+400, y: 600}, //empty
+  "342a":{x:mapXSpace+400, y:800},
+  "bordeaux": {x:mapXSpace+400, y:1000}, 
+  // level 2
+  //green
+  "253": {x: mapXSpace+600, y: 200}, //empty
+  "252b": {x: mapXSpace+600, y: 400}, 
+  "252a": {x: mapXSpace+600, y: 600}, 
+  "251":{x: mapXSpace+600, y: 800},
+  //blue
+  "blue":{x: mapXSpace+800, y: 200},
+  "243": {x: mapXSpace+800, y: 400}, //empty
+  "242b":{x: mapXSpace+800, y: 600},
+  "242ab": {x: mapXSpace+875, y: 700}, 
+  "242a": {x: mapXSpace+800, y: 800}, 
+  "241":{x: mapXSpace+800, y: 1000}, 
+
+  // level 0
+  "grand": {x:mapXSpace+1000, y:200},
+
+  "undefined":{x: 2*mapXSpace+1000, y: 600}};
 
 /* Schedule element object */
 function Sch (day, time, id) {
@@ -145,7 +154,6 @@ var getSchedulePosition = function (k) {
 /* Sets the position of each element in the map view*/
 var getMapPosition = function (k) { 
   force.nodes().forEach(function(o, i) {
-
     if(fociMap[o["room"]]!== undefined){
       o.y += (fociMap[o["room"]].y - o.y) * k;
       o.x += (fociMap[o["room"]].x - o.x) * k;
