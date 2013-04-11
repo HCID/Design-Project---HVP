@@ -23,6 +23,7 @@ function changeImage() {
 
 var generateLegend = function () {
     var items = [];
+    console.log("generateLegend", getDifferentValuesForKey(data,"type"));
    $.each(getDifferentValuesForKey(data,"type"), function(i, item) {
           items.push('<li class="typesClass" style="background-color:' + fill(item) + '">' + item + '</li>');
    });  // close each()

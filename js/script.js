@@ -14,6 +14,7 @@ var force = d3.layout.force()
 
 var main = function (fociUsed) {
 
+  console.log("main");
   vis = d3.select("body").select("svg");
   if (mode === "schedule") {
     var array = groupSchedule();
@@ -21,17 +22,21 @@ var main = function (fociUsed) {
     force.nodes(array);
   } else if (mode === "map") {
     var array = groupMap();
+    console.log("main array", array);
     parallelData = force.nodes().slice(0);
+    console.log("main parallelData", parallelData);
+
     force.nodes(array);
   }
+
   update();
-  // force.start();
   generateLegend();
 };
       
 // Restarts the data 
 var restart = function() {
   mode = "free";
+  parallelData = [];
   force.nodes(data);
   main();
   // TODO:

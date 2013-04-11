@@ -15,6 +15,7 @@ var communities = function() {
 
   var gComs = [];
   var id = 0;
+
   force.nodes().forEach(function(d) {
 
     if (gComs.length == 0) {

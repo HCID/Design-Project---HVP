@@ -223,14 +223,22 @@ var groupSchedule = function () {
   auxArray.forEach(function(o, i) {
     var radius = 20;
 
-    o.types.forEach(function(u,j) {
+    if (o.types.length == 0) {
       var sch = new Sch(o.day, o.starTime, id2);
-      sch.types.push(o.types[j]);
       sch.radius = radius;
       radius += 10;
       id2++;
       auxArray2.push(sch);
-    });
+    } else {
+      o.types.forEach(function(u,j) {
+      var sch = new Sch(o.day, o.starTime, id2);
+        sch.types.push(o.types[j]);
+        sch.radius = radius;
+        radius += 10;
+        id2++;
+        auxArray2.push(sch);
+      });
+    }
 
   });
 
@@ -334,14 +342,24 @@ var groupMap = function () {
   auxArray.forEach(function(o, i) {
     var radius = 20;
 
-    o.types.forEach(function(u,j) {
+    console.log("auxArray " + i + " obj " + o + " types" + o.types);
+
+    if (o.types.length == 0) {
       var mapElt = new MapElt(o.room, id2);
-      mapElt.types.push(o.types[j]);
       mapElt.radius = radius;
       radius += 10;
       id2++;
       auxArray2.push(mapElt);
-    });
+    } else {
+      o.types.forEach(function(u,j) {
+        var mapElt = new MapElt(o.room, id2);
+        mapElt.types.push(o.types[j]);
+        mapElt.radius = radius;
+        radius += 10;
+        id2++;
+        auxArray2.push(mapElt);
+      });
+    }
 
   });
 

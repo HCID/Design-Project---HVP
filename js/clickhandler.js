@@ -43,7 +43,9 @@ var vennClick = function (e, d, f, g) {
     filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
     mode = "free"; 
     var newData = filterJSON(force.nodes(), "communities", array);
-    force.nodes(newData);  
+    force.nodes(newData);
+    console.log("nodes in intersection", newData);
+    console.log("nodes in intersection parallelData", parallelData);    
     d3.selectAll("circle").attr("opacity", 1); 
     update();    
     changeImage();
@@ -53,22 +55,38 @@ var vennClick = function (e, d, f, g) {
 
 /* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
+  console.log("menuHandler");
   d3.selectAll("circle").attr("opacity", 1);
   $('.legend').show();
-
-  if ((mode === "schedule") || (mode === "map")) {
-    if (parallelData.length > 0) force.nodes(parallelData);
-  }
+  console.log("mode ", mode);
   
   if ($(this).data("grouping") == "comm") {
     mode = "comm";
-    d3.selectAll("circle").attr("opacity", 0)
+    d3.selectAll("circle").attr("opacity", 0);
+    if (parallelData.length > 0) {
+      force.nodes(parallelData);
+      parallelData = [];
+      console.log("Parallel data recharged");
+    }
     $('.legend').hide();
     communities();
   } else if ($(this).data("grouping") == "schedule") {
+    console.log("Recharging parallel data", parallelData);
+    if (parallelData.length > 0) {
+      force.nodes(parallelData);
+      parallelData = [];
+      console.log("Parallel data recharged");
+    }
+  
     mode = "schedule";
     main();
   } else if($(this).data("grouping") == "map"){
+    console.log("Recharging parallel data", parallelData);
+    if (parallelData.length > 0) {
+      force.nodes(parallelData);
+      parallelData = [];
+      console.log("Parallel data recharged");
+    }
     mode = "map";
     main();
   } else if($(this).data("grouping") == "restart"){
