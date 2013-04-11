@@ -15,13 +15,12 @@ var communities = function() {
 
   var gComs = [];
   var id = 0;
-  data.forEach(function(d) {
+  force.nodes().forEach(function(d) {
 
     if (gComs.length == 0) {
-      var gCom = new Object();
-      gCom.coms = d.communities ? d.communities : [];
+      var comms = d.communities ? d.communities : [];
+      var gCom = new GCom(comms, id);
       gCom.amount = 1
-      gCom.id = id;
       id++;
       gComs.push(gCom);
     } else {
@@ -33,7 +32,6 @@ var communities = function() {
       while (i<length && !found) { 
 
         var auxArray = d.communities ? d.communities : [];
-
         if (compareArrays(gComs[i].coms, auxArray)) {
           gComs[i].amount ++;
           found = true;
@@ -42,10 +40,9 @@ var communities = function() {
       }
 
       if (!found) {
-        var gCom = new Object();
-        gCom.coms = d.communities ? d.communities : [];
-        gCom.amount = 1;
-        gCom.id = id;
+        var comms = d.communities ? d.communities : [];
+        var gCom = new GCom(comms, id);
+        gCom.amount = 1
         id++;
         gComs.push(gCom);
       }
@@ -95,24 +92,35 @@ var createCommNodesArray = function (a) {
       if (i >= 0) d.coms.splice(i, 1);
       i = d.coms.indexOf("engineering");
       if (i >= 0) d.coms.splice(i, 1);
+      console.log("after", d.coms);
     }
 
   });
 
   var array = [];
+  var id = 0;
+  var groups = [];
+  var preGroups = ["general", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
 
-  var gCom0 = new GCom([], 0);
-  var gCom1 = new GCom(["sustainability"], 1);
-  var gCom2 = new GCom(["hci4d"], 2);
-  var gCom3 = new GCom(["games"], 3);
-  var gCom4 = new GCom(["cci"], 4);
-  var gCom5 = new GCom(["arts"], 5);
-  var gCom6 = new GCom(["health"], 6);
-  var gCom7 = new GCom(["management"], 7);
+  // Decides which pregroups should be listed
+  for (var i=0; i < preGroups.length; i++) {
+    var str = preGroups[i];
+    var found = false;
 
-  array.push(gCom0, gCom1, gCom2, gCom3, gCom4, gCom5, gCom6, gCom7);    
+    if (str === "general") {
+      found = commExists("", a);
+    } else {
+      found = commExists(str, a);
+    }
 
-  var id = 8;
+    if (found) {
+      var gCom = new GCom([], id);
+      id++;
+      array.push(gCom);
+      groups.push(str);
+    }
+  }
+
 
   a.forEach(function (d) {
 
@@ -135,12 +143,11 @@ var createCommNodesArray = function (a) {
   });
 
   // Info to fill and use later
-  var groups = ["general", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
   var vennData = [];
-  for (var i=0; i<Math.pow(2, 8); i++) {
+  for (var i=0; i<Math.pow(2, groups.length); i++) {
     vennData[i] = 0;
   }
-  
+
   t = 1;
 
   // Creates the array of intersections
@@ -264,4 +271,28 @@ var pointInCirclePath = function (b, p) {
   var distance = Math.sqrt( xs + ys );
   
   return (distance <= radius);
+}
+
+/* Decides if a community exists or not in a coleccion of talks
+   c = "community"
+   a = array
+*/
+var commExists = function(c, a) {
+
+  var found = false;
+  var i = 0;
+  var l = a.length;
+  
+  if (c !== "") {
+    while (i < l && !found) {
+      found = (a[i].coms.indexOf(c) >= 0);
+      i++;
+    }
+  } else {
+    while (i < l && !found) {
+      found = (a[i].coms.length == 0);
+      i++;
+    }
+  }
+  return found;
 }
