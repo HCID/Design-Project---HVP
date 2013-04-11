@@ -53,7 +53,8 @@ var vennClick = function (e, d, f, g) {
 
 /* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
-  d3.selectAll("circle").attr("opacity", 1)
+  d3.selectAll("circle").attr("opacity", 1);
+  $('.legend').show();
 
   if ((mode === "schedule") || (mode === "map")) {
     if (parallelData.length > 0) force.nodes(parallelData);
@@ -62,6 +63,7 @@ var menuHandler = function () {
   if ($(this).data("grouping") == "comm") {
     mode = "comm";
     d3.selectAll("circle").attr("opacity", 0)
+    $('.legend').hide();
     communities();
   } else if ($(this).data("grouping") == "schedule") {
     mode = "schedule";

@@ -92,7 +92,6 @@ var createCommNodesArray = function (a) {
       if (i >= 0) d.coms.splice(i, 1);
       i = d.coms.indexOf("engineering");
       if (i >= 0) d.coms.splice(i, 1);
-      console.log("after", d.coms);
     }
 
   });
