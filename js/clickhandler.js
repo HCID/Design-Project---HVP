@@ -55,38 +55,23 @@ var vennClick = function (e, d, f, g) {
 
 /* Funtion triggered when one of the menu buttons is clicked */
 var menuHandler = function () {
-  console.log("menuHandler");
   d3.selectAll("circle").attr("opacity", 1);
+  $('.talkName').show();
   $('.legend').show();
-  console.log("mode ", mode);
   
   if ($(this).data("grouping") == "comm") {
     mode = "comm";
     d3.selectAll("circle").attr("opacity", 0);
-    if (parallelData.length > 0) {
-      force.nodes(parallelData);
-      parallelData = [];
-      console.log("Parallel data recharged");
-    }
+    $('.talkName').hide();
     $('.legend').hide();
+    loadParallelData();
     communities();
   } else if ($(this).data("grouping") == "schedule") {
-    console.log("Recharging parallel data", parallelData);
-    if (parallelData.length > 0) {
-      force.nodes(parallelData);
-      parallelData = [];
-      console.log("Parallel data recharged");
-    }
-  
+    loadParallelData();
     mode = "schedule";
     main();
   } else if($(this).data("grouping") == "map"){
-    console.log("Recharging parallel data", parallelData);
-    if (parallelData.length > 0) {
-      force.nodes(parallelData);
-      parallelData = [];
-      console.log("Parallel data recharged");
-    }
+    loadParallelData();
     mode = "map";
     main();
   } else if($(this).data("grouping") == "restart"){
@@ -94,3 +79,12 @@ var menuHandler = function () {
   }
   changeImage();
 };
+
+/* Load */
+var loadParallelData = function () {
+
+  if (parallelData.length > 0) {
+    force.nodes(parallelData);
+    parallelData = [];
+  }
+}

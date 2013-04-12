@@ -23,7 +23,6 @@ function changeImage() {
 
 var generateLegend = function () {
     var items = [];
-    console.log("generateLegend", getDifferentValuesForKey(data,"type"));
    $.each(getDifferentValuesForKey(data,"type"), function(i, item) {
           items.push('<li class="typesClass" style="background-color:' + fill(item) + '">' + item + '</li>');
    });  // close each()
@@ -74,6 +73,7 @@ var update = function () {
     console.log("force.nodes().length: " + force.nodes().length);
     if(force.nodes().length < 11){
       nodeEnterG.append("text")
+        .attr("class", "talkName")
         .text(function(d) { 
           if(d.name!=undefined){
             console.log(d.name);
