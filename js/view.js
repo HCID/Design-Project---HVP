@@ -38,6 +38,8 @@ var calculateR = function (d) {
     return s;
   } else if ((mode === "schedule") || (mode === "map")) {
     return d.radius;
+  } else if (mode === "sessions") {
+    return 15;
   } else {
     return 5;
   } 
@@ -60,7 +62,9 @@ var update = function () {
     .on("mousedown", function(d){ circleClicked(d) } )
     .style("fill", function (d, i) {
 
-      if (mode !== "free") {
+      if (mode === "sessions") { 
+        return "#343125";
+      } else if (mode !== "free") {
         return fill(d.types[0]);
       } else {
         return fill(d["type"] );

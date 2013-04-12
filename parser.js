@@ -5,6 +5,7 @@ var groups = require('./data/'+folder+'/groups.json');
 var schedule = require('./data/'+folder+'/schedule.json');
 var sessions = require('./data/'+folder+'/sessions.json');
 var submissions = require('./data/'+folder+'/submissions.json');
+var letterCodes = require('./data/'+folder+'/letterCodes.json');
 
 var _ = require('underscore');
 var fs = require('fs');
@@ -20,6 +21,7 @@ _.forEach(submissions.rows, function(ev) {
   var event = {
     id: id++,
     name: ev.value.title,
+    code: letterCodes.code[ev.id],
     type: ev.value.venue,
     abstract: ev.value.abstract,
     cbStatement: ev.value.cbStatement,
@@ -41,7 +43,8 @@ _.forEach(submissions.rows, function(ev) {
     });   
     event.session = {
       id: ev.value.session,
-      name: eventSession.value.title
+      name: eventSession.value.title,
+      code: letterCodes.code[ev.id]
     }; 
     
     //schedule info

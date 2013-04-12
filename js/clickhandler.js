@@ -1,8 +1,7 @@
 /* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
   if (mode == "schedule") {
-    force.nodes(parallelData);
-    parallelData = [];
+    loadParallelData();
     filterHistory.push({name: mode, data: filterJSON(force.nodes(), "day", circle["day"], true)});   
     mode = "free";   
     var newData = filterJSON(force.nodes(), "day", circle["day"]);
@@ -12,8 +11,7 @@ var circleClicked = function (circle) {
     changeImage();
     addFilterHistory();
   } else if (mode == "map") {
-    force.nodes(parallelData);
-    parallelData = [];
+    loadParallelData();
     filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
     mode = "free";    
     var newData = filterJSON(force.nodes(), "room", circle["room"]);
@@ -76,6 +74,10 @@ var menuHandler = function () {
     main();
   } else if($(this).data("grouping") == "restart"){
     restart();
+  } else if($(this).data("grouping") == "sessions"){
+    loadParallelData();
+    mode = "sessions";
+    main();
   }
   changeImage();
 };

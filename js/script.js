@@ -22,13 +22,16 @@ var main = function (fociUsed) {
     force.nodes(array);
   } else if (mode === "map") {
     var array = groupMap();
-    console.log("main array", array);
     parallelData = force.nodes().slice(0);
-    console.log("main parallelData", parallelData);
-
     force.nodes(array);
+  } else if (mode === "sessions") {
+    var array = groupSession();
+    parallelData = force.nodes().slice(0);
+    force.nodes(array);
+    // console.log("groupSession", array);
+    // mode = "sechedule";
   }
-
+  
   update();
   generateLegend();
 };

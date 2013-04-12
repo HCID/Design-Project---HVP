@@ -8,6 +8,10 @@ var ySpace = 220;
 var parallelData;
 var mapXSpace = 200;
 
+var sessionIntSpace = 75;
+var sessionXSpace = 400;
+var sessionYSpace = 100;
+
 /* Positions array */
 
 var fociFree = [{x: width/2, y: height/2}];
@@ -50,6 +54,337 @@ var fociMap = {
 
   "undefined":{x: 2*mapXSpace+1000, y: 600}};
 
+var fociSession = { 
+//blue
+  "monday 11:00 blue":     {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 blue":     {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 blue":     {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 blue":     {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 blue":     {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 blue":    {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 blue":    {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 blue":    {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 blue":   {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 blue":  {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 blue":  {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 blue":  {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 blue":    {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 blue":   {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 blue":   {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 blue":   {x: sessionXSpace + sessionIntSpace *0 , y: sessionYSpace + sessionIntSpace *15}, 
+  //241
+  "monday 11:00 241":     {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *0}, 
+  "monday 11:00 241":     {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *1}, 
+  "monday 14:00 241":     {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *2}, 
+  "monday 16:00 241":     {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *3}, 
+  "tuesday 9:00 241":     {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *4}, 
+  "tuesday 11:00 241":    {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *5}, 
+  "tuesday 14:00 241":    {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *6}, 
+  "tuesday 16:00 241":    {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *7}, 
+  "wednesday 9:00 241":   {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *8}, 
+  "wednesday 11:00 241":  {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *9}, 
+  "wednesday 14:00 241":  {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *10},
+  "wednesday 16:00 241":  {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *11},
+  "thursday 9:00 241":    {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *12},
+  "thursday 11:00 241":   {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *13},
+  "thursday 14:00 241":   {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *14},
+  "thursday 16:00 241":   {x: sessionXSpace + sessionIntSpace *1 , y: sessionYSpace + sessionIntSpace *15},
+ //242ab
+  "monday 11:00 242ab":     {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 242ab":     {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 242ab":     {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 242ab":     {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 242ab":     {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 242ab":    {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 242ab":    {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 242ab":    {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 242ab":   {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 242ab":  {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 242ab":  {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 242ab":  {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 242ab":    {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 242ab":   {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 242ab":   {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 242ab":   {x: sessionXSpace + sessionIntSpace *2 , y: sessionYSpace + sessionIntSpace *15}, 
+//242b
+  // "monday 11:00 242b":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *0},  
+  // "monday 11:00 242b":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *1},  
+  // "monday 14:00 242b":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *2},  
+  // "monday 16:00 242b":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *3},  
+  // "tuesday 9:00 242b":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *4},  
+  // "tuesday 11:00 242b":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *5},  
+  // "tuesday 14:00 242b":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *6},  
+  // "tuesday 16:00 242b":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *7},  
+  // "wednesday 9:00 242b":   {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *8},  
+  // "wednesday 11:00 242b":  {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *9},  
+  // "wednesday 14:00 242b":  {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *10}, 
+  // "wednesday 16:00 242b":  {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 242b":    {x: sessionXSpace + sessionIntSpace *1.5 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 242b":   {x: sessionXSpace + sessionIntSpace *1.5 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 242b":   {x: sessionXSpace + sessionIntSpace *1.5 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 242b":   {x: sessionXSpace + sessionIntSpace *1.5 , y: sessionYSpace + sessionIntSpace *15}, 
+  
+  //242a
+  // "monday 11:00 242a":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *0}, 
+  // "monday 11:00 242a":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *1}, 
+  // "monday 14:00 242a":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *2}, 
+  // "monday 16:00 242a":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *3}, 
+  // "tuesday 9:00 242a":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *4}, 
+  // "tuesday 11:00 242a":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *5}, 
+  // "tuesday 14:00 242a":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *6}, 
+  // "tuesday 16:00 242a":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *7}, 
+  // "wednesday 9:00 242a":   {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *8}, 
+  // "wednesday 11:00 242a":  {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *9}, 
+  // "wednesday 14:00 242a":  {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *10},
+  // "wednesday 16:00 242a":  {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *11},
+  "thursday 9:00 242a":    {x: sessionXSpace + sessionIntSpace *2.5 , y: sessionYSpace + sessionIntSpace *12},
+  "thursday 11:00 242a":   {x: sessionXSpace + sessionIntSpace *2.5 , y: sessionYSpace + sessionIntSpace *13},
+  "thursday 14:00 242a":   {x: sessionXSpace + sessionIntSpace *2.5 , y: sessionYSpace + sessionIntSpace *14},
+  "thursday 16:00 242a":   {x: sessionXSpace + sessionIntSpace *2.5 , y: sessionYSpace + sessionIntSpace *15},
+  //251
+  "monday 11:00 251":     {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 251":     {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 251":     {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 251":     {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 251":     {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 251":    {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 251":    {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 251":    {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 251":   {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 251":  {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 251":  {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 251":  {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 251":    {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 251":   {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 251":   {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 251":   {x: sessionXSpace + sessionIntSpace *3 , y: sessionYSpace + sessionIntSpace *15}, 
+  //252a
+  "monday 11:00 252a":     {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 252a":     {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 252a":     {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 252a":     {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 252a":     {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 252a":    {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 252a":    {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 252a":    {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 252a":   {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 252a":  {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 252a":  {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 252a":  {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 252a":    {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 252a":   {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 252a":   {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 252a":   {x: sessionXSpace + sessionIntSpace *4 , y: sessionYSpace + sessionIntSpace *15}, 
+   //252b
+  "monday 11:00 252b":     {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 252b":     {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 252b":     {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 252b":     {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 252b":     {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 252b":    {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 252b":    {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 252b":    {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 252b":   {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 252b":  {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 252b":  {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 252b":  {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 252b":    {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 252b":   {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 252b":   {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 252b":   {x: sessionXSpace + sessionIntSpace *5 , y: sessionYSpace + sessionIntSpace *15}, 
+   //253
+  "monday 11:00 253":     {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 253":     {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 253":     {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 253":     {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 253":     {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 253":    {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 253":    {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 253":    {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 253":   {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 253":  {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 253":  {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 253":  {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 253":    {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 253":   {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 253":   {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 253":   {x: sessionXSpace + sessionIntSpace *6 , y: sessionYSpace + sessionIntSpace *15}, 
+ //bordeaux
+  "monday 11:00 bordeaux":     {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 bordeaux":     {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 bordeaux":     {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 bordeaux":     {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 bordeaux":     {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 bordeaux":    {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 bordeaux":    {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 bordeaux":    {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 bordeaux":   {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 bordeaux":  {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 bordeaux":  {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 bordeaux":  {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 bordeaux":    {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 bordeaux":   {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 bordeaux":   {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 bordeaux":   {x: sessionXSpace + sessionIntSpace *7 , y: sessionYSpace + sessionIntSpace *15}, 
+  //342a
+  "monday 11:00 342a":     {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 342a":     {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 342a":     {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 342a":     {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 342a":     {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 342a":    {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 342a":    {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 342a":    {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 342a":   {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 342a":  {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 342a":  {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 342a":  {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 342a":    {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 342a":   {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 342a":   {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 342a":   {x: sessionXSpace + sessionIntSpace *8 , y: sessionYSpace + sessionIntSpace *15}, 
+   //343
+  "monday 11:00 343":     {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 343":     {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 343":     {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 343":     {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 343":     {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 343":    {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 343":    {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 343":    {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 343":   {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 343":  {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 343":  {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 343":  {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 343":    {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 343":   {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 343":   {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 343":   {x: sessionXSpace + sessionIntSpace *9 , y: sessionYSpace + sessionIntSpace *15}, 
+  //361
+  "monday 11:00 361":     {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 361":     {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 361":     {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 361":     {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 361":     {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 361":    {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 361":    {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 361":    {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 361":   {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 361":  {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 361":  {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 361":  {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 361":    {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 361":   {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 361":   {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 361":   {x: sessionXSpace + sessionIntSpace *10 , y: sessionYSpace + sessionIntSpace *15}, 
+  //362/363
+  "monday 11:00 362/363":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 362/363":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 362/363":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 362/363":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 362/363":     {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 362/363":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 362/363":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 362/363":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 362/363":   {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 362/363":  {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 362/363":  {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 362/363":  {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 362/363":    {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 362/363":   {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 362/363":   {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 362/363":   {x: sessionXSpace + sessionIntSpace *11 , y: sessionYSpace + sessionIntSpace *15}, 
+  //havane
+  "monday 11:00 havane":     {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 havane":     {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 havane":     {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 havane":     {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 havane":     {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 havane":    {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 havane":    {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 havane":    {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 havane":   {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 havane":  {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 havane":  {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 havane":  {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 havane":    {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 havane":   {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 havane":   {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 havane":   {x: sessionXSpace + sessionIntSpace *12 , y: sessionYSpace + sessionIntSpace *15}, 
+  //351
+  "monday 11:00 351":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 351":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 351":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 351":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 351":     {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 351":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 351":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 351":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 351":   {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 351":  {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 351":  {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 351":  {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 351":    {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 351":   {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 351":   {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 351":   {x: sessionXSpace + sessionIntSpace *13 , y: sessionYSpace + sessionIntSpace *15}, 
+  //352ab
+  "monday 11:00 352ab":     {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *0}, 
+  "monday 11:00 352ab":     {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *1}, 
+  "monday 14:00 352ab":     {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *2}, 
+  "monday 16:00 352ab":     {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *3}, 
+  "tuesday 9:00 352ab":     {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *4}, 
+  "tuesday 11:00 352ab":    {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *5}, 
+  "tuesday 14:00 352ab":    {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *6}, 
+  "tuesday 16:00 352ab":    {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *7}, 
+  "wednesday 9:00 352ab":   {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *8}, 
+  "wednesday 11:00 352ab":  {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *9}, 
+  "wednesday 14:00 352ab":  {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 352ab":  {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 352ab":    {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 352ab":   {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 352ab":   {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 352ab":   {x: sessionXSpace + sessionIntSpace *14 , y: sessionYSpace + sessionIntSpace *15}, 
+
+
+   //grand
+  "monday 11:00 grand":     {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *0},  
+  "monday 11:00 grand":     {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *1},  
+  "monday 14:00 grand":     {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *2},  
+  "monday 16:00 grand":     {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *3},  
+  "tuesday 9:00 grand":     {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *4},  
+  "tuesday 11:00 grand":    {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *5},  
+  "tuesday 14:00 grand":    {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *6},  
+  "tuesday 16:00 grand":    {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *7},  
+  "wednesday 9:00 grand":   {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *8},  
+  "wednesday 11:00 grand":  {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *9},  
+  "wednesday 14:00 grand":  {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *10}, 
+  "wednesday 16:00 grand":  {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *11}, 
+  "thursday 9:00 grand":    {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *12}, 
+  "thursday 11:00 grand":   {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *13}, 
+  "thursday 14:00 grand":   {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *14}, 
+  "thursday 16:00 grand":   {x: sessionXSpace + sessionIntSpace *15 , y: sessionYSpace + sessionIntSpace *15}, 
+  //undefined
+  "undefined":              {x: sessionXSpace + sessionIntSpace *16 , y: sessionYSpace + sessionIntSpace *0}
+  // "monday 11:00 undefined":     {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *1}, 
+  // "monday 14:00 undefined":     {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *2}, 
+  // "monday 16:00 undefined":     {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *3}, 
+  // "tuesday 9:00 undefined":     {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *4}, 
+  // "tuesday 11:00 undefined":    {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *5}, 
+  // "tuesday 14:00 undefined":    {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *6}, 
+  // "tuesday 16:00 undefined":    {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *7}, 
+  // "wednesday 9:00 undefined":   {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *8}, 
+  // "wednesday 11:00 undefined":  {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *9}, 
+  // "wednesday 14:00 undefined":  {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *10},
+  // "wednesday 16:00 undefined":  {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *11},
+  // "thursday 9:00 undefined":    {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *12},
+  // "thursday 11:00 undefined":   {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *13},
+  // "thursday 14:00 undefined":   {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *14},
+  // "thursday 16:00 undefined":   {x: sessionXSpace + sessionIntSpace *17 , y: sessionYSpace + sessionIntSpace *15},
+  
+};
+
+
 /* Schedule element object */
 function Sch (day, time, id) {
     this.day = day;
@@ -67,6 +402,17 @@ function MapElt (room, id) {
     this.types = [];
     this.id = "m" + id;
     this.radius = 20;
+}
+
+/* Session element object */
+function SessElt (obj) {
+    this.id = obj.session ? obj.session.id : "undefined";
+    this.name = obj.session ? obj.session.name : "undefined";
+    this.code = obj.session ? obj.session.code : "undefined";
+    this.day = obj.day;
+    this.starTime = obj.starTime;
+    this.room = obj.room;
+    this.amount = 1;
 }
 
 /* Sets the tick behaviour for each mode*/
@@ -96,6 +442,7 @@ var tick = function(e) {
   if(e !== undefined) {
         // Push nodes toward their designated focus.
     var k = .1 * e.alpha;
+
     if (mode == "schedule") {
       force.nodes().forEach(function(d) { 
         d.r = 40;
@@ -123,6 +470,14 @@ var tick = function(e) {
       // vis.selectAll("circle").attr("r", d.radius);
       vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
       getMapPosition(k);
+    } else if (mode === "sessions") {
+      force.nodes().forEach(function(d) { 
+        d.r = 20;
+
+      });
+      // vis.selectAll("circle").attr("r", d.radius);
+      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
+      getSessionPosition(k);
     }
   }
 
@@ -161,6 +516,48 @@ var getMapPosition = function (k) {
       o.y += (fociMap["undefined"].y - o.y) * k;
       o.x += (fociMap["undefined"].x - o.x) * k;
     }
+  });
+}
+
+/* Sets the position of each element in the map view*/
+var getSessionPosition = function (k) { 
+  console.log("getSessionPosition", force.nodes().length);
+
+  // var l = force.nodes().length;
+  // var i = 0;
+  // while (i<l) {
+  //   var a = force.nodes()[i];
+  //   console.log(a);
+  // }
+
+  force.nodes().forEach(function(o, i) {
+
+    if (o["room"] === undefined) {
+      o.y += (fociSession["undefined"].y - o.y) * k;
+      o.x += (fociSession["undefined"].x - o.x) * k;
+    } else {
+      var str = o["day"].toLowerCase() + " " + o["starTime"] + " " + o["room"];
+      // o.y += (fociSession[str].y - o.y) * k;
+      // o.x += (fociSession[str].x - o.x) * k;
+
+      if(fociSession[str]!== undefined){
+        o.y += (fociSession[str].y - o.y) * k;
+        o.x += (fociSession[str].x - o.x) * k;
+      } else{
+        o.y += (fociSession["undefined"].y - o.y) * k;
+        o.x += (fociSession["undefined"].x - o.x) * k;
+      }
+
+    }
+    // // srt = srt.toLowerCase();
+    // console.log("str", str);
+    // console.log("fociSession[str]", fociSession[str]);
+
+    // if(fociSession[str] !== undefined){
+      
+    // } else{
+
+    // }
   });
 }
 
@@ -345,7 +742,7 @@ var groupMap = function () {
   auxArray.forEach(function(o, i) {
     var radius = 20;
 
-    console.log("auxArray " + i + " obj " + o + " types" + o.types);
+    // console.log("auxArray " + i + " obj " + o + " types" + o.types);
 
     if (o.types.length == 0) {
       var mapElt = new MapElt(o.room, id2);
@@ -381,6 +778,46 @@ var indexInMapArray = function (a, o) {
 
   while (i < l && !found) {
     found = (a[i].room === o.room);
+    i++;
+  }
+
+  return found ? i-1 : -1;
+
+}
+
+// Gruops by Session to create later concentric circles in the map view
+var groupSession = function () {
+
+  var auxArray = [];
+
+  force.nodes().forEach (function(o, i) {
+
+    var index = indexInSessionsArray(auxArray, o);
+    var create = index < 0;
+    if (create) {
+      var sessElt = new SessElt (o);
+      auxArray.push(sessElt);
+    } else {
+      auxArray[index].amount ++;
+    }
+
+  });
+
+  return auxArray;
+}
+
+var indexInSessionsArray = function (a, o) {
+  var found = false;
+  var l = a.length;
+  var i = 0;
+
+  while (i<l && !found) {
+
+    if (o.session) {
+      // console.log("a " + a[i].id + " o " + o.session.id);
+      found = (a[i].id === o.session.id);
+    } 
+
     i++;
   }
 
