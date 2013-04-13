@@ -75,6 +75,7 @@ var menuHandler = function () {
   } else if($(this).data("grouping") == "restart"){
     restart();
   } else if($(this).data("grouping") == "sessions"){
+    $('.legend').hide();
     loadParallelData();
     mode = "sessions";
     main();

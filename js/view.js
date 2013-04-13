@@ -1,5 +1,16 @@
 var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
 var filterHistory = [];
+/* Colors */
+
+var bordeaux = "#98343c";// 152 52 60
+var havane = "#d3783c";// 211 120 60
+var bleu = "#1b5576";// 27 85 118
+var green = "#265e30";// 38 94 48
+var interact = "#61447a";// 97 68 122
+var chi = "#2a276d";// 42 39 109
+var grand = "#f1d32e";// 241 211 46
+
+
 
 // Changes the background image
 function changeImage() {
@@ -11,6 +22,11 @@ function changeImage() {
   } else if (mode == "map") {
       d3.select("body").select("svg").select("image")
         .attr("xlink:href", "/img/map_bg.svg")
+        .attr("opacity", 1);
+      // document.getElementById("image").src="img/schedule.svg";
+  } else if (mode == "sessions") {
+      d3.select("body").select("svg").select("image")
+        .attr("xlink:href", "/img/sessions.png")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else {
@@ -39,9 +55,9 @@ var calculateR = function (d) {
   } else if ((mode === "schedule") || (mode === "map")) {
     return d.radius;
   } else if (mode === "sessions") {
-    return 15;
+    return 25;
   } else {
-    return 5;
+    return 25;
   } 
 
 }
@@ -63,7 +79,7 @@ var update = function () {
     .style("fill", function (d, i) {
 
       if (mode === "sessions") { 
-        return "#343125";
+        return sessionsColors(d);
       } else if (mode !== "free") {
         return fill(d.types[0]);
       } else {
@@ -75,21 +91,36 @@ var update = function () {
     .style("stroke", "#ffffff")
     .call(node_drag);
     console.log("force.nodes().length: " + force.nodes().length);
-    if(force.nodes().length < 11){
-      nodeEnterG.append("text")
-        .attr("class", "talkName")
-        .text(function(d) { 
-          if(d.name!=undefined){
-            console.log(d.name);
-            var words = d.name.split(" ");
-            var displayName =  words[0] + " " + words[1] + " " + words[2] + " " + words[3] + "...";
+    // if(force.nodes().length < 11){
+    //   nodeEnterG.append("text")
+    //     .attr("class", "talkName")
+    //     .text(function(d) { 
+    //       if(d.name!=undefined){
+    //         console.log(d.namex    //         var words = d.name.split(" ");
+    //         var displayName =  words[0] + " " + words[1] + " " + words[2] + " " + words[3] + "...";
             
-            console.log(displayName);
-            return  displayName;
-          }
+    //         console.log(displayName);
+    //         return  displayName;
+    //       }
           
-        });
-      }
+    //     });
+    // }
+
+    nodeEnterG.append("text")
+      .attr("class", "talkName")
+      .style("fill", "#ffffff")
+      .style("font-family", "Gill Sans")
+      .style("text-anchor", "middle")
+      .text(function(d) { 
+        console.log("appending text");
+        if((d.code != undefined) || (d.code !== "undefined")){
+          console.log(d.code);
+          return  d.code;
+        } else {
+          return "K";
+        }
+        
+    });
   
   nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 
@@ -121,4 +152,16 @@ $(".remove_filter").on("mousedown", function () {
   delete filterHistory[id];
   update();
 });
+}
+
+/* Decides the color of the session depending on the room */
+var sessionsColors = function (d) {
+
+  if (d.room === "undefined") return "#ffffff";
+  else if ((d.room === "blue") || (d.room === "241") || (d.room === "242ab") || (d.room === "242a") || (d.room === "242b") || (d.room === "243")) return bleu;
+  else if ((d.room === "251") || (d.room === "252a") || (d.room === "252b") || (d.room === "253")) return green;
+  else if ((d.room === "bordeaux") || (d.room === "342a") || (d.room === "343") || (d.room === "361") || (d.room === "362/363")) return bordeaux;
+  else if ((d.room === "havane") || (d.room === "351") || (d.room === "352ab")) return havane;
+  else if (d.room === "grand") return grand;
+
 }
