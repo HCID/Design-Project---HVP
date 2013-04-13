@@ -20,6 +20,7 @@ var id = 1;
 _.forEach(submissions.rows, function(ev) {
   var event = {
     id: id++,
+    subId: ev.id,
     name: ev.value.title,
     code: letterCodes.code[ev.id],
     type: ev.value.venue,

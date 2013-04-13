@@ -19,8 +19,15 @@ var circleClicked = function (circle) {
     update();    
     changeImage();
     addFilterHistory();
-  } else {
-
+  } else if (mode == "sessions") {
+    loadParallelData();
+    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
+    mode = "free";    
+    var newData = filterJSON(force.nodes(), "room", circle["session"].id);
+    force.nodes(newData);   
+    update();    
+    changeImage();
+    addFilterHistory();
   }
 }
 
@@ -42,8 +49,6 @@ var vennClick = function (e, d, f, g) {
     mode = "free"; 
     var newData = filterJSON(force.nodes(), "communities", array);
     force.nodes(newData);
-    console.log("nodes in intersection", newData);
-    console.log("nodes in intersection parallelData", parallelData);    
     d3.selectAll("circle").attr("opacity", 1); 
     update();    
     changeImage();

@@ -113,9 +113,7 @@ var update = function () {
       .style("font-family", "Gill Sans")
       .style("text-anchor", "middle")
       .text(function(d) { 
-        console.log("appending text");
         if((d.code != undefined) || (d.code !== "undefined")){
-          console.log(d.code);
           return  d.code;
         } else {
           return "K";

@@ -14,7 +14,6 @@ var force = d3.layout.force()
 
 var main = function (fociUsed) {
 
-  console.log("main");
   vis = d3.select("body").select("svg");
   if (mode === "schedule") {
     var array = groupSchedule();
@@ -28,8 +27,6 @@ var main = function (fociUsed) {
     var array = groupSession();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
-    // console.log("groupSession", array);
-    // mode = "sechedule";
   }
   
   update();

@@ -514,14 +514,6 @@ var getMapPosition = function (k) {
 
 /* Sets the position of each element in the map view*/
 var getSessionPosition = function (k) { 
-  console.log("getSessionPosition", force.nodes().length);
-
-  // var l = force.nodes().length;
-  // var i = 0;
-  // while (i<l) {
-  //   var a = force.nodes()[i];
-  //   console.log(a);
-  // }
 
   force.nodes().forEach(function(o, i) {
 
@@ -530,8 +522,6 @@ var getSessionPosition = function (k) {
       o.x += (fociSession["undefined"].x - o.x) * k;
     } else {
       var str = o["day"].toLowerCase() + " " + o["starTime"] + " " + o["room"];
-      // o.y += (fociSession[str].y - o.y) * k;
-      // o.x += (fociSession[str].x - o.x) * k;
 
       if(fociSession[str]!== undefined){
         o.y += (fociSession[str].y - o.y) * k;
@@ -540,17 +530,7 @@ var getSessionPosition = function (k) {
         o.y += (fociSession["undefined"].y - o.y) * k;
         o.x += (fociSession["undefined"].x - o.x) * k;
       }
-
     }
-    // // srt = srt.toLowerCase();
-    // console.log("str", str);
-    // console.log("fociSession[str]", fociSession[str]);
-
-    // if(fociSession[str] !== undefined){
-      
-    // } else{
-
-    // }
   });
 }
 
@@ -735,8 +715,6 @@ var groupMap = function () {
   auxArray.forEach(function(o, i) {
     var radius = 20;
 
-    // console.log("auxArray " + i + " obj " + o + " types" + o.types);
-
     if (o.types.length == 0) {
       var mapElt = new MapElt(o.room, id2);
       mapElt.radius = radius;
@@ -805,12 +783,9 @@ var indexInSessionsArray = function (a, o) {
   var i = 0;
 
   while (i<l && !found) {
-
     if (o.session) {
-      // console.log("a " + a[i].id + " o " + o.session.id);
       found = (a[i].id === o.session.id);
     } 
-
     i++;
   }
 

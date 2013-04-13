@@ -12,7 +12,16 @@ var filterJSON = function(json, key, value, defilter) {
           var indUx = row[key].indexOf("ux");
           var indDes = row[key].indexOf("design");
           var indEng = row[key].indexOf("engineering");
-          if ((indUx >= 0) || (indDes >= 0) || (indEng >= 0) || (row[key] == [])){
+
+          if ((row[key] == []) ||
+              ((indUx >= 0) && (row[key].length == 1)) ||
+              ((indDes >= 0) && (row[key].length == 1)) ||
+              ((indEng >= 0) && (row[key].length == 1)) ||
+              ((indUx >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
+              ((indUx >= 0) && (indEng >= 0) && (row[key].length == 2)) ||
+              ((indEng >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
+              ((indUx >= 0) && (indDes >= 0) && (indEng >= 0) && (row[key].length == 3))){
+
             result.push(row);
           }
         } else {

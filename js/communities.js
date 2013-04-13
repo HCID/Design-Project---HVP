@@ -1,8 +1,8 @@
-var gCom = {
-  'coms': [],
-  'amount': 0,
-  'id': 0
-};
+// var gCom = {
+//   'coms': [],
+//   'amount': 0,
+//   'id': 0
+// };
 
 /* GCom element object */
 function GCom (coms, id) {
@@ -293,6 +293,7 @@ var commExists = function(c, a) {
       found = (a[i].coms.length == 0);
       i++;
     }
+
   }
   return found;
 }
