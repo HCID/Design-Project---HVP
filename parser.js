@@ -44,7 +44,8 @@ _.forEach(submissions.rows, function(ev) {
     event.session = {
       id: ev.value.session,
       name: eventSession.value.title,
-      code: letterCodes.code[ev.id]
+      code: letterCodes.code[eventSession.value.schedule]
+      // code: letterCodes.code[ev.id]
     }; 
     
     //schedule info
@@ -59,7 +60,7 @@ _.forEach(submissions.rows, function(ev) {
     }
 
   }
-  
+
   //Authors
   if(ev.value.authorList != undefined && ev.value.authorList != null) {
     event.authors = ev.value.authorList;

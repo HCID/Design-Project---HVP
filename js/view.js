@@ -21,7 +21,8 @@ function changeImage() {
       // document.getElementById("image").src="img/schedule.svg";
   } else if (mode == "map") {
       d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "/img/map_bg.svg")
+        // .attr("xlink:href", "/img/map_bg.svg")
+        .attr("xlink:href", "/img/mapLevels.png")
         .attr("opacity", 1);
       // document.getElementById("image").src="img/schedule.svg";
   } else if (mode == "sessions") {
