@@ -399,11 +399,12 @@ function MapElt (room, id) {
 
 /* Session element object */
 function SessElt (obj) {
-    this.id = obj.session ? obj.session.id : "undefined";
-    this.name = obj.session ? obj.session.name : "undefined";
-    this.code = obj.session ? obj.session.code : "undefined";
+    this.id = obj.id;
+    this.name = obj.name;
+    this.code = obj.code;
     this.day = obj.day;
     this.starTime = obj.starTime;
+    this.endTime = obj.endTime;
     this.room = obj.room;
     this.amount = 1;
 }
@@ -763,16 +764,20 @@ var groupSession = function () {
 
   force.nodes().forEach (function(o, i) {
 
-    var index = indexInSessionsArray(auxArray, o);
-    var create = index < 0;
-    if (create) {
-      var sessElt = new SessElt (o);
-      auxArray.push(sessElt);
-    } else {
-      auxArray[index].amount ++;
-    }
+    o.sessions.forEach(function(u, j) {
+      var index = indexInSessionsArray(auxArray, u);
+      var create = index < 0;
+      if (create) {
+        var sessElt = new SessElt (u);
+        auxArray.push(sessElt);
+      } else {
+        auxArray[index].amount ++;
+      }
+    });
 
   });
+
+  console.log("groupSession", auxArray);
 
   return auxArray;
 }
@@ -781,11 +786,13 @@ var indexInSessionsArray = function (a, o) {
   var found = false;
   var l = a.length;
   var i = 0;
+  console.log("indexInSessionsArray");
+
 
   while (i<l && !found) {
-    if (o.session) {
-      found = (a[i].id === o.session.id);
-    } 
+    console.log("a[id]", a[i].id);
+    console.log("obj", o);
+    found = (a[i].id === o.id);
     i++;
   }
 
