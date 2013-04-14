@@ -45,7 +45,7 @@ _.forEach(submissions.rows, function(ev) {
     event.sessions.push({
       id: ev.value.session,
       name: eventSession.value.title,
-      code: letterCodes.code[eventSession.value.schedule],
+      code: letterCodes.code[eventSession.value.schedule] ? letterCodes.code[eventSession.value.schedule] : letterCodes.code[ev.id],
     }); 
     
    
