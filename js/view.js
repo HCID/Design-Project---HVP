@@ -187,5 +187,4 @@ $(".remove_filter").on("mousedown", function () {
 var sessionsColors = function (d) {
   if (d.room === "undefined") return "#ffffff";
   return _.find(colors, function(color) { return _.contains(color.rooms, d.room) }).color
-
 }

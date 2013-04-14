@@ -1,47 +1,31 @@
 /* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
-  if (mode == "schedule") {
-    loadParallelData();
-    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "day", circle["day"], true)});   
-    var newData = filterJSON(force.nodes(), "day", circle["day"]);
-    var newData = filterJSON(newData, "starTime", circle["starTime"]);
-    mode = "free";   
-    force.nodes(newData);
-    update();    
-    changeImage();
-    addFilterHistory();
-  } else if (mode == "map") {
-    loadParallelData();
-    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
-    var newData = filterJSON(force.nodes(), "room", circle["room"]);
-    mode = "free";    
-    force.nodes(newData);   
-    console.log(circle)
-    //if(circle)
+  if(mode == "free" && force.nodes().length > 11) {
     $("#detail_base").show();
-    update();    
-    changeImage();
-    addFilterHistory();
-  } else if (mode == "sessions") {
-    loadParallelData();
-    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "sessions", circle["id"], true)});
-    var newData = filterJSON(force.nodes(), "sessions", circle["id"], true);
-    mode = "free";    
-    force.nodes(newData);   
-    update();    
-    changeImage();
-    addFilterHistory();
+    $("#detail_image").html(circle.video);
+    $("#detail_title").html(circle.name);
+    $("#detail_time").html("");
+    $("#detail_thirty_words").html(circle.cbStatement);
+   // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
+    $("#detail_keywords").html(circle.keywords.join(", "));
   } else {
-    if(force.nodes().length > 11) {
-      $("#detail_base").show();
-      $("#detail_image").html(circle.video);
-      $("#detail_title").html(circle.name);
-      $("#detail_time").html("");
-      $("#detail_thirty_words").html(circle.cbStatement);
-     // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
-      $("#detail_keywords").html(circle.keywords.join(", "));
-    } 
-  }
+    loadParallelData();
+    if (mode == "schedule") {
+      filterHistory.push({name: mode, data: filterJSON(force.nodes(), "day", circle["day"], true)});   
+      var newData = filterJSON(filterJSON(force.nodes(), "day", circle["day"]), "starTime", circle["starTime"]);
+    } else if (mode == "map") {      
+      filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
+      var newData = filterJSON(force.nodes(), "room", circle["room"]);  
+    } else if (mode == "sessions") {
+      filterHistory.push({name: mode, data: filterJSON(force.nodes(), "sessions", circle["id"], true)});
+      var newData = filterJSON(force.nodes(), "sessions", circle["id"], true);    
+    }
+      mode = "free";
+      force.nodes(newData);  
+      update();    
+      changeImage();
+      addFilterHistory();    
+  } 
 }
 
 
