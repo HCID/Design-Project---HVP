@@ -3,9 +3,9 @@ var circleClicked = function (circle) {
   if (mode == "schedule") {
     loadParallelData();
     filterHistory.push({name: mode, data: filterJSON(force.nodes(), "day", circle["day"], true)});   
-    mode = "free";   
     var newData = filterJSON(force.nodes(), "day", circle["day"]);
     var newData = filterJSON(newData, "starTime", circle["starTime"]);
+    mode = "free";   
     force.nodes(newData);
     update();    
     changeImage();
@@ -13,8 +13,8 @@ var circleClicked = function (circle) {
   } else if (mode == "map") {
     loadParallelData();
     filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
-    mode = "free";    
     var newData = filterJSON(force.nodes(), "room", circle["room"]);
+    mode = "free";    
     force.nodes(newData);   
     console.log(circle)
     //if(circle)
@@ -24,9 +24,9 @@ var circleClicked = function (circle) {
     addFilterHistory();
   } else if (mode == "sessions") {
     loadParallelData();
-    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
+    filterHistory.push({name: mode, data: filterJSON(force.nodes(), "sessions", circle["id"], true)});
+    var newData = filterJSON(force.nodes(), "sessions", circle["id"], true);
     mode = "free";    
-    var newData = filterJSON(force.nodes(), "room", circle["session"].id);
     force.nodes(newData);   
     update();    
     changeImage();
@@ -73,8 +73,8 @@ var vennClick = function (e, d, f, g) {
 
   if (array.length > 0) {
     filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
-    mode = "free"; 
     var newData = filterJSON(force.nodes(), "communities", array);
+    mode = "free"; 
     force.nodes(newData);
     d3.selectAll("circle").attr("opacity", 1); 
     update();    

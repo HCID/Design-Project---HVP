@@ -786,16 +786,11 @@ var indexInSessionsArray = function (a, o) {
   var found = false;
   var l = a.length;
   var i = 0;
-  console.log("indexInSessionsArray");
-
 
   while (i<l && !found) {
-    console.log("a[id]", a[i].id);
-    console.log("obj", o);
     found = (a[i].id === o.id);
     i++;
   }
 
   return found ? i-1 : -1;
-
 }

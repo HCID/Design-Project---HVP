@@ -81,11 +81,16 @@ var update = function () {
 
       if (mode === "sessions") { 
         return sessionsColors(d);
-      } else if (mode !== "free") {
-        return fill(d.types[0]);
+      } else if (mode === "free") {
+        return sessionsColors(d.sessions[0]);
       } else {
-        return fill(d["type"] );
+        return fill(d.types[0]);
       }
+      // else if (mode !== "free") {
+      //   return fill(d.types[0]);
+      // } else {
+      //   return fill(d["type"] );
+      // }
       
     })
     .style("stroke-width", 1)
@@ -111,7 +116,7 @@ var update = function () {
     nodeEnterG.append("text")
       .attr("class", "talkName")
       .style("fill", "#ffffff")
-      .style("font-family", "Gill Sans")
+      .style("font-family", "Gill Sans Light")
       .style("text-anchor", "middle")
       .text(function(d) { 
         if((d.code != undefined) || (d.code !== "undefined")){

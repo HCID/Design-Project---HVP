@@ -3,62 +3,89 @@ var filterJSON = function(json, key, value, defilter) {
     defilter = false;
   }
   var result = [];
+  
   json.forEach(function (row) {
 
     if(value.constructor === Array) {
       
-      if (value[0] === "general") {
-        if(!defilter) {
-          var indUx = row[key].indexOf("ux");
-          var indDes = row[key].indexOf("design");
-          var indEng = row[key].indexOf("engineering");
+        if (value[0] === "general") {
+          if(!defilter) {
+            var indUx = row[key].indexOf("ux");
+            var indDes = row[key].indexOf("design");
+            var indEng = row[key].indexOf("engineering");
 
-          if ((row[key] == []) ||
-              ((indUx >= 0) && (row[key].length == 1)) ||
-              ((indDes >= 0) && (row[key].length == 1)) ||
-              ((indEng >= 0) && (row[key].length == 1)) ||
-              ((indUx >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
-              ((indUx >= 0) && (indEng >= 0) && (row[key].length == 2)) ||
-              ((indEng >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
-              ((indUx >= 0) && (indDes >= 0) && (indEng >= 0) && (row[key].length == 3))){
+            if ((row[key] == []) ||
+                ((indUx >= 0) && (row[key].length == 1)) ||
+                ((indDes >= 0) && (row[key].length == 1)) ||
+                ((indEng >= 0) && (row[key].length == 1)) ||
+                ((indUx >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
+                ((indUx >= 0) && (indEng >= 0) && (row[key].length == 2)) ||
+                ((indEng >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
+                ((indUx >= 0) && (indDes >= 0) && (indEng >= 0) && (row[key].length == 3))){
 
-            result.push(row);
-          }
+              result.push(row);
+            }
+          } else {
+            if ((row[key] == ["sustainability"]) || 
+              (row[key] == ["hci4d"]) || 
+              (row[key] == ["games"]) || 
+              (row[key] == ["cci"]) || 
+              (row[key] == ["arts"]) || 
+              (row[key] == ["health"]) || 
+              (row[key] == ["management"])){
+              result.push(row);
+            }
+          } 
+
         } else {
-          if ((row[key] == ["sustainability"]) || 
-            (row[key] == ["hci4d"]) || 
-            (row[key] == ["games"]) || 
-            (row[key] == ["cci"]) || 
-            (row[key] == ["arts"]) || 
-            (row[key] == ["health"]) || 
-            (row[key] == ["management"])){
-            result.push(row);
-          }
-        } 
 
-      } else {
-
-        if(!defilter) {
-          if (row[key].sort().join() == value.sort().join()) {
-            result.push(row);
-          }
-        } else {
-          if (row[key].sort().join() != value.sort().join()) {
-            result.push(row);
-          }
-        } 
-      }
+          if(!defilter) {
+            if (row[key].sort().join() == value.sort().join()) {
+              result.push(row);
+            }
+          } else {
+            if (row[key].sort().join() != value.sort().join()) {
+              result.push(row);
+            }
+          } 
+        }
 
     } else {
-      if(!defilter) {
-        if (row[key] === value) {
-          result.push(row);
+
+      if (mode === "sessions"){
+          
+        if(defilter) {
+            var found = false;
+            var i = 0;
+            var l = row[key].length;
+            while (i<l && !found) {
+              found = (row[key][i].id === value);
+              if (found) result.push(row);
+              i++; 
+            }
+
+        } else {
+            var l = row[key].length;
+
+            if ((l == 1) && (row[key][0].id === value)) {
+            } else {
+              result.push(row);
+            }
         }
+
       } else {
-        if (row[key] !== value) {
-          result.push(row);
-        }
-      }  
+        if(!defilter) {
+          if (row[key] === value) {
+            result.push(row);
+          }
+        } else {
+          if (row[key] !== value) {
+            result.push(row);
+          }
+        }  
+      }
+
+
     }
     
   });
