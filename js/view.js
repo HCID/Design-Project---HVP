@@ -175,7 +175,7 @@ function addFilterHistory() {
   var toppy = 30 + ($("#filter_list li").size()*60);
 
 
-  $("<li class='new_filter' id='filter_"+(filterHistory.length-1)+"' style='width: 200px; margin-top: 10px; list-style: none; height: 50px; background-color: red;  position: absolute; z-index: 100; border-radius: 10px; right: "+d3.event.clientX+"px; top: "+d3.event.clientY+"px;'><div class='remove_filter' style='float: left; height: 100%; width: 40px; padding-top: 0; font-size: 50px; font-family: arial; line-height: 0.8; color: #fff; margin-left: 12px;'>x</div><div style='font-family: arial; color: #fff; font-size: 20px; margin-top: 11px; display: block; float: left; width: 138px; height: 100%; padding-left: 10px'><span>"+filterHistory[filterHistory.length-1].name+"</span></div></li>").appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
+  $("<li class='new_filter' id='filter_"+(filterHistory.length-1)+"' style='width: 200px; margin-top: 10px; list-style: none; height: 50px; background-color: red;  position: absolute; z-index: 100; border-radius: 10px; right: "+d3.event.clientX+"px; top: "+d3.event.clientY+"px;'><div class='remove_filter' style='float: left; height: 100%; width: 40px; padding-top: 0; font-size: 50px; font-family: Gill Sans; line-height: 0.8; color: #fff; margin-left: 12px;'>x</div><div style='font-family: arial; color: #fff; font-size: 20px; margin-top: 11px; display: block; float: left; width: 138px; height: 100%; padding-left: 10px'><span>"+filterHistory[filterHistory.length-1].name+"</span></div></li>").appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
     $(this).appendTo($("#filter_list"));
     $(this).css("position", "static");
     $(this).css("float", "left");
