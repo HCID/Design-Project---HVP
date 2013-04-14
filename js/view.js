@@ -91,7 +91,7 @@ var update = function () {
     .style("stroke-width", 1)
     .style("stroke", "#ffffff")
     .call(node_drag);
-<<<<<<< HEAD
+
     console.log("force.nodes().length: " + force.nodes().length);
     // if(force.nodes().length < 11){
     //   nodeEnterG.append("text")
@@ -121,15 +121,7 @@ var update = function () {
         }
         
     });
-=======
 
-  // nodeEnterG.append("text")
-  //   .text(function(d) { 
-  //     var displayName = d.name != undefined && d.name.length > 27 ? d.name.substring(0, 27) + "..." : d.name;
-  //     console.log(displayName);
-  //     return  displayName;
-  //   });
->>>>>>> Detail-view
   
   nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 
