@@ -1,6 +1,6 @@
 /* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
-  if(mode == "free" && force.nodes().length > 11) {
+  if(mode == "free" && force.nodes().length < 11) {
     $("#detail_base").show();
     $("#detail_image").html(circle.video);
     $("#detail_title").html(circle.name);
@@ -8,7 +8,7 @@ var circleClicked = function (circle) {
     $("#detail_thirty_words").html(circle.cbStatement);
    // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
     $("#detail_keywords").html(circle.keywords.join(", "));
-  } else {
+  } else if(mode == "schedule" || mode == "map" || mode == "sessions") {
     loadParallelData();
     if (mode == "schedule") {
       var oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})

@@ -64,7 +64,6 @@ onRefresh = (time) ->
 client.on "addTuioCursor", onAddTuioCursor
 client.on "updateTuioCursor", onUpdateTuioCursor
 client.on "removeTuioCursor", onRemoveTuioCursor
-client.on "addTuioHand", onAddTuioHand
 client.on "updateTuioHand", onUpdateTuioHand
 client.on "removeTuioHand", onRemoveTuioHand
 client.on "refresh", onRefresh

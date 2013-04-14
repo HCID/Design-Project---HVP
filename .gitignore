@@ -2,5 +2,5 @@
 data/data.json
 .DS_Store
 node_modules/.DS_Store
-
+*.map
 .DS_Store
