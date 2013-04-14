@@ -14,8 +14,9 @@ var circleClicked = function (circle) {
       var oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
       var newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
     } else if (mode == "map") { 
-      var oldData = _.reject(force.nodes(), function (node) {return node["room"] == circle["room"]});
-      var newData = _.where(force.nodes(), {room: circle["room"]} );
+      console.log("FILTERING NOW");
+      var oldData = _.reject(force.nodes(), function (node) { return node.sessions[0]["room"] == circle["room"]});
+      var newData = _.filter(force.nodes(), function (node) { return node.sessions[0]["room"] == circle["room"]});
     } else if (mode == "sessions") {
       generateSessionTitle(circle.name);
       var oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
