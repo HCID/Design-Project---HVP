@@ -81,8 +81,12 @@ var calculateR = function (d) {
   
   if(mode === "free"){
     var n = force.nodes().length;
-    var s = 0.2 * Math.sqrt((width*height)/n);
-    return s;
+    if (n >100) {
+      return 21;
+    } else {
+      var s = 0.2 * Math.sqrt((width*height)/n);
+      return s;
+    }
   } else if ((mode === "schedule") || (mode === "map")) {
     return d.radius;
   } else if (mode === "sessions") {
@@ -146,7 +150,7 @@ var update = function () {
     nodeEnterG.append("text")
       .attr("class", "talkName")
       .style("fill", "#ffffff")
-      .style("font-family", "Gill Sans Light")
+      .style("font-family", "Gill Sans")
       .style("text-anchor", "middle")
       .text(function(d) { 
         if((d.code != undefined) || (d.code !== "undefined")){

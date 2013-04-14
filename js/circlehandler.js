@@ -448,7 +448,13 @@ var tick = function(e) {
       getSchedulePosition(k);
 
     } else if (mode == "free") {
+      force.nodes().forEach(function(d) { 
+        d.r = 100;
 
+      });
+      // vis.selectAll("circle").attr("r", d.radius);
+      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
+     
       force.nodes().forEach(function(o, i) {
         o.y += (fociFree[0].y - o.y) * k;
         o.x += (fociFree[0].x - o.x) * k;        
