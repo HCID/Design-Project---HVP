@@ -217,8 +217,11 @@ var drawVennEuler = function (vn, gr) {
   circles.append("text")
       .attr("text-anchor", "middle")
       .text(function(d, i) { return gr[i]; })
-      .style("font-size", 35)
+      .style("font-size", 40)
+      .style("font-family", "Gill Sans")
+      .attr("stroke-size", 1)
       .attr("fill", function(d, i) { return "#ffffff";})
+      .attr("stroke", function(d, i) { return fill2(i);})
       .attr("x", function(d, i) { return d.labelX; })
       .attr("y", function(d, i) { return d.labelY; });
       
