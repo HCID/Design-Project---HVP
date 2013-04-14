@@ -26,7 +26,7 @@ _.forEach(submissions.rows, function(ev) {
     type: ev.value.venue,
     abstract: ev.value.abstract,
     cbStatement: ev.value.cbStatement,
-    bookmarks: Math.floor((Math.random()*200)),
+    //bookmarks: Math.floor((Math.random()*200)),
     keywords: ev.value.authorKeywords ? ev.value.authorKeywords.split("; ") : [],
     communities: _.map(ev.value.communities, function (a) {return a.toLowerCase()}) ,
   }
