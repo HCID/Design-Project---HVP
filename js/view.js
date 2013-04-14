@@ -1,14 +1,37 @@
 var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
 var filterHistory = [];
 /* Colors */
+var colors = {
+  bordeaux: {
+    color: "#98343c", // 152 52 60
+    rooms: ["bordeaux", "342a", "343", "361", "362/363"]
+  },  
+  havane: { 
+    color: "#d3783c", // 211 120 60
+    rooms: ["havane", "351", "352ab"] 
+  }, 
+  bleu: {
+    color: "#1b5576", // 27 85 118
+    rooms: ["blue", "241", "242ab", "242a", "242b", "243"]
+  }, 
+  green: {
+    color: "#265e30", // 38 94 48
+    rooms: ["251", "252a", "252b", "253"]
+  },
+  interact: { 
+    color: "#61447a", // 97 68 122
+    rooms: []
+  },
+  chi: {
+    color: "#2a276d", // 42 39 109
+    rooms: []
+  },
+  grand: {
+    color: "#f1d32e", // 241 211 46
+    rooms: ["grand"]
+  }
+}
 
-var bordeaux = "#98343c";// 152 52 60
-var havane = "#d3783c";// 211 120 60
-var bleu = "#1b5576";// 27 85 118
-var green = "#265e30";// 38 94 48
-var interact = "#61447a";// 97 68 122
-var chi = "#2a276d";// 42 39 109
-var grand = "#f1d32e";// 241 211 46
 
 
 
@@ -39,9 +62,9 @@ function changeImage() {
 };
 
 var generateLegend = function () {
-    var items = [];
-   $.each(getDifferentValuesForKey(data,"type"), function(i, item) {
-          items.push('<li class="typesClass" style="background-color:' + fill(item) + '">' + item + '</li>');
+  var items = [];
+  _.each(colors, function(item, key) {
+          items.push('<li class="typesClass" style="background-color:' + item.color + '">' + key + '</li>');
    });  // close each()
    $(".types").html( items.join('') );
 }
@@ -162,12 +185,7 @@ $(".remove_filter").on("mousedown", function () {
 
 /* Decides the color of the session depending on the room */
 var sessionsColors = function (d) {
-
   if (d.room === "undefined") return "#ffffff";
-  else if ((d.room === "blue") || (d.room === "241") || (d.room === "242ab") || (d.room === "242a") || (d.room === "242b") || (d.room === "243")) return bleu;
-  else if ((d.room === "251") || (d.room === "252a") || (d.room === "252b") || (d.room === "253")) return green;
-  else if ((d.room === "bordeaux") || (d.room === "342a") || (d.room === "343") || (d.room === "361") || (d.room === "362/363")) return bordeaux;
-  else if ((d.room === "havane") || (d.room === "351") || (d.room === "352ab")) return havane;
-  else if (d.room === "grand") return grand;
+  return _.find(colors, function(color) { return _.contains(color.rooms, d.room) }).color
 
 }
