@@ -11,15 +11,16 @@ var circleClicked = function (circle) {
   } else {
     loadParallelData();
     if (mode == "schedule") {
-      filterHistory.push({name: mode, data: filterJSON(force.nodes(), "day", circle["day"], true)});   
-      var newData = filterJSON(filterJSON(force.nodes(), "day", circle["day"]), "starTime", circle["starTime"]);
-    } else if (mode == "map") {      
-      filterHistory.push({name: mode, data: filterJSON(force.nodes(), "room", circle["room"], true)});
-      var newData = filterJSON(force.nodes(), "room", circle["room"]);  
+      var oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
+      var newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
+    } else if (mode == "map") { 
+      var oldData = _.reject(force.nodes(), function (node) {return node["room"] == circle["room"]});
+      var newData = _.where(force.nodes(), {room: circle["room"]} );
     } else if (mode == "sessions") {
-      filterHistory.push({name: mode, data: filterJSON(force.nodes(), "sessions", circle["id"], true)});
-      var newData = filterJSON(force.nodes(), "sessions", circle["id"], true);    
+      var oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
+      var newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
     }
+      filterHistory.push({name: mode, data: oldData});   
       mode = "free";
       force.nodes(newData);  
       update();    
