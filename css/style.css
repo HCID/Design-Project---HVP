@@ -5,8 +5,11 @@ body {
   overflow: hidden;
   position: relative;
   width: 960px;
+  height: 100%;
 }
-
+html {
+  height: 100%;
+}
 a:link, a:visited {
   color: #777;
   text-decoration: none;
@@ -103,3 +106,4 @@ body > svg {
   top: -80px;
   left: -160px;
 }
+
