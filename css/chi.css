@@ -1,10 +1,19 @@
+@font-face {
+  font-family: 'GillSans-Light';
+  src: url('./font/GillSans-Light.ttf');
+}
+
+h1, h3, h4, h5, h6, p, div, li, ul {
+  font-family: "GillSans-Light", "Verdana";
+}
+
 .size_button {
 	display:inline-block;
 	width:100px;
 	height:100px;
 	border-radius:75px;
 	font-size:20px;
-	font-family: "Kefa", "Verdana";
+	font-family: "GillSans-Light", "Kefa", "Verdana";
 	color:#bbb;
 	line-height:100px;
 	text-align:center;
