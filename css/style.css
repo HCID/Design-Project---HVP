@@ -5,8 +5,11 @@ body {
   overflow: hidden;
   position: relative;
   width: 960px;
+  height: 100%;
 }
-
+html {
+  height: 100%;
+}
 a:link, a:visited {
   color: #777;
   text-decoration: none;
@@ -104,64 +107,3 @@ body > svg {
   left: -160px;
 }
 
-
-#detail_base {
-  position: absolute; 
-  left: 50%; 
-  top: 20%; 
-  z-index: 100;
-  display: none;
-}
-
-#detail_background {
-  width: 800px; 
-  height: 400px; 
-  background-color: #fff; 
-  border: 1px solid #ccc; 
-  padding: 20px; 
-  position: relative; 
-  left: -50%;
-}
-
-#detail_image {
-  width: 300px; 
-  height: 200px; 
-  background-color: #f6f6f6; 
-  border: 1px solid #eee; 
-  float: left;
-}
-
-#detail_title {
-  float: right; 
-  width: 450px; 
-  font-weight: bold;
-}
-
-#detail_time {
-  float: right; 
-  width: 450px; 
-  font-weight: bold; 
-  font-family: arial; 
-  margin-top: 30px;
-}
-
-#detail_thirty_words {
-  float: left; 
-  width: 750px; 
-  margin-top: 20px; 
-  font-family: arial;
-}
-
-#detail_authors {
-  float: left; 
-  width: 750px; 
-  margin-top: 20px; 
-  font-family: arial;
-}
-
-#detail_keywords {
-  float: left; 
-  width: 750px; 
-  margin-top: 20px; 
-  font-family: arial;
-}
