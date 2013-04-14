@@ -392,7 +392,6 @@ function Sch (day, time, id) {
 function MapElt (room, id) {
     this.room = room;
     this.amount = 1;
-    this.types = [];
     this.id = "m" + id;
     this.radius = 20;
 }
@@ -694,56 +693,27 @@ var indexInSchArray = function (a, o) {
 
 // Gruops by room to create later concentric circles in the map view
 var groupMap = function () {
-
+  console.log("groupMap");
   var auxArray = [];
-  var auxArray2 = [];
+  var sessions = groupSession(force.nodes());
 
   var id = 0;
-  var id2 = 0;
 
-  force.nodes().forEach (function(o, i) {
+  sessions.forEach (function(o, i) {
 
     var index = indexInMapArray(auxArray, o);
     var create = index < 0;
     if (create) {
       var mapElt = new MapElt(o.room, id);
-      mapElt.types.push(o.type);
       id++;
       auxArray.push(mapElt);
     } else {
       auxArray[index].amount += 1;
-      var indexType = auxArray[index].types.indexOf(o.type);
-      if (indexType < 0) auxArray[index].types.push(o.type);
     }
-
   });
-
-  // Creates all the entries in the array to have concentric circles
-  auxArray.forEach(function(o, i) {
-    var radius = 20;
-
-    if (o.types.length == 0) {
-      var mapElt = new MapElt(o.room, id2);
-      mapElt.radius = radius;
-      mapElt.types.push(o.type);
-      radius += 10;
-      id2++;
-      auxArray2.push(mapElt);
-    } else {
-      o.types.forEach(function(u,j) {
-        var mapElt = new MapElt(o.room, id2);
-        mapElt.types.push(o.types[j]);
-        mapElt.radius = radius;
-        radius += 10;
-        id2++;
-        auxArray2.push(mapElt);
-      });
-    }
-
-  });
-
-  return auxArray2.reverse();
+  return auxArray;
 }
+
 
 /* Given an array "a" and an object "o"
     Returns the position of "o" in "a"

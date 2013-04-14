@@ -113,12 +113,12 @@ var update = function () {
     .on("mousedown", function(d){ circleClicked(d) } )
     .style("fill", function (d, i) {
 
-      if (mode === "sessions") { 
+      if (mode === "sessions" | mode === "map") { 
         return sessionsColors(d);
       } else if (mode === "free") {
         return sessionsColors(d.sessions[0]);
       } else {
-        return fill(d.types[0]);
+        return "#123456";
       }
       // else if (mode !== "free") {
       //   return fill(d.types[0]);
