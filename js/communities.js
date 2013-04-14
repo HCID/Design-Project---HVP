@@ -114,13 +114,14 @@ var createCommNodesArray = function (a) {
     }
 
     if (found) {
-      var gCom = new GCom([], id);
+      var gCom = new GCom([str], id);
       id++;
       array.push(gCom);
       groups.push(str);
     }
   }
 
+  console.log("createCommNodesArray after preGroups", array);
 
   a.forEach(function (d) {
 
@@ -150,6 +151,7 @@ var createCommNodesArray = function (a) {
 
   t = 1;
 
+  var threshold = groups.length;
   // Creates the array of intersections
   array.forEach(function (d) {
 

@@ -56,9 +56,11 @@ var vennClick = function (e, d, f, g) {
     }
   });
 
+  console.log("vennClick", array);
   if (array.length > 0) {
     filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
     var newData = filterJSON(force.nodes(), "communities", array);
+    console.log("vennClicked", newData);
     mode = "free"; 
     force.nodes(newData);
     d3.selectAll("circle").attr("opacity", 1); 
