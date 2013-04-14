@@ -36,31 +36,46 @@ _.forEach(submissions.rows, function(ev) {
     event.video = ev.value.videoPreviewFile
   }
   
-  
+  event.sessions = [];
   // Session data
   if(ev.value.session) {
     var eventSession = _.find(sessions.rows, function(ses) {
       return ses.id == ev.value.session;
     });   
-    event.session = {
+    event.sessions.push({
       id: ev.value.session,
       name: eventSession.value.title,
-      code: letterCodes.code[eventSession.value.schedule]
-      // code: letterCodes.code[ev.id]
-    }; 
+      code: letterCodes.code[eventSession.value.schedule],
+    }); 
     
-    //schedule info
+   
+  } else if (ev.value.sessions) {
+    _.each(ev.value.sessions, function (session) {
+      var eventSession = _.find(sessions.rows, function(ses) {
+        return ses.id == session;
+      });       
+      event.sessions.push({
+        id: eventSession.value._id,
+        name: eventSession.value.title,
+        code: letterCodes.code[ev.id]
+      }); 
+    })
+  }
+
+  _.each(event.sessions, function(session) {
+   //schedule info
     var sch = _.find(schedule.rows, function (sched) {
-      return ev.value.session == sched.value.session
+      return session.id == sched.value.session
     });
     if(sch) {
-      event.room = sch.value.room.toLowerCase();
-      event.starTime = sch.value.time.split("-")[0];
-      event.endTime = sch.value.time.split("-")[1];
-      event.day = sch.value.day;
+      session.room = sch.value.room.toLowerCase();
+      session.starTime = sch.value.time.split("-")[0];
+      session.endTime = sch.value.time.split("-")[1];
+      session.day = sch.value.day;
     }
+  });
 
-  }
+
 
   //Authors
   if(ev.value.authorList != undefined && ev.value.authorList != null) {
