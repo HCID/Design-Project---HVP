@@ -1,6 +1,6 @@
 /* Funtion triggered when one of the bubbles is clicked */
 var circleClicked = function (circle) {
-  if(mode == "free" && force.nodes().length < 11) {
+  if(mode == "free" && force.nodes().length < circlesThreshold) {
     $("#detail_base").show();
     $("#detail_image").html(circle.video);
     $("#detail_title").html(circle.name);
@@ -17,6 +17,7 @@ var circleClicked = function (circle) {
       var oldData = _.reject(force.nodes(), function (node) {return node["room"] == circle["room"]});
       var newData = _.where(force.nodes(), {room: circle["room"]} );
     } else if (mode == "sessions") {
+      generateSessionTitle(circle.name);
       var oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
       var newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
     }
@@ -56,11 +57,9 @@ var vennClick = function (e, d, f, g) {
     }
   });
 
-  console.log("vennClick", array);
   if (array.length > 0) {
     filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
     var newData = filterJSON(force.nodes(), "communities", array);
-    console.log("vennClicked", newData);
     mode = "free"; 
     force.nodes(newData);
     d3.selectAll("circle").attr("opacity", 1); 

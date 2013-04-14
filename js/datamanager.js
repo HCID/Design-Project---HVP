@@ -8,48 +8,44 @@ var filterJSON = function(json, key, value, defilter) {
 
     if(value.constructor === Array) {
       
-        if (value[0] === "general") {
-          if(!defilter) {
-            var indUx = row[key].indexOf("ux");
-            var indDes = row[key].indexOf("design");
-            var indEng = row[key].indexOf("engineering");
+      if (value[0] === "general") {
 
-            if ((row[key] == []) ||
-                ((indUx >= 0) && (row[key].length == 1)) ||
-                ((indDes >= 0) && (row[key].length == 1)) ||
-                ((indEng >= 0) && (row[key].length == 1)) ||
-                ((indUx >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
-                ((indUx >= 0) && (indEng >= 0) && (row[key].length == 2)) ||
-                ((indEng >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
-                ((indUx >= 0) && (indDes >= 0) && (indEng >= 0) && (row[key].length == 3))){
+        var indUx = row[key].indexOf("ux");
+        var indDes = row[key].indexOf("design");
+        var indEng = row[key].indexOf("engineering");
 
-              result.push(row);
-            }
-          } else {
-            if ((row[key] == ["sustainability"]) || 
-              (row[key] == ["hci4d"]) || 
-              (row[key] == ["games"]) || 
-              (row[key] == ["cci"]) || 
-              (row[key] == ["arts"]) || 
-              (row[key] == ["health"]) || 
-              (row[key] == ["management"])){
-              result.push(row);
-            }
-          } 
+        var found = ((row[key] == []) ||
+            ((indUx >= 0) && (row[key].length == 1)) ||
+            ((indDes >= 0) && (row[key].length == 1)) ||
+            ((indEng >= 0) && (row[key].length == 1)) ||
+            ((indUx >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
+            ((indUx >= 0) && (indEng >= 0) && (row[key].length == 2)) ||
+            ((indEng >= 0) && (indDes >= 0) && (row[key].length == 2)) ||
+            ((indUx >= 0) && (indDes >= 0) && (indEng >= 0) && (row[key].length == 3)));
 
-        } else {
-
-          if(!defilter) {
-            if (row[key].sort().join() == value.sort().join()) {
-              result.push(row);
-            }
-          } else {
-            if (row[key].sort().join() != value.sort().join()) {
-              result.push(row);
-            }
-          } 
+        if (found && !defilter) {
+          result.push(row);
+        } else if (!found && defilter) {
+          result.push(row);
         }
 
+      } else {
+        var found = false;
+        var l = value.length;
+        var i =0;
+        while (i<l && !found) {
+          found = ([value[i]].sort().join() == row[key].sort().join());
+          i++;
+        }
+
+        found = (found || (row[key].sort().join() == value.sort().join() ) );
+
+        if (!defilter && found) {
+          result.push(row);
+        } else if (!found && defilter) {
+          result.push(row);
+        }
+      }
     } else {
 
       if (mode === "sessions"){

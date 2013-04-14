@@ -1,4 +1,5 @@
 var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
+var circlesThreshold = 30;
 var filterHistory = [];
 /* Colors */
 var colors = {
@@ -67,6 +68,12 @@ var generateLegend = function () {
           items.push('<li class="typesClass" style="background-color:' + item.color + '">' + key + '</li>');
    });  // close each()
    $(".types").html( items.join('') );
+}
+
+
+var generateSessionTitle = function (d) {
+  console.log(" title append");
+  $("body").append($('<h1 class="sessionTitle" style="display:inline-block; position:relative; top:400px; left:400px">' + d + '</h1>'));
 }
 
 
@@ -149,7 +156,7 @@ var update = function () {
         }
         
     });
-
+    $('.talkName').show();
   
   nodes.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
 

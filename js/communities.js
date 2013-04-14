@@ -121,8 +121,6 @@ var createCommNodesArray = function (a) {
     }
   }
 
-  console.log("createCommNodesArray after preGroups", array);
-
   a.forEach(function (d) {
 
     var i = 0;
