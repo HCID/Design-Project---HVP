@@ -18,6 +18,7 @@ var circleClicked = function (circle) {
     mode = "free";    
     var newData = filterJSON(force.nodes(), "room", circle["room"]);
     force.nodes(newData);   
+    $("#detail_base").show();
     update();    
     changeImage();
     addFilterHistory();
