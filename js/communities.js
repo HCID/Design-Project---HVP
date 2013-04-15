@@ -1,8 +1,3 @@
-// var gCom = {
-//   'coms': [],
-//   'amount': 0,
-//   'id': 0
-// };
 
 /* GCom element object */
 function GCom (coms, id) {

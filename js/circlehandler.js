@@ -6,7 +6,7 @@ var ySchedule = 200;
 var xSpace = 280;
 var ySpace = 220;
 var parallelData;
-var mapXSpace = 200;
+var mapXSpace = 700;
 
 var sessionIntSpace = 60;
 var sessionXSpace = 405;
@@ -26,31 +26,31 @@ var fociSchedule =
 var fociMap = { 
   //level 3
   //Yellow
-  "352ab": {x: mapXSpace+200, y: 200}, 
-  "351": {x: mapXSpace+200, y: 400},
-  "havane":{x: mapXSpace+200, y: 600},
+  "352ab":    {x: mapXSpace+325, y: 90}, 
+  "351":      {x: mapXSpace+ 125, y: 130},
+  "havane":   {x: mapXSpace +35, y: 270},
   //red
-  "362/363":{x: mapXSpace+400, y: 200},
-  "361": {x: mapXSpace+400, y: 400},
-  "343": {x: mapXSpace+400, y: 600}, //empty
-  "342a":{x:mapXSpace+400, y:800},
-  "bordeaux": {x:mapXSpace+400, y:1000}, 
+  "362/363":  {x: mapXSpace+610, y: 160},
+  "361":      {x: mapXSpace+570, y: 225},
+  "343":      {x: mapXSpace+500, y: 275},
+  "342a":     {x: mapXSpace+400, y:340},
+  "bordeaux": {x: mapXSpace+235, y:375}, 
   // level 2
   //green
-  "253": {x: mapXSpace+600, y: 200}, //empty
-  "252b": {x: mapXSpace+600, y: 400}, 
-  "252a": {x: mapXSpace+600, y: 600}, 
-  "251":{x: mapXSpace+600, y: 800},
+  "253":      {x: mapXSpace+405, y: 535},
+  "252b":     {x: mapXSpace+290, y: 550}, 
+  "252a":     {x: mapXSpace+180, y: 575}, 
+  "251":      {x: mapXSpace+70, y: 605},
   //blue
-  "blue":{x: mapXSpace+800, y: 200},
-  "243": {x: mapXSpace+800, y: 400}, //empty
-  "242b":{x: mapXSpace+800, y: 600},
-  "242ab": {x: mapXSpace+875, y: 700}, 
-  "242a": {x: mapXSpace+800, y: 800}, 
-  "241":{x: mapXSpace+800, y: 1000}, 
+  "blue":     {x: mapXSpace+580, y: 560},
+  "243":      {x: mapXSpace+600, y: 640},
+  "242b":     {x: mapXSpace+555, y: 695},
+  "242ab":    {x: mapXSpace+510, y: 710}, 
+  "242a":     {x: mapXSpace+480, y: 750}, 
+  "241":      {x: mapXSpace+405, y: 800}, 
 
   // level 0
-  "grand": {x:mapXSpace+1000, y:200},
+  "grand":    {x:mapXSpace+88, y:1087},
 
   "undefined":{x: 2*mapXSpace+1000, y: 600}};
 
