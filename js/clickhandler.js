@@ -119,3 +119,15 @@ var loadParallelData = function () {
     parallelData = [];
   }
 }
+
+var removeFilter = function () {
+  var id = $(this).parent().attr("id").substring(7,$(this).parent().attr("id").length);
+  $(this).parent().remove();
+  if(filterHistory[id]) {
+    _.forEach(filterHistory[id].data, function(d) {
+      force.nodes().push(d);
+    });
+  }
+  delete filterHistory[id];
+  update();
+};
