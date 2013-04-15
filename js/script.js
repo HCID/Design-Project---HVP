@@ -35,6 +35,8 @@ var main = function (fociUsed) {
       
 // Restarts the data 
 var restart = function() {
+  filterHistory = [];
+  $("#filter_list li").remove();
   mode = "free";
   parallelData = [];
   force.nodes(data);

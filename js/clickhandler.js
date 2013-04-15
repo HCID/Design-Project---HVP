@@ -26,14 +26,15 @@ var circleClicked = function (circle) {
       generateSessionTitle(circle.name);
       var oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
       var newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
-      mode = "free";
-    }
-      filterHistory.push({name: mode, data: oldData});   
-      
-      force.nodes(newData);  
-      update();    
-      changeImage();
-      addFilterHistory();    
+    } 
+    if (oldData.length > 0) {
+      filterHistory.push({name: mode, data: oldData});  
+      addFilterHistory();  
+    }  
+    mode = "free";
+    force.nodes(newData);  
+    update();    
+    changeImage();
   } 
 }
 
@@ -56,7 +57,7 @@ var vennClick = function (e, d, f, g) {
 
   var array = [];
   //TODO: FI
-  $list = $('svg g.arc').filter(function() {
+  var $list = $('svg g.arc').filter(function() {
 
     var bbox = $(this).get(0).getBBox();
     if (pointInCirclePath($(this), d3.event)) {
@@ -65,14 +66,16 @@ var vennClick = function (e, d, f, g) {
   });
 
   if (array.length > 0) {
-    filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
+    if(filterJSON(force.nodes(), "communities", array, true).length > 0) {      
+      filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
+      addFilterHistory();
+    }
     var newData = filterJSON(force.nodes(), "communities", array);
     mode = "free"; 
     force.nodes(newData);
     d3.selectAll("circle").attr("opacity", 1); 
     update();    
     changeImage();
-    addFilterHistory();
   }
 }
 

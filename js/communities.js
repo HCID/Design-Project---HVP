@@ -29,7 +29,7 @@ var communities = function() {
       var i = 0;
       var found = false;
       var length = gComs.length;
-
+      
       while (i<length && !found) { 
 
         var auxArray = d.communities ? d.communities : [];
@@ -224,7 +224,7 @@ var drawVennEuler = function (vn, gr) {
       .attr("stroke", function(d, i) { return fill2(i);})
       .attr("x", function(d, i) { return d.labelX; })
       .attr("y", function(d, i) { return d.labelY; });
-      
+      /*
 
   // D3 animation
   vis.selectAll("path")
@@ -237,7 +237,7 @@ var drawVennEuler = function (vn, gr) {
       .data(venn).transition().duration(2000).delay(1000)
       .attr("x", function(d, i) { return d.labelX; })
       .attr("y", function(d, i) { return d.labelY; });
-
+*/
   // return array;
 };
 

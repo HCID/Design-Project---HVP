@@ -131,7 +131,7 @@ var update = function () {
     })
     .style("stroke-width", 1)
     .style("stroke", "#ffffff")
-    .call(node_drag);
+    .call(TUIOHandler.node_drag);
 
     console.log("force.nodes().length: " + force.nodes().length);
     // if(force.nodes().length < 11){
@@ -188,9 +188,11 @@ function addFilterHistory() {
 $(".remove_filter").on("mousedown", function () {
   var id = $(this).parent().attr("id").substring(7,$(this).parent().attr("id").length);
   $(this).parent().remove();
-  _.forEach(filterHistory[id].data, function(d) {
-    force.nodes().push(d);
-  });
+  if(filterHistory[id]) {
+    _.forEach(filterHistory[id].data, function(d) {
+      force.nodes().push(d);
+    });
+  }
   delete filterHistory[id];
   update();
 });
