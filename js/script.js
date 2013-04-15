@@ -1,4 +1,4 @@
-
+var c = console.log;
 var vis;
 var data = [],
     rScale = d3.scale.sqrt().range([0, 15]),
