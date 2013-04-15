@@ -114,7 +114,9 @@ var update = function () {
     .style("fill", function (d, i) {
 
       if (mode === "sessions" | mode === "map") { 
-        return sessionsColors(d);
+        console.dir(d);
+        return "#123456"
+        //return sessionsColors(d);
       } else if (mode === "free") {
         return sessionsColors(d.sessions[0]);
       } else {
