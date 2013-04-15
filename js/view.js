@@ -38,28 +38,19 @@ var colors = {
 
 // Changes the background image
 function changeImage() {
+  var image = "";
+  var opacity = 0;
   if (mode == "schedule") {
-      d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "/img/schedule.svg")
-        .attr("opacity", 1);
-      // document.getElementById("image").src="img/schedule.svg";
+        image = "/img/schedule.svg";
+        opacity = 1;
   } else if (mode == "map") {
-      d3.select("body").select("svg").select("image")
-        // .attr("xlink:href", "/img/map_bg.svg")
-        .attr("xlink:href", "/img/mapLevels.png")
-        .attr("opacity", 1);
-      // document.getElementById("image").src="img/schedule.svg";
+        image = "/img/mapLevels.png";
+        opacity = 1;
   } else if (mode == "sessions") {
-      d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "/img/sessions.png")
-        .attr("opacity", 1);
-      // document.getElementById("image").src="img/schedule.svg";
-  } else {
-      d3.select("body").select("svg").select("image")
-        .attr("xlink:href", "") 
-        .attr("opacity", 0);
-
-  }
+      image = "/img/sessions.png";
+      opacity = 1;
+  } 
+  d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
 };
 
 var generateLegend = function () {
