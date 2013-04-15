@@ -67,7 +67,7 @@ var generateLegend = function () {
   _.each(colors, function(item, key) {
           items.push(_.template($("#template_legend_item").html(), {color: item.color, name: key }));
    });  // close each()
-   $(".types").html( items.join() );
+   $(".types").html( items.join("") );
 }
 
 
