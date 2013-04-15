@@ -21,6 +21,25 @@
 	
     <link href="css/chi.css" type="text/css" rel="stylesheet" />
 
+
+    <!-- Templates!! -->
+    <script type="text/template" id="template_legend_item">
+      <li class="typesClass" style="background-color: <%= color %>;"><%= name %></li>
+    </script>
+    
+    <script type="text/template" id="template_legend_item">
+      <h1 class="sessionTitle" style="display:inline-block; position:relative; top:400px; left:400px"><%= title %></h1>
+    </script>
+    
+    <script type="text/template" id="template_filter_item">
+      <li class="new_filter filter_item" id="<%= id %>">
+        <div class="remove_filter">x</div>
+        <div class="filter_name">
+          <span><%= name %></span>
+        </div>
+      </li>
+    </script>
+    <!-- end of templates -->
     </head>
 	<body>
         <div id="detail_base">
@@ -60,6 +79,5 @@
 		  <g id="our_id2"></g>
     --> 
 		</svg>
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 	</body>
 </html>

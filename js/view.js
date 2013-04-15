@@ -65,15 +65,15 @@ function changeImage() {
 var generateLegend = function () {
   var items = [];
   _.each(colors, function(item, key) {
-          items.push('<li class="typesClass" style="background-color:' + item.color + '">' + key + '</li>');
+          items.push(_.template($("#template_legend_item").html(), {color: item.color, name: key }));
    });  // close each()
-   $(".types").html( items.join('') );
+   $(".types").html( items.join() );
 }
 
 
 var generateSessionTitle = function (d) {
   console.log(" title append");
-  $("body").append($('<h1 class="sessionTitle" style="display:inline-block; position:relative; top:400px; left:400px">' + d + '</h1>'));
+  $("body").append(_.template($("#template_session_title"), {title: d}));
 }
 
 
@@ -176,8 +176,11 @@ var update = function () {
 function addFilterHistory() {
   var toppy = 30 + ($("#filter_list li").size()*60);
 
-
-  $("<li class='new_filter' id='filter_"+(filterHistory.length-1)+"' style='width: 200px; margin-top: 10px; list-style: none; height: 50px; background-color: red;  position: absolute; z-index: 100; border-radius: 10px; right: "+d3.event.clientX+"px; top: "+d3.event.clientY+"px;'><div class='remove_filter' style='float: left; height: 100%; width: 40px; padding-top: 0; font-size: 50px; font-family: Gill Sans; line-height: 0.8; color: #fff; margin-left: 12px;'>x</div><div style='font-family: arial; color: #fff; font-size: 20px; margin-top: 11px; display: block; float: left; width: 138px; height: 100%; padding-left: 10px'><span>"+filterHistory[filterHistory.length-1].name+"</span></div></li>").appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
+  var templateVariables = {
+    id: "filter_" + (filterHistory.length-1), 
+    name: filterHistory[filterHistory.length-1].name 
+  };
+  $(_.template($("#template_filter_item").html(), templateVariables)).css("right", d3.event.clientX).css("top", d3.event.clientY).appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
     $(this).appendTo($("#filter_list"));
     $(this).css("position", "static");
     $(this).css("float", "left");
