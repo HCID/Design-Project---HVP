@@ -64,7 +64,7 @@ var generateLegend = function () {
 
 var generateSessionTitle = function (d) {
   console.log(" title append");
-  $("body").append(_.template($("#template_session_title"), {title: d}));
+  $("body").append(_.template($("#template_session_title").html(), {title: d}));
 }
 
 
