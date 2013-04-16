@@ -7,6 +7,8 @@
 
     ClickHandler.circleClicked = function (circle, newMode) {
 
+      console.log("circleClicked: switch from " + mode + "  to " + newMode);
+
       if(mode == "events") {
         if(force.nodes().length < circlesThreshold) {
           View.showDetails(circle);
