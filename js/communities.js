@@ -207,7 +207,7 @@ var drawVennEuler = function (vn, gr) {
       .attr("fill", function(d, i) { return fill2(i); })
       .attr("opacity", 0.5)
       .attr("id", function(d, i) { return gr[i]; })
-      .on("mousedown", ClickHandler.vennClick)
+      .on("mousedown", ClickHandler.circleClicked)
       .attr("d", circle);
   circles.append("text")
       .attr("text-anchor", "middle")

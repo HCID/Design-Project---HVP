@@ -3,33 +3,46 @@
     function ClickHandler() {}
     /* Funtion triggered when one of the bubbles is clicked */
     ClickHandler.circleClicked = function (circle) {
-      if(mode == "free" && force.nodes().length < circlesThreshold) {
-        $("#detail_base").show();
-        $("#detail_image").html(circle.video);
-        $("#detail_title").html(circle.name);
-        $("#detail_time").html("");
-        $("#detail_thirty_words").html(circle.cbStatement);
-       // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
-        $("#detail_keywords").html(circle.keywords.join(", "));
-      } else if(mode == "schedule" || mode == "map" || mode == "sessions") {
+      if(mode == "free") {
+          $("#detail_base").show();
+          $("#detail_image").html(circle.video);
+          $("#detail_title").html(circle.name);
+          $("#detail_time").html("");
+          $("#detail_thirty_words").html(circle.cbStatement);
+         // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
+          $("#detail_keywords").html(circle.keywords.join(", "));
+      } else {
+        var oldData = [], newData = [];
         loadParallelData();
         if (mode == "schedule") {
-          var oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
-          var newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
+          oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
+          newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
           mode = "free";
         } else if (mode == "map") { 
-
-          console.log("FILTERING NOW");
           var copyPD = parallelData.slice(0);
           var sessions = groupSession(copyPD);
-          var oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
-          var newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
+          oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
+          newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
           console.dir(newData);
         } else if (mode == "sessions") {
           generateSessionTitle(circle.name);
-          var oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
-          var newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
-        } 
+          oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
+          newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
+        } else if (mode == "comm") {
+          var list = _.map($('svg g.arc').filter(function() {
+            if (pointInCirclePath($(this), d3.event)) {
+              return true;
+            }
+          }), function (el) { return el.id });
+          if (list.length > 0) {
+            if(_.contains(list, "general")) {
+              list = _.reject(list.concat(["ux", "design", "engineering"]), function (li) { return li === "general"} );
+            } 
+            oldData = _.reject(force.nodes(), function (node) { return _.intersection(node.communities, list).length === list.length } );
+            newData = _.filter(force.nodes(), function (node) { return _.intersection(node.communities, list).length === list.length } );
+            d3.selectAll("circle").attr("opacity", 1);   
+          }         
+        }
         if (oldData.length > 0) {
           filterHistory.push({name: mode, data: oldData});  
           addFilterHistory();  
@@ -53,34 +66,6 @@
       $("#detail_keywords").html("");
     }
 
-
-
-    /* Returns the circle intersection classes */
-    ClickHandler.vennClick = function (e, d, f, g) {
-
-      var array = [];
-      //TODO: FI
-      var $list = $('svg g.arc').filter(function() {
-
-        var bbox = $(this).get(0).getBBox();
-        if (pointInCirclePath($(this), d3.event)) {
-          array.push($(this).get(0).id);
-        }
-      });
-
-      if (array.length > 0) {
-        if(filterJSON(force.nodes(), "communities", array, true).length > 0) {      
-          filterHistory.push({name: "comm", data: filterJSON(force.nodes(), "communities", array, true)});
-          addFilterHistory();
-        }
-        var newData = filterJSON(force.nodes(), "communities", array);
-        mode = "free"; 
-        force.nodes(newData);
-        d3.selectAll("circle").attr("opacity", 1); 
-        update();    
-        changeImage();
-      }
-    }
 
     /* Funtion triggered when one of the menu buttons is clicked */
     ClickHandler.menuHandler = function () {
