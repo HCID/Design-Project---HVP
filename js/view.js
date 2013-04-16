@@ -161,8 +161,25 @@
       
 
     }
+    View.showDetails = function (circle) {
+      $("#detail_image").html(circle.video);
+      $("#detail_title").html(circle.name);
+      $("#detail_time").html("");
+      $("#detail_thirty_words").html(circle.cbStatement);
+     // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
+      $("#detail_keywords").html(circle.keywords.join(", "));
+      $("#detail_base").show();
+    };
 
-
+    View.hideDetails = function () {
+      $("#detail_base").hide();
+      $("#detail_image").html("");
+      $("#detail_title").html("");
+      $("#detail_time").html("");
+      $("#detail_thirty_words").html("");
+      $("#detail_authors").html("");
+      $("#detail_keywords").html("");
+    }
     View.addFilterHistory = function (filterHistory) {
       var toppy = 30 + ($("#filter_list li").size()*60);
 

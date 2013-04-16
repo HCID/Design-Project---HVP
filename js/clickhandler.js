@@ -7,13 +7,7 @@
     ClickHandler.circleClicked = function (circle) {
       if(mode == "free") {
         if(force.nodes().length < circlesThreshold) {
-          $("#detail_base").show();
-          $("#detail_image").html(circle.video);
-          $("#detail_title").html(circle.name);
-          $("#detail_time").html("");
-          $("#detail_thirty_words").html(circle.cbStatement);
-         // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
-          $("#detail_keywords").html(circle.keywords.join(", "));
+          View.showDetails(circle);
         }
       } else {
         var oldData = [], newData = [];
@@ -60,13 +54,7 @@
 
     /* closes the detail view */ 
     ClickHandler.detailCloseHandler = function () {
-      $("#detail_base").hide();
-      $("#detail_image").html("");
-      $("#detail_title").html("");
-      $("#detail_time").html("");
-      $("#detail_thirty_words").html("");
-      $("#detail_authors").html("");
-      $("#detail_keywords").html("");
+      View.hideDetails();
     }
 
 
