@@ -101,7 +101,7 @@ var update = function () {
     
     // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
     .append("circle")
-    .on("mousedown", function(d){ circleClicked(d) } )
+    .on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
     .style("fill", function (d, i) {
 
       if (mode === "sessions" | mode === "map") { 
@@ -179,7 +179,7 @@ function addFilterHistory() {
     $(this).css("left", null);
   });
 
-$(".remove_filter").on("mousedown", removeFilter );
+$(".remove_filter").on("mousedown", ClickHandler.removeFilter );
 }
 
 /* Decides the color of the session depending on the room */
