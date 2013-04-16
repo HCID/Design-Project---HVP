@@ -33,11 +33,15 @@
             }
           }), function (el) { return el.id });
           if (list.length > 0) {
-            if(_.contains(list, "general")) {
-              list = _.reject(list.concat(["ux", "design", "engineering"]), function (li) { return li === "general"} );
-            } 
-            oldData = _.reject(force.nodes(), function (node) { return _.intersection(node.communities, list).length === list.length } );
-            newData = _.filter(force.nodes(), function (node) { return _.intersection(node.communities, list).length === list.length } );
+            if(list[0] == "general") {
+              oldData = _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
+              newData = _.filter(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
+            } else {
+              console.log(list)
+              oldData = _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
+              newData = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
+              console.log(newData)
+            }            
             d3.selectAll("circle").attr("opacity", 1);   
           }         
         }
@@ -70,7 +74,7 @@
         $('.talkName').hide();
         $('.legend').hide();
         loadParallelData();
-        communities();
+        Communities.communities();
       } else if ($(this).data("grouping") == "schedule") {
         loadParallelData();
         mode = "schedule";
@@ -96,6 +100,27 @@
         force.nodes(parallelData);
         parallelData = [];
       }
+    }
+    
+    /* Tells if a point is inside a circle path or not */
+    var pointInCirclePath = function (b, p) {
+
+      var cX  = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
+      var cY  = parseFloat(b.attr("transform").split(",")[1].split(")")[0]);
+      var radius = b.get(0).getBBox().height / 2;
+      //distance between two points
+      var xs = 0;
+      var ys = 0;
+ 
+      xs = cX - p.pageX;
+      xs = xs * xs;
+ 
+      ys = cY - p.pageY;
+      ys = ys * ys;
+
+      var distance = Math.sqrt( xs + ys );
+  
+      return (distance <= radius);
     }
 
     ClickHandler.removeFilter = function () {

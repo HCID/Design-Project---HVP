@@ -104,8 +104,8 @@
 
           if (mode === "sessions" | mode === "map") { 
             console.dir(d);
-            return "#123456"
-            //return sessionsColors(d);
+            //return "#123456"
+            return sessionsColors(d);
           } else if (mode === "free") {
             return sessionsColors(d.sessions[0]);
           } else {
