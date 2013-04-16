@@ -5,7 +5,7 @@
     function ClickHandler() {}
     /* Funtion triggered when one of the bubbles is clicked */
     ClickHandler.circleClicked = function (circle) {
-      
+      /*
       if(mode == "free") {
         if(force.nodes().length < circlesThreshold) {
           View.showDetails(circle);
@@ -54,7 +54,7 @@
         force.nodes(newData);  
         View.update();          			
       } 
-      
+      */
     };
 
 

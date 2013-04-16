@@ -34,7 +34,7 @@
 
       var data = d3.select("#" + $(this).attr("id")).data()[0];
     
-
+      $(".menu_option li").data("circle-id", data.id);
     $("#outer_container").css("position", "absolute")
     
  

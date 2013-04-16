@@ -119,8 +119,23 @@
         .style("stroke", "#ffffff")
         .call(TUIOHandler.node_drag);
     	 // $("#outer_container ul.menu_option").append('<li><a href="#"><span>Nothing</span></a></li>');
-        $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
-        $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+       $("#outer_container ul.menu_option").html("");
+       if(mode == "sessions") {
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+       } else if(mode == "free") {
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="map" href="#"><span>Map</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
+       } else if(mode == "map") {
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
+       } else if(mode == "comm") {
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+       }
+        
       $('#outer_container').PieMenu({
     		'starting_angel': 0,
     		'angel_difference' : 180,
@@ -128,9 +143,13 @@
         'menu_button' : $('.circle_class'),
     	});
       
-      $(".pie_menu_link").on("mousedown", function () {
-        mode = $(this).data("mode");
-        ClickHandler.circleClicked($(this).data("mode"));
+      $("*").on("mousedown", function (e) {
+        if($(e.currentTarget).hasClass("pie_menu_link")) {
+          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data(), $(this).data("mode"));
+        } else {
+          
+        }
+       
       })
 
 
