@@ -96,47 +96,23 @@
       var nodeEnterG = nodes.enter().append("g");
       nodeEnterG.attr("id", function(d, i){return "g" + d.id})
         .attr("class", "circle_class")
-  
-        // .call(d3.behavior.zoom().x(x).y(y).scaleExtent([1,8]).on("zoom",zoom))
         .append("circle")
         .on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
         .style("fill", function (d, i) {
-
-         if (mode === "sessions" | mode === "map") { 
-        console.log("room? " + d.room);
-        return View.sessionsColors(d);
-      } else if (mode === "free") {
-        return View.sessionsColors(d.sessions[0]);
-      }  else {
-        return "#123456";
-      }
-
-          // else if (mode !== "free") {
-          //   return fill(d.types[0]);
-          // } else {
-          //   return fill(d["type"] );
-          // }
-    
+           if (mode === "sessions" | mode === "map") { 
+             console.log("room? " + d.room);
+             return View.sessionsColors(d);
+           } else if (mode === "free") {
+             return View.sessionsColors(d.sessions[0]);
+           }  else {
+             return "#123456";
+           }
         })
         .style("stroke-width", 1)
         .style("stroke", "#ffffff")
         .call(TUIOHandler.node_drag);
 
         console.log("force.nodes().length: " + force.nodes().length);
-        // if(force.nodes().length < 11){
-        //   nodeEnterG.append("text")
-        //     .attr("class", "talkName")
-        //     .text(function(d) { 
-        //       if(d.name!=undefined){
-        //         console.log(d.namex    //         var words = d.name.split(" ");
-        //         var displayName =  words[0] + " " + words[1] + " " + words[2] + " " + words[3] + "...";
-          
-        //         console.log(displayName);
-        //         return  displayName;
-        //       }
-        
-        //     });
-        // }
 
         nodeEnterG.append("text")
           .attr("class", "talkName")
@@ -199,7 +175,7 @@
     }
 
     /* Decides the color of the session depending on the room */
-    var sessionsColors = function (d) {
+    View.sessionsColors = function (d) {
       if (d.room === "undefined") return "#ffffff";
       return _.find(colors, function(color) { return _.contains(color.rooms, d.room) }).color
     }
