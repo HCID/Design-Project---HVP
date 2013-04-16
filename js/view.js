@@ -121,19 +121,21 @@
     	 // $("#outer_container ul.menu_option").append('<li><a href="#"><span>Nothing</span></a></li>');
        $("#outer_container ul.menu_option").html("");
        if(mode == "sessions") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_free" data-mode="free" href="#"><span>Events</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_map" data-mode="map" href="#"><span>Map</span></a></li>');
        } else if(mode == "free") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="map" href="#"><span>Map</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_map" data-mode="map" href="#"><span>Map</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_sessions" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
        } else if(mode == "map") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_free" data-mode="free" href="#"><span>Events</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_sessions" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
        } else if(mode == "comm") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_free" data-mode="free" href="#"><span>Events</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
+         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_map" data-mode="map" href="#"><span>Map</span></a></li>');
        }
         
       $('#outer_container').PieMenu({
