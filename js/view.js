@@ -118,14 +118,21 @@
         .style("stroke-width", 1)
         .style("stroke", "#ffffff")
         .call(TUIOHandler.node_drag);
-    	
-      	
+    	 // $("#outer_container ul.menu_option").append('<li><a href="#"><span>Nothing</span></a></li>');
+        $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="free" href="#"><span>Events</span></a></li>');
+        $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link" data-mode="comm" href="#"><span>Communities</span></a></li>');
       $('#outer_container').PieMenu({
     		'starting_angel': 0,
-    		'angel_difference' : 360,
-    		'radius': 40,      
+    		'angel_difference' : 180,
+    		'radius': 60,      
         'menu_button' : $('.circle_class'),
     	});
+      
+      $(".pie_menu_link").on("mousedown", function () {
+        mode = $(this).data("mode");
+        ClickHandler.circleClicked($(this).data("mode"));
+      })
+
 
         console.log("force.nodes().length: " + force.nodes().length);
 
