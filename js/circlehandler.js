@@ -442,7 +442,7 @@ var tick = function(e) {
 
       });
       // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
+      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
 
       getSchedulePosition(k);
 
@@ -452,7 +452,7 @@ var tick = function(e) {
 
       });
       // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
+      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
      
       force.nodes().forEach(function(o, i) {
         o.y += (fociFree[0].y - o.y) * k;
@@ -467,7 +467,7 @@ var tick = function(e) {
 
       });
       // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
+      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
       getMapPosition(k);
     } else if (mode === "sessions") {
       force.nodes().forEach(function(d) { 
@@ -475,7 +475,7 @@ var tick = function(e) {
 
       });
       // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", calculateR).each(function(d) { d.radius = calculateR(d) } );
+      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
       getSessionPosition(k);
     }
   }

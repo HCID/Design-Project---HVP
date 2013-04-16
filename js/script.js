@@ -28,13 +28,12 @@ var main = function (fociUsed) {
     force.nodes(array);
   }
   
-  update();
-  generateLegend();
+  View.update();
+  View.generateLegend();
 };
       
 // Restarts the data 
 var restart = function() {
-  filterHistory = [];
   $("#filter_list li").remove();
   mode = "free";
   parallelData = [];

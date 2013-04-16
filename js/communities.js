@@ -48,7 +48,7 @@ var communities = function() {
   })
 
   var commNodes = createCommNodesArray(gComs);
-
+  View.changeImage();
 }
 
 

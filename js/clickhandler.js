@@ -1,9 +1,12 @@
 (function() {
   window.ClickHandler = (function() {
+    var circlesThreshold = 30;
+    var filterHistory = [];
     function ClickHandler() {}
     /* Funtion triggered when one of the bubbles is clicked */
     ClickHandler.circleClicked = function (circle) {
       if(mode == "free") {
+        if(force.nodes().length < circlesThreshold) {
           $("#detail_base").show();
           $("#detail_image").html(circle.video);
           $("#detail_title").html(circle.name);
@@ -11,6 +14,7 @@
           $("#detail_thirty_words").html(circle.cbStatement);
          // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
           $("#detail_keywords").html(circle.keywords.join(", "));
+        }
       } else {
         var oldData = [], newData = [];
         loadParallelData();
@@ -25,7 +29,7 @@
           newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
           console.dir(newData);
         } else if (mode == "sessions") {
-          generateSessionTitle(circle.name);
+          View.generateSessionTitle(circle.name);
           oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
           newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
         } else if (mode == "comm") {
@@ -45,12 +49,11 @@
         }
         if (oldData.length > 0) {
           filterHistory.push({name: mode, data: oldData});  
-          addFilterHistory();  
+          View.addFilterHistory(filterHistory);  
         }  
         mode = "free";
         force.nodes(newData);  
-        update();    
-        changeImage();
+        View.update();        
       } 
     }
 
@@ -89,6 +92,7 @@
         mode = "map";
         main();
       } else if($(this).data("grouping") == "restart"){
+        filterHistory = [];
         restart();
       } else if($(this).data("grouping") == "sessions"){
         $('.legend').hide();
@@ -96,12 +100,10 @@
         mode = "sessions";
         main();
       }
-      changeImage();
     };
 
     /* Load */
     var loadParallelData = function () {
-
       if (parallelData.length > 0) {
         force.nodes(parallelData);
         parallelData = [];
@@ -117,7 +119,7 @@
         });
       }
       delete filterHistory[id];
-      update();
+      View.update();
     };
   return ClickHandler;
   })();
