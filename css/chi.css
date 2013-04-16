@@ -16,6 +16,13 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   font-family: "GillSans-Light", "Verdana";
 }
 
+.imgButton {
+  display:inline-block;
+  width:100px;
+  height:100px;
+  margin: 2px 2px 2px 2px;
+}
+
 .size_button {
 	display:inline-block;
 	width:100px;
