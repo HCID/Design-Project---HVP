@@ -148,6 +148,7 @@
       // TODO: move menu when circle moves
       // TODO: add circle code
       // TODO: add icons
+      // TODO: animate disappearance
       
       $("*").on("mousedown", function (e) {
         if($(e.currentTarget).hasClass("pie_menu_link")) {
