@@ -143,6 +143,10 @@
         'menu_button' : $('.circle_class'),
     	});
       
+      // TODO: move menu when circle moves
+      // TODO: add circle code
+      // TODO: add icons
+      
       $("*").on("mousedown", function (e) {
         if($(e.currentTarget).hasClass("pie_menu_link")) {
           ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data(), $(this).data("mode"));
