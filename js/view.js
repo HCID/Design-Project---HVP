@@ -102,15 +102,15 @@
         .on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
         .style("fill", function (d, i) {
 
-          if (mode === "sessions" | mode === "map") { 
-            console.dir(d);
-            //return "#123456"
-            return sessionsColors(d);
-          } else if (mode === "free") {
-            return sessionsColors(d.sessions[0]);
-          } else {
-            return "#123456";
-          }
+         if (mode === "sessions" | mode === "map") { 
+        console.log("room? " + d.room);
+        return View.sessionsColors(d);
+      } else if (mode === "free") {
+        return View.sessionsColors(d.sessions[0]);
+      }  else {
+        return "#123456";
+      }
+
           // else if (mode !== "free") {
           //   return fill(d.types[0]);
           // } else {
