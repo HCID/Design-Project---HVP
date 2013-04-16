@@ -3,7 +3,7 @@ var data = [],
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
     fill2 = d3.scale.category10(),
-    mode = "free";
+    mode = "sessions";
 var force = d3.layout.force()
       .links([])
       .gravity(0)
@@ -35,7 +35,7 @@ var main = function (fociUsed) {
 // Restarts the data 
 var restart = function() {
   $("#filter_list li").remove();
-  mode = "free";
+  mode = "sessions";
   parallelData = [];
   force.nodes(data);
   main();
@@ -59,4 +59,5 @@ $(document).ready(function() {
     rScale.domain([0, maxDomainValue]);
     restart();
   });
+  
 });

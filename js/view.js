@@ -88,6 +88,8 @@
       } 
 
     }
+    
+    
 
 
     View.update = function () {
@@ -99,11 +101,16 @@
         .append("circle")
         .on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
         .style("fill", function (d, i) {
-           if (mode === "sessions" | mode === "map") { 
+           if (mode === "sessions" || mode === "map") { 
              console.log("room? " + d.room);
              return View.sessionsColors(d);
            } else if (mode === "free") {
-             return View.sessionsColors(d.sessions[0]);
+             if(d.sessions) {
+                 return View.sessionsColors(d.sessions[0]);
+             } else {
+               return View.sessionsColors(d);
+             }
+             
            }  else {
              return "#123456";
            }
@@ -111,6 +118,14 @@
         .style("stroke-width", 1)
         .style("stroke", "#ffffff")
         .call(TUIOHandler.node_drag);
+    	
+      	
+      $('#outer_container').PieMenu({
+    		'starting_angel': 0,
+    		'angel_difference' : 360,
+    		'radius': 40,      
+        'menu_button' : $('.circle_class'),
+    	});
 
         console.log("force.nodes().length: " + force.nodes().length);
 

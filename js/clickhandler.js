@@ -5,6 +5,7 @@
     function ClickHandler() {}
     /* Funtion triggered when one of the bubbles is clicked */
     ClickHandler.circleClicked = function (circle) {
+      /*
       if(mode == "free") {
         if(force.nodes().length < circlesThreshold) {
           View.showDetails(circle);
@@ -15,17 +16,15 @@
         if (mode == "schedule") {
           oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
           newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
-          mode = "free";
         } else if (mode == "map") { 
           var copyPD = parallelData.slice(0);
           var sessions = groupSession(copyPD);
           oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
           newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
-          console.dir(newData);
         } else if (mode == "sessions") {
           View.generateSessionTitle(circle.name);
           oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
-          newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })  
+          newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
         } else if (mode == "comm") {
           var list = _.map($('svg g.arc').filter(function() {
             if (pointInCirclePath($(this), d3.event)) {
@@ -37,10 +36,8 @@
               oldData = _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
               newData = _.filter(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
             } else {
-              console.log(list)
               oldData = _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
               newData = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
-              console.log(newData)
             }            
             d3.selectAll("circle").attr("opacity", 1);   
           }         
@@ -49,11 +46,16 @@
           filterHistory.push({name: mode, data: oldData});  
           View.addFilterHistory(filterHistory);  
         }  
-        mode = "free";
+        if (mode !== "sessions") {
+          mode = "free";
+        } else {
+          mode = "sessions";
+        }        
         force.nodes(newData);  
-        View.update();        
+        View.update();          			
       } 
-    }
+      */
+    };
 
 
     /* closes the detail view */ 
@@ -132,7 +134,7 @@
         });
       }
       delete filterHistory[id];
-      View.update();
+      View.update();          
     };
   return ClickHandler;
   })();
