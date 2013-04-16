@@ -4,32 +4,35 @@
     var filterHistory = [];
     function ClickHandler() {}
     /* Funtion triggered when one of the bubbles is clicked */
-    ClickHandler.circleClicked = function (circle) {
-      /*
-      if(mode == "free") {
+
+    ClickHandler.circleClicked = function (circle, newMode) {
+
+      if(mode == "events") {
         if(force.nodes().length < circlesThreshold) {
           View.showDetails(circle);
         }
       } else {
-        var oldData = [], newData = [];
-        loadParallelData();
-        if (mode == "schedule") {
-          oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
-          newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
-        } else if (mode == "map") { 
-          var copyPD = parallelData.slice(0);
-          var sessions = groupSession(copyPD);
-          oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
-          newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
-        } else if (mode == "sessions") {
-          View.generateSessionTitle(circle.name);
-          oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
-          newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
-        } else if (mode == "comm") {
-          var list = _.map($('svg g.arc').filter(function() {
-            if (pointInCirclePath($(this), d3.event)) {
-              return true;
-            }
+      var oldData = [], newData = [];
+      loadParallelData();
+      if (mode == "schedule") {
+        oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
+        newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
+      } else if (mode == "map") { 
+        var copyPD = parallelData.slice(0);
+        var sessions = groupSession(copyPD);
+        oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
+        newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
+      
+      } else if (mode == "sessions") {
+        View.generateSessionTitle(circle.name);
+        oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
+        newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
+      
+      } else if (mode == "comm") {
+        var list = _.map($('svg g.arc').filter(function() {
+          if (pointInCirclePath($(this), d3.event)) {
+            return true;
+          }
           }), function (el) { return el.id });
           if (list.length > 0) {
             if(list[0] == "general") {
@@ -42,19 +45,14 @@
             d3.selectAll("circle").attr("opacity", 1);   
           }         
         }
+        mode = newMode;
         if (oldData.length > 0) {
           filterHistory.push({name: mode, data: oldData});  
           View.addFilterHistory(filterHistory);  
-        }  
-        if (mode !== "sessions") {
-          mode = "free";
-        } else {
-          mode = "sessions";
         }        
         force.nodes(newData);  
         View.update();          			
       } 
-      */
     };
 
 

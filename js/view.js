@@ -101,21 +101,30 @@
         .append("circle")
         .on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
         .style("fill", function (d, i) {
-           if (mode === "sessions" || mode === "map") { 
-             console.log("room? " + d.room);
-             return View.sessionsColors(d);
-           } else if (mode === "free") {
+           if (mode === "events") { 
              if(d.sessions) {
                  return View.sessionsColors(d.sessions[0]);
              } else {
                return View.sessionsColors(d);
              }
-             
-           }  else {
-             return "#123456";
-           }
+           } else{
+               return View.sessionsColors(d);
+             }
         })
-        .style("stroke-width", 1)
+        .style("stroke-width", function (d, i) {
+          if (mode === "events") { 
+              return 1;
+          } else{
+              return 0;
+          }
+        })
+        .style("opacity", function(){
+          if (mode === "events") { 
+              return 1.0;
+          } else{
+              return 0.5;
+          }
+        })
         .style("stroke", "#ffffff")
         .call(TUIOHandler.node_drag);
     	 // $("#outer_container ul.menu_option").append('<li><a href="#"><span>Nothing</span></a></li>');
