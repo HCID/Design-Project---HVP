@@ -28,7 +28,7 @@
 		});
 	}
 	
-	$(settings.menu_button).unbind('click', clickHandler);	//remove event if exist
+	$(settings.menu_button).unbind('mousedown', clickHandler);	//remove event if exist
 	
 	var clickHandler = function(e) {
     $("#outer_container").show();
@@ -57,7 +57,7 @@
 		$(this).toggleClass("btn-rotate");
 	};
 
-	$(settings.menu_button).bind('click', clickHandler);
+	$(settings.menu_button).bind('mousedown', clickHandler);
 
 	return settings.menu_element.each(function(i,ele){
 		ele_angle[i] = (parseInt(settings.starting_angel) + angle*(i))*Math.PI/180;
