@@ -132,7 +132,7 @@
       $('#outer_container').PieMenu({
     		'starting_angel': 0,
     		'angel_difference' : 180,
-    		'radius': 60,      
+    		'radius': 200,      
         'menu_button' : $('.circle_class'),
     	});
       
@@ -173,18 +173,22 @@
 
     View.addPieMenuOptions = function(theMode) {
       $("#outer_container ul.menu_option").html("");
-       if(theMode != "sessions") {
+       if(theMode !== "sessions") {
+        console.log("addPieMenuOptions sessions")
          $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", image: "img/sessionsPM.png" }));
        }
-       if(theMode != "events") {
+       if(theMode !== "events") {
+         console.log("addPieMenuOptions events")
          $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", image: "img/talkPM.png" }));
        } else {
          //$("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", image: "img/talkPM.png" }));
        }
-       if(theMode != "map") {
+       if(theMode !== "map") {
+        console.log("addPieMenuOptions map")
          $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", image: "img/mapPM.png" }));
        }
-       if(theMode != "comm") {
+       if(theMode !== "comm") {
+        console.log("addPieMenuOptions comm")
          $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", image: "img/commsPM.png" }));
        }
     }

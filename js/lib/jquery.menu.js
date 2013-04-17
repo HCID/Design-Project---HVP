@@ -28,23 +28,40 @@
 		});
 	}
 	
+
+
+	var currentD3Ev = null;
 	$(settings.menu_button).unbind('mousedown', clickHandler);	//remove event if exist
 	
 	var clickHandler = function(e, f) {
-		console.log("asda", e);
-		console.log("asda", f);
-    $("#outer_container").show();
-      var data = d3.select("#" + $(this).attr("id")).data()[0];
+		
+		$("#outer_container").css("position", "absolute")
+		console.log("currentD3Ev mode", mode);
+		// console.log("currentD3Ev f", f);
+
+		if (mode === "comm") {
+			currentD3Ev = f;
+			$("#outer_container")
+				.css("left", f.x+"px")
+      			.css("top",  f.y+"px")
+
+		} else {
+      		var data = d3.select("#" + $(this).attr("id")).data()[0];
+  			$(".menu_option li").data("circle-id", data.id);
+			$("#outer_container")
+				.css("left", ( data.x-data.radius+8)+"px")
+      			.css("top", ( data.y+data.radius+8)+"px")
+      		$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );
+		}
+
+    	e.stopPropagation();
     
-      $(".menu_option li").data("circle-id", data.id);
-    $("#outer_container").css("position", "absolute")
     
- 
-      .css("left", ( data.x-data.radius+8)+"px")
-      .css("top", ( data.y+data.radius+8)+"px")
+
+
       
       
-      $(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code )
+      $("#outer_container").show();
             
     if($(this).parent().hasClass('active')){
 			setPosition(0);
@@ -59,9 +76,10 @@
 		$(this).toggleClass("btn-rotate");
 	};
 	 $("*").on("mousedown", function (e) {
+	 
         if($(e.currentTarget).hasClass("pie_menu_link")) {
           console.log("mmmmmmod", $(this).data("mode"))
-          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"));
+          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"), currentD3Ev);
           $("#outer_container").hide();
         } else {
           
@@ -72,7 +90,7 @@
 
 
 	$(settings.menu_button).on('mousedown', clickHandler);
-	$("*").on('communitiesClick', clickHandler);
+	$("#outer_container").on('communitiesClick', clickHandler);
 	return settings.menu_element.each(function(i,ele){
 		ele_angle[i] = (parseInt(settings.starting_angel) + angle*(i))*Math.PI/180;
 		 x_pos[i] = (settings.radius * Math.sin(ele_angle[i]));

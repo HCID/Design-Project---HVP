@@ -5,7 +5,7 @@
     function ClickHandler() {}
     /* Funtion triggered when one of the bubbles is clicked */
 
-    ClickHandler.circleClicked = function (circle, newMode) {
+    ClickHandler.circleClicked = function (circle, newMode, d3event) {
 
       console.log("circleClicked: switch from " + mode + "  to " + newMode);
       if(mode == "events") {
@@ -32,7 +32,7 @@
       
       } else if (mode == "comm") {
         var list = _.map($('svg g.arc').filter(function() {
-          if (pointInCirclePath($(this), d3.event)) {
+          if (pointInCirclePath($(this), d3event)) {
             return true;
           }
           }), function (el) { return el.id });
