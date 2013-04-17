@@ -195,7 +195,7 @@
 
       vis = d3.select("body").select("svg")
         .data([vn])
-          .attr("width", width).attr("height", height);
+          .attr("width", Globals.width).attr("height", Globals.height);
 
       var vennSpace = 100;
 

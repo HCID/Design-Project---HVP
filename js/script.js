@@ -9,21 +9,21 @@ var force = d3.layout.force()
       .gravity(0)
       .size([Globals.width, Globals.height])
       .charge(0)
-      .on("tick", tick);
+      .on("tick", CircleHandler.tick);
 
 var main = function (fociUsed) {
 
   vis = d3.select("body").select("svg");
   if (Globals.mode === "schedule") {
-    var array = groupSchedule();
+    var array = CircleHandler.groupSchedule();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
   } else if (Globals.mode === "map") {
-    var array = groupMap();
+    var array = CircleHandler.groupMap();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
   } else if (Globals.mode === "sessions") {
-    var array = groupSession();
+    var array = CircleHandler.groupSession();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
   }

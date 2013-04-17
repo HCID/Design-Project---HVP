@@ -1,388 +1,392 @@
+(function() {
+  window.CircleHandler = (function() {
+	
+	function CircleHandler() {}
+	/* Schedule element object */
+	function Sch (day, time, id) {
+	    this.day = day;
+	    this.starTime = time;
+	    this.amount = 1;
+	    this.types = [];
+	    this.id = "s" + id;
+	    this.radius = 20;
+	}
 
+	/* Map element object */
+	function MapElt (room, id) {
+	    this.room = room;
+	    this.amount = 1;
+	    this.id = "m" + id;
+	    this.radius = 20;
+	}
 
+	/* Session element object */
+	function SessElt (obj) {
+	    this.id = obj.id;
+	    this.name = obj.name;
+	    this.code = obj.code;
+	    this.day = obj.day;
+	    this.starTime = obj.starTime;
+	    this.endTime = obj.endTime;
+	    this.room = obj.room;
+	    this.amount = 1;
+	}
 
-/* Schedule element object */
-function Sch (day, time, id) {
-    this.day = day;
-    this.starTime = time;
-    this.amount = 1;
-    this.types = [];
-    this.id = "s" + id;
-    this.radius = 20;
-}
+	/* Sets the tick behaviour for each mode*/
+	CircleHandler.tick = function(e) {
+	  console.log("mode", Globals.mode);
+	  _.each(force.nodes(), function(d) {
+	    if(d.y <= 0) {
+	      d.y += 1;
+	    }
+	    if(d.y >= Globals.height) {
+	      d.y -= 1;
+	    }
+	    if(d.x <= 0) {
+	      d.x += 1;
+	    }
+	    if(d.x >= Globals.width) {
+	      d.x -= 1;
+	    }
+	  })
 
-/* Map element object */
-function MapElt (room, id) {
-    this.room = room;
-    this.amount = 1;
-    this.id = "m" + id;
-    this.radius = 20;
-}
+	  if(e !== undefined) {
+	        // Push nodes toward their designated focus.
+	    var k = .1 * e.alpha;
 
-/* Session element object */
-function SessElt (obj) {
-    this.id = obj.id;
-    this.name = obj.name;
-    this.code = obj.code;
-    this.day = obj.day;
-    this.starTime = obj.starTime;
-    this.endTime = obj.endTime;
-    this.room = obj.room;
-    this.amount = 1;
-}
+	    if (Globals.mode == "schedule") {
+	      force.nodes().forEach(function(d) { 
+	        d.r = 40;
 
-/* Sets the tick behaviour for each mode*/
-var tick = function(e) {
-  console.log("mode", Globals.mode);
-  nodes.each(function(d) {
-    if(d.y <= 0) {
-      d.y += 1;
-    }
-    if(d.y >= Globals.height) {
-      d.y -= 1;
-    }
-    if(d.x <= 0) {
-      d.x += 1;
-    }
-    if(d.x >= Globals.width) {
-      d.x -= 1;
-    }
-  })
+	      });
+	      // vis.selectAll("circle").attr("r", d.radius);
+	      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
 
-  if(e !== undefined) {
-        // Push nodes toward their designated focus.
-    var k = .1 * e.alpha;
+	      getSchedulePosition(k);
 
-    if (Globals.mode == "schedule") {
-      force.nodes().forEach(function(d) { 
-        d.r = 40;
+	    } else if (Globals.mode == "events") {
+	      force.nodes().forEach(function(d) { 
+	        d.r = 100;
 
-      });
-      // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
-
-      getSchedulePosition(k);
-
-    } else if (Globals.mode == "events") {
-      force.nodes().forEach(function(d) { 
-        d.r = 100;
-
-      });
-      // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
+	      });
+	      // vis.selectAll("circle").attr("r", d.radius);
+	      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
      
-      force.nodes().forEach(function(o, i) {
-        o.y += (fociFree[0].y - o.y) * k;
-        o.x += (fociFree[0].x - o.x) * k;        
-      });
+	      force.nodes().forEach(function(o, i) {
+	        o.y += (fociFree[0].y - o.y) * k;
+	        o.x += (fociFree[0].x - o.x) * k;        
+	      });
 
-      force.nodes().forEach(collide(0.2));
+	      force.nodes().forEach(collide(0.2));
       
-    } else if (Globals.mode == "map") {
-      force.nodes().forEach(function(d) { 
-        d.r = 20;
+	    } else if (Globals.mode == "map") {
+	      force.nodes().forEach(function(d) { 
+	        d.r = 20;
 
-      });
-      // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
-      getMapPosition(k);
-    } else if (Globals.mode === "sessions") {
-      force.nodes().forEach(function(d) { 
-        d.r = 20;
+	      });
+	      // vis.selectAll("circle").attr("r", d.radius);
+	      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
+	      getMapPosition(k);
+	    } else if (Globals.mode === "sessions") {
+	      force.nodes().forEach(function(d) { 
+	        d.r = 20;
 
-      });
-      // vis.selectAll("circle").attr("r", d.radius);
-      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
-      getSessionPosition(k);
-    } 
-  }
+	      });
+	      // vis.selectAll("circle").attr("r", d.radius);
+	      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
+	      getSessionPosition(k);
+	    } 
+	  }
 
 
-    d3.selectAll("g").attr("transform", function(d) {
-      return "translate(" + d.x + "," + d.y + ")";});
-};
-var nodes;
+	    d3.selectAll("g").attr("transform", function(d) {
+	      return "translate(" + d.x + "," + d.y + ")";});
+	};
+	
 
-var toggleVisibility = function(force, key, value){
-    force.selectAll("g").attr("visibility", function(d) {
-      return d[key] === value ? "visible" : "hidden";
-  });
-}
+	var toggleVisibility = function(force, key, value){
+	    force.selectAll("g").attr("visibility", function(d) {
+	      return d[key] === value ? "visible" : "hidden";
+	  });
+	}
 
-/* Sets the position of each element in the schedule view*/
-var getSchedulePosition = function (k) { 
-  //calculate index
-    force.nodes().forEach(function(o, i) {
-      // undefined talks will end up in the 16th 
-      var index = schIndex(o);
+	/* Sets the position of each element in the schedule view*/
+	var getSchedulePosition = function (k) { 
+	  //calculate index
+	    force.nodes().forEach(function(o, i) {
+	      // undefined talks will end up in the 16th 
+	      var index = schIndex(o);
 
-      o.y += (Globals.fociSchedule[index].y - o.y) * k;
-      o.x += (Globals.fociSchedule[index].x - o.x) * k;
+	      o.y += (Globals.fociSchedule[index].y - o.y) * k;
+	      o.x += (Globals.fociSchedule[index].x - o.x) * k;
       
-    });
-}
+	    });
+	}
 
-/* Sets the position of each element in the map view*/
-var getMapPosition = function (k) { 
-  force.nodes().forEach(function(o, i) {
-    if(Globals.fociMap[o["room"]]!== undefined){
-      o.y += (Globals.fociMap[o["room"]].y - o.y) * k;
-      o.x += (Globals.fociMap[o["room"]].x - o.x) * k;
-    } else{
-      o.y += (Globals.fociMap["undefined"].y - o.y) * k;
-      o.x += (Globals.fociMap["undefined"].x - o.x) * k;
-    }
-  });
-}
+	/* Sets the position of each element in the map view*/
+	var getMapPosition = function (k) { 
+	  force.nodes().forEach(function(o, i) {
+	    if(Globals.fociMap[o["room"]]!== undefined){
+	      o.y += (Globals.fociMap[o["room"]].y - o.y) * k;
+	      o.x += (Globals.fociMap[o["room"]].x - o.x) * k;
+	    } else{
+	      o.y += (Globals.fociMap["undefined"].y - o.y) * k;
+	      o.x += (Globals.fociMap["undefined"].x - o.x) * k;
+	    }
+	  });
+	}
 
-/* Sets the position of each element in the map view*/
-var getSessionPosition = function (k) { 
+	/* Sets the position of each element in the map view*/
+	var getSessionPosition = function (k) { 
 
-  force.nodes().forEach(function(o, i) {
+	  force.nodes().forEach(function(o, i) {
 
-    if (o["room"] === undefined) {
-      o.y += (Globals.fociSession["undefined"].y - o.y) * k;
-      o.x += (Globals.fociSession["undefined"].x - o.x) * k;
-    } else {
-      var str = o["day"].toLowerCase() + " " + o["starTime"] + " " + o["room"];
+	    if (o["room"] === undefined) {
+	      o.y += (Globals.fociSession["undefined"].y - o.y) * k;
+	      o.x += (Globals.fociSession["undefined"].x - o.x) * k;
+	    } else {
+	      var str = o["day"].toLowerCase() + " " + o["starTime"] + " " + o["room"];
 
-      if(Globals.fociSession[str]!== undefined){
-        o.y += (Globals.fociSession[str].y - o.y) * k;
-        o.x += (Globals.fociSession[str].x - o.x) * k;
-      } else{
-        o.y += (Globals.fociSession["undefined"].y - o.y) * k;
-        o.x += (Globals.fociSession["undefined"].x - o.x) * k;
-      }
-    }
-  });
-}
+	      if(Globals.fociSession[str]!== undefined){
+	        o.y += (Globals.fociSession[str].y - o.y) * k;
+	        o.x += (Globals.fociSession[str].x - o.x) * k;
+	      } else{
+	        o.y += (Globals.fociSession["undefined"].y - o.y) * k;
+	        o.x += (Globals.fociSession["undefined"].x - o.x) * k;
+	      }
+	    }
+	  });
+	}
 
-var collisionPadding = 5;
+	var collisionPadding = 5;
 
-/* Determines how elements should collide
- */
-function collide(jitter) {
-  return function(d) {
-    return data.forEach(function(d2) {
-      var distance, minDistance, moveX, moveY, x, y;
-      if (d !== d2) {
-        x = d.x - d2.x;
-        y = d.y - d2.y;
-        distance = Math.sqrt(x * x + y * y);
-        minDistance = d.radius + d2.radius + collisionPadding;
-        if (distance < minDistance) {
-          distance = (distance - minDistance) / distance * jitter;
-          moveX = x * distance;
-          moveY = y * distance;
-          d.x -= moveX;
-          d.y -= moveY;
-          d2.x += moveX;
-          return d2.y += moveY;
-        }
-      }
-    });
-  };
-}
+	/* Determines how elements should collide
+	 */
+	function collide(jitter) {
+	  return function(d) {
+	    return data.forEach(function(d2) {
+	      var distance, minDistance, moveX, moveY, x, y;
+	      if (d !== d2) {
+	        x = d.x - d2.x;
+	        y = d.y - d2.y;
+	        distance = Math.sqrt(x * x + y * y);
+	        minDistance = d.radius + d2.radius + collisionPadding;
+	        if (distance < minDistance) {
+	          distance = (distance - minDistance) / distance * jitter;
+	          moveX = x * distance;
+	          moveY = y * distance;
+	          d.x -= moveX;
+	          d.y -= moveY;
+	          d2.x += moveX;
+	          return d2.y += moveY;
+	        }
+	      }
+	    });
+	  };
+	}
 
-//Gruops by schedule, day-time, to create later concentric circles in the schedule view
-var groupSchedule = function () {
+	//Gruops by schedule, day-time, to create later concentric circles in the schedule view
+	CircleHandler.groupSchedule = function () {
 
-  var auxArray = [];
-  var auxArray2 = [];
+	  var auxArray = [];
+	  var auxArray2 = [];
 
-  var id = 0;
-  var id2 = 0;
+	  var id = 0;
+	  var id2 = 0;
 
-  force.nodes().forEach (function(o, i) {
+	  force.nodes().forEach (function(o, i) {
 
-    var create = true;
-    if (auxArray.length > 0) {
-      var index = indexInSchArray(auxArray, o);
-      create = (index < 0);
-    }
+	    var create = true;
+	    if (auxArray.length > 0) {
+	      var index = indexInSchArray(auxArray, o);
+	      create = (index < 0);
+	    }
 
-    if (create) {
-      var sch = new Sch(o.day, o.starTime, id);
-      sch.types.push(o.type);
-      id++;
-      auxArray.push(sch);
-    } else {
-      auxArray[index].amount += 1;
-      var indexType = auxArray[index].types.indexOf(o.type);
-      if (indexType < 0) auxArray[index].types.push(o.type);
-    }
-  });
+	    if (create) {
+	      var sch = new Sch(o.day, o.starTime, id);
+	      sch.types.push(o.type);
+	      id++;
+	      auxArray.push(sch);
+	    } else {
+	      auxArray[index].amount += 1;
+	      var indexType = auxArray[index].types.indexOf(o.type);
+	      if (indexType < 0) auxArray[index].types.push(o.type);
+	    }
+	  });
   
-  // Creates all the entries in the array to have concentric circles
-  auxArray.forEach(function(o, i) {
-    var radius = 20;
+	  // Creates all the entries in the array to have concentric circles
+	  auxArray.forEach(function(o, i) {
+	    var radius = 20;
 
-    if (o.types.length == 0) {
-      var sch = new Sch(o.day, o.starTime, id2);
-      sch.radius = radius;
-      sch.types.push(o.type);
-      radius += 10;
-      id2++;
-      auxArray2.push(sch);
-    } else {
-      o.types.forEach(function(u,j) {
-      var sch = new Sch(o.day, o.starTime, id2);
-        sch.types.push(o.types[j]);
-        sch.radius = radius;
-        radius += 10;
-        id2++;
-        auxArray2.push(sch);
-      });
-    }
+	    if (o.types.length == 0) {
+	      var sch = new Sch(o.day, o.starTime, id2);
+	      sch.radius = radius;
+	      sch.types.push(o.type);
+	      radius += 10;
+	      id2++;
+	      auxArray2.push(sch);
+	    } else {
+	      o.types.forEach(function(u,j) {
+	      var sch = new Sch(o.day, o.starTime, id2);
+	        sch.types.push(o.types[j]);
+	        sch.radius = radius;
+	        radius += 10;
+	        id2++;
+	        auxArray2.push(sch);
+	      });
+	    }
 
-  });
+	  });
 
-  return auxArray2.reverse();
-}
+	  return auxArray2.reverse();
+	}
 
-// Returns the index position of a data element in the schedule view
-var schIndex = function (o) {
+	// Returns the index position of a data element in the schedule view
+	var schIndex = function (o) {
 
-  var index = 16;
-  if(o["day"] === "Monday"){
-    if(o["starTime"] ==="9:00"){
-        index = 0;
-    } else if(o["starTime"] ==="11:00"){
-        index = 4;
-    } else if(o["starTime"] ==="14:00"){
-        index = 8;
-    } else{
-        index = 12;
-    }
-  } else if(o["day"] === "Tuesday"){
-    if(o["starTime"] ==="9:00"){
-        index = 1;
-    } else if(o["starTime"] ==="11:00"){
-        index = 5;
-    } else if(o["starTime"] ==="14:00"){
-        index = 9;
-    } else{
-        index = 13;
-    }
-  } else if(o["day"] === "Wednesday"){
-    if(o["starTime"] ==="9:00"){
-        index = 2;
-    } else if(o["starTime"] ==="11:00"){
-        index = 6;
-    } else if(o["starTime"] ==="14:00"){
-        index = 10;
-    } else{
-        index = 14;
-    }
-  } else if(o["day"] === "Thursday"){
-    if(o["starTime"] ==="9:00"){
-        index = 3;
-    } else if(o["starTime"] ==="11:00"){
-        index = 7;
-    } else if(o["starTime"] ==="14:00"){
-        index = 11;
-    } else{
-        index = 15;
-    }
-  }
+	  var index = 16;
+	  if(o["day"] === "Monday"){
+	    if(o["starTime"] ==="9:00"){
+	        index = 0;
+	    } else if(o["starTime"] ==="11:00"){
+	        index = 4;
+	    } else if(o["starTime"] ==="14:00"){
+	        index = 8;
+	    } else{
+	        index = 12;
+	    }
+	  } else if(o["day"] === "Tuesday"){
+	    if(o["starTime"] ==="9:00"){
+	        index = 1;
+	    } else if(o["starTime"] ==="11:00"){
+	        index = 5;
+	    } else if(o["starTime"] ==="14:00"){
+	        index = 9;
+	    } else{
+	        index = 13;
+	    }
+	  } else if(o["day"] === "Wednesday"){
+	    if(o["starTime"] ==="9:00"){
+	        index = 2;
+	    } else if(o["starTime"] ==="11:00"){
+	        index = 6;
+	    } else if(o["starTime"] ==="14:00"){
+	        index = 10;
+	    } else{
+	        index = 14;
+	    }
+	  } else if(o["day"] === "Thursday"){
+	    if(o["starTime"] ==="9:00"){
+	        index = 3;
+	    } else if(o["starTime"] ==="11:00"){
+	        index = 7;
+	    } else if(o["starTime"] ==="14:00"){
+	        index = 11;
+	    } else{
+	        index = 15;
+	    }
+	  }
 
-  return index;
+	  return index;
 
-}
+	}
 
-/* Given an array "a" and an object "o"
-    Returns the position of "o" in "a"
-    -1 otherwise 
-  */
-var indexInSchArray = function (a, o) {
-  var i = 0;
-  var found = false;
-  var l = a.length;
+	/* Given an array "a" and an object "o"
+	    Returns the position of "o" in "a"
+	    -1 otherwise 
+	  */
+	var indexInSchArray = function (a, o) {
+	  var i = 0;
+	  var found = false;
+	  var l = a.length;
 
-  while (i < l && !found) {
-    found = ((a[i].day === o.day) && (a[i].starTime === o.starTime));
-    i++;
-  }
+	  while (i < l && !found) {
+	    found = ((a[i].day === o.day) && (a[i].starTime === o.starTime));
+	    i++;
+	  }
 
-  return found ? i-1 : -1 ;
+	  return found ? i-1 : -1 ;
 
-}
+	}
 
-// Gruops by room to create later concentric circles in the map view
-var groupMap = function () {
-  var auxArray = [];
-  var sessions = groupSession(force.nodes());
+	// Gruops by room to create later concentric circles in the map view
+	CircleHandler.groupMap = function () {
+	  var auxArray = [];
+	  var sessions = CircleHandler.groupSession(force.nodes());
 
-  var id = 0;
+	  var id = 0;
 
-  sessions.forEach (function(o, i) {
+	  sessions.forEach (function(o, i) {
 
-    var index = indexInMapArray(auxArray, o);
-    var create = index < 0;
-    if (create) {
-      var mapElt = new MapElt(o.room, id);
-      id++;
-      auxArray.push(mapElt);
-    } else {
-      auxArray[index].amount += 1;
-    }
-  });
-  return auxArray;
-}
+	    var index = indexInMapArray(auxArray, o);
+	    var create = index < 0;
+	    if (create) {
+	      var mapElt = new MapElt(o.room, id);
+	      id++;
+	      auxArray.push(mapElt);
+	    } else {
+	      auxArray[index].amount += 1;
+	    }
+	  });
+	  return auxArray;
+	}
 
 
-/* Given an array "a" and an object "o"
-    Returns the position of "o" in "a"
-    -1 otherwise 
-  */
-var indexInMapArray = function (a, o) {
-  var i = 0;
-  var found = false;
-  var l = a.length;
+	/* Given an array "a" and an object "o"
+	    Returns the position of "o" in "a"
+	    -1 otherwise 
+	  */
+	var indexInMapArray = function (a, o) {
+	  var i = 0;
+	  var found = false;
+	  var l = a.length;
 
-  while (i < l && !found) {
-    found = (a[i].room === o.room);
-    i++;
-  }
+	  while (i < l && !found) {
+	    found = (a[i].room === o.room);
+	    i++;
+	  }
 
-  return found ? i-1 : -1;
+	  return found ? i-1 : -1;
 
-}
+	}
 
-// Gruops by Session to create later concentric circles in the map view
-var groupSession = function () {
+	// Gruops by Session to create later concentric circles in the map view
+	CircleHandler.groupSession = function () {
 
-  var auxArray = [];
+	  var auxArray = [];
 
-  force.nodes().forEach (function(o, i) {
+	  force.nodes().forEach (function(o, i) {
 
-    o.sessions.forEach(function(u, j) {
-      var index = indexInSessionsArray(auxArray, u);
-      var create = index < 0;
-      if (create) {
-        var sessElt = new SessElt (u);
-        auxArray.push(sessElt);
-      } else {
-        auxArray[index].amount ++;
-      }
-    });
+	    o.sessions.forEach(function(u, j) {
+	      var index = indexInSessionsArray(auxArray, u);
+	      var create = index < 0;
+	      if (create) {
+	        var sessElt = new SessElt (u);
+	        auxArray.push(sessElt);
+	      } else {
+	        auxArray[index].amount ++;
+	      }
+	    });
 
-  });
+	  });
 
-  // console.log("groupSession", auxArray);
+	  // console.log("groupSession", auxArray);
 
-  return auxArray;
-}
+	  return auxArray;
+	}
 
-var indexInSessionsArray = function (a, o) {
-  var found = false;
-  var l = a.length;
-  var i = 0;
+	var indexInSessionsArray = function (a, o) {
+	  var found = false;
+	  var l = a.length;
+	  var i = 0;
 
-  while (i<l && !found) {
-    found = (a[i].id === o.id);
-    i++;
-  }
+	  while (i<l && !found) {
+	    found = (a[i].id === o.id);
+	    i++;
+	  }
 
-  return found ? i-1 : -1;
-}
+	  return found ? i-1 : -1;
+	}
+  return CircleHandler;
+  })();
+}).call(this);
