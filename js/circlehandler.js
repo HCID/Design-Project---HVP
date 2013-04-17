@@ -23,6 +23,7 @@ var fociSchedule =
 {x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3},
 {x: xSchedule + xSpace*4, y: ySchedule + ySpace*2}];
 
+
 var fociMap = { 
   //level 3
   //Yellow

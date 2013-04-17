@@ -99,7 +99,7 @@
       nodeEnterG.attr("id", function(d, i){return "g" + d.id})
         .attr("class", "circle_class")
         .append("circle")
-        //.on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
+       // .on("mousedown", ClickHandler.circleClicked )
         .style("fill", function (d, i) {
            if (mode === "events") { 
              if(d.sessions) {
@@ -217,7 +217,8 @@
         id: "filter_" + (filterHistory.length-1), 
         name: filterHistory[filterHistory.length-1].name 
       };
-      $(_.template($("#template_filter_item").html(), templateVariables)).css("right", d3.event.clientX).css("top", d3.event.clientY).appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
+      //$(_.template($("#template_filter_item").html(), templateVariables)).css("right", d3.event.clientX).css("top", d3.event.clientY).appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
+        $(_.template($("#template_filter_item").html(), templateVariables)).css("right", 0).css("top", 0).appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
         $(this).appendTo($("#filter_list"));
         $(this).css("position", "static");
         $(this).css("float", "left");

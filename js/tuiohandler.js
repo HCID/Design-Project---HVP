@@ -71,6 +71,7 @@
     };
 
     onUpdateTuioHand = function(updateHand) {
+      console.log(updateHand);
       if (updateHand.fingers.indexOf(-1) === -1) {
         if (!showMenu) {
           console.log(updateHand);
