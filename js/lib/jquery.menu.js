@@ -30,7 +30,9 @@
 	
 	$(settings.menu_button).unbind('mousedown', clickHandler);	//remove event if exist
 	
-	var clickHandler = function(e) {
+	var clickHandler = function(e, f) {
+		console.log("asda", e);
+		console.log("asda", f);
     $("#outer_container").show();
       var data = d3.select("#" + $(this).attr("id")).data()[0];
     
@@ -56,9 +58,21 @@
 		}	
 		$(this).toggleClass("btn-rotate");
 	};
+	 $("*").on("mousedown", function (e) {
+        if($(e.currentTarget).hasClass("pie_menu_link")) {
+          console.log("mmmmmmod", $(this).data("mode"))
+          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"));
+          $("#outer_container").hide();
+        } else {
+          
+        }
+       
+      })
 
-	$(settings.menu_button).bind('mousedown', clickHandler);
 
+
+	$(settings.menu_button).on('mousedown', clickHandler);
+	$("*").on('communitiesClick', clickHandler);
 	return settings.menu_element.each(function(i,ele){
 		ele_angle[i] = (parseInt(settings.starting_angel) + angle*(i))*Math.PI/180;
 		 x_pos[i] = (settings.radius * Math.sin(ele_angle[i]));

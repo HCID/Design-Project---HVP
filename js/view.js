@@ -126,21 +126,7 @@
         })
         .style("stroke", "#ffffff")
         //.call(TUIOHandler.node_drag);
-       $("#outer_container ul.menu_option").html("");
-       if(mode != "sessions") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", image: "img/sessionsPM.png" }));
-       }
-       if(mode != "events") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", image: "img/talkPM.png" }));
-       } else {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", image: "img/talkPM.png" }));
-       }
-       if(mode != "map") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", image: "img/mapPM.png" }));
-       }
-       if(mode != "comm") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", image: "img/commsPM.png" }));
-       }
+       View.addPieMenuOptions(mode);
 
         
       $('#outer_container').PieMenu({
@@ -155,15 +141,7 @@
       // TODO: add icons
       // TODO: animate disappearance
       
-      $("*").on("mousedown", function (e) {
-        if($(e.currentTarget).hasClass("pie_menu_link")) {
-          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"));
-          $("#outer_container").hide();
-        } else {
-          
-        }
-       
-      })
+     
 
 
         console.log("force.nodes().length: " + force.nodes().length);
@@ -191,6 +169,27 @@
       
 
     }
+
+
+    View.addPieMenuOptions = function(theMode) {
+      $("#outer_container ul.menu_option").html("");
+       if(theMode != "sessions") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", image: "img/sessionsPM.png" }));
+       }
+       if(theMode != "events") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", image: "img/talkPM.png" }));
+       } else {
+         //$("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", image: "img/talkPM.png" }));
+       }
+       if(theMode != "map") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", image: "img/mapPM.png" }));
+       }
+       if(theMode != "comm") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", image: "img/commsPM.png" }));
+       }
+    }
+
+
     View.showDetails = function (circle) {
       $("#detail_image").html(circle.video);
       $("#detail_title").html(circle.name);

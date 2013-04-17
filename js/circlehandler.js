@@ -411,6 +411,7 @@ function SessElt (obj) {
 
 /* Sets the tick behaviour for each mode*/
 var tick = function(e) {
+  console.log("mode", mode);
   nodes.each(function(d) {
     if(d.y <= 0) {
       d.y += 1;
@@ -425,7 +426,6 @@ var tick = function(e) {
       d.x -= 1;
     }
   })
-
 
   if(e !== undefined) {
         // Push nodes toward their designated focus.

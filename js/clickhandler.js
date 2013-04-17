@@ -53,6 +53,7 @@
           filterHistory.push({name: mode, data: oldData});  
           View.addFilterHistory(filterHistory);  
         }  
+        console.log("newMode", newMode);
         mode = newMode;      
         force.nodes(newData);  
         if(mode === "comm") {

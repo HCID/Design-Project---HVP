@@ -210,7 +210,9 @@
           .attr("fill", function(d, i) { return fill2(i); })
           .attr("opacity", 0.5)
           .attr("id", function(d, i) { return gr[i]; })
-          .on("mousedown", ClickHandler.circleClicked)
+          // .on("mousedown", ClickHandler.circleClicked)
+          .on("mousedown", function () { $("*").trigger("communitiesClick", d3.event)})
+
           .attr("d", circle);
       circles.append("text")
           .attr("text-anchor", "middle")
