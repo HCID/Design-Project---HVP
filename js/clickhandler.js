@@ -44,7 +44,8 @@
               oldData = _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
               newData = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
             }            
-            d3.selectAll("circle").attr("opacity", 1);   
+
+            //.attr("opacity", 1);   
           }         
         }
         
@@ -55,7 +56,9 @@
         mode = newMode;      
         force.nodes(newData);  
         if(mode === "comm") {
-          d3.selectAll("circle").attr("opacity", 0);
+          //d3.selectAll("circle").attr("opacity", 0);
+          d3.selectAll("circle").style("opacity", 0)
+            console.log("making them invisible");
           $('.talkName').hide();
           $('.legend').hide();
           loadParallelData();
