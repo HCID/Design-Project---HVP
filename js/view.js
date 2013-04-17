@@ -1,53 +1,18 @@
 (function() {
   window.View = (function() {
     function View() {} 
-    var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
-    /* Colors */
-    View.colors = {
-      bordeaux: {
-        color: "#98343c", // 152 52 60
-        rooms: ["bordeaux", "342a", "343", "361", "362/363"]
-      },  
-      havane: { 
-        color: "#d3783c", // 211 120 60
-        rooms: ["havane", "351", "352ab"] 
-      }, 
-      bleu: {
-        color: "#1b5576", // 27 85 118
-        rooms: ["blue", "241", "242ab", "242a", "242b", "243"]
-      }, 
-      green: {
-        color: "#265e30", // 38 94 48
-        rooms: ["251", "252a", "252b", "253"]
-      },
-      interact: { 
-        color: "#61447a", // 97 68 122
-        rooms: []
-      },
-      chi: {
-        color: "#2a276d", // 42 39 109
-        rooms: []
-      },
-      grand: {
-        color: "#f1d32e", // 241 211 46
-        rooms: ["grand"]
-      }
-    }
-
-
-
-
+    
     // Changes the background image
     View.changeImage = function () {
       var image = "";
       var opacity = 0;
-      if (mode == "schedule") {
+      if (Globals.mode == "schedule") {
             image = "/img/schedule.svg";
             opacity = 1;
-      } else if (mode == "map") {
+      } else if (Globals.mode == "map") {
             image = "/img/mapLevels.png";
             opacity = 1;
-      } else if (mode == "sessions") {
+      } else if (Globals.mode == "sessions") {
           image = "/img/sessions.png";
           opacity = 1;
       } 
@@ -56,7 +21,7 @@
 
     View.generateLegend = function () {
       var items = [];
-      _.each(View.colors, function(item, key) {
+      _.each(Globals.colors, function(item, key) {
               items.push(_.template($("#template_legend_item").html(), {color: item.color, name: key }));
        });  // close each()
        $(".types").html( items.join("") );
@@ -71,7 +36,7 @@
 
     View.calculateR = function (d) {
   
-      if(mode === "events"){
+      if(Globals.mode === "events"){
         var n = force.nodes().length;
         if (n >100) {
           return 21;
@@ -79,9 +44,9 @@
           var s = 0.2 * Math.sqrt((width*height)/n);
           return s;
         }
-      } else if ((mode === "schedule") || (mode === "map")) {
+      } else if ((Globals.mode === "schedule") || (Globals.mode === "map")) {
         return d.radius;
-      } else if (mode === "sessions") {
+      } else if (Globals.mode === "sessions") {
         return 25;
       } else {
         return 25;
@@ -111,14 +76,14 @@
           
         })
         .style("stroke-width", function (d, i) {
-          if (mode === "events") { 
+          if (Globals.mode === "events") { 
               return 1;
           } else{
               return 0;
           }
         })
         .style("opacity", function(){
-          if (mode === "events") { 
+          if (Globals.mode === "events") { 
               return 1.0;
           } else {
                return 0.5;
@@ -126,7 +91,7 @@
         })
         .style("stroke", "#ffffff")
         //.call(TUIOHandler.node_drag);
-       View.addPieMenuOptions(mode);
+       View.addPieMenuOptions(Globals.mode);
 
         
       $('#outer_container').PieMenu({
@@ -235,7 +200,7 @@
     View.sessionsColors = function (d) {
       // console.log("ooooooo", d);
       if (d.room === "undefined") return "#ffffff";
-      return _.find(View.colors, function(color) { return _.contains(color.rooms, d.room) }).color
+      return _.find(Globals.colors, function(color) { return _.contains(color.rooms, d.room) }).color
     }
     return View;
   })();

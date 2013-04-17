@@ -2,27 +2,27 @@ var vis;
 var data = [],
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
-    fill2 = d3.scale.category10(),
-    mode = "sessions"; // {sessions, events, comm, map}
+    fill2 = d3.scale.category10();
+    Globals.mode = "sessions"; // {sessions, events, comm, map}
 var force = d3.layout.force()
       .links([])
       .gravity(0)
-      .size([width, height])
+      .size([Globals.width, Globals.height])
       .charge(0)
       .on("tick", tick);
 
 var main = function (fociUsed) {
 
   vis = d3.select("body").select("svg");
-  if (mode === "schedule") {
+  if (Globals.mode === "schedule") {
     var array = groupSchedule();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
-  } else if (mode === "map") {
+  } else if (Globals.mode === "map") {
     var array = groupMap();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
-  } else if (mode === "sessions") {
+  } else if (Globals.mode === "sessions") {
     var array = groupSession();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
@@ -35,7 +35,7 @@ var main = function (fociUsed) {
 // Restarts the data 
 var restart = function() {
   $("#filter_list li").remove();
-  mode = "sessions";
+  Globals.mode = "sessions";
   parallelData = [];
   force.nodes(data);
   main();
@@ -46,10 +46,10 @@ var restart = function() {
 $(document).ready(function() {
   $(".size_button").on("mousedown", ClickHandler.menuHandler);
   $("#detail_close_button").on("mousedown", ClickHandler.detailCloseHandler)
-  $("svg").attr("height", height + "px");
-  $("svg").attr("width", width + "px");
-  $("#bgimg").attr("height", height);
-  $("#bgimg").attr("width", width);
+  $("svg").attr("height", Globals.height + "px");
+  $("svg").attr("width", Globals.width + "px");
+  $("#bgimg").attr("height", Globals.height);
+  $("#bgimg").attr("width", Globals.width);
   d3.json('data/data.json', function (importedData) {
     data = importedData;
     minCollisionRadius = 5,
