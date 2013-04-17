@@ -234,7 +234,7 @@
 
     /* Decides the color of the session depending on the room */
     View.sessionsColors = function (d) {
-      console.log("ooooooo", d);
+      // console.log("ooooooo", d);
       if (d.room === "undefined") return "#ffffff";
       return _.find(View.colors, function(color) { return _.contains(color.rooms, d.room) }).color
     }

@@ -81,13 +81,13 @@
 
     /* Funtion triggered when one of the menu buttons is clicked */
     ClickHandler.menuHandler = function () {
-      d3.selectAll("circle").attr("opacity", 1);
+      d3.selectAll("circle").style("display", "block");
       $('.talkName').show();
       $('.legend').show();
       
       if ($(this).data("grouping") == "comm") {
         mode = "comm";
-        d3.selectAll("circle").attr("opacity", 0);
+        d3.selectAll("circle").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
         loadParallelData();

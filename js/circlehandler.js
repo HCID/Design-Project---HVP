@@ -17,7 +17,7 @@ var whiteSpace = 20;
 var fociFree = [{x: width/2, y: height/2}];
 
 var fociSchedule = 
-[{x: xSchedule, y: ySchedule},          {x: xSchedule + xSpace, y: ySchedule},           {x: xSchedule + xSpace*2, y: ySchedule},           {x: xSchedule + xSpace*3, y: ySchedule},
+[{x: xSchedule, y: ySchedule},           {x: xSchedule + xSpace, y: ySchedule},            {x: xSchedule + xSpace*2, y: ySchedule},            {x: xSchedule + xSpace*3, y: ySchedule},
 {x: xSchedule, y: ySchedule + ySpace},   {x: xSchedule + xSpace, y: ySchedule + ySpace},   {x: xSchedule + xSpace*2, y: ySchedule + ySpace},   {x: xSchedule + xSpace*3, y: ySchedule + ySpace},
 {x: xSchedule, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*2}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*2},
 {x: xSchedule, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*2, y: ySchedule + ySpace*3}, {x: xSchedule + xSpace*3, y: ySchedule + ySpace*3},
@@ -754,7 +754,7 @@ var groupSession = function () {
 
   });
 
-  console.log("groupSession", auxArray);
+  // console.log("groupSession", auxArray);
 
   return auxArray;
 }

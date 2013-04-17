@@ -13,6 +13,7 @@
       var gComs = [];
       var id = 0;
 
+      console.log("Communities", force.nodes().length);
       force.nodes().forEach(function(d) {
 
         if (gComs.length == 0) {
@@ -191,7 +192,7 @@
     var drawVennEuler = function (vn, gr) {
       var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight]);
       var circle = d3.svg.arc().innerRadius(0).startAngle(0).endAngle(2*Math.PI);
-  
+
       vis = d3.select("body").select("svg")
         .data([vn])
           .attr("width", width).attr("height", height);
