@@ -53,7 +53,7 @@
           View.addFilterHistory(filterHistory);  
         }  
         mode = newMode;      
-        
+        force.nodes(newData);  
         if(mode === "comm") {
           d3.selectAll("circle").attr("opacity", 0);
           $('.talkName').hide();

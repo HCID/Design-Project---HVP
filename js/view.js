@@ -120,9 +120,7 @@
         .style("opacity", function(){
           if (mode === "events") { 
               return 1.0;
-          } else if (mode === "comm"){
-            return 0;
-            } else {
+          } else {
                return 0.5;
           }
         })
