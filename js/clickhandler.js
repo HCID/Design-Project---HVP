@@ -8,7 +8,6 @@
     ClickHandler.circleClicked = function (circle, newMode) {
 
       console.log("circleClicked: switch from " + mode + "  to " + newMode);
-
       if(mode == "events") {
         if(force.nodes().length < circlesThreshold) {
           View.showDetails(circle);
@@ -26,6 +25,7 @@
         newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
       
       } else if (mode == "sessions") {
+        console.log("wowo", circle);
         View.generateSessionTitle(circle.name);
         oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
         newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
@@ -47,13 +47,25 @@
             d3.selectAll("circle").attr("opacity", 1);   
           }         
         }
-        mode = newMode;
+        
         if (oldData.length > 0) {
           filterHistory.push({name: mode, data: oldData});  
           View.addFilterHistory(filterHistory);  
-        }        
-        force.nodes(newData);  
-        View.update();          			
+        }  
+        mode = newMode;      
+        
+        if(mode === "comm") {
+          d3.selectAll("circle").attr("opacity", 0);
+          $('.talkName').hide();
+          $('.legend').hide();
+          loadParallelData();
+          Communities.communities();
+        } else {
+          force.nodes(newData);  
+          View.update();  
+        }
+        
+        
       } 
     };
 

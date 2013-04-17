@@ -3,7 +3,7 @@
     function View() {} 
     var differentTypes = ["altchi", "casestudy", "course", "panel", "paper", "SIG", "TOCHI"] ;
     /* Colors */
-    var colors = {
+    View.colors = {
       bordeaux: {
         color: "#98343c", // 152 52 60
         rooms: ["bordeaux", "342a", "343", "361", "362/363"]
@@ -56,7 +56,7 @@
 
     View.generateLegend = function () {
       var items = [];
-      _.each(colors, function(item, key) {
+      _.each(View.colors, function(item, key) {
               items.push(_.template($("#template_legend_item").html(), {color: item.color, name: key }));
        });  // close each()
        $(".types").html( items.join("") );
@@ -101,15 +101,14 @@
         .append("circle")
        // .on("mousedown", ClickHandler.circleClicked )
         .style("fill", function (d, i) {
-           if (mode === "events") { 
+           
              if(d.sessions) {
                  return View.sessionsColors(d.sessions[0]);
              } else {
+               //return "#000"
                return View.sessionsColors(d);
              }
-           } else{
-               return View.sessionsColors(d);
-             }
+          
         })
         .style("stroke-width", function (d, i) {
           if (mode === "events") { 
@@ -121,8 +120,10 @@
         .style("opacity", function(){
           if (mode === "events") { 
               return 1.0;
-          } else{
-              return 0.5;
+          } else if (mode === "comm"){
+            return 0;
+            } else {
+               return 0.5;
           }
         })
         .style("stroke", "#ffffff")
@@ -157,7 +158,7 @@
       
       $("*").on("mousedown", function (e) {
         if($(e.currentTarget).hasClass("pie_menu_link")) {
-          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data(), $(this).data("mode"));
+          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"));
           $("#outer_container").hide();
         } else {
           
@@ -231,8 +232,9 @@
 
     /* Decides the color of the session depending on the room */
     View.sessionsColors = function (d) {
+      console.log("ooooooo", d);
       if (d.room === "undefined") return "#ffffff";
-      return _.find(colors, function(color) { return _.contains(color.rooms, d.room) }).color
+      return _.find(View.colors, function(color) { return _.contains(color.rooms, d.room) }).color
     }
     return View;
   })();
