@@ -128,19 +128,20 @@
         //.call(TUIOHandler.node_drag);
        $("#outer_container ul.menu_option").html("");
        if(mode != "sessions") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", name: "Sessions" }));
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", image: "img/sessionsPM.png" }));
        }
        if(mode != "events") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", name: "Events" }));
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", image: "img/talkPM.png" }));
        } else {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", name: "Details" }));
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", image: "img/talkPM.png" }));
        }
        if(mode != "map") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", name: "Map" }));
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", image: "img/mapPM.png" }));
        }
        if(mode != "comm") {
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", name: "Communities" }));
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", image: "img/commsPM.png" }));
        }
+
         
       $('#outer_container').PieMenu({
     		'starting_angel': 0,
