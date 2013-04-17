@@ -71,7 +71,7 @@
 
     View.calculateR = function (d) {
   
-      if(mode === "free"){
+      if(mode === "events"){
         var n = force.nodes().length;
         if (n >100) {
           return 21;

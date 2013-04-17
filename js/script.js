@@ -3,7 +3,7 @@ var data = [],
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
     fill2 = d3.scale.category10(),
-    mode = "sessions";
+    mode = "sessions"; // {sessions, events, comm, map}
 var force = d3.layout.force()
       .links([])
       .gravity(0)

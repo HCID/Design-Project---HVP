@@ -411,25 +411,19 @@ function SessElt (obj) {
 
 /* Sets the tick behaviour for each mode*/
 var tick = function(e) {
-
   nodes.each(function(d) {
-
     if(d.y <= 0) {
       d.y += 1;
     }
-
     if(d.y >= height) {
       d.y -= 1;
     }
-
     if(d.x <= 0) {
       d.x += 1;
     }
-
     if(d.x >= width) {
       d.x -= 1;
     }
-
   })
 
 
@@ -447,7 +441,7 @@ var tick = function(e) {
 
       getSchedulePosition(k);
 
-    } else if (mode == "free") {
+    } else if (mode == "events") {
       force.nodes().forEach(function(d) { 
         d.r = 100;
 
@@ -478,7 +472,7 @@ var tick = function(e) {
       // vis.selectAll("circle").attr("r", d.radius);
       vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
       getSessionPosition(k);
-    }
+    } 
   }
 
 
@@ -694,7 +688,6 @@ var indexInSchArray = function (a, o) {
 
 // Gruops by room to create later concentric circles in the map view
 var groupMap = function () {
-  console.log("groupMap");
   var auxArray = [];
   var sessions = groupSession(force.nodes());
 
