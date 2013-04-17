@@ -29,7 +29,6 @@
 	}
 	
 
-
 	var currentD3Ev = null;
 	$(settings.menu_button).unbind('mousedown', clickHandler);	//remove event if exist
 	
@@ -53,55 +52,48 @@
 		}
 
     	e.stopPropagation();
-    
-    
 
-
-      
-      
-      $("#outer_container").show();
+    	$("#outer_container").show();
             
-    if($(this).parent().hasClass('active')){
-			setPosition(0);
-			$(this).parent().removeClass('active');
-			$(this).parent().addClass('inactive');
+	    if($(this).parent().hasClass('active')){
+				setPosition(0);
+				$(this).parent().removeClass('active');
+				$(this).parent().addClass('inactive');
 
-		}else{
-			setPosition(1);
-			$(this).parent().addClass('active');
-			$(this).parent().removeClass('inactive');
-		}	
-		$(this).toggleClass("btn-rotate");
-	};
-	 $("*").on("mousedown", function (e) {
-	 
-        if($(e.currentTarget).hasClass("pie_menu_link")) {
-          console.log("mmmmmmod", $(this).data("mode"))
-          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"), currentD3Ev);
-          $("#outer_container").hide();
-        } else {
-          
-        }
-       
-      })
-
-
-
-	$(settings.menu_button).on('mousedown', clickHandler);
-	$("#outer_container").on('communitiesClick', clickHandler);
-	return settings.menu_element.each(function(i,ele){
-		ele_angle[i] = (parseInt(settings.starting_angel) + angle*(i))*Math.PI/180;
-		 x_pos[i] = (settings.radius * Math.sin(ele_angle[i]));
-         y_pos[i] = (settings.radius * Math.cos(ele_angle[i]));
+			}else{
+				setPosition(1);
+				$(this).parent().addClass('active');
+				$(this).parent().removeClass('inactive');
+			}	
+			$(this).toggleClass("btn-rotate");
+		};
+		$("*").on("mousedown", function (e) {
 		 
-		 $(ele).css({
+	        if($(e.currentTarget).hasClass("pie_menu_link")) {
+	          console.log("mmmmmmod", $(this).data("mode"))
+	          ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"), currentD3Ev);
+	          $("#outer_container").hide();
+	        } else {
+	          
+	        }
+       
+     	})
+
+		$(settings.menu_button).on('mousedown', clickHandler);
+		$("#outer_container").on('communitiesClick', clickHandler);
+		return settings.menu_element.each(function(i,ele){
+		ele_angle[i] = (parseInt(settings.starting_angel) + angle*(i))*Math.PI/180;
+		x_pos[i] = (settings.radius * Math.sin(ele_angle[i]));
+        y_pos[i] = (settings.radius * Math.cos(ele_angle[i]));
+		 
+		$(ele).css({
 			'-webkit-transform': 'rotate('+(90-ele_angle[i]*180/Math.PI)+'deg)',
 			   '-moz-transform': 'rotate('+(90-ele_angle[i]*180/Math.PI)+'deg)',
 			    '-ms-transform': 'rotate('+(90-ele_angle[i]*180/Math.PI)+'deg)',
 			     '-o-transform': 'rotate('+(90-ele_angle[i]*180/Math.PI)+'deg)',
 			    	'transform': 'rotate('+(90-ele_angle[i]*180/Math.PI)+'deg)',
 		});
-      })
+    	})
 	  
-  };
+  	};
 })( jQuery );

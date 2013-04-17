@@ -6,10 +6,7 @@
     View.changeImage = function () {
       var image = "";
       var opacity = 0;
-      if (Globals.mode == "schedule") {
-            image = "/img/schedule.svg";
-            opacity = 1;
-      } else if (Globals.mode == "map") {
+      if (Globals.mode == "map") {
             image = "/img/mapLevels.png";
             opacity = 1;
       } else if (Globals.mode == "sessions") {
@@ -44,7 +41,7 @@
           var s = 0.2 * Math.sqrt((Global.width*Global.height)/n);
           return s;
         }
-      } else if ((Globals.mode === "schedule") || (Globals.mode === "map")) {
+      } else if (Globals.mode === "map") {
         return d.radius;
       } else if (Globals.mode === "sessions") {
         return 25;
@@ -53,8 +50,6 @@
       } 
 
     }
-    
-    
 
 
     View.update = function () {
@@ -68,10 +63,10 @@
         .style("fill", function (d, i) {
            
              if(d.sessions) {
-                 return View.sessionsColors(d.sessions[0]);
+                return View.sessionsColors(d.sessions[0]);
              } else {
                //return "#000"
-               return View.sessionsColors(d);
+                return View.sessionsColors(d);
              }
           
         })
@@ -91,8 +86,7 @@
         })
         .style("stroke", "#ffffff")
         //.call(TUIOHandler.node_drag);
-       View.addPieMenuOptions(Globals.mode);
-
+      View.addPieMenuOptions(Globals.mode);
         
       $('#outer_container').PieMenu({
     		'starting_angel': 0,
@@ -107,32 +101,27 @@
       // TODO: animate disappearance
       
      
+      console.log("force.nodes().length: " + force.nodes().length);
 
-
-        console.log("force.nodes().length: " + force.nodes().length);
-
-        nodeEnterG.append("text")
-          .attr("class", "talkName")
-          .style("fill", "#ffffff")
-          .style("font-family", "Gill Sans")
-          .style("text-anchor", "middle")
-          .text(function(d) { 
-            if((d.code != undefined) || (d.code !== "undefined")){
-              return  d.code;
-            } else {
-              return "K";
-            }
+      nodeEnterG.append("text")
+        .attr("class", "talkName")
+        .style("fill", "#ffffff")
+        .style("font-family", "Gill Sans")
+        .style("text-anchor", "middle")
+        .text(function(d) { 
+          if ((d.code != undefined) || (d.code !== "undefined")) {
+            return  d.code;
+          } else {
+            return "K";
+          }
       
-        });
-        $('.talkName').show();
+      });
+      $('.talkName').show();
 
       nodes.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
 
-
       nodes.exit().remove();
       force.start();
-      
-
     }
 
 
@@ -172,6 +161,7 @@
       $("#detail_base").show();
     };
 
+
     View.hideDetails = function () {
       $("#detail_base").hide();
       $("#detail_image").html("");
@@ -181,6 +171,8 @@
       $("#detail_authors").html("");
       $("#detail_keywords").html("");
     }
+
+
     View.addFilterHistory = function (filterHistory) {
       var toppy = 30 + ($("#filter_list li").size()*60);
 
@@ -202,10 +194,9 @@
 
     /* Decides the color of the session depending on the room */
     View.sessionsColors = function (d) {
-      // console.log("ooooooo", d);
       if (d.room === "undefined") return "#ffffff";
-      return _.find(Globals.colors, function(color) { return _.contains(color.rooms, d.room) }).color
-    }
-    return View;
-  })();
+        return _.find(Globals.colors, function(color) { return _.contains(color.rooms, d.room) }).color
+      }
+      return View;
+    })();
 }).call(this);

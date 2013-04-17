@@ -15,10 +15,8 @@
       } else {
       var oldData = [], newData = [];
       loadParallelData();
-      if (Globals.mode == "schedule") {
-        oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
-        newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
-      } else if (Globals.mode == "map") { 
+
+      if (Globals.mode == "map") { 
         var copyPD = parallelData.slice(0);
         var sessions = groupSession(copyPD);
         oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
@@ -93,9 +91,9 @@
         $('.legend').hide();
         loadParallelData();
         Communities.communities();
-      } else if ($(this).data("grouping") == "schedule") {
+      } else if ($(this).data("grouping") == "events") {
         loadParallelData();
-        Globals.mode = "schedule";
+        Globals.mode = "events";
         main();
       } else if($(this).data("grouping") == "map"){
         loadParallelData();

@@ -54,17 +54,7 @@
 	        // Push nodes toward their designated focus.
 	    var k = .1 * e.alpha;
 
-	    if (Globals.mode == "schedule") {
-	      force.nodes().forEach(function(d) { 
-	        d.r = 40;
-
-	      });
-	      // vis.selectAll("circle").attr("r", d.radius);
-	      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
-
-	      getSchedulePosition(k);
-
-	    } else if (Globals.mode == "events") {
+      if (Globals.mode == "events") {
 	      force.nodes().forEach(function(d) { 
 	        d.r = 100;
 
@@ -73,8 +63,8 @@
 	      vis.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
      
 	      force.nodes().forEach(function(o, i) {
-	        o.y += (fociFree[0].y - o.y) * k;
-	        o.x += (fociFree[0].x - o.x) * k;        
+	        o.y += (Globals.fociFree[0].y - o.y) * k;
+	        o.x += (Globals.fociFree[0].x - o.x) * k;        
 	      });
 
 	      force.nodes().forEach(collide(0.2));
@@ -108,19 +98,6 @@
 	    force.selectAll("g").attr("visibility", function(d) {
 	      return d[key] === value ? "visible" : "hidden";
 	  });
-	}
-
-	/* Sets the position of each element in the schedule view*/
-	var getSchedulePosition = function (k) { 
-	  //calculate index
-	    force.nodes().forEach(function(o, i) {
-	      // undefined talks will end up in the 16th 
-	      var index = schIndex(o);
-
-	      o.y += (Globals.fociSchedule[index].y - o.y) * k;
-	      o.x += (Globals.fociSchedule[index].x - o.x) * k;
-      
-	    });
 	}
 
 	/* Sets the position of each element in the map view*/
@@ -183,62 +160,6 @@
 	      }
 	    });
 	  };
-	}
-
-	//Gruops by schedule, day-time, to create later concentric circles in the schedule view
-	CircleHandler.groupSchedule = function () {
-
-	  var auxArray = [];
-	  var auxArray2 = [];
-
-	  var id = 0;
-	  var id2 = 0;
-
-	  force.nodes().forEach (function(o, i) {
-
-	    var create = true;
-	    if (auxArray.length > 0) {
-	      var index = indexInSchArray(auxArray, o);
-	      create = (index < 0);
-	    }
-
-	    if (create) {
-	      var sch = new Sch(o.day, o.starTime, id);
-	      sch.types.push(o.type);
-	      id++;
-	      auxArray.push(sch);
-	    } else {
-	      auxArray[index].amount += 1;
-	      var indexType = auxArray[index].types.indexOf(o.type);
-	      if (indexType < 0) auxArray[index].types.push(o.type);
-	    }
-	  });
-  
-	  // Creates all the entries in the array to have concentric circles
-	  auxArray.forEach(function(o, i) {
-	    var radius = 20;
-
-	    if (o.types.length == 0) {
-	      var sch = new Sch(o.day, o.starTime, id2);
-	      sch.radius = radius;
-	      sch.types.push(o.type);
-	      radius += 10;
-	      id2++;
-	      auxArray2.push(sch);
-	    } else {
-	      o.types.forEach(function(u,j) {
-	      var sch = new Sch(o.day, o.starTime, id2);
-	        sch.types.push(o.types[j]);
-	        sch.radius = radius;
-	        radius += 10;
-	        id2++;
-	        auxArray2.push(sch);
-	      });
-	    }
-
-	  });
-
-	  return auxArray2.reverse();
 	}
 
 	// Returns the index position of a data element in the schedule view

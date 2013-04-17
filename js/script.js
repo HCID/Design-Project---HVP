@@ -14,11 +14,8 @@ var force = d3.layout.force()
 var main = function (fociUsed) {
 
   vis = d3.select("body").select("svg");
-  if (Globals.mode === "schedule") {
-    var array = CircleHandler.groupSchedule();
-    parallelData = force.nodes().slice(0);
-    force.nodes(array);
-  } else if (Globals.mode === "map") {
+
+  if (Globals.mode === "map") {
     var array = CircleHandler.groupMap();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
@@ -26,6 +23,8 @@ var main = function (fociUsed) {
     var array = CircleHandler.groupSession();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
+  } else if (Globals.mode === "events") {
+    // We don't need to alter the force
   }
   
   View.update();
@@ -39,8 +38,6 @@ var restart = function() {
   parallelData = [];
   force.nodes(data);
   main();
-  // TODO:
-  // communities();
 };
 
 $(document).ready(function() {
