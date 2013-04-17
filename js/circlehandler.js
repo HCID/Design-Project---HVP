@@ -370,7 +370,7 @@
 
 	  });
 
-	  // console.log("groupSession", auxArray);
+	  console.log("groupSession", auxArray);
 
 	  return auxArray;
 	}

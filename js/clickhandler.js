@@ -32,7 +32,7 @@
       
       } else if (Globals.mode == "comm") {
         var list = _.map($('svg g.arc').filter(function() {
-          if (pointInCirclePath($(this), d3event)) {
+          if (pointInCirclePath($(this), Globals.vennEvent)) {
             return true;
           }
           }), function (el) { return el.id });
@@ -53,20 +53,20 @@
           filterHistory.push({name: Globals.mode, data: oldData});  
           View.addFilterHistory(filterHistory);  
         }  
-        console.log("newMode", newMode);
         Globals.mode = newMode;      
         force.nodes(newData);  
         if(Globals.mode === "comm") {
-          //d3.selectAll("circle").attr("opacity", 0);
-          d3.selectAll("circle").style("opacity", 0)
+          d3.selectAll("circle").style("display", "none");
             console.log("making them invisible");
           $('.talkName').hide();
           $('.legend').hide();
           loadParallelData();
           Communities.communities();
         } else {
-          force.nodes(newData);  
-          View.update();  
+          d3.selectAll("circle").style("display", "block");
+          force.nodes(newData); 
+          main(); 
+          // View.update();  
         }
         
         

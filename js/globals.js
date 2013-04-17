@@ -37,6 +37,8 @@
       }
     };
 
+    Globals.vennEvent = null;
+
     Globals.height = $(window).height();
 
     Globals.width = $(window).width();

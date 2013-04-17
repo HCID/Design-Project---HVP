@@ -13,7 +13,6 @@
       var gComs = [];
       var id = 0;
 
-      console.log("Communities", force.nodes().length);
       force.nodes().forEach(function(d) {
 
         if (gComs.length == 0) {
@@ -211,7 +210,7 @@
           .attr("opacity", 0.5)
           .attr("id", function(d, i) { return gr[i]; })
           // .on("mousedown", ClickHandler.circleClicked)
-          .on("mousedown", function () {console.log("yeeeeeah"); $("#outer_container").trigger("communitiesClick", d3.event)})
+          .on("mousedown", function () {Globals.vennEvent = d3.event; $("#outer_container").trigger("communitiesClick")})
 
           .attr("d", circle);
       circles.append("text")
@@ -225,8 +224,7 @@
           .attr("x", function(d, i) { return d.labelX; })
           .attr("y", function(d, i) { return d.labelY; });
           
-      console.log("drawVennEuler",mode)
-      Communities.addPieMenuOptions(mode);
+      View.addPieMenuOptions(Globals.mode);
 
       $('#outer_container').PieMenu({
         'starting_angel': 0,
@@ -252,28 +250,6 @@
     */
       // return array;
     };
-
-    Communities.addPieMenuOptions = function(theMode) {
-      $("#outer_container ul.menu_option").html("");
-       if(theMode !== "sessions") {
-        console.log("addPieMenuOptions sessions")
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", image: "img/sessionsPM.png" }));
-       }
-       if(theMode !== "events") {
-         console.log("addPieMenuOptions events")
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", image: "img/talkPM.png" }));
-       } else {
-         //$("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", image: "img/talkPM.png" }));
-       }
-       if(theMode !== "map") {
-        console.log("addPieMenuOptions map")
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", image: "img/mapPM.png" }));
-       }
-       if(theMode !== "comm") {
-        console.log("addPieMenuOptions comm")
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", image: "img/commsPM.png" }));
-       }
-    }
 
     /* Decides if the element b is inside the array */
     var containsElement = function (array, b) {

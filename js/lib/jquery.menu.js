@@ -36,14 +36,12 @@
 	var clickHandler = function(e, f) {
 		
 		$("#outer_container").css("position", "absolute")
-		console.log("currentD3Ev mode", mode);
-		// console.log("currentD3Ev f", f);
 
-		if (mode === "comm") {
+		if (Globals.mode === "comm") {
 			currentD3Ev = f;
 			$("#outer_container")
-				.css("left", f.x+"px")
-      			.css("top",  f.y+"px")
+				.css("left", Globals.vennEvent.clientX+"px")
+      			.css("top",  Globals.vennEvent.clientY+"px")
 
 		} else {
       		var data = d3.select("#" + $(this).attr("id")).data()[0];

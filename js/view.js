@@ -41,7 +41,7 @@
         if (n >100) {
           return 21;
         } else {
-          var s = 0.2 * Math.sqrt((width*height)/n);
+          var s = 0.2 * Math.sqrt((Global.width*Global.height)/n);
           return s;
         }
       } else if ((Globals.mode === "schedule") || (Globals.mode === "map")) {
