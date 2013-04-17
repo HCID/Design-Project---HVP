@@ -196,7 +196,10 @@
       $("#detail_time").html("");
       $("#detail_thirty_words").html(circle.cbStatement);
      // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
-      $("#detail_keywords").html(circle.keywords.join(", "));
+      if(circle.keywords !== undefined){
+        $("#detail_keywords").html(circle.keywords.join(", "));
+      }
+        
       $("#detail_base").show();
     };
 
