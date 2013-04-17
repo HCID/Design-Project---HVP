@@ -7,30 +7,30 @@
 
     ClickHandler.circleClicked = function (circle, newMode, d3event) {
 
-      console.log("circleClicked: switch from " + mode + "  to " + newMode);
-      if(mode == "events") {
+      console.log("circleClicked: switch from " + Globals.mode + "  to " + newMode);
+      if(Globals.mode == "events") {
         if(force.nodes().length < circlesThreshold) {
           View.showDetails(circle);
         }
       } else {
       var oldData = [], newData = [];
       loadParallelData();
-      if (mode == "schedule") {
+      if (Globals.mode == "schedule") {
         oldData = _.reject(force.nodes(), function (node) {return node["day"] == circle["day"]})
         newData = _.where( _.where(force.nodes(), { day: circle["day"] } ), { starTime: circle["starTime"] } );
-      } else if (mode == "map") { 
+      } else if (Globals.mode == "map") { 
         var copyPD = parallelData.slice(0);
         var sessions = groupSession(copyPD);
         oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
         newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
       
-      } else if (mode == "sessions") {
+      } else if (Globals.mode == "sessions") {
         console.log("wowo", circle);
         View.generateSessionTitle(circle.name);
         oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
         newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
       
-      } else if (mode == "comm") {
+      } else if (Globals.mode == "comm") {
         var list = _.map($('svg g.arc').filter(function() {
           if (pointInCirclePath($(this), d3event)) {
             return true;
@@ -50,13 +50,13 @@
         }
         
         if (oldData.length > 0) {
-          filterHistory.push({name: mode, data: oldData});  
+          filterHistory.push({name: Globals.mode, data: oldData});  
           View.addFilterHistory(filterHistory);  
         }  
         console.log("newMode", newMode);
-        mode = newMode;      
+        Globals.mode = newMode;      
         force.nodes(newData);  
-        if(mode === "comm") {
+        if(Globals.mode === "comm") {
           //d3.selectAll("circle").attr("opacity", 0);
           d3.selectAll("circle").style("opacity", 0)
             console.log("making them invisible");
@@ -87,7 +87,7 @@
       $('.legend').show();
       
       if ($(this).data("grouping") == "comm") {
-        mode = "comm";
+        Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
@@ -95,11 +95,11 @@
         Communities.communities();
       } else if ($(this).data("grouping") == "schedule") {
         loadParallelData();
-        mode = "schedule";
+        Globals.mode = "schedule";
         main();
       } else if($(this).data("grouping") == "map"){
         loadParallelData();
-        mode = "map";
+        Globals.mode = "map";
         main();
       } else if($(this).data("grouping") == "restart"){
         filterHistory = [];
@@ -107,7 +107,7 @@
       } else if($(this).data("grouping") == "sessions"){
         $('.legend').hide();
         loadParallelData();
-        mode = "sessions";
+        Globals.mode = "sessions";
         main();
       }
     };
