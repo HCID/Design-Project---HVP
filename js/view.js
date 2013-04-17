@@ -99,7 +99,7 @@
       nodeEnterG.attr("id", function(d, i){return "g" + d.id})
         .attr("class", "circle_class")
         .append("circle")
-        .on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
+        //.on("mousedown", function(d){ ClickHandler.circleClicked(d) } )
         .style("fill", function (d, i) {
            if (mode === "events") { 
              if(d.sessions) {
@@ -126,25 +126,21 @@
           }
         })
         .style("stroke", "#ffffff")
-        .call(TUIOHandler.node_drag);
-    	 // $("#outer_container ul.menu_option").append('<li><a href="#"><span>Nothing</span></a></li>');
+        //.call(TUIOHandler.node_drag);
        $("#outer_container ul.menu_option").html("");
-       if(mode == "sessions") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_free" data-mode="free" href="#"><span>Events</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_map" data-mode="map" href="#"><span>Map</span></a></li>');
-       } else if(mode == "free") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_map" data-mode="map" href="#"><span>Map</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_sessions" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
-       } else if(mode == "map") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_free" data-mode="free" href="#"><span>Events</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_sessions" data-mode="sessions" href="#"><span>Sessions</span></a></li>');
-       } else if(mode == "comm") {
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_free" data-mode="free" href="#"><span>Events</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_menu_comm" data-mode="comm" href="#"><span>Communities</span></a></li>');
-         $("#outer_container ul.menu_option").append('<li><a class="pie_menu_link pie_mene_map" data-mode="map" href="#"><span>Map</span></a></li>');
+       if(mode != "sessions") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", name: "Sessions" }));
+       }
+       if(mode != "events") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", name: "Events" }));
+       } else {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", name: "Details" }));
+       }
+       if(mode != "map") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "map", name: "Map" }));
+       }
+       if(mode != "comm") {
+         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "comm", name: "Communities" }));
        }
         
       $('#outer_container').PieMenu({
@@ -162,6 +158,7 @@
       $("*").on("mousedown", function (e) {
         if($(e.currentTarget).hasClass("pie_menu_link")) {
           ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data(), $(this).data("mode"));
+          $("#outer_container").hide();
         } else {
           
         }

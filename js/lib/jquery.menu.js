@@ -31,7 +31,7 @@
 	$(settings.menu_button).unbind('click', clickHandler);	//remove event if exist
 	
 	var clickHandler = function(e) {
-
+    $("#outer_container").show();
       var data = d3.select("#" + $(this).attr("id")).data()[0];
     
       $(".menu_option li").data("circle-id", data.id);
