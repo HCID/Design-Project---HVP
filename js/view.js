@@ -38,7 +38,7 @@
         if (n >100) {
           return 21;
         } else {
-          var s = 0.2 * Math.sqrt((Global.width*Global.height)/n);
+          var s = 0.2 * Math.sqrt((Globals.width*Globals.height)/n);
           return s;
         }
       } else if (Globals.mode === "map") {
