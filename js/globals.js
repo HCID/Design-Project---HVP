@@ -59,11 +59,11 @@
 
     mapXSpace = 700;
 
-    sessionIntSpace = 60;
+    sessionIntSpace = 55;
 
-    sessionXSpace = 405;
+    sessionXSpace = 350;
 
-    sessionYSpace = 270;
+    sessionYSpace = 225;
 
     whiteSpace = 20;
 
@@ -213,1126 +213,305 @@
     };
 
     Globals.fociSession = {
-      "monday 9:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 blue": {
-        x: sessionXSpace + sessionIntSpace * 0,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 241": {
-        x: 5 + sessionXSpace + sessionIntSpace * 1,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 242ab": {
-        x: 70 + sessionXSpace + sessionIntSpace * 2,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "thursday 9:00 242b": {
-        x: 50 + sessionXSpace + sessionIntSpace * 1.75,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 242b": {
-        x: 50 + sessionXSpace + sessionIntSpace * 1.75,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 242b": {
-        x: 50 + sessionXSpace + sessionIntSpace * 1.75,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 242b": {
-        x: 50 + sessionXSpace + sessionIntSpace * 1.75,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "thursday 9:00 242a": {
-        x: 90 + sessionXSpace + sessionIntSpace * 2.25,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 242a": {
-        x: 90 + sessionXSpace + sessionIntSpace * 2.25,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 242a": {
-        x: 90 + sessionXSpace + sessionIntSpace * 2.25,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 242a": {
-        x: 90 + sessionXSpace + sessionIntSpace * 2.25,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 243": {
-        x: 120 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 251": {
-        x: 245 + sessionXSpace + sessionIntSpace * 3,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 252a": {
-        x: 270 + sessionXSpace + sessionIntSpace * 4,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 252b": {
-        x: 310 + sessionXSpace + sessionIntSpace * 5,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 253": {
-        x: 330 + sessionXSpace + sessionIntSpace * 6,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 bordeaux": {
-        x: 470 + sessionXSpace + sessionIntSpace * 7,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 342a": {
-        x: 520 + sessionXSpace + sessionIntSpace * 8,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 343": {
-        x: 550 + sessionXSpace + sessionIntSpace * 9,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 361": {
-        x: 555 + sessionXSpace + sessionIntSpace * 10,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 362/363": {
-        x: 570 + sessionXSpace + sessionIntSpace * 11,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 havane": {
-        x: 660 + sessionXSpace + sessionIntSpace * 12,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 351": {
-        x: 690 + sessionXSpace + sessionIntSpace * 13,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 352ab": {
-        x: 710 + sessionXSpace + sessionIntSpace * 14,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
-      "monday 9:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: sessionYSpace + sessionIntSpace * 0
-      },
-      "monday 11:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: sessionYSpace + sessionIntSpace * 1
-      },
-      "monday 14:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: sessionYSpace + sessionIntSpace * 2
-      },
-      "monday 16:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: sessionYSpace + sessionIntSpace * 3
-      },
-      "tuesday 9:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 4
-      },
-      "tuesday 11:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 5
-      },
-      "tuesday 14:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 6
-      },
-      "tuesday 16:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace + sessionYSpace + sessionIntSpace * 7
-      },
-      "wednesday 9:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8
-      },
-      "wednesday 11:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9
-      },
-      "wednesday 14:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10
-      },
-      "wednesday 16:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11
-      },
-      "thursday 9:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12
-      },
-      "thursday 11:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13
-      },
-      "thursday 14:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14
-      },
-      "thursday 16:00 grand": {
-        x: 770 + sessionXSpace + sessionIntSpace * 15,
-        y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15
-      },
+      "monday 9:00 blue":     {x: sessionXSpace + sessionIntSpace * 0,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 blue":    {x: sessionXSpace + sessionIntSpace * 0,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 blue":    {x: sessionXSpace + sessionIntSpace * 0,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 blue":    {x: sessionXSpace + sessionIntSpace * 0,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 blue":    {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 blue":   {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 blue":   {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 blue":   {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 blue":  {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 blue": {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 blue": {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 blue": {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 blue":   {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 blue":  {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 blue":  {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 blue":  {x: sessionXSpace + sessionIntSpace * 0,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+      //241
+      "monday 9:00 241":     {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 241":    {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 241":    {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 241":    {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 241":    {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 241":   {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 241":   {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 241":   {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 241":  {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 241": {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 241": {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 241": {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 241":   {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 241":  {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 241":  {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 241":  {x: 30 + sessionXSpace + sessionIntSpace * 1,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+      //242ab
+      "monday 9:00 242ab":      {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 242ab":     {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 242ab":     {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 242ab":     {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 242ab":     {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 242ab":    {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 242ab":    {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 242ab":    {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 242ab":   {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 242ab":  {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 242ab":  {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 242ab":  {x: 80 + sessionXSpace + sessionIntSpace * 2,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 242b":     {x: 80 + sessionXSpace + sessionIntSpace * 2.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 242b":    {x: 80 + sessionXSpace + sessionIntSpace * 2.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 242b":    {x: 80 + sessionXSpace + sessionIntSpace * 2.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 242b":    {x: 80 + sessionXSpace + sessionIntSpace * 2.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+      "thursday 9:00 242a":     {x: 80 + sessionXSpace + sessionIntSpace * 1.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 242a":    {x: 80 + sessionXSpace + sessionIntSpace * 1.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 242a":    {x: 80 + sessionXSpace + sessionIntSpace * 1.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 242a":    {x: 80 + sessionXSpace + sessionIntSpace * 1.50,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+      //243
+      "monday 9:00 243":     {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 243":    {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 243":    {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 243":    {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 243":    {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 243":   {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 243":   {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 243":   {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 243":  {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 243": {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 243": {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 243": {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 243":   {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 243":  {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 243":  {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 243":  {x: 135 + sessionXSpace + sessionIntSpace * 3,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     
+
+      //251
+      "monday 9:00 251":     {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 251":    {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 251":    {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 251":    {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 251":    {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 251":   {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 251":   {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 251":   {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 251":  {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 251": {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 251": {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 251": {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 251":   {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 251":  {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 251":  {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 251":  {x: 170 + sessionXSpace + sessionIntSpace * 4,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+
+      //252a
+      "monday 9:00 252a":     {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 252a":    {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 252a":    {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 252a":    {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 252a":    {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 252a":   {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 252a":   {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 252a":   {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 252a":  {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 252a": {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 252a": {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 252a": {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 252a":   {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 252a":  {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 252a":  {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 252a":  {x: 190 + sessionXSpace + sessionIntSpace * 5,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+
+      //252b
+      "monday 9:00 252b":     {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 252b":    {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 252b":    {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 252b":    {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 252b":    {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 252b":   {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 252b":   {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 252b":   {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 252b":  {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 252b": {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 252b": {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 252b": {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 252b":   {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 252b":  {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 252b":  {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 252b":  {x: 230 + sessionXSpace + sessionIntSpace * 6,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+      //253
+      "monday 9:00 253":     {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 253":    {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 253":    {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 253":    {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 253":    {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 253":   {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 253":   {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 253":   {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 253":  {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 253": {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 253": {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 253": {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 253":   {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 253":  {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 253":  {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 253":  {x: 255 + sessionXSpace + sessionIntSpace * 7,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+
+      //bordeaux
+      "monday 9:00 bordeaux":     {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 bordeaux":    {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 bordeaux":    {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 bordeaux":    {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 bordeaux":    {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 bordeaux":   {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 bordeaux":   {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 bordeaux":   {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 bordeaux":  {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 bordeaux": {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 bordeaux": {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 bordeaux": {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 bordeaux":   {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 bordeaux":  {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 bordeaux":  {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 bordeaux":  {x: 340 + sessionXSpace + sessionIntSpace * 8,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //342a
+      "monday 9:00 342a":     {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 342a":    {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 342a":    {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 342a":    {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 342a":    {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 342a":   {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 342a":   {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 342a":   {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 342a":  {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 342a": {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 342a": {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 342a": {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 342a":   {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 342a":  {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 342a":  {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 342a":  {x: 400 + sessionXSpace + sessionIntSpace * 9,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //343
+      "monday 9:00 343":     {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 343":    {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 343":    {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 343":    {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 343":    {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 343":   {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 343":   {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 343":   {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 343":  {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 343": {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 343": {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 343": {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 343":   {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 343":  {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 343":  {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 343":  {x: 435 + sessionXSpace + sessionIntSpace * 10,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //361
+      "monday 9:00 361":     {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 361":    {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 361":    {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 361":    {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 361":    {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 361":   {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 361":   {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 361":   {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 361":  {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 361": {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 361": {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 361": {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 361":   {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 361":  {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 361":  {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 361":  {x: 445 + sessionXSpace + sessionIntSpace * 11,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //362/363
+      "monday 9:00 362/363":     {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 362/363":    {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 362/363":    {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 362/363":    {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 362/363":    {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 362/363":   {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 362/363":   {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 362/363":   {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 362/363":  {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 362/363": {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 362/363": {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 362/363": {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 362/363":   {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 362/363":  {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 362/363":  {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 362/363":  {x: 450 + sessionXSpace + sessionIntSpace * 12,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //havane
+      "monday 9:00 havane":     {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 havane":    {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 havane":    {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 havane":    {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 havane":    {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 havane":   {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 havane":   {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 havane":   {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 havane":  {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 havane": {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 havane": {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 havane": {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 havane":   {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 havane":  {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 havane":  {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 havane":  {x: 510 + sessionXSpace + sessionIntSpace * 13,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //351
+      "monday 9:00 351":     {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 351":    {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 351":    {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 351":    {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 351":    {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 351":   {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 351":   {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 351":   {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 351":  {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 351": {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 351": {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 351": {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 351":   {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 351":  {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 351":  {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 351":  {x: 540 + sessionXSpace + sessionIntSpace * 14,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     //352ab
+      "monday 9:00 352ab":     {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 352ab":    {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 352ab":    {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 352ab":    {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 352ab":    {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 352ab":   {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 352ab":   {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 352ab":   {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 352ab":  {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 352ab": {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 352ab": {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 352ab": {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 352ab":   {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 352ab":  {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 352ab":  {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 352ab":  {x: 560 + sessionXSpace + sessionIntSpace * 15,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     
+      //grand
+      "monday 9:00 grand":     {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: sessionYSpace + sessionIntSpace * 0},
+      "monday 11:00 grand":    {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: sessionYSpace + sessionIntSpace * 1},
+      "monday 14:00 grand":    {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: sessionYSpace + sessionIntSpace * 2},
+      "monday 16:00 grand":    {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: sessionYSpace + sessionIntSpace * 3},
+      "tuesday 9:00 grand":    {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace + sessionYSpace + sessionIntSpace * 4},
+      "tuesday 11:00 grand":   {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace + sessionYSpace + sessionIntSpace * 5},
+      "tuesday 14:00 grand":   {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace + sessionYSpace + sessionIntSpace * 6},
+      "tuesday 16:00 grand":   {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace + sessionYSpace + sessionIntSpace * 7},
+      "wednesday 9:00 grand":  {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 8},
+      "wednesday 11:00 grand": {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 9},
+      "wednesday 14:00 grand": {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 10},
+      "wednesday 16:00 grand": {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 2 + sessionYSpace + sessionIntSpace * 11},
+      "thursday 9:00 grand":   {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 12},
+      "thursday 11:00 grand":  {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 13},
+      "thursday 14:00 grand":  {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 14},
+      "thursday 16:00 grand":  {x: 605 + sessionXSpace + sessionIntSpace * 16,  y: whiteSpace * 3 + sessionYSpace + sessionIntSpace * 15},
+     
       undefined: {
         x: sessionXSpace + sessionIntSpace * 16,
         y: sessionYSpace + sessionIntSpace * 0
