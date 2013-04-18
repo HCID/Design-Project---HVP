@@ -111,7 +111,16 @@
       nodeEnterG.append("text")
         .attr("class", "talkName")
         .style("fill", "#ffffff")
-        .style("font-family", "Gill Sans")
+        .style("font-family", function(d) { 
+
+          if (l < Globals.textThreshold) {
+            return 20;
+          } else {
+            return 12;
+          }
+      
+        });)
+        .style("font-size", "Gill Sans")
         .style("text-anchor", "middle")
         .text(function(d) { 
 
@@ -130,7 +139,7 @@
             }
           }
       
-      });
+        });
       $('.talkName').show();
 
       nodes.selectAll("circle").attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } );
