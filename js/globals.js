@@ -57,7 +57,7 @@
 
     parallelData = void 0;
 
-    mapXSpace = 700;
+    mapXSpace = 655;
 
     sessionIntSpace = 55;
 
@@ -130,86 +130,26 @@
     ];
 
     Globals.fociMap = {
-      "352ab": {
-        x: mapXSpace + 325,
-        y: 90
-      },
-      351: {
-        x: mapXSpace + 125,
-        y: 130
-      },
-      havane: {
-        x: mapXSpace + 35,
-        y: 270
-      },
-      "362/363": {
-        x: mapXSpace + 610,
-        y: 160
-      },
-      361: {
-        x: mapXSpace + 570,
-        y: 225
-      },
-      343: {
-        x: mapXSpace + 500,
-        y: 275
-      },
-      "342a": {
-        x: mapXSpace + 400,
-        y: 340
-      },
-      bordeaux: {
-        x: mapXSpace + 235,
-        y: 375
-      },
-      253: {
-        x: mapXSpace + 405,
-        y: 535
-      },
-      "252b": {
-        x: mapXSpace + 290,
-        y: 550
-      },
-      "252a": {
-        x: mapXSpace + 180,
-        y: 575
-      },
-      251: {
-        x: mapXSpace + 70,
-        y: 605
-      },
-      blue: {
-        x: mapXSpace + 580,
-        y: 560
-      },
-      243: {
-        x: mapXSpace + 600,
-        y: 640
-      },
-      "242b": {
-        x: mapXSpace + 555,
-        y: 695
-      },
-      "242ab": {
-        x: mapXSpace + 510,
-        y: 710
-      },
-      "242a": {
-        x: mapXSpace + 480,
-        y: 750
-      },
-      241: {
-        x: mapXSpace + 405,
-        y: 800
-      },
-      grand: {
-        x: mapXSpace + 88,
-        y: 1087
-      },
-      undefined: {
-        x: 2 * mapXSpace + 1000,
-        y: 600
-      }
+      "352ab":    {x: mapXSpace + 253,  y: 97},
+      "351":      {x: mapXSpace + 77,  y: 138},
+      "havane":   {x: mapXSpace + 1,  y: 260},
+      "362/363":  {x: mapXSpace + 493, y: 158},
+      "361":      {x: mapXSpace + 461, y: 215},
+      "343":      {x: mapXSpace + 405, y: 260},
+      "342a":     {x: mapXSpace + 320, y: 315},
+      "bordeaux": {x: mapXSpace + 170, y: 345},
+      "253":      {x: mapXSpace + 320, y: 480},
+      "252b":     {x: mapXSpace + 220, y: 495},
+      "252a":     {x: mapXSpace + 124, y: 517},
+      "251":      {x: mapXSpace + 30,  y: 545},
+      "blue":     {x: mapXSpace + 470, y: 505},
+      "243":      {x: mapXSpace + 490, y: 572},
+      "242b":     {x: mapXSpace + 447, y: 620},
+      "242ab":    {x: mapXSpace + 400, y: 620},
+      "242a":     {x: mapXSpace + 387, y: 665},
+      "241":      {x: mapXSpace + 320, y: 705},
+      "grand":    {x: mapXSpace + 48,  y: 955},
+      undefined:  {x: 2 * mapXSpace + 1000,  y: 600}
     };
 
     Globals.fociSession = {
