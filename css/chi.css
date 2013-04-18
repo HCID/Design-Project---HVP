@@ -3,6 +3,8 @@
   src: url('./font/GillSans-Light.ttf');
 }
 
+
+
 * {
   -webkit-touch-callout: none;
 -webkit-user-select: none;
@@ -14,6 +16,11 @@ user-select: none;
 
 h1, h3, h4, h5, h6, p, div, li, ul {
   font-family: "GillSans-Light", "Verdana";
+}
+
+.sessions{
+  width:1742px;
+  height:980px;
 }
 
 .imgButton {
