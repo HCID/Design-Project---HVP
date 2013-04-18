@@ -10,7 +10,7 @@
             image = "/img/mapLevels.svg";
             opacity = 1;
       } else if (Globals.mode == "sessions") {
-          image = "/img/sessions.png";
+          image = "/img/sessions.svg";
           opacity = 1;
       } 
       d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
