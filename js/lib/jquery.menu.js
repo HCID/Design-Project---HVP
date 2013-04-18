@@ -62,11 +62,19 @@
         var filterData = _.filter(force.nodes(), function (node) { return node.sessions[0]["room"] == data["room"]});
         
       }
-     
-      _.each(_.first(filterData, 5), function(obj) {
-        htmlTmpl += _.template($("#event_list_item").html(), {title: obj.name.length > 27 ? obj.name.substr(0,24)+".." : obj.name, id: obj.id})
-      });
-      htmlTmpl += _.template($("#event_last_list_item").html(), {amount: filterData.length})
+      if(filterData) {
+        if(filterData.length > 0) {
+          _.each(_.first(filterData, 5), function(obj) {
+            htmlTmpl += _.template($("#event_list_item").html(), {title: obj.name.length > 27 ? obj.name.substr(0,24)+".." : obj.name, id: obj.id})
+          });
+        }
+      
+        if (filterData.length > 0) {
+            htmlTmpl += _.template($("#event_last_list_item").html(), {amount: filterData.length})
+        }
+      }
+      
+      
       
       $("#event_list").html(htmlTmpl).show().css("left", (x + 150) + "px").css("top",  (y-150) + "px");
       
@@ -76,11 +84,13 @@
           ClickHandler.circleClicked(data, "events");
           $("#event_list").hide();
           $("#outer_container").hide();
+          $("#vent_list li").off("mousedown");
         } else if($(this).hasClass("event_item")) {
           var dataId = $(this).data("event-id");
           console.log("sas", dataId)
           ClickHandler.circleClicked(_.find(force.nodes(), function(a) { return a.id == dataId} ), "details");
         }
+        
         e.stopPropagation();
         
       });
@@ -115,8 +125,7 @@
 	        } else {
             $("#outer_container").hide();
             $("#event_list").hide();
-	        }
-          
+	        }         
      	})
 
 		$(settings.menu_button).on('mousedown', clickHandler);

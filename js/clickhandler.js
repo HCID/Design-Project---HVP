@@ -8,7 +8,6 @@
     ClickHandler.circleClicked = function (circle, newMode, d3event) {
 
       console.log("circleClicked: switch from " + Globals.mode + "  to " + newMode);
-
       if(newMode == "details" || Globals.mode == "events") {
         View.showDetails(circle);
       } else {

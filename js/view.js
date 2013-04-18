@@ -59,7 +59,7 @@
       nodeEnterG.attr("id", function(d, i){return "g" + d.id})
         .attr("class", "circle_class")
         .append("circle")
-       // .on("mousedown", ClickHandler.circleClicked )
+        .on("mousedown", function(d) { console.log(Globals.mode); if(Globals.mode == "events") { ClickHandler.circleClicked(d) } } )
         .style("fill", function (d, i) {
            
              if(d.sessions) {
@@ -86,20 +86,21 @@
         })
         .style("stroke", "#ffffff")
         //.call(TUIOHandler.node_drag);
-      View.addPieMenuOptions(Globals.mode);
+        if(Globals.mode != "events") {
+          View.addPieMenuOptions(Globals.mode);
         
-      $('#outer_container').PieMenu({
-    		'starting_angel': 135,
-    		'angel_difference' : 90,
-    		'radius': 200,      
-        'menu_button' : $('.circle_class'),
-    	});
+          $('#outer_container').PieMenu({
+        		'starting_angel': 135,
+        		'angel_difference' : 90,
+        		'radius': 200,      
+            'menu_button' : $('.circle_class'),
+        	});
       
-      // TODO: move menu when circle moves
-      // TODO: add circle code
-      // TODO: add icons
-      // TODO: animate disappearance
-      
+          // TODO: move menu when circle moves
+          // TODO: add circle code
+          // TODO: add icons
+          // TODO: animate disappearance
+        }
      
       console.log("force.nodes().length: " + force.nodes().length);
 
