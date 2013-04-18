@@ -18,7 +18,7 @@
 
       if (Globals.mode == "map") { 
         var copyPD = parallelData.slice(0);
-        var sessions = groupSession(copyPD);
+        var sessions = CircleHandler.groupSession(copyPD);
         oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
         newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
       
