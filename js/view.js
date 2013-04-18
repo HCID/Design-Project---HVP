@@ -11,15 +11,9 @@
       if (Globals.mode == "sessions") {
           image = "/img/sessions.svg";
           opacity = 1;
-          $("#bgimage").addClass("sessions");
-      } else{
-        if($("#bgimage").hasClass("sessions")){
-          $("#bgimage").removeClass("sessions")
-        }
-          if (Globals.mode == "map") {
-              image = "/img/mapLevels.svg";
-              opacity = 1;
-        }
+      } else if (Globals.mode == "map") {
+          image = "/img/mapLevels.svg";
+          opacity = 1;
       }
 
       d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
