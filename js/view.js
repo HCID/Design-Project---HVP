@@ -111,16 +111,16 @@
       nodeEnterG.append("text")
         .attr("class", "talkName")
         .style("fill", "#ffffff")
-        .style("font-family", function(d) { 
+        .style("font-size", function(d) { 
 
           if (l < Globals.textThreshold) {
-            return 20;
+            return 16;
           } else {
             return 12;
           }
       
-        });)
-        .style("font-size", "Gill Sans")
+        })
+        .style("font-family", "Gill Sans")
         .style("text-anchor", "middle")
         .text(function(d) { 
 
