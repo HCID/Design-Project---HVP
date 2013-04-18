@@ -19,10 +19,15 @@
 <text transform="matrix(1.2296 0 0 1 109.4521 860.4121)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">14:00 - 15:20</text>
 <text transform="matrix(1.2296 0 0 1 107.9409 814.4072)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">11:00 - 12:20</text>
 <text transform="matrix(1.2296 0 0 1 129.6499 770.0654)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">9:00 - 10:20</text>
-<text transform="matrix(0.9999 0 0 1 319.7988 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">Bleu    241   242AB    243</text>
+<text transform="matrix(0.9999 0 0 1 320.6709 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">Bleu</text>
+<text transform="matrix(0.9999 0 0 1 407.4141 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">241 </text>
+<text transform="matrix(0.9999 0 0 1 482.5918 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">242AB</text>
+<text transform="matrix(0.9999 0 0 1 587.9863 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">243</text>
 <text transform="matrix(0.9999 0 0 1 658.5181 120.2944)" fill="#4A7046" font-family="'GillSans-Light'" font-size="30.4076">251  252A  252B  253</text>
-<text transform="matrix(0.9999 0 0 1 945.1865 119.2778)" fill="#934A50" font-family="'GillSans-Light'" font-size="30.4076">Bordeaux  342A  343  361  362</text>
-<text transform="matrix(0.9999 0 0 1 1348.1885 119.5566)" fill="#C68952" font-family="'GillSans-Light'" font-size="30.4076">Havane 351 352</text>
+<text transform="matrix(0.9999 0 0 1 948.1504 119.2778)" fill="#934A50" font-family="'GillSans-Light'" font-size="30.4076">Bordeaux  </text>
+<text transform="matrix(0.9999 0 0 1 1073.6807 119.2778)" fill="#934A50" font-family="'GillSans-Light'" font-size="30.4076">342A  343  361  362</text>
+<text transform="matrix(0.9999 0 0 1 1337.001 119.5566)" fill="#C68952" font-family="'GillSans-Light'" font-size="30.4076">Havane </text>
+<text transform="matrix(0.9999 0 0 1 1460.2549 119.5566)" fill="#C68952" font-family="'GillSans-Light'" font-size="30.4076">351 352</text>
 <text transform="matrix(0.9999 0 0 1 1579.6738 118.8765)" fill="#EBD74E" font-family="'GillSans-Light'" font-size="30.4076">Grand</text>
 <text transform="matrix(8.183381e-16 -1.0001 1 -1.066992e-15 85.5498 292.2817)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1601">Monday</text>
 <text transform="matrix(0 -1.0001 1 0 85.8823 498.7334)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1601">Tuesday</text>
