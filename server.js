@@ -6,6 +6,7 @@ var libpath = require('path'),
 
 
 var path = ".";
+var port = process.env.PORT || 3000;
 
 http.createServer(function(request, response) {
     var uri = url.parse(request.url).pathname;
@@ -45,4 +46,4 @@ http.createServer(function(request, response) {
         });
     });
 
-}).listen(3000);
+}).listen(port);
