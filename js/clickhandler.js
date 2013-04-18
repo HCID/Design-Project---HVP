@@ -8,13 +8,14 @@
     ClickHandler.circleClicked = function (circle, newMode, d3event) {
 
       console.log("circleClicked: switch from " + Globals.mode + "  to " + newMode);
-      if(newMode == "details") {
+
+      if(newMode == "details" || Globals.mode == "events") {
         View.showDetails(circle);
       } else {
       var oldData = [], newData = [];
       ClickHandler.loadParallelData();
 
-      if (Globals.mode == "map") { 
+      else if (Globals.mode == "map") { 
         var copyPD = parallelData.slice(0);
         var sessions = CircleHandler.groupSession(copyPD);
         oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
