@@ -108,12 +108,14 @@
      
       console.log("force.nodes().length: " + force.nodes().length);
 
+      console.log("mode update", Globals.mode);
+
       nodeEnterG.append("text")
         .attr("class", "talkName")
         .style("fill", "#ffffff")
         .style("font-size", function(d) { 
 
-          if (l < Globals.textThreshold) {
+          if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
             return 16;
           } else {
             return 12;
@@ -124,7 +126,7 @@
         .style("text-anchor", "middle")
         .text(function(d) { 
 
-          if (l < Globals.textThreshold) {
+          if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
             if ((d.name != undefined) || (d.name !== "undefined")) {
               var results = d.name.match(/\S+\s*/g);
               return  results[0] + " " + results[1] + " " + results[2] + " " + results[3] + "...";
