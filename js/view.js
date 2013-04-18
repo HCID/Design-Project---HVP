@@ -89,8 +89,8 @@
       View.addPieMenuOptions(Globals.mode);
         
       $('#outer_container').PieMenu({
-    		'starting_angel': 0,
-    		'angel_difference' : 180,
+    		'starting_angel': 135,
+    		'angel_difference' : 90,
     		'radius': 200,      
         'menu_button' : $('.circle_class'),
     	});
@@ -130,12 +130,6 @@
        if(theMode !== "sessions") {
         console.log("addPieMenuOptions sessions")
          $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "sessions", image: "img/sessionsPM.png" }));
-       }
-       if(theMode !== "events") {
-         console.log("addPieMenuOptions events")
-         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "events", image: "img/talkPM.png" }));
-       } else {
-         //$("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {type: "details", image: "img/talkPM.png" }));
        }
        if(theMode !== "map") {
         console.log("addPieMenuOptions map")

@@ -8,13 +8,11 @@
     ClickHandler.circleClicked = function (circle, newMode, d3event) {
 
       console.log("circleClicked: switch from " + Globals.mode + "  to " + newMode);
-      if(Globals.mode == "events") {
-        if(force.nodes().length < circlesThreshold) {
-          View.showDetails(circle);
-        }
+      if(newMode == "details") {
+        View.showDetails(circle);
       } else {
       var oldData = [], newData = [];
-      loadParallelData();
+      ClickHandler.loadParallelData();
 
       if (Globals.mode == "map") { 
         var copyPD = parallelData.slice(0);
@@ -58,7 +56,7 @@
             console.log("making them invisible");
           $('.talkName').hide();
           $('.legend').hide();
-          loadParallelData();
+          ClickHandler.loadParallelData();
           Communities.communities();
         } else {
           d3.selectAll("circle").style("display", "block");
@@ -73,8 +71,9 @@
 
 
     /* closes the detail view */ 
-    ClickHandler.detailCloseHandler = function () {
+    ClickHandler.detailCloseHandler = function (e) {
       View.hideDetails();
+      e.stopPropagation();
     }
 
 
@@ -89,14 +88,14 @@
         d3.selectAll("circle").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
-        loadParallelData();
+        ClickHandler.loadParallelData();
         Communities.communities();
       } else if ($(this).data("grouping") == "events") {
-        loadParallelData();
+        ClickHandler.loadParallelData();
         Globals.mode = "events";
         main();
       } else if($(this).data("grouping") == "map"){
-        loadParallelData();
+        ClickHandler.loadParallelData();
         Globals.mode = "map";
         main();
       } else if($(this).data("grouping") == "restart"){
@@ -104,14 +103,14 @@
         restart();
       } else if($(this).data("grouping") == "sessions"){
         $('.legend').hide();
-        loadParallelData();
+        ClickHandler.loadParallelData();
         Globals.mode = "sessions";
         main();
       }
     };
 
     /* Load */
-    var loadParallelData = function () {
+    ClickHandler.loadParallelData = function () {
       if (parallelData.length > 0) {
         force.nodes(parallelData);
         parallelData = [];

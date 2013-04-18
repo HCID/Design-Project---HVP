@@ -67,7 +67,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   position: absolute; 
   left: 50%; 
   top: 20%; 
-  z-index: 100;
+  z-index: 99999;
   display: none;
 }
 
@@ -371,3 +371,32 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 
 /***************** END OF PIE MENU CSS *********************/
+    
+    
+    #event_list {
+      background-color: rgba(255, 255, 255, 0.7);
+      list-style: none;
+      position: absolute;
+      width: 240px;
+padding: 0px;
+border: 1px solid #68afd4;
+    }
+    
+    #event_list li {
+      height: 30px;
+      text-align: center;
+      float: left;
+      width: 240px;
+      border-bottom: 1px solid #ddd;
+      padding: 0px;
+      padding-top: 18px;
+      font-size: 20px;
+    }
+    #event_list li:last-child {
+      border-bottom: 0px none #fff;
+      line-height: 0px;
+    }
+    
+    #outer_container {
+      display: none;
+    }
