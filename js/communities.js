@@ -81,23 +81,30 @@
       */
     var createCommNodesArray = function (a) {
 
-      a.forEach (function (d) {
+      if (force.nodes().length >= 25) {
 
-        if (d.coms.length > 0) {
-          var i = d.coms.indexOf("ux");
-          if (i >= 0) d.coms.splice(i, 1);
-          i = d.coms.indexOf("design");
-          if (i >= 0) d.coms.splice(i, 1);
-          i = d.coms.indexOf("engineering");
-          if (i >= 0) d.coms.splice(i, 1);
-        }
+        a.forEach (function (d) {
 
-      });
+          if (d.coms.length > 0) {
+            var i = d.coms.indexOf("ux");
+            if (i >= 0) d.coms.splice(i, 1);
+            i = d.coms.indexOf("design");
+            if (i >= 0) d.coms.splice(i, 1);
+            i = d.coms.indexOf("engineering");
+            if (i >= 0) d.coms.splice(i, 1);
+          }
+
+        });
+      }
 
       var array = [];
       var id = 0;
       var groups = [];
       var preGroups = ["general", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
+
+      if (force.nodes().length < 25) {
+        preGroups = ["general", "ux", "design", "engineering", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
+      } 
 
       // Decides which pregroups should be listed
       for (var i=0; i < preGroups.length; i++) {
