@@ -3,60 +3,60 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="1742px" height="980px" viewBox="0 0 1742 980" enable-background="new 0 0 1742 980" xml:space="preserve">
-<text transform="matrix(1.2296 0 0 1 107.9072 310.7983)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">16:00 - 17:20</text>
-<text transform="matrix(1.2296 0 0 1 109.4521 267.4639)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">14:00 - 15:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9409 221.4585)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">11:00 - 12:20</text>
-<text transform="matrix(1.2296 0 0 1 129.6499 177.1167)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">9:00 - 10:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9072 508.4492)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">16:00 - 17:20</text>
-<text transform="matrix(1.2296 0 0 1 109.4521 465.1128)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">14:00 - 15:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9409 419.1079)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">11:00 - 12:20</text>
-<text transform="matrix(1.2296 0 0 1 129.6499 374.7681)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">9:00 - 10:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9072 702.7207)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">16:00 - 17:20</text>
-<text transform="matrix(1.2296 0 0 1 109.4521 659.3857)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">14:00 - 15:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9409 613.377)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">11:00 - 12:20</text>
-<text transform="matrix(1.2296 0 0 1 129.6499 569.0391)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">9:00 - 10:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9072 903.7471)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">16:00 - 17:20</text>
-<text transform="matrix(1.2296 0 0 1 109.4521 860.4121)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">14:00 - 15:20</text>
-<text transform="matrix(1.2296 0 0 1 107.9409 814.4072)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">11:00 - 12:20</text>
-<text transform="matrix(1.2296 0 0 1 129.6499 770.0654)" fill="#030303" font-family="'GillSans-Light'" font-size="30.4076">9:00 - 10:20</text>
-<text transform="matrix(0.9999 0 0 1 320.6709 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">Bleu</text>
-<text transform="matrix(0.9999 0 0 1 407.4141 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">241 </text>
-<text transform="matrix(0.9999 0 0 1 482.5918 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">242AB</text>
-<text transform="matrix(0.9999 0 0 1 587.9863 120.6626)" fill="#3F6989" font-family="'GillSans-Light'" font-size="30.4076">243</text>
-<text transform="matrix(0.9999 0 0 1 658.5181 120.2944)" fill="#4A7046" font-family="'GillSans-Light'" font-size="30.4076">251  252A  252B  253</text>
-<text transform="matrix(0.9999 0 0 1 948.1504 119.2778)" fill="#934A50" font-family="'GillSans-Light'" font-size="30.4076">Bordeaux  </text>
-<text transform="matrix(0.9999 0 0 1 1073.6807 119.2778)" fill="#934A50" font-family="'GillSans-Light'" font-size="30.4076">342A  343  361  362</text>
-<text transform="matrix(0.9999 0 0 1 1337.001 119.5566)" fill="#C68952" font-family="'GillSans-Light'" font-size="30.4076">Havane </text>
-<text transform="matrix(0.9999 0 0 1 1460.2549 119.5566)" fill="#C68952" font-family="'GillSans-Light'" font-size="30.4076">351 352</text>
-<text transform="matrix(0.9999 0 0 1 1579.6738 118.8765)" fill="#EBD74E" font-family="'GillSans-Light'" font-size="30.4076">Grand</text>
-<text transform="matrix(8.183381e-16 -1.0001 1 -1.066992e-15 85.5498 292.2817)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1601">Monday</text>
-<text transform="matrix(0 -1.0001 1 0 85.8823 498.7334)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1601">Tuesday</text>
-<text transform="matrix(1.118932e-15 -1.0001 1 2.133984e-15 84.438 719.8486)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1601">Wednesday</text>
-<text transform="matrix(-5.379962e-16 -1.0001 1 0 84.9507 902.5479)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1601">Thursday</text>
+<text transform="matrix(1.2296 0 0 1 59.8506 307.3491)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">16:00 - 17:20</text>
+<text transform="matrix(1.2296 0 0 1 61.522 260.4683)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">14:00 - 15:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8872 210.6968)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">11:00 - 12:20</text>
+<text transform="matrix(1.2296 0 0 1 83.3735 162.7251)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">9:00 - 10:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8506 522.1797)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">16:00 - 17:20</text>
+<text transform="matrix(1.2296 0 0 1 61.522 475.2954)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">14:00 - 15:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8872 425.5249)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">11:00 - 12:20</text>
+<text transform="matrix(1.2296 0 0 1 83.3735 377.5552)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">9:00 - 10:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8506 741.3525)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">16:00 - 17:20</text>
+<text transform="matrix(1.2296 0 0 1 61.522 694.4707)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">14:00 - 15:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8872 644.6953)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">11:00 - 12:20</text>
+<text transform="matrix(1.2296 0 0 1 83.3735 596.7285)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">9:00 - 10:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8506 957.834)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">16:00 - 17:20</text>
+<text transform="matrix(1.2296 0 0 1 61.522 910.9521)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">14:00 - 15:20</text>
+<text transform="matrix(1.2296 0 0 1 59.8872 861.1816)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">11:00 - 12:20</text>
+<text transform="matrix(1.2296 0 0 1 83.3735 813.21)" fill="#030303" font-family="'GillSans-Light'" font-size="32.8967">9:00 - 10:20</text>
+<text transform="matrix(0.9999 0 0 1 290.0308 101.6499)" fill="#3F6989" font-family="'GillSans-Light'" font-size="32.8967">Bleu</text>
+<text transform="matrix(0.9999 0 0 1 383.8745 101.6499)" fill="#3F6989" font-family="'GillSans-Light'" font-size="32.8967">241 </text>
+<text transform="matrix(0.9999 0 0 1 465.2061 101.6499)" fill="#3F6989" font-family="'GillSans-Light'" font-size="32.8967">242AB</text>
+<text transform="matrix(0.9999 0 0 1 579.228 101.6499)" fill="#3F6989" font-family="'GillSans-Light'" font-size="32.8967">243</text>
+<text transform="matrix(0.9999 0 0 1 655.5327 101.2515)" fill="#4A7046" font-family="'GillSans-Light'" font-size="32.8967">251  252A  252B  253</text>
+<text transform="matrix(0.9999 0 0 1 968.874 100.1519)" fill="#934A50" font-family="'GillSans-Light'" font-size="32.8967">Bordeaux  </text>
+<text transform="matrix(0.9999 0 0 1 1104.6797 100.1519)" fill="#934A50" font-family="'GillSans-Light'" font-size="32.8967">342A  343  361  362</text>
+<text transform="matrix(0.9999 0 0 1 1389.5547 100.4536)" fill="#C68952" font-family="'GillSans-Light'" font-size="32.8967">Havane </text>
+<text transform="matrix(0.9999 0 0 1 1522.8975 100.4536)" fill="#C68952" font-family="'GillSans-Light'" font-size="32.8967">351 352</text>
+<text transform="matrix(0.9999 0 0 1 1652.0918 99.7173)" fill="#EBD74E" font-family="'GillSans-Light'" font-size="32.8967">Grand</text>
+<text transform="matrix(8.183381e-16 -1.0001 1 -1.066992e-15 35.6631 287.3174)" fill="#030303" font-family="'GillSans-Light'" font-size="40.202">Monday</text>
+<text transform="matrix(0 -1.0001 1 0 36.0229 511.668)" fill="#030303" font-family="'GillSans-Light'" font-size="40.202">Tuesday</text>
+<text transform="matrix(1.118932e-15 -1.0001 1 2.133984e-15 34.4604 759.8828)" fill="#030303" font-family="'GillSans-Light'" font-size="40.202">Wednesday</text>
+<text transform="matrix(-5.379963e-16 -1.0001 1 0 35.0151 956.5371)" fill="#030303" font-family="'GillSans-Light'" font-size="40.202">Thursday</text>
 <g id="Bleu">
 	<g>
-		<rect x="319.143" y="130.453" fill="#3F6989" width="316.991" height="785.395"/>
+		<rect x="288.378" y="112.242" fill="#3F6989" width="342.939" height="860.84"/>
 	</g>
 </g>
 <g id="Green">
 	<g>
-		<rect x="654.266" y="130.453" fill="#4A7046" width="269.524" height="785.395"/>
+		<rect x="650.933" y="112.242" fill="#4A7046" width="291.586" height="860.84"/>
 	</g>
 </g>
 <g id="Bordeaux">
 	<g>
-		<rect x="944.951" y="130.453" fill="#934A50" width="376.756" height="785.395"/>
+		<rect x="965.412" y="112.242" fill="#934A50" width="407.597" height="860.84"/>
 	</g>
 </g>
 <g id="Bordeaux_copia">
 	<g>
-		<rect x="1337.103" y="130.453" fill="#C68952" width="221.083" height="785.395"/>
+		<rect x="1389.665" y="112.242" fill="#C68952" width="239.18" height="860.84"/>
 	</g>
 </g>
 <g id="Bordeaux_copia_2">
 	<g>
-		<rect x="1571.701" y="130.453" fill="#EBD74E" width="91.078" height="785.395"/>
+		<rect x="1643.467" y="112.242" fill="#EBD74E" width="98.533" height="860.84"/>
 	</g>
 </g>
-<text transform="matrix(0.9999 0 0 1 840.1772 64.1528)" fill="#030303" font-family="'GillSans-Light'" font-size="37.1649">SCHEDULE</text>
+<text transform="matrix(0.9999 0 0 1 852.062 40.5142)" fill="#030303" font-family="'GillSans-Light'" font-size="40.2071">SCHEDULE</text>
 </svg>
