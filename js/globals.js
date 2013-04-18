@@ -39,6 +39,8 @@
 
     Globals.vennEvent = null;
 
+    Globals.threshold = 25; //Threshold for the venn diagram
+
     Globals.height = $(window).height();
 
     Globals.width = $(window).width();

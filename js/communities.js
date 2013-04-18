@@ -81,7 +81,9 @@
       */
     var createCommNodesArray = function (a) {
 
-      if (force.nodes().length >= 25) {
+      var nodesLength = force.nodes().length;
+
+      if (nodesLength >= Globals.threshold) {
 
         a.forEach (function (d) {
 
@@ -100,10 +102,11 @@
       var array = [];
       var id = 0;
       var groups = [];
-      var preGroups = ["general", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
+      var baseCase = (nodesLength < Globals.threshold) ? "N/A" : "general";
+      var preGroups = [baseCase, "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
 
-      if (force.nodes().length < 25) {
-        preGroups = ["general", "ux", "design", "engineering", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
+      if (nodesLength < Globals.threshold) {
+        preGroups = [baseCase, "ux", "design", "engineering", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
       } 
 
       // Decides which pregroups should be listed
@@ -111,7 +114,7 @@
         var str = preGroups[i];
         var found = false;
 
-        if (str === "general") {
+        if (str === baseCase) {
           found = commExists("", a);
         } else {
           found = commExists(str, a);
@@ -161,7 +164,9 @@
         var i2 = 0;
         var i3 = 0;
         var i4 = 0;
-    
+        var i5 = 0;
+        var i6 = 0;
+
         if (d.coms.length == 0) {
           i1 = t << 0; 
           vennData[i1] = 8;
@@ -183,6 +188,21 @@
           i3 = t << groups.indexOf(d.coms[2]);
           i4 = t << groups.indexOf(d.coms[3]);
           vennData[i1|i2|i3|i4] = 4;
+        } else if (d.coms.length == 5) {
+          i1 = t << groups.indexOf(d.coms[0]);
+          i2 = t << groups.indexOf(d.coms[1]);
+          i3 = t << groups.indexOf(d.coms[2]);
+          i4 = t << groups.indexOf(d.coms[3]);
+          i5 = t << groups.indexOf(d.coms[4]);
+          vennData[i1|i2|i3|i4|i5] = 3;
+        } else if (d.coms.length == 6) {
+          i1 = t << groups.indexOf(d.coms[0]);
+          i2 = t << groups.indexOf(d.coms[1]);
+          i3 = t << groups.indexOf(d.coms[2]);
+          i4 = t << groups.indexOf(d.coms[3]);
+          i5 = t << groups.indexOf(d.coms[4]);
+          i6 = t << groups.indexOf(d.coms[5]);
+          vennData[i1|i2|i3|i4|i5|i6] = 2;
         }
 
       });
