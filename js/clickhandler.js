@@ -15,7 +15,7 @@
       var oldData = [], newData = [];
       ClickHandler.loadParallelData();
 
-      else if (Globals.mode == "map") { 
+      if (Globals.mode == "map") { 
         var copyPD = parallelData.slice(0);
         var sessions = CircleHandler.groupSession(copyPD);
         oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
