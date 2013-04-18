@@ -1,0 +1,12 @@
+{
+  "name": "designproject",
+  "version": "0.0.1",
+  "dependencies": {
+    "mime": "1.2.9",
+    "uglify-js": "1.2.5"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.1.x"
+  }
+}
