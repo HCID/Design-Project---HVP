@@ -56,6 +56,7 @@
 
 
     View.update = function () {
+      var l = force.nodes().length;
       View.changeImage();
       nodes = vis.selectAll("g").data(force.nodes(), function(d){ return d.id;} )
       var nodeEnterG = nodes.enter().append("g");
@@ -113,10 +114,20 @@
         .style("font-family", "Gill Sans")
         .style("text-anchor", "middle")
         .text(function(d) { 
-          if ((d.code != undefined) || (d.code !== "undefined")) {
-            return  d.code;
+
+          if (l < Globals.textThreshold) {
+            if ((d.name != undefined) || (d.name !== "undefined")) {
+              var results = d.name.match(/\S+\s*/g);
+              return  results[0] + " " + results[1] + " " + results[2] + " " + results[3] + "...";
+            } else {
+              return "";
+            }
           } else {
-            return "K";
+            if ((d.code != undefined) || (d.code !== "undefined")) {
+              return  d.code;
+            } else {
+              return "";
+            }
           }
       
       });
