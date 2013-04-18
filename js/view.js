@@ -7,7 +7,7 @@
       var image = "";
       var opacity = 0;
       if (Globals.mode == "map") {
-            image = "/img/mapLevels.png";
+            image = "/img/mapLevels.svg";
             opacity = 1;
       } else if (Globals.mode == "sessions") {
           image = "/img/sessions.png";
