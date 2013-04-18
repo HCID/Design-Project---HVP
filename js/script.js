@@ -28,7 +28,7 @@ var main = function (fociUsed) {
   }
   
   View.update();
-  View.generateLegend();
+  // View.generateLegend();
 };
       
 // Restarts the data 

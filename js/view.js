@@ -19,13 +19,13 @@
       d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
     };
 
-    View.generateLegend = function () {
-      var items = [];
-      _.each(Globals.colors, function(item, key) {
-              items.push(_.template($("#template_legend_item").html(), {color: item.color, name: key }));
-       });  // close each()
-       $(".types").html( items.join("") );
-    }
+    // View.generateLegend = function () {
+    //   var items = [];
+    //   _.each(Globals.colors, function(item, key) {
+    //           items.push(_.template($("#template_legend_item").html(), {color: item.color, name: key }));
+    //    });  // close each()
+    //    $(".types").html( items.join("") );
+    // }
 
 
     View.generateSessionTitle = function (d) {
