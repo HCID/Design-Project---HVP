@@ -189,6 +189,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
       
     }
     html{
+      overflow:hidden;
       font-size:100%;
       -webkit-text-size-adjust:100%;
       -ms-text-size-adjust:100%
