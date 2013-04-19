@@ -422,6 +422,7 @@ border: 1px solid #68afd4;
     
     #outer_container {
       display: none;
+      position: absolute;
     }
     
     #event_list {

@@ -34,18 +34,18 @@
 	
 	
 		
-    $("*").on("mousedown", function (e) {
-	    if($(e.currentTarget).hasClass("pie_menu_link")) {
-        console.log("mmmmmmod", $(this).data("mode"))
-        ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"), currentD3Ev);
-        $("#outer_container").hide();
-        $("#event_list").hide();
-      } else if ($(e.currentTarget).hasClass("event_item") || $(e.currentTarget).attr("id") === "detail_close_button") {    
-      } else {
-        $("#outer_container").hide();
-        $("#event_list").hide();
-      }         
-   	});
+    // $("*").on("mousedown", function (e) {
+	   //  if($(e.currentTarget).hasClass("pie_menu_link")) {
+    //     console.log("mmmmmmod", $(this).data("mode"))
+    //     ClickHandler.circleClicked(d3.select("#g" + $(e.currentTarget).parent("li").data("circle-id")).data()[0], $(this).data("mode"), currentD3Ev);
+    //     $("#outer_container").hide();
+    //     $("#event_list").hide();
+    //   } else if ($(e.currentTarget).hasClass("event_item") || $(e.currentTarget).attr("id") === "detail_close_button") {    
+    //   } else {
+    //     $("#outer_container").hide();
+    //     $("#event_list").hide();
+    //   }         
+   	// });
 
 //		$(settings.menu_button).on('mousedown', clickHandler);
 		//$("#outer_container").on('communitiesClick', clickHandler);
