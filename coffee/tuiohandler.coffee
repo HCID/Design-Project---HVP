@@ -48,9 +48,9 @@ class window.TUIOHandler
   onUpdateTuioHand = (updateHand) ->
     console.log(updateHand)
     if updateHand.fingers.indexOf(-1) is -1
-      h = new Hand(updateHand)
-      console.log(h)
-      currentHands.push(h)
+      #h = new Hand(updateHand)
+      #console.log(h)
+      #currentHands.push(h)
       unless showMenu
         console.log updateHand
         $("#mainMenu").css("top", (updateHand.yPos * windowHeight) - 300 + "px").css("left", (updateHand.xPos * windowWidth) - 300 + "px").show()
