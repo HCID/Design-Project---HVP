@@ -37,6 +37,8 @@
       }
     };
 
+    Globals.clcScreen = navigator.appVersion.indexOf("Linux") !== -1
+
     Globals.vennEvent = null;
 
     Globals.threshold = 25; //Threshold for the venn diagram
@@ -45,7 +47,7 @@
 
     Globals.height = $(window).height();
 
-    Globals.width = $(window).width();
+    Globals.width = Globals.clcScreen ? $(window).width()*2 : $(window).width();
 
     xSchedule = 730;
 

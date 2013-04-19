@@ -63,7 +63,7 @@
       nodeEnterG.attr("id", function(d, i){return "g" + d.id})
         .attr("class", "circle_class")
         .append("circle")
-        .on("mousedown", function(d) { console.log(Globals.mode); if(Globals.mode == "events") { ClickHandler.circleClicked(d) } } )
+        .on("mousedown", ClickHandler.circleClicked )
         .style("fill", function (d, i) {
            
              if(d.sessions) {
@@ -102,7 +102,6 @@
       
           // TODO: move menu when circle moves
           // TODO: add circle code
-          // TODO: add icons
           // TODO: animate disappearance
         }
      

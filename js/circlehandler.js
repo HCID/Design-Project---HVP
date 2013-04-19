@@ -295,6 +295,68 @@
 
 	  return auxArray;
 	}
+  CircleHandler.filterData = function (circle, newMode, d3event) {
+    console.log("circleClicked: switch from " + Globals.mode + "  to " + newMode);
+    if(newMode == "details" || Globals.mode == "events") {
+      View.showDetails(circle);
+    } else {
+    var oldData = [], newData = [];
+    ClickHandler.loadParallelData();
+
+    if (Globals.mode == "map") { 
+      var copyPD = parallelData.slice(0);
+      var sessions = CircleHandler.groupSession(copyPD);
+      oldData = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
+      newData = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
+    
+    } else if (Globals.mode == "sessions") {
+      console.log("wowo", circle);
+      View.generateSessionTitle(circle.name);
+      oldData = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
+      newData = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
+    
+    } else if (Globals.mode == "comm") {
+      var list = _.map($('svg g.arc').filter(function() {
+        if (pointInCirclePath($(this), Globals.vennEvent)) {
+          return true;
+        }
+        }), function (el) { return el.id });
+        if (list.length > 0) {
+          if(list[0] == "general") {
+            oldData = _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
+            newData = _.filter(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
+          } else {
+            oldData = _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
+            newData = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
+          }            
+
+          //.attr("opacity", 1);   
+        }         
+      }
+      
+      if (oldData.length > 0) {
+        filterHistory.push({name: Globals.mode, data: oldData});  
+        View.addFilterHistory(filterHistory);  
+      }  
+      Globals.mode = newMode;      
+      force.nodes(newData);  
+      if(Globals.mode === "comm") {
+        d3.selectAll("circle").style("display", "none");
+          console.log("making them invisible");
+        $('.talkName').hide();
+        $('.legend').hide();
+        ClickHandler.loadParallelData();
+        Communities.communities();
+      } else {
+        d3.selectAll("circle").style("display", "block");
+        force.nodes(newData); 
+        main(); 
+        // View.update();  
+      }
+      
+      
+    } 
+  }
 
 	var indexInSessionsArray = function (a, o) {
 	  var found = false;

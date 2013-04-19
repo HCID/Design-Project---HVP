@@ -10,7 +10,7 @@ var force = d3.layout.force()
       .size([Globals.width, Globals.height])
       .charge(0)
       .on("tick", CircleHandler.tick);
-
+var filterHistory = [];
 var main = function (fociUsed) {
 
   vis = d3.select("body").select("svg");
