@@ -8,9 +8,9 @@
     ClickHandler.listOfOldEvents = [];
 
 
-    ClickHandler.eventListItemClick = function (e) {
-      if($(e.currentTarget).hasClass("event_item")) {                              
-        View.showDetails(d3.select((Globals.mode == "sessions" ? "#gs" : "#g") + $(e.currentTarget).data("event-id")).data()[0]); 
+    ClickHandler.eventListItemClick = function (e) {    
+      if($(e.currentTarget).hasClass("event_item")) { 
+        View.showDetails(_.find(force.nodes(), function (node) { return node.id == $(e.currentTarget).data("event-id")})); 
       } else if($(e.currentTarget).hasClass("show_all_events")) {
         Globals.mode = "events";
         d3.selectAll("circle").style("display", "block");
@@ -25,15 +25,20 @@
 
     /* Funtion triggered when one of the bubbles is clicked */    
     ClickHandler.circleClicked = function (circle, newMode, d3event) {
+
+      //console.log(d3.event)
+      d3.event.stopPropagation()
+
+
       if(Globals.mode === "events") {
         View.showDetails(circle);
       } else {
       var menuId = "";
       if (Globals.mode === "comm") {
-        currentD3Ev = f;
-        var position = {x: Globals.vennEvent.clientX, y: Globals.vennEvent.clientY }; 
+        var position = {x: d3.event.clientX, y: d3.event.clientY }; 
       } else {  
         menuId = circle.id;        
+        console.log("tyftfty", menuId)
         var position = {x: circle.x-circle.radius+8, y: circle.y+circle.radius+8};
         //$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );       
       }
@@ -57,7 +62,7 @@
     } else if (Globals.mode == "comm") {
 
       var list = _.map($('svg g.arc').filter(function() {
-        if (pointInCirclePath($(this), Globals.vennEvent)) {
+        if (pointInCirclePath($(this), d3.event)) {
           return true;
         }
         }), function (el) { return el.id });
@@ -105,7 +110,6 @@
   	ClickHandler.pieMenuHandler = function(e, f) {
 
       var newMode = $(e.currentTarget).data("mode");
-      console.log("asd", ClickHandler.listOfEvents);
 
 
 
@@ -113,11 +117,17 @@
         filterHistory.push({name: Globals.humanReadableMode[Globals.mode] + " = " + ClickHandler.listOfOldEvents.title, data: ClickHandler.listOfOldEvents.data});  
         View.addFilterHistory(filterHistory);  
       }  
-      Globals.mode = newMode;      
+      
+
+      Globals.mode = newMode;  
+
+
+
       force.nodes(ClickHandler.listOfEvents);  
+     
+
       if(Globals.mode === "comm") {
         d3.selectAll("circle").style("display", "none");
-          console.log("making them invisible");
         $('.talkName').hide();
         $('.legend').hide();
         ClickHandler.loadParallelData();

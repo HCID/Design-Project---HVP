@@ -248,7 +248,10 @@
 
 
     View.showPieMenu = function (position, listOfEvents, menuId) {
-      
+
+
+      console.log(menuId)
+      $("#outer_container, #event_list").show();
       $("#outer_container").css("left", position.x + "px").css("top",  position.y + "px");
       $(".menu_option li").data("circle-id", menuId);
       htmlTmpl = "";
@@ -263,11 +266,24 @@
       $("#outer_container li .pie_menu_link").on("mousedown", ClickHandler.pieMenuHandler );
 
       $("#event_list li").on("mousedown", ClickHandler.eventListItemClick );      
-      $("#outer_container").show();
+
+
+      // $(":not(#event_list li), :not(#outer_container *)").on("mousedown", function (e) {         
+      //   $("#event_list li, #outer_container *").off("mousedown");
+      //   $("#outer_container, #event_list").hide();
+      // } );      
+
+
+
 
 
       if($("#outer_container").hasClass('active')){
-        
+        $("#outer_container li").each(function(i,ele){          
+            $(ele).css({
+              'left' : 0,
+              'top' : 0,
+            });
+        });
         //setPosition(0);
         $("#outer_container").removeClass('active');
         $("#outer_container").addClass('inactive');
@@ -292,7 +308,7 @@
       //$(this).toggleClass("btn-rotate");
     }
 
-     
+    
 
     View.addFilterHistory = function (filterHistory) {
       var toppy = 30 + ($("#filter_list li").size()*60);

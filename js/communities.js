@@ -274,8 +274,8 @@
           .attr("fill", function(d, i) { return fill2(i); })
           .attr("opacity", 0.5)
           .attr("id", function(d, i) { return gr[i]; })
-          // .on("mousedown", ClickHandler.circleClicked)
-          .on("mousedown", function () {Globals.vennEvent = d3.event; $("#outer_container").trigger("communitiesClick")})
+           .on("mousedown", ClickHandler.circleClicked)
+          //.on("mousedown", function () {Globals.vennEvent = d3.event; $("#outer_container").trigger("communitiesClick")})
 
           .attr("d", circle);
       circles.append("text")
