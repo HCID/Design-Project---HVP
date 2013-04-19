@@ -24,8 +24,7 @@
 
 
     /* Funtion triggered when one of the bubbles is clicked */    
-    ClickHandler.circleClicked = function (circle, newMode, d3event) {
-
+    ClickHandler.circleClicked = function (circle) {      
       //  console.log(d3.event)
       d3.event.stopPropagation()
 
@@ -107,8 +106,7 @@
     }
 
 
-  	ClickHandler.pieMenuHandler = function(e, f) {
-
+  	ClickHandler.pieMenuHandler = function(e, f) {      
       var newMode = $(e.currentTarget).data("mode");
 
 

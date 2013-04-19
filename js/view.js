@@ -233,7 +233,10 @@
       }
       $("#event_list").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top",  (position.y-150) + "px");
 
+      
+      $("#event_list li, #outer_container li *").off("mousedown");
       $("#outer_container li .pie_menu_link").on("mousedown", ClickHandler.pieMenuHandler );
+      
 
       $("#event_list li").on("mousedown", ClickHandler.eventListItemClick );      
 
