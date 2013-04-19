@@ -252,6 +252,7 @@
               'left' : 0,
               'top' : 0,
             });
+            $(ele).hide()
         });
         //setPosition(0);
         $("#outer_container").removeClass('active');
@@ -265,6 +266,7 @@
           ele_angle[i] = 135 + 90/(($("#outer_container li").length-1)*(i))*Math.PI/180;
           x_pos[i] = (200 * Math.sin(ele_angle[i]));
           y_pos[i] = (200 * Math.cos(ele_angle[i]));
+            $(ele).show()
             $(ele).css({
               'left' : y_pos[i],
               'top' : x_pos[i],

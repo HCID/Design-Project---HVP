@@ -26,7 +26,7 @@
     /* Funtion triggered when one of the bubbles is clicked */    
     ClickHandler.circleClicked = function (circle, newMode, d3event) {
 
-      //console.log(d3.event)
+      //  console.log(d3.event)
       d3.event.stopPropagation()
 
 
@@ -61,24 +61,24 @@
     
     } else if (Globals.mode == "comm") {
 
-      var list = _.map($('svg g.arc').filter(function() {
-        if (pointInCirclePath($(this), d3.event)) {
+      var list = _.map($('svg g.arc').filter(function(b, a) {
+        if (pointInCirclePath($(a), d3.event)) {
           return true;
         }
         }), function (el) { return el.id });
-
-
+        
+        filterFor = [];
         if (list.length > 0) {
           var filterFor;
           _.each(list, function(item){
-            filterFor.append(item + ", ");
+            filterFor.push(item + ", ");
           })
 
           if(list[0] == "general") {
-            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } )};
+            ClickHandler.listOfOldEvents = { title: filterFor.join() , data: _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } )};
             ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
           } else {
-            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } )} ;
+            ClickHandler.listOfOldEvents = { title: filterFor.join() , data: _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } )} ;
             ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
           }            
 
@@ -245,8 +245,8 @@
     }
     
     /* Tells if a point is inside a circle path or not */
-    var pointInCirclePath = function (b, p) {
-
+    var pointInCirclePath = function (b, ev) {
+      console.log(b)
       var cX  = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
       var cY  = parseFloat(b.attr("transform").split(",")[1].split(")")[0]);
       var radius = b.get(0).getBBox().height / 2;
@@ -254,10 +254,10 @@
       var xs = 0;
       var ys = 0;
  
-      xs = cX - p.pageX;
+      xs = cX - ev.pageX;
       xs = xs * xs;
  
-      ys = cY - p.pageY;
+      ys = cY - ev.pageY;
       ys = ys * ys;
 
       var distance = Math.sqrt( xs + ys );
