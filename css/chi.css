@@ -58,10 +58,11 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 	height:80px;
 	border-radius:75px;
 	margin: 2px 2px 2px 2px;
+  border: 0px none #fff;
 }
 
 .size_button:active {
-	background:#8fdbda
+	/*background:#8fdbda*/
 }
 
 .legend {

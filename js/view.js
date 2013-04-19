@@ -152,7 +152,7 @@
           if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
             if ((d.name != undefined) || (d.name !== "undefined")) {
               var results = d.name.match(/\S+\s*/g);
-              return  results[0] + " " + results[1] + " " + results[2] + " " + results[3] + "...";
+              return  results[0] + " " + results[1] + " " + results[2] + "...";
             } else {
               return "";
             }
@@ -328,6 +328,7 @@
     var npoints=16;
     if (force.nodes().length < Globals.textThreshold) {
       npoints = 80;
+      radiuso+=10;
     }
 
     var startx=0;
