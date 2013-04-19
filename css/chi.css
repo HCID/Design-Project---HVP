@@ -24,17 +24,17 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 .eventsButton{
-  background: url('/img/mapIcon.png') no-repeat;
+  background: url('/img/talkIcon.png') no-repeat;
   background-size:80px 80px;
 }
 
 .mapButton{
-  background: url('/img/sessionsIcon.png') no-repeat;
+  background: url('/img/mapIcon.png') no-repeat;
   background-size:80px 80px;
 }
 
 .sessionButton{
-  background: url('/img/talkIcon.png') no-repeat;
+  background: url('/img/sessionsIcon.png') no-repeat;
   background-size:80px 80px;
 }
 
