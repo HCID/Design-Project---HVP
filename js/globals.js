@@ -53,6 +53,8 @@
 
     ySchedule = 200;
 
+    Globals.humanReadableMode = {"sessions": "Session", "map": "Room", "comm": "Communities"}
+
     xSpace = 280;
 
     ySpace = 220;

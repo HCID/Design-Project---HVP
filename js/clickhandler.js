@@ -37,7 +37,6 @@
         var position = {x: circle.x-circle.radius+8, y: circle.y+circle.radius+8};
         //$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );       
       }
-
     
     ClickHandler.loadParallelData();
 
@@ -45,26 +44,36 @@
     if (Globals.mode == "map") { 
       var copyPD = parallelData.slice(0);
       var sessions = CircleHandler.groupSession(copyPD);
-      ClickHandler.listOfOldEvents = _.reject(sessions, function (node) { return node["room"] == circle["room"]});
+
+      ClickHandler.listOfOldEvents = {title: circle["room"], data: _.reject(sessions, function (node) { return node["room"] == circle["room"]}) };
       ClickHandler.listOfEvents = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
     
     } else if (Globals.mode == "sessions") {
       View.generateSessionTitle(circle.name);
-      ClickHandler.listOfOldEvents = _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })
+
+      ClickHandler.listOfOldEvents = { title: circle["code"] , data: _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) }) };
       ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
     
     } else if (Globals.mode == "comm") {
+
       var list = _.map($('svg g.arc').filter(function() {
         if (pointInCirclePath($(this), Globals.vennEvent)) {
           return true;
         }
         }), function (el) { return el.id });
+
+
         if (list.length > 0) {
+          var filterFor;
+          _.each(list, function(item){
+            filterFor.append(item + ", ");
+          })
+
           if(list[0] == "general") {
-            ClickHandler.listOfOldEvents = _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
+            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } )};
             ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
           } else {
-            ClickHandler.listOfOldEvents = _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
+            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } )} ;
             ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
           }            
 
@@ -100,8 +109,8 @@
 
 
 
-      if (ClickHandler.listOfOldEvents.length > 0) {
-        filterHistory.push({name: Globals.mode, data: ClickHandler.listOfOldEvents});  
+      if (ClickHandler.listOfOldEvents.data.length > 0) {
+        filterHistory.push({name: Globals.humanReadableMode[Globals.mode] + " = " + ClickHandler.listOfOldEvents.title, data: ClickHandler.listOfOldEvents.data});  
         View.addFilterHistory(filterHistory);  
       }  
       Globals.mode = newMode;      
