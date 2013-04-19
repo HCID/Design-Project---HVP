@@ -30,7 +30,7 @@
 	
 
 	var currentD3Ev = null;
-	$(settings.menu_button).unbind('mousedown', clickHandler);	//remove event if exist
+	//$(settings.menu_button).unbind('mousedown', clickHandler);	//remove event if exist
 	
 	
 		
@@ -48,7 +48,7 @@
    	});
 
 //		$(settings.menu_button).on('mousedown', clickHandler);
-		$("#outer_container").on('communitiesClick', clickHandler);
+		//$("#outer_container").on('communitiesClick', clickHandler);
 		return settings.menu_element.each(function(i,ele){
 		ele_angle[i] = (parseInt(settings.starting_angel) + angle*(i))*Math.PI/180;
 		x_pos[i] = (settings.radius * Math.sin(ele_angle[i]));
