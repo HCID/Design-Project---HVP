@@ -71,9 +71,10 @@
     };
 
     onUpdateTuioHand = function(updateHand) {
-      console.log(updateHand);
-      console.log(Hand);
+      var h;
       if (updateHand.fingers.indexOf(-1) === -1) {
+        h = new Hand(updateHand);
+        console.log(h);
         if (!showMenu) {
           console.log(updateHand);
           $("#mainMenu").css("top", (updateHand.yPos * windowHeight) - 300 + "px").css("left", (updateHand.xPos * windowWidth) - 300 + "px").show();
