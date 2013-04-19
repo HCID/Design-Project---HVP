@@ -64,6 +64,7 @@
         .attr("class", "circle_class")
       
       nodeEnterG.append("path")
+          .attr("class", "award")
           .attr("d", function(d) {
           if (Globals.mode === "events") { 
             if (d.award != undefined) {

@@ -128,12 +128,14 @@
 
       if(Globals.mode === "comm") {
         d3.selectAll("circle").style("display", "none");
+        d3.selectAll("path.award").style("display", "none");
         $('.talkName').hide();
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Communities.communities();
       } else {
-        d3.selectAll("circle").style("display", "block");
+        d3.selectAll("circle").style("display", "block");        
+        d3.selectAll("path.award").style("display", "block");
         force.nodes(ClickHandler.listOfEvents); 
         main(); 
         // View.update();  
@@ -207,12 +209,14 @@
     /* Funtion triggered when one of the menu buttons is clicked */
     ClickHandler.menuHandler = function () {
       d3.selectAll("circle").style("display", "block");
+      d3.selectAll("path.award").style("display", "block");;
       $('.talkName').show();
       $('.legend').show();
       
       if ($(this).data("grouping") == "comm") {
         Globals.mode = "comm";
-        d3.selectAll("circle").style("display", "none");;
+        d3.selectAll("circle").style("display", "none");
+        d3.selectAll("path.award").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
         ClickHandler.loadParallelData();
