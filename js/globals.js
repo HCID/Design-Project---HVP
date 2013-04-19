@@ -61,11 +61,11 @@
 
     mapXSpace = 655;
 
-    sessionIntSpace = 55;
+    sessionIntSpace = Globals.clcScreen ? 52 : 55;
 
     sessionXSpace = 350;
 
-    sessionYSpace = 225;
+    sessionYSpace = Globals.clcScreen ? 170 : 225;
 
     whiteSpace = 20;
 
