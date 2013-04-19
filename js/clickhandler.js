@@ -114,7 +114,7 @@
 
 
       if (ClickHandler.listOfOldEvents.data.length > 0) {
-        filterHistory.push({name: Globals.humanReadableMode[Globals.mode] + " = " + ClickHandler.listOfOldEvents.title, data: ClickHandler.listOfOldEvents.data});  
+        filterHistory.push({mode: Globals.mode, name: Globals.humanReadableMode[Globals.mode] + " = " + ClickHandler.listOfOldEvents.title, data: ClickHandler.listOfOldEvents.data});  
         View.addFilterHistory(filterHistory);  
       }  
       
