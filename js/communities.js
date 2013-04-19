@@ -167,34 +167,72 @@
         var i5 = 0;
         var i6 = 0;
 
+        // if (d.coms.length == 0) {
+        //   i1 = t << 0; 
+        //   vennData[i1] = 8;
+        // } else if (d.coms.length == 1) {
+        //   i1 = t << groups.indexOf(d.coms[0]);
+        //   vennData[i1] = 8;
+        // } else if (d.coms.length == 2) {
+        //   i1 = t << groups.indexOf(d.coms[0]);
+        //   i2 = t << groups.indexOf(d.coms[1]);
+        //   vennData[i1|i2] = 6;
+        // } else if (d.coms.length == 3) {
+        //   i1 = t << groups.indexOf(d.coms[0]);
+        //   i2 = t << groups.indexOf(d.coms[1]);
+        //   i3 = t << groups.indexOf(d.coms[2]);
+        //   vennData[i1|i2|i3] = 4;
+        // } else if (d.coms.length == 4) {
+        //   i1 = t << groups.indexOf(d.coms[0]);
+        //   i2 = t << groups.indexOf(d.coms[1]);
+        //   i3 = t << groups.indexOf(d.coms[2]);
+        //   i4 = t << groups.indexOf(d.coms[3]);
+        //   vennData[i1|i2|i3|i4] = 4;
+        // } else if (d.coms.length == 5) {
+        //   i1 = t << groups.indexOf(d.coms[0]);
+        //   i2 = t << groups.indexOf(d.coms[1]);
+        //   i3 = t << groups.indexOf(d.coms[2]);
+        //   i4 = t << groups.indexOf(d.coms[3]);
+        //   i5 = t << groups.indexOf(d.coms[4]);
+        //   vennData[i1|i2|i3|i4|i5] = 3;
+        // } else if (d.coms.length == 6) {
+        //   i1 = t << groups.indexOf(d.coms[0]);
+        //   i2 = t << groups.indexOf(d.coms[1]);
+        //   i3 = t << groups.indexOf(d.coms[2]);
+        //   i4 = t << groups.indexOf(d.coms[3]);
+        //   i5 = t << groups.indexOf(d.coms[4]);
+        //   i6 = t << groups.indexOf(d.coms[5]);
+        //   vennData[i1|i2|i3|i4|i5|i6] = 2;
+        // }
+
         if (d.coms.length == 0) {
           i1 = t << 0; 
-          vennData[i1] = 8;
+          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 8;
         } else if (d.coms.length == 1) {
           i1 = t << groups.indexOf(d.coms[0]);
-          vennData[i1] = 8;
+          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 8;
         } else if (d.coms.length == 2) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
-          vennData[i1|i2] = 6;
+          vennData[i1|i2] = (nodesLength >= Globals.threshold) ? 6 : 4;
         } else if (d.coms.length == 3) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
           i3 = t << groups.indexOf(d.coms[2]);
-          vennData[i1|i2|i3] = 4;
+          vennData[i1|i2|i3] = (nodesLength >= Globals.threshold) ? 4 : 3;
         } else if (d.coms.length == 4) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
           i3 = t << groups.indexOf(d.coms[2]);
           i4 = t << groups.indexOf(d.coms[3]);
-          vennData[i1|i2|i3|i4] = 4;
+          vennData[i1|i2|i3|i4] = (nodesLength >= Globals.threshold) ? 4 : 3;
         } else if (d.coms.length == 5) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
           i3 = t << groups.indexOf(d.coms[2]);
           i4 = t << groups.indexOf(d.coms[3]);
           i5 = t << groups.indexOf(d.coms[4]);
-          vennData[i1|i2|i3|i4|i5] = 3;
+          vennData[i1|i2|i3|i4|i5] = (nodesLength >= Globals.threshold) ? 3 : 2;
         } else if (d.coms.length == 6) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
@@ -202,7 +240,7 @@
           i4 = t << groups.indexOf(d.coms[3]);
           i5 = t << groups.indexOf(d.coms[4]);
           i6 = t << groups.indexOf(d.coms[5]);
-          vennData[i1|i2|i3|i4|i5|i6] = 2;
+          vennData[i1|i2|i3|i4|i5|i6] = (nodesLength >= Globals.threshold) ? 2 : 1;
         }
 
       });
