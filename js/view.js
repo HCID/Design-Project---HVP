@@ -197,6 +197,10 @@
       $("#detail_title").html(circle.name);
       $("#detail_time").html("");
       $("#detail_thirty_words").html(circle.cbStatement);
+      $("#detail_award").html(circle.award ? ("Award: " + circle.award) : "" );
+      $("#detail_session").html("Session: \n" + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
+      $("#detail_date").html(circle.sessions[0].day +  ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime);
+      $("#detail_location").html("Room: " + circle.sessions[0].room);
      // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
       if(circle.keywords !== undefined){
         $("#detail_keywords").html(circle.keywords.join(", "));
@@ -212,6 +216,10 @@
       $("#detail_title").html("");
       $("#detail_time").html("");
       $("#detail_thirty_words").html("");
+      $("#detail_award").html("");
+      $("#detail_session").html("");
+      $("#detail_day").html("");
+      $("#detail_location").html("");
       $("#detail_authors").html("");
       $("#detail_keywords").html("");
     }
