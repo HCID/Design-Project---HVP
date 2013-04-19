@@ -12,7 +12,11 @@
       if($(e.currentTarget).hasClass("event_item")) {                              
         View.showDetails(d3.select((Globals.mode == "sessions" ? "#gs" : "#g") + $(e.currentTarget).data("event-id")).data()[0]); 
       } else if($(e.currentTarget).hasClass("show_all_events")) {
-        
+        Globals.mode = "events";
+        d3.selectAll("circle").style("display", "block");
+        force.nodes(ClickHandler.listOfEvents); 
+        main(); 
+        $("#outer_container, #event_list").hide();
       }
       
     }
@@ -124,6 +128,7 @@
         // View.update();  
       }
         
+
           e.stopPropagation();
       
         // $("#outer_container").css("left", x + "px").css("top",  y + "px");
