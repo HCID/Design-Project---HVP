@@ -18,26 +18,45 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   font-family: "GillSans-Light", "Verdana";
 }
 
+.comButton{
+  background: url('/img/commsIcon.png') no-repeat;
+  background-size:80px 80px;
+}
+
+.eventsButton{
+  background: url('/img/mapIcon.png') no-repeat;
+  background-size:80px 80px;
+}
+
+.mapButton{
+  background: url('/img/sessionsIcon.png') no-repeat;
+  background-size:80px 80px;
+}
+
+.sessionButton{
+  background: url('/img/talkIcon.png') no-repeat;
+  background-size:80px 80px;
+}
+
+.restartButton{
+  background: url('/img/restart.png') no-repeat;
+  background-size:80px 80px;
+}
+
+
 
 .imgButton {
   display:inline-block;
-  width:100px;
-  height:100px;
+  width:80px;
+  height:80px;
   margin: 2px 2px 2px 2px;
 }
 
 .size_button {
 	display:inline-block;
-	width:100px;
-	height:100px;
+	width:80px;
+	height:80px;
 	border-radius:75px;
-	font-size:20px;
-	font-family: "GillSans-Light", "Kefa", "Verdana";
-	color:#bbb;
-	line-height:100px;
-	text-align:center;
-	text-decoration:none;
-	background:#000;
 	margin: 2px 2px 2px 2px;
 }
 
