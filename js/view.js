@@ -212,11 +212,24 @@
 
 
       if($("#outer_container").hasClass('active')){
+        
         //setPosition(0);
         $("#outer_container").removeClass('active');
         $("#outer_container").addClass('inactive');
 
        }else{
+        var ele_angle = [];
+        var x_pos = [];
+        var y_pos = [];
+        $("#outer_container li").each(function(i,ele){
+          ele_angle[i] = 135 + 90/(($("#outer_container li").length-1)*(i))*Math.PI/180;
+          x_pos[i] = (200 * Math.sin(ele_angle[i]));
+          y_pos[i] = (200 * Math.cos(ele_angle[i]));
+            $(ele).css({
+              'left' : y_pos[i],
+              'top' : x_pos[i],
+            });
+        });
         //setPosition(1);
         $("#outer_container").addClass('active');
         $("#outer_container").removeClass('inactive');
@@ -224,6 +237,7 @@
       //$(this).toggleClass("btn-rotate");
     }
 
+     
 
     View.addFilterHistory = function (filterHistory) {
       var toppy = 30 + ($("#filter_list li").size()*60);
