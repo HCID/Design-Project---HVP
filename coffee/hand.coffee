@@ -1,4 +1,4 @@
-class Hand
+class window.Hand
   constructor: (@hand) ->
     
   inBoundaries: (x, y)-> 
