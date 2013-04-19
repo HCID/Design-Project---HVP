@@ -17,6 +17,7 @@
         force.nodes(ClickHandler.listOfEvents); 
         main(); 
         $("#outer_container, #event_list").hide();
+        $("#event_list li").off("mousedown");
       }
       
     }
@@ -97,16 +98,7 @@
       var newMode = $(e.currentTarget).data("mode");
       console.log("asd", ClickHandler.listOfEvents);
 
-      if($(this).hasClass("show_all_events")) {
-        ClickHandler.circleClicked(data, "events");
-        $("#event_list").hide();
-        $("#outer_container").hide();
-        $("#vent_list li").off("mousedown");
-      } else if($(this).hasClass("event_item")) {
-        var dataId = $(this).data("event-id");
-        console.log("sas", dataId)
-        ClickHandler.circleClicked(_.find(force.nodes(), function(a) { return a.id == dataId} ), "details");
-      }
+
 
       if (ClickHandler.listOfOldEvents.length > 0) {
         filterHistory.push({name: Globals.mode, data: ClickHandler.listOfOldEvents});  
@@ -127,7 +119,7 @@
         main(); 
         // View.update();  
       }
-        
+       $("#outer_container, #event_list").hide();
 
           e.stopPropagation();
       
