@@ -60,10 +60,8 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 	margin: 2px 2px 2px 2px;
 }
 
-.size_button:hover {
-	color:#ccc;
-	text-decoration:none;
-	background:#333
+.size_button:active {
+	background:#8fdbda
 }
 
 .legend {
