@@ -15,6 +15,7 @@
           return node.id == $(e.currentTarget).data("event-id")
         }));
       } else if ($(e.currentTarget).hasClass("show_all_events")) {
+        prepareAndAddFilter(Globals.mode, ClickHandler.listOfOldEvents);
         Globals.mode = "events";
         d3.selectAll("circle").style("display", "block");
         force.nodes(ClickHandler.listOfEvents);
@@ -149,17 +150,24 @@
     }
 
 
-    ClickHandler.pieMenuHandler = function(e, f) {
-      var newMode = $(e.currentTarget).data("mode");
-      if (ClickHandler.listOfOldEvents.data.length > 0) {
+
+    var prepareAndAddFilter = function(mode, oldEvents) {
+      if (oldEvents.data.length > 0) {
         filterHistory.push({
-          mode: Globals.mode,
-          name: Globals.humanReadableMode[Globals.mode] + " = " + ClickHandler.listOfOldEvents.title,
-          data: ClickHandler.listOfOldEvents.data
+          mode: mode,
+          name: Globals.humanReadableMode[mode] + " = " + oldEvents.title,
+          data: oldEvents.data
         });
         View.addFilterHistory(filterHistory);
       }
+    };
 
+
+
+    ClickHandler.pieMenuHandler = function(e, f) {
+      var newMode = $(e.currentTarget).data("mode");
+
+      prepareAndAddFilter(Globals.mode, ClickHandler.listOfOldEvents);
       Globals.mode = newMode;
       force.nodes(ClickHandler.listOfEvents);
 
@@ -255,7 +263,7 @@
           force.nodes().push(d);
         });
       }
-     if (Globals.mode === "map") {
+      if (Globals.mode === "map") {
         var array = CircleHandler.groupMap();
         parallelData = force.nodes().slice(0);
         force.nodes(array);
@@ -263,7 +271,7 @@
         var array = CircleHandler.groupSession();
         parallelData = force.nodes().slice(0);
         force.nodes(array);
-      } 
+      }
       delete filterHistory[id];
       View.update();
     };
