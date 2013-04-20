@@ -1,6 +1,7 @@
 (function() {
   window.CircleHandler = (function() {
 	
+
 	function CircleHandler() {}
 	/* Schedule element object */
 	function Sch (day, time, id) {
@@ -34,7 +35,6 @@
 
 	/* Sets the tick behaviour for each mode*/
 	CircleHandler.tick = function(e) {
-	  console.log("mode", Globals.mode);
 	  _.each(force.nodes(), function(d) {
 	    if(d.y <= 0) {
 	      d.y += 1;
@@ -114,7 +114,7 @@
 
 	/* Sets the position of each element in the map view*/
 	var getSessionPosition = function (k) { 
-	
+
 	  force.nodes().forEach(function(o, i) {
 
 	    if (o["room"] === undefined) {
@@ -290,7 +290,7 @@
 
 	  });
 
-	  console.log("groupSession", auxArray);
+	  
 
 	  return auxArray;
 	}

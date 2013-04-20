@@ -4,4 +4,3 @@ class window.Hand
   inBoundaries: (x, y)-> 
     false
   getId: ->
-    console.log(@hand)

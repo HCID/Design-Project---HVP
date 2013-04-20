@@ -11,9 +11,7 @@
       return false;
     };
 
-    Hand.prototype.getId = function() {
-      return console.log(this.hand);
-    };
+    Hand.prototype.getId = function() {};
 
     return Hand;
 

@@ -42,7 +42,6 @@ var restart = function() {
 
 $(document).ready(function() {
   $(".size_button").on("mousedown", ClickHandler.menuHandler);
-  $("#detail_close_button").on("mousedown", ClickHandler.detailCloseHandler)
   $("svg").attr("height", Globals.height + "px");
   $("svg").attr("width", Globals.width + "px");
   $("#bgimg").attr("height", Globals.height);

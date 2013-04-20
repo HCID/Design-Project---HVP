@@ -29,7 +29,6 @@
 
 
     View.generateSessionTitle = function(d) {
-      console.log(" title append");
       $("body").append(_.template($("#template_session_title").html(), {
         title: d
       }));
@@ -136,9 +135,6 @@
         // TODO: animate disappearance
       }
 
-      console.log("force.nodes().length: " + force.nodes().length);
-
-      console.log("mode update", Globals.mode);
 
       nodeEnterG.append("text")
         .attr("class", "talkName")
@@ -189,21 +185,18 @@
     View.addPieMenuOptions = function(theMode) {
       $("#outer_container ul.menu_option").html("");
       if (theMode !== "sessions") {
-        console.log("addPieMenuOptions sessions")
         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {
           type: "sessions",
           image: "img/sessionsPM.png"
         }));
       }
       if (theMode !== "map") {
-        console.log("addPieMenuOptions map")
         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {
           type: "map",
           image: "img/mapPM.png"
         }));
       }
       if (theMode !== "comm") {
-        console.log("addPieMenuOptions comm")
         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {
           type: "comm",
           image: "img/commsPM.png"
@@ -227,6 +220,8 @@
       }
 
       $("#detail_base").show();
+      $("#detail_close_button").on("mousedown", ClickHandler.detailCloseHandler)
+      $("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler );
     };
 
 
@@ -248,12 +243,10 @@
     View.showPieMenu = function(position, listOfEvents, menuId) {
 
       if (listOfEvents.length > 0) {
-        console.log(menuId)
         $("#outer_container, #event_list").show();
         $("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
         $(".menu_option li").data("circle-id", menuId);
         htmlTmpl = "";
-        console.log("list", listOfEvents)
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(_.first(listOfEvents, 5), function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
@@ -273,13 +266,6 @@
 
 
         $("#event_list li").on("mousedown", ClickHandler.eventListItemClick);
-
-
-
-        // $(":not(#event_list li), :not(#outer_container *)").on("mousedown", function (e) {         
-        //   $("#event_list li, #outer_container *").off("mousedown");
-        //   $("#outer_container, #event_list").hide();
-        // } );      
 
 
 
@@ -306,7 +292,7 @@
         $("#event_list").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
       }
       //$(this).toggleClass("btn-rotate");
-      $("#outer_container li .pie_menu_link, #event_list li").on("mousedownoutside", function() {
+      $("#outer_container li .pie_menu_link, #event_list li, #detail_base").on("mousedownoutside", function() {
 
         $("#outer_container li").each(function(i, ele) {
           $(ele).css({
@@ -320,7 +306,7 @@
         });
         $("#outer_container, #event_list").hide();
         $("#event_list li, #outer_container li *").off("mousedown");
-        $("#outer_container li .pie_menu_link, #event_list li").off("mousedownoutside");
+        $("#outer_container li .pie_menu_link, #event_list li, #detail_background").off("mousedownoutside");
       })
     }
 
@@ -444,7 +430,6 @@
     */
     if (npoints % 2 === 0) {
       result += 'z\n';
-      console.log("zzzzz", result);
       return result;
       svgdata += 'z\n';
     }

@@ -30,7 +30,6 @@
 
     ClickHandler.circleClicked = function(circle) {
 
-      //  console.log(d3.event)
       d3.event.stopPropagation()
 
 
@@ -44,9 +43,7 @@
             y: d3.event.clientY
           };
         } else {
-          console.log("vad är: ", circle)
           menuId = circle.id;
-          console.log("tyftfty", menuId)
           var position = {
             x: circle.x - circle.radius + 8,
             y: circle.y + circle.radius + 8
@@ -61,7 +58,6 @@
           //var copyPD = parallelData.slice(0);
           //var sessions = CircleHandler.groupSession(copyPD);
           //ClickHandler.loadParallelData();
-          //console.log("ojoj", force.nodes())
 
           ClickHandler.listOfOldEvents = {
             title: circle["room"],
@@ -138,7 +134,6 @@
           position is an array containg [x, y] 
           list of events if a list of max 5 events
         */
-        console.log($(this))
 
         View.showPieMenu(position, ClickHandler.listOfEvents, menuId);
         //        CircleHandler.filterData(circle, newMode, d3event);  
@@ -233,7 +228,6 @@
 
     /* Tells if a point is inside a circle path or not */
     var pointInCirclePath = function(b, ev) {
-      console.log(b)
       var cX = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
       var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0]);
       var radius = b.get(0).getBBox().height / 2;
