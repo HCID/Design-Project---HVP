@@ -469,3 +469,18 @@ border: 1px solid #68afd4;
     #event_list {
       display: none;
     }
+
+
+
+    #flipper {
+      float: right;
+      font-size: 30px;
+      background-color: #004A57;
+      border-radius: 10px;
+      width: 100px;
+      height: 30px;
+      color: white;
+      text-align: center;
+      padding: 4px;
+      padding-top: 10px;
+    }

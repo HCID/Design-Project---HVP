@@ -47,6 +47,8 @@ $(document).ready(function() {
   $("svg").attr("width", Globals.width + "px");
   $("#bgimg").attr("height", Globals.height);
   $("#bgimg").attr("width", Globals.width);
+  $("#flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
+
   d3.json('data/data.json', function (importedData) {
     data = importedData;
     minCollisionRadius = 5,
