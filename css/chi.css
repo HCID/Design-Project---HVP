@@ -454,6 +454,9 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 padding: 0px;
 border: 1px solid #68afd4;
     }
+    #event_list li.no_events {
+      height: 50px;
+    }
     
     #event_list li {
       height: 30px;
@@ -467,7 +470,7 @@ border: 1px solid #68afd4;
     }
     #event_list li:last-child {
       border-bottom: 0px none #fff;
-      line-height: 0px;
+    /*   line-height: 0px; why? */ 
     }
     
     #outer_container {
