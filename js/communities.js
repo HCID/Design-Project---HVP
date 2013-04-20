@@ -283,6 +283,7 @@
           .text(function(d, i) { return gr[i]; })
           .style("font-size", 40)
           .style("font-family", "Gill Sans")
+          .on("mousedown",  ClickHandler.circleClicked )
           .attr("stroke-size", 1)
           .attr("fill", function(d, i) { return "#ffffff";})
           .attr("stroke", function(d, i) { return fill2(i);})

@@ -471,9 +471,18 @@ border: 1px solid #68afd4;
     }
 
 
+    .flipper.top_flipper {
+      -webkit-transform: rotate(180deg);
+      top: 10px;
+      right: 10px;
+    }
+    .bottom_flipper {
+      bottom: 10px;
+      left: 10px;
+    }
 
-    #flipper {
-      float: right;
+    .flipper {
+      position: absolute;
       font-size: 30px;
       background-color: #004A57;
       border-radius: 10px;

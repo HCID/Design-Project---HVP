@@ -79,11 +79,11 @@
           })
 
           if(list[0] == "general") {
-            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } )};
-            ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
+            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(parallelData, function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } )};
+            ClickHandler.listOfEvents = _.filter(parallelData, function (node) { return node.communities.length === 0 || _.every(node.communities, function (n) {  return _.indexOf(["ux", "design", "engineering"], n) !== -1 }) } );
           } else {
-            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } )} ;
-            ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
+            ClickHandler.listOfOldEvents = { title: filterFor , data: _.reject(parallelData, function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } )} ;
+            ClickHandler.listOfEvents = _.filter(parallelData, function (node) { return node.communities.length > 0 && _.difference(node.communities, list).length == 0 } );
           }            
 
           //.attr("opacity", 1);   
