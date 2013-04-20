@@ -229,8 +229,17 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   padding-top: 7px
 }
 
-#filter_list{
-  pointer-events:none;
+#filter_list {
+ /*  pointer-events:none; */
+ position: absolute; 
+ top: 30px; 
+ right: 30px; 
+ list-style: none; 
+ padding: 0px; 
+ margin: 0px; 
+ height: auto; 
+ width: 200px; 
+ z-index:100000 
 }
 
 
