@@ -10,7 +10,7 @@
 
     ClickHandler.eventListItemClick = function (e) {    
       if($(e.currentTarget).hasClass("event_item")) { 
-        View.showDetails(_.find(force.nodes(), function (node) { return node.id == $(e.currentTarget).data("event-id")})); 
+        View.showDetails(_.find(ClickHandler.listOfEvents, function (node) { return node.id == $(e.currentTarget).data("event-id")})); 
       } else if($(e.currentTarget).hasClass("show_all_events")) {
         Globals.mode = "events";
         d3.selectAll("circle").style("display", "block");
