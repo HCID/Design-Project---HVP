@@ -4,3 +4,5 @@ node_modules/.DS_Store
 *.map
 .DS_Store
 videos/
+*.sublime-project
+*.sublime-workspace

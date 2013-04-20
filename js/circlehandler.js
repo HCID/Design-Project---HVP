@@ -88,7 +88,6 @@
 	    } 
 	  }
 
-
 	    d3.selectAll("g").attr("transform", function(d) {
 	      return "translate(" + d.x + "," + d.y + ")";});
 	};
@@ -115,7 +114,7 @@
 
 	/* Sets the position of each element in the map view*/
 	var getSessionPosition = function (k) { 
-
+	
 	  force.nodes().forEach(function(o, i) {
 
 	    if (o["room"] === undefined) {

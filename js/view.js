@@ -148,6 +148,7 @@
         })
         .style("font-family", "Gill Sans")
         .style("text-anchor", "middle")
+        .on("mousedown", function (d) { ClickHandler.circleClicked(d) } )
         .text(function(d) { 
 
           if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
@@ -233,6 +234,7 @@
       $("#outer_container").css("left", position.x + "px").css("top",  position.y + "px");
       $(".menu_option li").data("circle-id", menuId);
       htmlTmpl = "";
+      console.log("list", listOfEvents)
       if(listOfEvents && listOfEvents.length > 0) {   
         _.each(_.first(listOfEvents, 5), function(obj) {
           htmlTmpl += _.template($("#event_list_item").html(), {title: obj.name.length > 27 ? obj.name.substr(0,24)+".." : obj.name, id: obj.id})          
@@ -247,7 +249,24 @@
       
 
       $("#event_list li").on("mousedown", ClickHandler.eventListItemClick );      
+      
 
+      $("#outer_container li .pie_menu_link, #event_list li").on("mousedownoutside", function () {
+        
+        $("#outer_container li").each(function(i,ele){          
+            $(ele).css({
+              'left' : 0,
+              'top' : 0,
+            });
+            $(ele).hide();
+            force.start();
+                    $("#outer_container").removeClass('active');
+        $("#outer_container").addClass('inactive');
+        });
+        $("#outer_container, #event_list").hide();
+        $("#event_list li, #outer_container li *").off("mousedown");
+        $("#outer_container li .pie_menu_link, #event_list li").off("mousedownoutside");
+      })
 
       // $(":not(#event_list li), :not(#outer_container *)").on("mousedown", function (e) {         
       //   $("#event_list li, #outer_container *").off("mousedown");
@@ -258,19 +277,6 @@
 
 
 
-      if($("#outer_container").hasClass('active')){
-        $("#outer_container li").each(function(i,ele){          
-            $(ele).css({
-              'left' : 0,
-              'top' : 0,
-            });
-            $(ele).hide()
-        });
-        //setPosition(0);
-        $("#outer_container").removeClass('active');
-        $("#outer_container").addClass('inactive');
-
-       }else{
         var ele_angle = [];
         var x_pos = [];
         var y_pos = [];
@@ -289,7 +295,7 @@
         $("#outer_container").removeClass('inactive');
       } 
       //$(this).toggleClass("btn-rotate");
-    }
+ 
 
     
 

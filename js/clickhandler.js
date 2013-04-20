@@ -38,27 +38,30 @@
       if (Globals.mode === "comm") {
         var position = {x: d3.event.clientX, y: d3.event.clientY }; 
       } else {  
+        console.log("vad är: ", circle)
         menuId = circle.id;        
         console.log("tyftfty", menuId)
         var position = {x: circle.x-circle.radius+8, y: circle.y+circle.radius+8};
         //$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );       
       }
     
-    ClickHandler.loadParallelData();
+    //ClickHandler.loadParallelData();
 
 
     if (Globals.mode == "map") { 
-      var copyPD = parallelData.slice(0);
-      var sessions = CircleHandler.groupSession(copyPD);
+      //var copyPD = parallelData.slice(0);
+      //var sessions = CircleHandler.groupSession(copyPD);
+      //ClickHandler.loadParallelData();
+      //console.log("ojoj", force.nodes())
 
-      ClickHandler.listOfOldEvents = {title: circle["room"], data: _.reject(sessions, function (node) { return node["room"] == circle["room"]}) };
-      ClickHandler.listOfEvents = _.filter(sessions, function (node) { return node["room"] == circle["room"]});
+      ClickHandler.listOfOldEvents = {title: circle["room"], data: _.reject(parallelData, function (node) { return node.sessions[0]["room"] == circle["room"]}) };
+      ClickHandler.listOfEvents = _.filter(parallelData, function (node) { return node.sessions[0]["room"] == circle["room"]});
     
     } else if (Globals.mode == "sessions") {
       View.generateSessionTitle(circle.name);
 
-      ClickHandler.listOfOldEvents = { title: circle["code"] , data: _.reject(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) }) };
-      ClickHandler.listOfEvents = _.filter(force.nodes(), function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
+      ClickHandler.listOfOldEvents = { title: circle["code"] , data: _.reject(parallelData, function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) }) };
+      ClickHandler.listOfEvents = _.filter(parallelData, function (node) { return _.contains(_.pluck(node.sessions, "id"), circle["id"]) })          
     
     } else if (Globals.mode == "comm") {
 
@@ -125,13 +128,13 @@
 
       force.nodes(ClickHandler.listOfEvents);  
      
-
       if(Globals.mode === "comm") {
         d3.selectAll("circle").style("display", "none");
         d3.selectAll("path.award").style("display", "none");
         $('.talkName').hide();
         $('.legend').hide();
-        ClickHandler.loadParallelData();
+        //ClickHandler.loadParallelData();
+        force.nodes(ClickHandler.listOfEvents)
         Communities.communities();
       } else {
         d3.selectAll("circle").style("display", "block");        
