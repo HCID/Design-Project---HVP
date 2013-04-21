@@ -99,7 +99,9 @@
             _.each(list, function(item) {
               filterFor += item + ", ";
             })
-
+            if (list[0] === "N/A") {
+              list = [];
+            }            
             if (list[0] == "general") {
               ClickHandler.listOfOldEvents = {
                 title: filterFor,
@@ -118,11 +120,12 @@
               ClickHandler.listOfOldEvents = {
                 title: filterFor,
                 data: _.reject(force.nodes(), function(node) {
-                  return node.communities.length > 0 && _.difference(node.communities, list).length == 0
+                  return node.communities.length > 0 && _.difference(node.communities, list).length == 0 || _.isEqual(list,node.communities)
                 })
               };
               ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
-                return node.communities.length > 0 && _.difference(node.communities, list).length == 0
+                console.log("the communities" ,node.communities)
+                return (node.communities.length > 0 && _.difference(node.communities, list).length == 0) || _.isEqual(list,node.communities)
               });
             }
 
@@ -273,7 +276,13 @@
         force.nodes(array);
       }
       delete filterHistory[id];
-      View.update();
+
+      if (Globals.mode === "comm") {        
+        Communities.communities();
+      } else {
+        View.update();
+      }
+      
     };
     return ClickHandler;
   })();
