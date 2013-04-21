@@ -217,7 +217,7 @@
           vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 1;
         } else if (d.coms.length == 1) {
           i1 = t << groups.indexOf(d.coms[0]);
-          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 5;
+          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 2;
         } else if (d.coms.length == 2) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);

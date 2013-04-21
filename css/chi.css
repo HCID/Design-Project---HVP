@@ -219,6 +219,12 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   margin-top: 12px;
 }
 
+.remove_filter:active {
+  background: url('/img/closeHistoryHover.png') no-repeat;
+  background-size:25px 25px; 
+  border: 0px none #fff;
+}
+
 .filter_name {
   font-family: "GillSans-Light", "Verdana";
   color: #fff;
