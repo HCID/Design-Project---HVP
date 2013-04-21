@@ -275,6 +275,16 @@
         $("#detail_authors").html(str);
       }
 
+      if (circle.speaker) {
+        var str = "Speaker: " + circle.speaker.name + "<br><br>" + "Type: " + circle.speaker.type;
+        
+        if (circle.speaker.title) {
+          str = str + "<br><br>" + "Title: " + circle.speaker.title;
+        }
+
+        $("#detail_speaker").html(str);
+      }
+
       if(Globals.clcScreen) {        
         $("#detail_image").attr("src", "/videos/" + circle.video);
       } else {
@@ -310,6 +320,7 @@
       $("#detail_location").html("");
       $("#detail_comms").html("");
       $("#detail_authors").html("");
+      $("#detail_speaker").html("");
       $("#detail_keywords").html("");
       $("#detail_close_button").off("mousedown")
       $("#detail_background").off("mousedownoutside"); // ClickHandler.detailCloseHandler

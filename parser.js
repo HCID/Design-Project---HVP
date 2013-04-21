@@ -82,6 +82,11 @@ _.forEach(submissions.rows, function(ev) {
   if(ev.value.authorList != undefined && ev.value.authorList != null) {
     event.authors = ev.value.authorList;
   }
+
+  //Speakers
+  if(ev.value.speaker != undefined && ev.value.speaker != null) {
+    event.speaker = ev.value.speaker;
+  }
   
 
   data.push(event);

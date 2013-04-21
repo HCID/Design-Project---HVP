@@ -41426,7 +41426,15 @@
                 "endTime": "10:20",
                 "day": "Monday"
             }
-        ]
+        ],
+        "speaker": {
+            "type": "Keynote Speaker",
+            "name": "Paola Antonelli",
+            "affiliation": "Senior Curator and Architecture &amp; Design Director for Research &amp; Development, MOMA, New York.",
+            "shortAffiliation": "MOMA, New York",
+            "title": "The New Frontiers of Design",
+            "location": "Grand Amphitheater"
+        }
     },
     {
         "id": 509,
@@ -41448,7 +41456,15 @@
                 "endTime": "17:20",
                 "day": "Thursday"
             }
-        ]
+        ],
+        "speaker": {
+            "type": "Keynote Speaker",
+            "name": "Bruno Latour",
+            "affiliation": "Sciences Po Paris, France",
+            "shortAffiliation": "Sciences Po Paris",
+            "title": "From Aggregation to Navigation",
+            "location": "Grand Amphitheater"
+        }
     },
     {
         "id": 510,
@@ -41470,7 +41486,15 @@
                 "endTime": "10:20",
                 "day": "Thursday"
             }
-        ]
+        ],
+        "speaker": {
+            "type": "Keynote Speaker",
+            "name": "Vint Cerf",
+            "affiliation": "Chief Internet Evangelist, Google, and ACM President",
+            "shortAffiliation": "Google",
+            "title": "Conversations with a Computer",
+            "location": "Grand Amphitheater"
+        }
     },
     {
         "id": 511,
@@ -41490,7 +41514,12 @@
                 "endTime": "12:20",
                 "day": "Monday"
             }
-        ]
+        ],
+        "speaker": {
+            "type": "Award winner",
+            "name": "George Robertson",
+            "affiliation": "Retired (formerly Microsoft Research), USA"
+        }
     },
     {
         "id": 512,
@@ -41510,7 +41539,12 @@
                 "endTime": "15:20",
                 "day": "Wednesday"
             }
-        ]
+        ],
+        "speaker": {
+            "type": "Award winner",
+            "name": "Jakob Nielsen",
+            "affiliation": "Nielsen Norman Group, USA"
+        }
     },
     {
         "id": 513,
@@ -41530,7 +41564,12 @@
                 "endTime": "15:20",
                 "day": "Tuesday"
             }
-        ]
+        ],
+        "speaker": {
+            "type": "Award winner",
+            "name": "Sara J. Czaja",
+            "affiliation": "University of Miami, USA"
+        }
     },
     {
         "id": 514,
