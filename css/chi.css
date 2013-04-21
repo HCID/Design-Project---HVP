@@ -83,14 +83,15 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 
-
+/*
 #detail_base {
   position: absolute; 
-  left: 50%; 
-  top: 20%; 
+   left: 50%;  
+   top: 20%;  
   z-index: 99999;
   display: none;
 }
+*/
 
 #detail_background {
   width: 1200px; 
@@ -98,8 +99,11 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   background-color: #fff; 
   border: 1px solid #8fbbda; 
   padding: 20px; 
-  position: relative; 
-  left: -50%;
+  position: absolute; 
+  display: none;
+  z-index: 9999;
+ /* position: relative;  */
+  /* left: -50%; */
 }
 
 #detail_left_view {

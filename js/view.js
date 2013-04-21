@@ -276,9 +276,9 @@
       }
 
       if(Globals.clcScreen) {        
-        $("#detail_base video").attr("src", "/videos/" + circle.video);
+        $("#detail_image").attr("src", "/videos/" + circle.video);
       } else {
-        $("#detail_base video").attr("src", "/videos/chi0981-file5.mp4");
+        $("#detail_image").attr("src", "/videos/chi0981-file5.mp4");
       }
      
 
@@ -287,14 +287,14 @@
         $("#detail_keywords").html("Keywords: " + circle.keywords.join(", "));
       }
 
-      $("#detail_base").show();
+      $("#detail_background").show();
       $("#detail_close_button").on("mousedown", ClickHandler.detailCloseHandler)
-      $("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler );
+      $("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler  ); // ClickHandler.detailCloseHandler
     };
 
 
     View.hideDetails = function() {
-      $("#detail_base").hide();
+      $("#detail_background").hide();
       $("#detail_image").html("");
       $("#detail_title").html("");
       $("#detail_time").html("");
@@ -306,6 +306,8 @@
       $("#detail_location").html("");
       $("#detail_authors").html("");
       $("#detail_keywords").html("");
+      $("#detail_close_button").off("mousedown")
+      $("#detail_background").off("mousedownoutside"); // ClickHandler.detailCloseHandler
     }
 
 
@@ -361,7 +363,7 @@
         $("#event_list").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
       }
       //$(this).toggleClass("btn-rotate");
-      $("#outer_container li .pie_menu_link, #event_list li, #detail_base").on("mousedownoutside", function() {
+      $("#outer_container li .pie_menu_link, #event_list li, #detail_background").on("mousedownoutside", function() {
 
         $("#outer_container li").each(function(i, ele) {
           $(ele).css({
@@ -375,7 +377,7 @@
         });
         $("#outer_container, #event_list").hide();
         $("#event_list li, #outer_container li *").off("mousedown");
-        $("#outer_container li .pie_menu_link, #event_list li, #detail_background").off("mousedownoutside");
+        $("#outer_container li .pie_menu_link, #event_list li").off("mousedownoutside");
       })
     }
 

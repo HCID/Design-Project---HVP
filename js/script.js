@@ -49,6 +49,13 @@ $(document).ready(function() {
   $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
   $('#detail_image').simpleVideo();
 
+  $("#detail_background").css({ 
+    left: ($(window).width() - $('#detail_background').outerWidth())/2,
+    top: ($(window).height() - $('#detail_background').outerHeight())/2
+  });
+
+ 
+
   d3.json('data/data.json', function (importedData) {
     data = importedData;
     minCollisionRadius = 5,

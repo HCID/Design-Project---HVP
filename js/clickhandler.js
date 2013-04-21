@@ -10,6 +10,7 @@
 
 
     ClickHandler.eventListItemClick = function(e) {
+      e.stopPropagation();
       if ($(e.currentTarget).hasClass("event_item")) {
         View.showDetails(_.find(ClickHandler.listOfEvents, function(node) {
           return node.id == $(e.currentTarget).data("event-id")
