@@ -83,6 +83,13 @@
 
       var nodesLength = force.nodes().length;
 
+      if (nodesLength < Globals.threshold) {
+        console.log("nodes to show in communities", force.nodes());
+        for (var i = 0; i < force.nodes().length; i++) {
+          console.log(force.nodes()[i].communities);
+        }
+      }
+
       if (nodesLength >= Globals.threshold) {
 
         a.forEach (function (d) {
@@ -207,10 +214,10 @@
 
         if (d.coms.length == 0) {
           i1 = t << 0; 
-          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 8;
+          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 1;
         } else if (d.coms.length == 1) {
           i1 = t << groups.indexOf(d.coms[0]);
-          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 8;
+          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 5;
         } else if (d.coms.length == 2) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);

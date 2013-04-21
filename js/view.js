@@ -70,14 +70,15 @@
 
       nodeEnterG.append("path")
         .attr("class", "award")
+        .attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } )
         .attr("d", function(d) {
         if (Globals.mode === "events") {
-          if (d.award != undefined) {
+          if (d.award) {
             var str = renderStar(d);
             return str;
           }
         }
-        return "";
+        return "M 0 0 Z"; // Non-visible Path
 
       })
         .style("fill", function(d, i) {
@@ -216,7 +217,6 @@
       $("#detail_time").html("");
       $("#detail_thirty_words").html(circle.cbStatement);
       
-      console.log("award", circle.award);
       if (circle.award) {
         $("#detail_award_image").show();
         var str = circle.award;
@@ -401,9 +401,11 @@
     var sizedata = getSVGSize();
     var svgsize = sizedata[0];
     var centrepoint = 0;
+    var rrr;
 
-    var rrr = View.calculateR(d);
-
+    d.r = View.calculateR(d);
+    rrr = d.r;
+  
     var radiuso = rrr + 5;
     var radiusi = rrr;
 
@@ -452,28 +454,15 @@
         cmd = 'L';
       }
 
-      xsvg = number_format((r * Math.sin(i)) + centrepoint, 3, '.', '');
-      ysvg = number_format((r * Math.cos(yangle)) + centrepoint, 3, '.', '');
-
       xresult = number_format((r * Math.sin(i)) + parseFloat(startx), 3, '.', '');
       yresult = number_format((r * Math.cos(yangle)) + parseFloat(starty), 3, '.', '');
 
       result += cmd + ' ' + xresult + ' ' + yresult + ' ';
-      svgdata += cmd + ' ' + xsvg + ' ' + ysvg + '\n';
-
       counter++;
     }
 
-    /*
-       Even numbers of points don't auto-close,
-       so do a return-to-origin.
-    */
-    if (npoints % 2 === 0) {
-      result += 'z\n';
+      result += "Z";
       return result;
-      svgdata += 'z\n';
-    }
-
   }
 
   /* Figure out window size. */

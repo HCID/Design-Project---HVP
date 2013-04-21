@@ -276,6 +276,7 @@
         force.nodes(array);
       }
       delete filterHistory[id];
+      d3.selectAll("path.award").remove();
 
       if (Globals.mode === "comm") {        
         Communities.communities();
