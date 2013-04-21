@@ -253,6 +253,13 @@
         $("#detail_authors").html(str);
       }
 
+      if(Globals.clcScreen) {        
+        $("#detail_base video").attr("src", "/videos/" + circle.video);
+      } else {
+        $("#detail_base video").attr("src", "/videos/chi0981-file5.mp4");
+      }
+     
+
       // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
       if (circle.keywords.length > 0) {
         $("#detail_keywords").html("Keywords: " + circle.keywords.join(", "));

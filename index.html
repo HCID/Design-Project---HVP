@@ -9,12 +9,14 @@
 	<script type="text/javascript" src="js/lib/Tuio.js"></script>
     <script type="text/javascript" src="js/lib/numeric-1.2.6.js"></script>
     <script type="text/javascript" src="js/lib/venn.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.ba-outside-events.min.js"></script>
-    
+    <script type="text/javascript" src="js/lib/jquery.ba-outside-events.min.js"></script>    
+    <script type="text/javascript" src="js/lib/jquery.simplevideo.js"></script>
+
+
     <script type="text/javascript" src="js/globals.js"></script>
     <script type="text/javascript" src="js/hand.js"></script>  
 	<script type="text/javascript" src="js/tuiohandler.js"></script>
-        <script type="text/javascript" src="js/lib/jquery.menu.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.menu.js"></script>
     <script type="text/javascript" src="js/clickhandler.js"></script>
     <script type="text/javascript" src="js/view.js"></script>
     <script type="text/javascript" src="js/circlehandler.js"></script>
@@ -25,6 +27,7 @@
 
 	
     <link href="css/chi.css" type="text/css" rel="stylesheet" />
+    
 
     <!-- Templates!! -->
     <script type="text/template" id="template_legend_item">
@@ -69,20 +72,20 @@
     
     </head>
 	<body>
-    <div class="flipper top_flipper">FLIP</div>
-    <div class="flipper bottom_flipper">FLIP</div>
-		<div id='outer_container' class="outer_container" >
-			<a class="menu_button" href="#" title="Toggle"><span>Menu Toggle</span></a>
-			<ul class="menu_option">
-			</ul>
-		</div>				
-    
-    <ul id="event_list"></ul>
+        <div class="flipper top_flipper">FLIP</div>
+        <div class="flipper bottom_flipper">FLIP</div>
+    		<div id='outer_container' class="outer_container" >
+    			<a class="menu_button" href="#" title="Toggle"><span>Menu Toggle</span></a>
+    			<ul class="menu_option">
+    			</ul>
+    		</div>				
+        
+        <ul id="event_list"></ul>
         <div id="detail_base">
             <div id="detail_background"> 
                 <div id="detail_left_view">
-                    <video id="detail_image" width="320" height="240" controls>
-                        <source src="videos/chi0981-file5.mp4" type="video/mp4">
+                    <video id="detail_image" width="320" height="240">
+                        <source type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="detail_award_box">
@@ -95,44 +98,28 @@
                     <div id="detail_title" class="detail_small"></div>
                     <div id="detail_time" class="detail_small"></div>            
                     <div id="detail_thirty_words" class="detail_small"></div>
-    
+
                     <div id="detail_session" class="detail_small"></div>                
                     <div id="detail_date" class="detail_small" ></div>
                     <div id="detail_location" class="detail_small"></div>
-    
+
                     <div id="detail_authors" class="detail_small"></div>
                     <div id="detail_keywords" class="detail_small"></div>          
                 </div>
             </div>
         </div>
-    
+        
         <ul id="filter_list"></ul>
-    
-    <div style="position: fixed; top: 0px; /* display: none; */" id="mainMenu">  <!-- TODO -->
-		<button class="size_button comButton" data-grouping="comm"></button>
-	    <button class="size_button eventsButton" data-grouping="events"></button>
-	    <button class="size_button mapButton"  data-grouping="map"></button>
-	   	<button class="size_button sessionButton" data-grouping="sessions"></button>
-        <button class="size_button restartButton" data-grouping="restart"></button>
-
-
-   <!--      <img  data-grouping="comm" src="img/commsIcon.png"/></img>
-        <img class="imgButton" data-grouping="map" src="img/mapIcon.png"/></img>
-        <img class="imgButton" data-grouping="sessions" src="img/sessionsIcon.png"/></img>
-        <img class="imgButton" data-grouping="talk" src="img/talkIcon.png"/></img>
-        <img class="imgButton" data-grouping="restart" src="img/restart.png"/></img> -->
-    </div>
-<!--     <div class="legend">Types of Talks:
-    	<ul class="types">
-    	</ul>
-    </div> -->
+        
+        <div style="position: fixed; top: 0px; /* display: none; */" id="mainMenu">  <!-- TODO -->
+    		<button class="size_button comButton" data-grouping="comm"></button>
+    	    <button class="size_button eventsButton" data-grouping="events"></button>
+    	    <button class="size_button mapButton"  data-grouping="map"></button>
+    	   	<button class="size_button sessionButton" data-grouping="sessions"></button>
+            <button class="size_button restartButton" data-grouping="restart"></button>
+        </div>
     	<svg> 
 	        <image id="bgimg" xlink:href="" x="0" y="0" />
-	        <!-- <image src="img/schedule.svg" /> -->
-   <!--    
-		  <g id="our_id"></g>
-		  <g id="our_id2"></g>
-    --> 
 		</svg>
 	</body>
 </html>
