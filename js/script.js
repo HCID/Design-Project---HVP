@@ -24,7 +24,7 @@ var main = function (fociUsed) {
     parallelData = force.nodes().slice(0);
     force.nodes(array);
   } else if (Globals.mode === "events") {
-    // We don't need to alter the force
+    parallelData = force.nodes().slice(0);
   }
   
   View.update();
