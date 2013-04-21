@@ -124,7 +124,6 @@
                 })
               };
               ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
-                console.log("the communities" ,node.communities)
                 return (node.communities.length > 0 && _.difference(node.communities, list).length == 0) || _.isEqual(list,node.communities)
               });
             }

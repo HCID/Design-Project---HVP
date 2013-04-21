@@ -140,13 +140,13 @@
 	 */
 	function collide(jitter) {
 	  return function(d) {
-	    return data.forEach(function(d2) {
+	    return _.each(force.nodes(), function(d2) {
 	      var distance, minDistance, moveX, moveY, x, y;
 	      if (d !== d2) {
 	        x = d.x - d2.x;
 	        y = d.y - d2.y;
-	        distance = Math.sqrt(x * x + y * y);
-	        minDistance = d.radius + d2.radius + collisionPadding;
+	        distance = Math.sqrt(x * x + y * y)*0.6;
+	        minDistance = d.radius + d2.radius;
 	        if (distance < minDistance) {
 	          distance = (distance - minDistance) / distance * jitter;
 	          moveX = x * distance;
@@ -154,7 +154,7 @@
 	          d.x -= moveX;
 	          d.y -= moveY;
 	          d2.x += moveX;
-	          return d2.y += moveY;
+	          d2.y += moveY;
 	        }
 	      }
 	    });
