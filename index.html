@@ -52,11 +52,14 @@
     </script>
     
     <script type="text/template" id="event_list_item">
-      <li class="event_item" data-event-id="<%= id %>"><%= title %></li>
+      <li class="event_item" data-event-id="<%= id %>">
+        <img src=<%= pict %> class="event_list"></img>
+        <%= title %>
+      </li>
     </script>
       
     <script type="text/template" id="event_last_list_item">
-      <li class="show_all_events">See all (<%= amount %>)</li>
+      <li class="show_all_events" style="text-align: center">See all (<%= amount %>)</li>
     </script>
     
     <script type="text/template" id="event_no_list_item">

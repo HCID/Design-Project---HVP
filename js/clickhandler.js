@@ -140,8 +140,7 @@
         /* 
           position is an array containg [x, y] 
           list of events if a list of max 5 events
-        */
-        
+        */        
         View.showPieMenu(position, _.sortBy(_.first(ClickHandler.listOfEvents,5), function (event) { return event.award ? 0 : 1 } ), menuId);
         //        CircleHandler.filterData(circle, newMode, d3event);  
       }

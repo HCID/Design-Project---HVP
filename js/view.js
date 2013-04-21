@@ -180,8 +180,7 @@
 
         if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
           if ((d.name != undefined) || (d.name !== "undefined")) {
-            var results = d.name.match(/\S+\s*/g);
-            return results[0] + " " + results[1] + " " + results[2] + "...";
+            return d.name.length > 27 ? d.name.substr(0, 24) + "..." : d.name;
           } else {
             return "";
           }
@@ -310,7 +309,6 @@
       $("#detail_background").off("mousedownoutside"); // ClickHandler.detailCloseHandler
     }
 
-
     View.showPieMenu = function(position, listOfEvents, menuId) {
 
       if (listOfEvents.length > 0) {
@@ -321,7 +319,8 @@
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(listOfEvents, function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
-              title: obj.name.length > 27 ? obj.name.substr(0, 24) + ".." : obj.name,
+              pict: (obj.award) ? ( (obj.award === "Honorable") ? "img/medal.png" : (obj.award === "Best") ? "img/trophy.png" : "img/blank.png") : "img/blank.png",
+              title: obj.name.length > 27 ? obj.name.substr(0, 24) + "..." : obj.name,
               id: obj.id
             })
           });

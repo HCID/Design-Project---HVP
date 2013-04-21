@@ -463,9 +463,9 @@ h1, h3, h4, h5, h6, p, div, li, ul {
       background-color: rgba(255, 255, 255, 0.7);
       list-style: none;
       position: absolute;
-      width: 240px;
-padding: 0px;
-border: 1px solid #68afd4;
+      width: 280px;
+      padding: 0px;
+      border: 1px solid #68afd4;
     }
     #event_list li.no_events {
       height: 50px;
@@ -473,14 +473,28 @@ border: 1px solid #68afd4;
     
     #event_list li {
       height: 30px;
-      text-align: center;
+      text-align: left;
       float: left;
-      width: 240px;
+      width: 280px;
       border-bottom: 1px solid #ddd;
       padding: 0px;
       padding-top: 18px;
       font-size: 20px;
     }
+
+    .event_list_end {
+      text-align: center;
+    } 
+
+    #event_list li img {
+      height: 30px;
+      width: 30px;
+      float: left;
+      margin-top: -10px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
     #event_list li:last-child {
       border-bottom: 0px none #fff;
     /*   line-height: 0px; why? */ 
