@@ -438,11 +438,6 @@
 
   /*
    Render a regular star.
-
-   To aid with debugging, I have made this function somewhat more
-   stand-alone than the one for the polygons - there is no external
-   generation of the points set, and pointOnCircle is not invoked, 
-   but calculated inline.
   */
   function renderStar(d) {
     var sizedata = getSVGSize();
@@ -457,7 +452,7 @@
     var radiusi = rrr;
 
     var npoints = 16;
-    if (force.nodes().length < Globals.textThreshold) {
+    if ((force.nodes().length < Globals.textThreshold) && (Globals.mode === "events") ) {
       npoints = 80;
       radiuso += 10;
     }
