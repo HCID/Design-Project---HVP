@@ -204,8 +204,13 @@
       }
     }
 
+    // View.cleanDetails = function {
+
+    // }
 
     View.showDetails = function(circle) {
+
+      View.hideDetails();
       $("#detail_image").html(circle.video);
       $("#detail_title").html(circle.name);
       $("#detail_time").html("");
@@ -225,10 +230,10 @@
         } else {
           $("#detail_award_image").attr("src", "");
         }
-
-
         $("#detail_award").html(str);
-
+      } else {
+        $("#detail_award_image").attr("src", "");
+        $("#detail_award").html("");
       }
 
       $("#detail_session").html("Session: " + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
