@@ -319,7 +319,7 @@
         $(".menu_option li").data("circle-id", menuId);
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
-          _.each(_.first(listOfEvents, 5), function(obj) {
+          _.each(listOfEvents, function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
               title: obj.name.length > 27 ? obj.name.substr(0, 24) + ".." : obj.name,
               id: obj.id
