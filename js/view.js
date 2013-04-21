@@ -77,7 +77,12 @@
             var str = renderStar(d);
             return str;
           }
-        }
+        } else if (Globals.mode === "sessions") {
+          if (d.award > 0) {
+            var str = renderStar(d);
+            return str;
+          }
+        } 
         return "M 0 0 Z"; // Non-visible Path
 
       })

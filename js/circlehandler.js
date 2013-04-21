@@ -31,6 +31,7 @@
 	    this.endTime = obj.endTime;
 	    this.room = obj.room;
 	    this.amount = 1;
+	    this.award = 0;
 	}
 
 	/* Sets the tick behaviour for each mode*/
@@ -276,21 +277,25 @@
 	  var auxArray = [];
 
 	  force.nodes().forEach (function(o, i) {
-
 	    o.sessions.forEach(function(u, j) {
 	      var index = indexInSessionsArray(auxArray, u);
 	      var create = index < 0;
 	      if (create) {
 	        var sessElt = new SessElt (u);
+	       	if (o.award != undefined) {
+	       		if (o.award !== "") {sessElt.award ++;};
+	       	}
 	        auxArray.push(sessElt);
+
 	      } else {
 	        auxArray[index].amount ++;
+			if (o.award != undefined) {
+	       		if (o.award !== "") {auxArray[index].award ++;};
+	       	}	      
 	      }
 	    });
 
 	  });
-
-	  
 
 	  return auxArray;
 	}
