@@ -187,19 +187,19 @@
       if (theMode !== "sessions") {
         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {
           type: "sessions",
-          image: "img/sessionsPM.png"
+          image: "img/sessionsIcon.png"
         }));
       }
       if (theMode !== "map") {
         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {
           type: "map",
-          image: "img/mapPM.png"
+          image: "img/mapIcon.png"
         }));
       }
       if (theMode !== "comm") {
         $("#outer_container ul.menu_option").append(_.template($("#template_pie_menu_item").html(), {
           type: "comm",
-          image: "img/commsPM.png"
+          image: "img/commsIcon.png"
         }));
       }
     }
@@ -210,13 +210,47 @@
       $("#detail_title").html(circle.name);
       $("#detail_time").html("");
       $("#detail_thirty_words").html(circle.cbStatement);
-      $("#detail_award").html(circle.award ? ("Award: " + circle.award) : "");
-      $("#detail_session").html("Session: \n" + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
-      $("#detail_date").html(circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime);
+      
+      console.log("award", circle.award);
+      if (circle.award) {
+        $("#detail_award_image").show();
+        var str = circle.award;
+        if (str === "Honorable Mention") {
+          //$("#detail_award_image").attr("src", "img/ribbon.png");
+          $("#detail_award_image").attr("src", "img/medal.png");
+        } else if (str === "Best") {
+          $("#detail_award_image").attr("src", "img/trophy.png");
+        } else if (str === "Honorable") {
+          $("#detail_award_image").attr("src", "img/medal.png");
+        } else {
+          $("#detail_award_image").attr("src", "");
+        }
+
+
+        $("#detail_award").html(str);
+
+      }
+
+      $("#detail_session").html("Session: " + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
+      $("#detail_date").html("Date: " + circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime);
       $("#detail_location").html("Room: " + circle.sessions[0].room);
+      
+      if (circle.authors.length > 0) {
+        var str = "Authors:";
+        for (var i=0; i<circle.authors.length; i++) {
+          if (i == (circle.authors.length - 1) ) {
+            str = str + " " + circle.authors[i].givenName + " " + circle.authors[i].familyName;
+          } else {
+            str = str + " " + circle.authors[i].givenName + " " + circle.authors[i].familyName + ",";
+          } 
+        }
+
+        $("#detail_authors").html(str);
+      }
+
       // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
-      if (circle.keywords !== undefined) {
-        $("#detail_keywords").html(circle.keywords.join(", "));
+      if (circle.keywords.length > 0) {
+        $("#detail_keywords").html("Keywords: " + circle.keywords.join(", "));
       }
 
       $("#detail_base").show();
@@ -232,6 +266,7 @@
       $("#detail_time").html("");
       $("#detail_thirty_words").html("");
       $("#detail_award").html("");
+      $("#detail_award_image").hide();
       $("#detail_session").html("");
       $("#detail_day").html("");
       $("#detail_location").html("");
