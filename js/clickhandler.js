@@ -117,14 +117,17 @@
                 })
               });
             } else {
+              console.log("ute", list)
               ClickHandler.listOfOldEvents = {
                 title: filterFor,
                 data: _.reject(force.nodes(), function(node) {
-                  return node.communities.length > 0 && _.difference(node.communities, list).length == 0 || _.isEqual(list,node.communities)
+                  return (node.communities.length > 0 && _.difference(node.communities, list).length == 0 && _.difference(list, node.communities).length == 0) || (list.length === 0 && node.communities.length === 0)
                 })
               };
+              console.log("Hela", ClickHandler.listOfEvents)
               ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
-                return (node.communities.length > 0 && _.difference(node.communities, list).length == 0) || _.isEqual(list,node.communities)
+                console.log("inne", node.communities)
+                return (node.communities.length > 0 && _.difference(node.communities, list).length == 0 && _.difference(list, node.communities).length == 0) || (list.length === 0 && node.communities.length === 0)  
               });
             }
 
