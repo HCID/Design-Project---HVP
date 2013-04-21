@@ -85,6 +85,8 @@
     var createCommNodesArray = function (a) {
 
       var nodesLength = force.nodes().length;
+      d3.selectAll("g.arc").remove();
+      console.log("createCommNodesArray", nodesLength);
 
       if (nodesLength < Globals.threshold) {
         console.log("nodes to show in communities", force.nodes());

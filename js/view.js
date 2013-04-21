@@ -260,6 +260,7 @@
       $("#detail_session").html("Session: " + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
       $("#detail_date").html("Date: " + circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime);
       $("#detail_location").html("Room: " + circle.sessions[0].room);
+      $("#detail_type").html("Type: " + circle.type);
       
       if (circle.authors.length > 0) {
         var str = "Authors:";
@@ -280,10 +281,13 @@
         $("#detail_image").attr("src", "/videos/chi0981-file5.mp4");
       }
      
-
       // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
       if (circle.keywords.length > 0) {
         $("#detail_keywords").html("Keywords: " + circle.keywords.join(", "));
+      }
+
+      if (circle.communities.length > 0) {
+        $("#detail_comms").html("Communities: " + circle.communities.join(", "));
       }
 
       $("#detail_background").show();
@@ -302,7 +306,9 @@
       $("#detail_award_image").hide();
       $("#detail_session").html("");
       $("#detail_day").html("");
+      $("#detail_type").html("");
       $("#detail_location").html("");
+      $("#detail_comms").html("");
       $("#detail_authors").html("");
       $("#detail_keywords").html("");
       $("#detail_close_button").off("mousedown")
