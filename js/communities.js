@@ -12,7 +12,6 @@
 
     parallelData = force.nodes().slice(0);
 
-
       var gComs = [];
       var id = 0;
 

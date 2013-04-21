@@ -262,7 +262,7 @@
       $("#detail_location").html("Room: " + circle.sessions[0].room);
       $("#detail_type").html("Type: " + circle.type);
       
-      if (circle.authors.length > 0) {
+      if (circle.authors && (circle.authors.length > 0) ) {
         var str = "Authors:";
         for (var i=0; i<circle.authors.length; i++) {
           if (i == (circle.authors.length - 1) ) {
@@ -315,7 +315,7 @@
       $("#detail_background").off("mousedownoutside"); // ClickHandler.detailCloseHandler
     }
 
-    View.showPieMenu = function(position, listOfEvents, menuId) {
+    View.showPieMenu = function(position, listOfEvents, menuId, totalevents) {
 
       if (listOfEvents.length > 0) {
         $("#outer_container, #event_list").show();
@@ -331,7 +331,7 @@
             })
           });
           htmlTmpl += _.template($("#event_last_list_item").html(), {
-            amount: listOfEvents.length
+            amount: totalevents//listOfEvents.length
           })
         }
         $("#event_list").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
