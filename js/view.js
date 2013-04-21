@@ -72,56 +72,73 @@
         .attr("class", "award")
         .attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } )
         .attr("d", function(d) {
-        if (Globals.mode === "events") {
-          if (d.award) {
-            var str = renderStar(d);
-            return str;
-          }
-        } else if (Globals.mode === "sessions") {
-          if (d.award > 0) {
-            var str = renderStar(d);
-            return str;
-          }
-        } 
-        return "M 0 0 Z"; // Non-visible Path
+          if (Globals.mode === "events") {
+            if (d.award && d.award !== "") {
+              console.log("path for ", d.name);
+              var str = renderStar(d);
+              return str;
+            }
+          } else if (Globals.mode === "sessions") {
+            if (d.award > 0) {
+              var str = renderStar(d);
+              return str;
+            }
+          } 
+          return "M 0 0 Z"; // Non-visible Path
 
-      })
+         })
         .style("fill", function(d, i) {
-        return "#ffdd03";
-      })
+          if (Globals.mode === "events") {
+            if (d.award && d.award !== "") {
+              return "#ffdd03";
+            }
+          } else if (Globals.mode === "sessions") {
+            if (d.award > 0) {
+              return "#ffdd03";
+            }
+          } 
+          return "#ffffff"; 
+        })
 
       nodeEnterG.append("circle")
         .on("mousedown", ClickHandler.circleClicked)
         .style("fill", function(d, i) {
 
-        if (d.sessions) {
-          return View.sessionsColors(d.sessions[0]);
-        } else {
-          return View.sessionsColors(d);
-        }
-
-      })
-        .style("stroke-width", function(d, i) {
-        if (Globals.mode === "events") {
-          return 1;
-        } else {
-          return 0;
-        }
-      })
-        .style("opacity", function(d) {
-        if (Globals.mode === "events") {
-          return 1.0;
-        } else {
-          return 0.5;
-        }
-      })
-        .style("stroke", function(d) {
-        if (Globals.mode === "events") {
-          if (d.award != undefined) {
-            return "#ffdd03";
+          if (d.sessions) {
+            return View.sessionsColors(d.sessions[0]);
+          } else {
+            return View.sessionsColors(d);
           }
-        }
-        return "#ffffff";
+
+        })
+        .style("stroke-width", function(d, i) {
+          if (Globals.mode === "events") {
+            return 1;
+          } else {
+            return 0;
+          }
+        })
+        .style("opacity", function(d) {
+          if (Globals.mode === "events") {
+            return 1.0;
+          } else if (Globals.mode === "sessions"){
+            if (d.award > 0) {
+              return 0.9;
+            }
+          }
+          return 0.5;
+        })
+        .style("stroke", function(d) {
+          if (Globals.mode === "events") {
+            if (d.award && d.award !== "") {
+              return "#ffdd03";
+            }
+          } else if (Globals.mode === "sessions") {
+            if (d.award > 0) {
+              return "#ffdd03";
+            }
+          } 
+          return "#ffffff"; 
       })
 
       // .$(".logo img").attr("src", "images/logo.png");
