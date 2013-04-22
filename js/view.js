@@ -334,14 +334,41 @@
     }
 
     View.showPieMenu = function(position, listOfEvents, menuId, totalevents) {
+     // console.log("listOfEvents.length", listOfEvents.length);
+
 
       if (listOfEvents.length > 0) {
         $("#outer_container, #event_list").show();
+
+        var DIS = 70;
+
         $("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
+
+        console.log("Globals.width - (position.x + 280)", Globals.width - (position.x + 280));
+        if(Globals.width - (position.x + 280) > 5 ){
+          $("#event_list").css("left", position.x + DIS + 50 + "px")
+        }else{
+          console.log("kein Platz rechts");
+          console.log("position.x", position.x);
+          var newX = position.x - 280;
+          console.log("newX", newX);
+          $("#event_list").css("left", newX - (DIS) + "px")
+        }
+
+        var numEvents =  listOfEvents.length < 5 ? listOfEvents.length :5;
+
+        if((Globals.height - ((position.y - 100) + (49 * (numEvents + 1)))) > 5 ){
+          $("#event_list").css("top", position.y - 100 + "px");
+        }else{
+          console.log("kein Platz unten");
+          //var newY = position.y - (49 * numEvents);
+          $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 1)))) + "px"));
+        }
+
         $(".menu_option li").data("circle-id", menuId);
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
-          _.each(listOfEvents, function(obj) {
+          _.each(_.first(listOfEvents, 5) , function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
               pict: (obj.award) ? ( (obj.award === "Honorable") ? "img/medal.png" : (obj.award === "Best") ? "img/trophy.png" : "img/blank.png") : "img/blank.png",
               title: obj.name.length > 27 ? obj.name.substr(0, 24) + "..." : obj.name,
@@ -349,10 +376,10 @@
             })
           });
           htmlTmpl += _.template($("#event_last_list_item").html(), {
-            amount: totalevents//listOfEvents.length
+            amount: listOfEvents.length
           })
         }
-        $("#event_list").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
+        $("#event_list").html(htmlTmpl).show();
 
 
         $("#event_list li, #outer_container li *").off("mousedown");
@@ -362,18 +389,14 @@
         $("#event_list li").on("mousedown", ClickHandler.eventListItemClick);
 
 
-
-        var ele_angle = [];
-        var x_pos = [];
-        var y_pos = [];
         $("#outer_container li").each(function(i, ele) {
-          ele_angle[i] = 135 + 90 / (($("#outer_container li").length - 1) * (i)) * Math.PI / 180;
-          x_pos[i] = (200 * Math.sin(ele_angle[i]));
-          y_pos[i] = (200 * Math.cos(ele_angle[i]));
-          $(ele).show()
+
+            var newY = i == 0 ? - 120 : 30;
+
+          $(ele).show();
           $(ele).css({
-            'left': y_pos[i],
-            'top': x_pos[i],
+            'left': -25 + "px",
+            'top': newY + "px",
           });
         });
         //setPosition(1);
