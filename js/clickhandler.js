@@ -209,6 +209,9 @@
       $('.talkName').show();
       $('.legend').show();
 
+      $("#tab_menu > div").removeClass("active");
+      $(this).parent().addClass("active");
+
       if ($(this).data("grouping") == "comm") {
         Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");
@@ -246,10 +249,7 @@
 
     /* Tells if a point is inside a circle path or not */
     var pointInCirclePath = function(b, ev) {
-      console.group();
 
-
-      console.log(b)
 
       var cX = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
       var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0]);
@@ -262,14 +262,6 @@
       console.log(cY - ev.pageY)
       var distance = Math.sqrt(xs + ys);
 
-      console.log("event", ev);
-      console.log("cX", cX);
-      console.log("cY", cY);
-      console.log("radius", radius);
-      console.log("xs", xs);
-      console.log("ys", ys);
-      console.log("distance", distance);
-      console.groupEnd();
       return (distance <= radius);
     }
 
