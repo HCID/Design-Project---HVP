@@ -196,19 +196,18 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 
 .filter_item {
-  width: 200px; 
+  height: auto;
+  padding-bottom: 7px;
+  line-height: 23px;
+  width: 220px; 
   margin-top: 10px; 
   list-style: none; 
-  height: 50px; 
   background-color: #61BBDE;  
   position: absolute; 
   z-index: 100; 
   border-radius: 10px;
 }
 
-.filter_itemCom {
-  height: 70px; 
-}
 
 .remove_filter {
   float: left;
@@ -250,7 +249,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
  padding: 0px; 
  margin: 0px; 
  height: auto; 
- width: 200px; 
+ width: 220px; 
  z-index:100000 
 }
 

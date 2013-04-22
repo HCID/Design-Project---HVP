@@ -408,9 +408,6 @@
       //$(_.template($("#template_filter_item").html(), templateVariables)).css("right", d3.event.clientX).css("top", d3.event.clientY).appendTo($("body")).animate({top: toppy+ "px", right: "30px"}, 1000, function () {
 
       var newItem = $(_.template($("#template_filter_item").html(), templateVariables)).css("right", 0).css("top", 0).appendTo($("body"));
-      if (filterHistory[filterHistory.length - 1].mode == "comm") {
-        newItem.addClass("filter_itemCom");
-      }
       newItem.animate({
         top: toppy + "px",
         right: "30px"
