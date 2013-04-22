@@ -74,6 +74,7 @@
       var h;
       if (updateHand.fingers.indexOf(-1) === -1) {
         h = new Hand(updateHand);
+        console.log(h);
         if (!showMenu) {
           $("#mainMenu").css("top", (updateHand.yPos * windowHeight) - 300 + "px").css("left", (updateHand.xPos * windowWidth) - 300 + "px").show();
           return showMenu = true;

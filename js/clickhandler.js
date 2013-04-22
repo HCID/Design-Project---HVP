@@ -118,17 +118,16 @@
                 })
               });
             } else {
-              console.log("ute", list)
+              console.log("list", list);
               ClickHandler.listOfOldEvents = {
                 title: filterFor,
                 data: _.reject(force.nodes(), function(node) {
-                  return (node.communities.length > 0 && _.difference(node.communities, list).length == 0 && _.difference(list, node.communities).length == 0) || (list.length === 0 && node.communities.length === 0)
+                  console.log("node.communities", node.communities);
+                  return ClickHandler.filterCommunitieClick(list, node.communities);
                 })
               };
-              console.log("Hela", ClickHandler.listOfEvents)
               ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
-                console.log("inne", node.communities)
-                return (node.communities.length > 0 && _.difference(node.communities, list).length == 0 && _.difference(list, node.communities).length == 0) || (list.length === 0 && node.communities.length === 0)  
+                return ClickHandler.filterCommunitieClick(list, node.communities);
               });
             }
 
@@ -146,6 +145,16 @@
       }
 
     };
+
+
+
+
+
+
+
+    ClickHandler.filterCommunitieClick = function (list, communities) {
+      return (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0) || (list[0] === "N/A" && communities.length === 0)  
+    }
 
 
     /* closes the detail view */
