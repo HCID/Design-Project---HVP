@@ -243,7 +243,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 #filter_list {
  /*  pointer-events:none; */
  position: absolute; 
- top: 30px; 
+ top: 120px; 
  right: 30px; 
  list-style: none; 
  padding: 0px; 
@@ -529,6 +529,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
       text-align: center;
       padding: 4px;
       padding-top: 10px;
+      z-index: 20;
     }
 
 
@@ -566,6 +567,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 #tab_menu > div{
+  background-color: #fefefe;
   height: 97px; 
   padding-top: 5px;
   padding-bottom: 5px;
@@ -573,6 +575,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   border-left: 1px solid #aae4d6; 
 }
 #tab_menu div.active {
+  background-color: #fff;
   border-bottom: 0px none #fff;
   border-left: 1px solid #68afd4;
   border-right: 1px solid #68afd4;
@@ -581,4 +584,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 #tab_menu div.active:last-child {
   border-right: 0px none #fff;
+}
+#tab_menu div.active:first-child {
+  border-left: 0px none #fff;
 }
