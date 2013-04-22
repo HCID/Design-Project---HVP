@@ -12,6 +12,7 @@
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
+font-family: "GillSans-Light", "Verdana";
 }
 
 h1, h3, h4, h5, h6, p, div, li, ul {
