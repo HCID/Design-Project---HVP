@@ -79,6 +79,7 @@
               return str;
             }
           } else if (Globals.mode === "sessions") {
+            console.log("code", d.code);
             if (d.award > 0) {
               var str = renderStar(d);
               return str;
@@ -113,7 +114,9 @@
         })
         .style("stroke-width", function(d, i) {
           if (Globals.mode === "events") {
-            return 1;
+            return 2;
+          } else if (Globals.mode === "sessions") {
+            return 2;
           } else {
             return 0;
           }
@@ -132,11 +135,15 @@
           if (Globals.mode === "events") {
             if (d.award && d.award !== "") {
               return "#ffdd03";
+            } else if (d.type === "panel") {
+              return "#000000";
             }
           } else if (Globals.mode === "sessions") {
             if (d.award > 0) {
               return "#ffdd03";
-            }
+            } else if (d.type === "panel") {
+              return "#000000";
+            }          
           } 
           return "#ffffff"; 
       })

@@ -269,8 +269,10 @@
     ClickHandler.removeFilter = function() {
       var id = $(this).parent().attr("id").substring(7, $(this).parent().attr("id").length);
       $(this).parent().remove();
+      console.log("bef",force.nodes()[0].code)
       if (filterHistory[id]) {
         ClickHandler.loadParallelData();
+        console.log("par", force.nodes().length)
         _.forEach(filterHistory[id].data, function(d) {
           force.nodes().push(d);
         });

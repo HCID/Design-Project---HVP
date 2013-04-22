@@ -32,6 +32,7 @@
 	    this.room = obj.room;
 	    this.amount = 1;
 	    this.award = 0;
+	    this.type = "";
 	}
 
 	/* Sets the tick behaviour for each mode*/
@@ -285,6 +286,7 @@
 	       	if (o.award != undefined) {
 	       		if (o.award !== "") {sessElt.award ++;};
 	       	}
+	       	sessElt.type = o.type;
 	        auxArray.push(sessElt);
 
 	      } else {
