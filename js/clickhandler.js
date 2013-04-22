@@ -95,50 +95,52 @@
           });
 
           var filterFor = "";
-          if (list.length > 0) {
-            var filterFor;
-            _.each(list, function(item) {
-              filterFor += item + ", ";
-            })
-     
-            if (list[0] == "general") {
-              ClickHandler.listOfOldEvents = {
-                title: filterFor,
-                data: _.reject(force.nodes(), function(node) {
-                  return node.communities.length === 0 || _.every(node.communities, function(n) {
-                    return _.indexOf(["ux", "design", "engineering"], n) !== -1
-                  })
-                })
-              };
-              ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
+
+          var filterFor;
+          _.each(list, function(item) {
+            filterFor += item + ", ";
+          })
+          console.log("list", list);
+
+          if (list[0] == "general") {
+            ClickHandler.listOfOldEvents = {
+              title: filterFor,
+              data: _.reject(force.nodes(), function(node) {
                 return node.communities.length === 0 || _.every(node.communities, function(n) {
                   return _.indexOf(["ux", "design", "engineering"], n) !== -1
                 })
-              });
-            } else {
-              console.log("list", list);
-              ClickHandler.listOfOldEvents = {
-                title: filterFor,
-                data: _.reject(force.nodes(), function(node) {
-                  console.log("node.communities", node.communities);
-                  return ClickHandler.filterCommunitieClick(list, node.communities);
-                })
-              };
-              ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
+              })
+            };
+            ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
+              return node.communities.length === 0 || _.every(node.communities, function(n) {
+                return _.indexOf(["ux", "design", "engineering"], n) !== -1
+              })
+            });
+          } else {
+            ClickHandler.listOfOldEvents = {
+              title: filterFor,
+              data: _.reject(force.nodes(), function(node) {
                 return ClickHandler.filterCommunitieClick(list, node.communities);
-              });
-            }
-
-            //.attr("opacity", 1);   
+              })
+            };
+            ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
+              console.log("coom", node.communities)
+              return ClickHandler.filterCommunitieClick(list, node.communities);
+            });
           }
+
+          //.attr("opacity", 1);   
         }
+
 
 
         /* 
           position is an array containg [x, y] 
           list of events if a list of max 5 events
-        */        
-        View.showPieMenu(position, _.sortBy(_.first(ClickHandler.listOfEvents,5), function (event) { return event.award ? 0 : 1 } ), menuId, ClickHandler.listOfEvents.length);
+        */
+        View.showPieMenu(position, _.sortBy(ClickHandler.listOfEvents, function(event) {
+          return event.award
+        }), menuId);
         //        CircleHandler.filterData(circle, newMode, d3event);  
       }
 
@@ -146,12 +148,8 @@
 
 
 
-
-
-
-
-    ClickHandler.filterCommunitieClick = function (list, communities) {
-      return (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0) || (list[0] === "N/A" && communities.length === 0)  
+    ClickHandler.filterCommunitieClick = function(list, communities) {
+      return (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0) || (list.length == 1 && list[0] === "N/A" && communities.length === 0)
     }
 
 
@@ -248,21 +246,30 @@
 
     /* Tells if a point is inside a circle path or not */
     var pointInCirclePath = function(b, ev) {
+      console.group();
+
+
+      console.log(b)
+
       var cX = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
       var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0]);
       var radius = b.get(0).getBBox().height / 2;
       //distance between two points
-      var xs = 0;
-      var ys = 0;
 
-      xs = cX - ev.pageX;
-      xs = xs * xs;
+      var xs = Math.pow(cX - ev.pageX, 2);
 
-      ys = cY - ev.pageY;
-      ys = ys * ys;
-
+      var ys = Math.pow(cY - ev.pageY, 2);
+      console.log(cY - ev.pageY)
       var distance = Math.sqrt(xs + ys);
 
+      console.log("event", ev);
+      console.log("cX", cX);
+      console.log("cY", cY);
+      console.log("radius", radius);
+      console.log("xs", xs);
+      console.log("ys", ys);
+      console.log("distance", distance);
+      console.groupEnd();
       return (distance <= radius);
     }
 
@@ -288,12 +295,12 @@
       }
       delete filterHistory[id];
       d3.selectAll("path.award").remove();
-      if (Globals.mode === "comm") {        
+      if (Globals.mode === "comm") {
         Communities.communities();
       } else {
         View.update();
       }
-      
+
     };
     return ClickHandler;
   })();

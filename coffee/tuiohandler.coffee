@@ -21,7 +21,7 @@ class window.TUIOHandler
     fingers[addCursor.sessionId] =
       cursor: addCursor
       el: el
-      fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos * windowWidth + "px; top: " + addCursor.yPos * windowHeight + "px; border-radius: 40px; '></div>").appendTo($("body"))
+      fingerCircle: $("<div id='circle_" + addCursor.sessionId + "' style='background-color: yellow; opacity: 0.4; width: 44px; position: absolute; height: 44px; left: " + addCursor.xPos * windowWidth + "px; top: " + addCursor.yPos * windowHeight + "px; border-radius: 40px; z-index:9999999; '></div>").appendTo($("body"))
 
 
   onUpdateTuioCursor = (updateCursor) ->

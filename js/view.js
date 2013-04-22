@@ -333,9 +333,8 @@
       $("#detail_background").off("mousedownoutside"); // ClickHandler.detailCloseHandler
     }
 
-    View.showPieMenu = function(position, listOfEvents, menuId, totalevents) {
-     // console.log("listOfEvents.length", listOfEvents.length);
 
+    View.showPieMenu = function(position, listOfEvents, menuId) {
 
       if (listOfEvents.length > 0) {
         $("#outer_container, #event_list").show();
@@ -363,7 +362,7 @@
         $(".menu_option li").data("circle-id", menuId);
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
-          _.each(_.first(listOfEvents, 5) , function(obj) {
+          _.each(_.first(listOfEvents, 5), function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
               pict: (obj.award) ? ( (obj.award === "Honorable") ? "img/medal.png" : (obj.award === "Best") ? "img/trophy.png" : "img/blank.png") : "img/blank.png",
               title: obj.name.length > 27 ? obj.name.substr(0, 24) + "..." : obj.name,

@@ -1,5 +1,5 @@
-buster.testCase("Circle handler", {
-    "communities click": {
+buster.testCase("Click handler", {
+    "communities": {
       "should return false when list is empty and communites are empty": function () {
           refute(ClickHandler.filterCommunitieClick([], []));
       },
@@ -38,7 +38,16 @@ buster.testCase("Circle handler", {
       },
       "should return false when list is N/A and communites are ux and design": function () {
           refute(ClickHandler.filterCommunitieClick(["N/A"], ["ux", "design"]));
+      },
+      "should return false when list is N/A and health while communites is health": function () {
+          refute(ClickHandler.filterCommunitieClick(["N/A", "health"] , ["health"]));
+      },
+      "should return false when list is N/A and health while communites is empty": function () {
+          refute(ClickHandler.filterCommunitieClick(["N/A", "health"] , []));
       }
+
+      
+
 
     }
     
