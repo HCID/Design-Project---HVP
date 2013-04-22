@@ -1,9 +1,7 @@
 @font-face {
   font-family: 'GillSans-Light';
-  src: url('./font/GillSans-Light.ttf');
+  src: url('./font/GillSans-Light.ttf') format('truetype');
 }
-
-
 
 * {
   -webkit-touch-callout: none;
