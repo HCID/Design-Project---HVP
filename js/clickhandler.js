@@ -100,9 +100,7 @@
             _.each(list, function(item) {
               filterFor += item + ", ";
             })
-            if (list[0] === "N/A") {
-              list = [];
-            }            
+     
             if (list[0] == "general") {
               ClickHandler.listOfOldEvents = {
                 title: filterFor,
