@@ -15,19 +15,19 @@
 <line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="294.243" y1="1336.271" x2="1820.136" y2="1336.271"/>
 <line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="294.243" y1="1046.408" x2="1820.136" y2="1046.408"/>
 <rect x="374.19" y="82.22" fill="none" width="437.837" height="162.163"/>
-<text transform="matrix(1 0 0 1 374.1899 153.6191)" font-family="'HelveticaNeue-Bold'" font-size="100">MON</text>
+<text transform="matrix(1 0 0 1 374.1899 153.6191)" font-family="'GillSans-Light'" font-size="100">MON</text>
 <rect x="212.028" y="-9.672" fill="none" width="162.162" height="437.838"/>
-<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 428.165)" font-family="'HelveticaNeue-Bold'" font-size="90">9:00</text>
+<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 428.165)" font-family="'GillSans-Light'" font-size="90">9:00</text>
 <rect x="212.028" y="304.815" fill="none" width="162.162" height="437.839"/>
-<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 742.6533)" font-family="'HelveticaNeue-Bold'" font-size="90">11:00</text>
+<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 742.6533)" font-family="'GillSans-Light'" font-size="90">11:00</text>
 <rect x="212.028" y="596.814" fill="none" width="162.162" height="437.84"/>
-<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 1034.6533)" font-family="'HelveticaNeue-Bold'" font-size="90">14:00</text>
+<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 1034.6533)" font-family="'GillSans-Light'" font-size="90">14:00</text>
 <rect x="212.028" y="884.787" fill="none" width="162.162" height="437.84"/>
-<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 1322.624)" font-family="'HelveticaNeue-Bold'" font-size="90">16:00</text>
+<text transform="matrix(4.489659e-11 -1 1 4.489659e-11 276.2866 1322.624)" font-family="'GillSans-Light'" font-size="90">16:00</text>
 <rect x="730.947" y="82.22" fill="none" width="437.837" height="162.163"/>
-<text transform="matrix(1 0 0 1 730.9468 153.6191)" font-family="'HelveticaNeue-Bold'" font-size="100">TUE</text>
+<text transform="matrix(1 0 0 1 730.9468 153.6191)" font-family="'GillSans-Light'" font-size="100">TUE</text>
 <rect x="1136.352" y="82.22" fill="none" width="437.837" height="162.163"/>
-<text transform="matrix(1 0 0 1 1136.3521 153.6191)" font-family="'HelveticaNeue-Bold'" font-size="100">WED</text>
+<text transform="matrix(1 0 0 1 1136.3521 153.6191)" font-family="'GillSans-Light'" font-size="100">WED</text>
 <rect x="1522.839" y="82.22" fill="none" width="437.838" height="162.163"/>
-<text transform="matrix(1 0 0 1 1522.8398 153.6191)" font-family="'HelveticaNeue-Bold'" font-size="100">THU</text>
+<text transform="matrix(1 0 0 1 1522.8398 153.6191)" font-family="'GillSans-Light'" font-size="100">THU</text>
 </svg>
