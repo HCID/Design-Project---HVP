@@ -209,8 +209,7 @@
       $('.talkName').show();
       $('.legend').show();
 
-      $("#tab_menu > div").removeClass("active");
-      $(this).parent().addClass("active");
+
 
       if ($(this).data("grouping") == "comm") {
         Globals.mode = "comm";

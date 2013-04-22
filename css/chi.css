@@ -559,13 +559,14 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 #tab_menu {
   width: 100%; 
   text-align: center; 
-  height: 100px; 
+  height: 90px; 
   position: absolute; 
   top: 0px; 
   left: 0px;
 }
 
 #tab_menu > div{
+  height: 97px; 
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid #68afd4;

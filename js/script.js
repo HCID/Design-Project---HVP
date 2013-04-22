@@ -13,6 +13,10 @@ var force = d3.layout.force()
 var filterHistory = [];
 var main = function (fociUsed) {
 
+
+    $("#tab_menu > div").removeClass("active");
+    $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
+
   vis = d3.select("body").select("svg");
 
   if (Globals.mode === "map") {

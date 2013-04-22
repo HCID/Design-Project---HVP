@@ -38,11 +38,12 @@
 	/* Sets the tick behaviour for each mode*/
 	CircleHandler.tick = function(e) {
 	  _.each(force.nodes(), function(d) {
-	    if(d.y <= 0) {
-	      d.y += 1;
+	    console.log(d.y)
+	    if(d.y <= 70) {
+	      d.y += 30;
 	    }
 	    if(d.y >= Globals.height) {
-	      d.y -= 1;
+	      d.y -= 30;
 	    }
 	    if(d.x <= 0) {
 	      d.x += 1;
