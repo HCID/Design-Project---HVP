@@ -348,10 +348,7 @@
         if(Globals.width - (position.x + 280) > 5 ){
           $("#event_list").css("left", position.x + DIS + 50 + "px")
         }else{
-          console.log("kein Platz rechts");
-          console.log("position.x", position.x);
           var newX = position.x - 280;
-          console.log("newX", newX);
           $("#event_list").css("left", newX - (DIS) + "px")
         }
 
@@ -360,8 +357,6 @@
         if((Globals.height - ((position.y - 100) + (49 * (numEvents + 1)))) > 5 ){
           $("#event_list").css("top", position.y - 100 + "px");
         }else{
-          console.log("kein Platz unten");
-          //var newY = position.y - (49 * numEvents);
           $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 1)))) + "px"));
         }
 
