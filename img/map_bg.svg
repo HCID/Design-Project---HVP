@@ -4,9 +4,9 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="2244.464px" height="1386.488px" viewBox="0 0 2244.464 1386.488" enable-background="new 0 0 2244.464 1386.488"
 	 xml:space="preserve">
-<text transform="matrix(1 0 0 1 208.981 169.231)" fill="#010101" font-family="'GillSans-Bold'" font-size="100">LEVEL 1 </text>
+<text transform="matrix(1 0 0 1 208.981 169.231)" fill="#010101" font-family="'GillSans-Light'" font-size="100">LEVEL 1 </text>
 <g>
-	<text transform="matrix(1 0 0 1 1270.9678 169.231)" fill="#010101" font-family="'GillSans-Bold'" font-size="100">LEVEL 2 </text>
+	<text transform="matrix(1 0 0 1 1270.9678 169.231)" fill="#010101" font-family="'GillSans-Light'" font-size="100">LEVEL 2 </text>
 </g>
 <path fill="none" stroke="#000000" stroke-width="5" stroke-miterlimit="10" d="M725.695,1118.778
 	c0-380.438-112.219-688.844-250.649-688.844S224.397,738.34,224.397,1118.778c0,23.84,0.441,47.398,1.301,70.617h498.695
@@ -38,59 +38,59 @@
 	c0-293.791-86.66-531.954-193.561-531.954c-106.902,0-193.562,238.163-193.562,531.954c0,18.41,0.34,36.603,1.005,54.532h385.114
 	C1712.32,1125.132,1712.66,1106.94,1712.66,1088.53z"/>
 <g>
-	<text transform="matrix(1 0 0 1 98.8647 944.6567)" font-family="'GillSans'" font-size="72">351</text>
+	<text transform="matrix(1 0 0 1 98.8647 944.6567)" font-family="'GillSans-Light'" font-size="72">351</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 118.8916 777.6587)" font-family="'GillSans'" font-size="72">352</text>
+	<text transform="matrix(1 0 0 1 118.8916 777.6587)" font-family="'GillSans-Light'" font-size="72">352</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 158.3306 610.7485)" font-family="'GillSans'" font-size="72">353</text>
+	<text transform="matrix(1 0 0 1 158.3306 610.7485)" font-family="'GillSans-Light'" font-size="72">353</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 747.9302 970.4087)" font-family="'GillSans'" font-size="72">342A</text>
+	<text transform="matrix(1 0 0 1 747.9302 970.4087)" font-family="'GillSans-Light'" font-size="72">342A</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 747.9302 849.8188)" font-family="'GillSans'" font-size="72">343</text>
+	<text transform="matrix(1 0 0 1 747.9302 849.8188)" font-family="'GillSans-Light'" font-size="72">343</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 725.6948 730.7749)" font-family="'GillSans'" font-size="72">361</text>
+	<text transform="matrix(1 0 0 1 725.6948 730.7749)" font-family="'GillSans-Light'" font-size="72">361</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 692.9707 610.7485)" font-family="'GillSans'" font-size="72">362</text>
+	<text transform="matrix(1 0 0 1 692.9707 610.7485)" font-family="'GillSans-Light'" font-size="72">362</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1082.3818 956.6938)" font-family="'GillSans'" font-size="72">252A</text>
+	<text transform="matrix(1 0 0 1 1082.3818 956.6938)" font-family="'GillSans-Light'" font-size="72">252A</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1127.8911 777.6577)" font-family="'GillSans'" font-size="72">252B</text>
+	<text transform="matrix(1 0 0 1 1127.8911 777.6577)" font-family="'GillSans-Light'" font-size="72">252B</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1217.5464 624.2026)" font-family="'GillSans'" font-size="72">253</text>
+	<text transform="matrix(1 0 0 1 1217.5464 624.2026)" font-family="'GillSans-Light'" font-size="72">253</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1812.9092 956.6938)"><tspan x="0" y="0" font-family="'GillSans'" font-size="48">GRAND </tspan><tspan x="0" y="57.6" font-family="'GillSans'" font-size="48">AMPHITHÉÂTRE</tspan></text>
+	<text transform="matrix(1 0 0 1 1812.9092 956.6938)"><tspan x="0" y="0" font-family="'GillSans-Light'" font-size="48">GRAND </tspan><tspan x="0" y="57.6" font-family="'GillSans-Light'" font-size="48">AMPHITHÉÂTRE</tspan></text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1717.5566 492.0796)"><tspan x="0" y="0" font-family="'GillSans'" font-size="48">AMPHITHÉÂTRE</tspan><tspan x="0" y="57.6" font-family="'GillSans'" font-size="48">BLEU</tspan></text>
+	<text transform="matrix(1 0 0 1 1717.5566 492.0796)"><tspan x="0" y="0" font-family="'GillSans-Light'" font-size="48">AMPHITHÉÂTRE</tspan><tspan x="0" y="57.6" font-family="'GillSans-Light'" font-size="48">BLEU</tspan></text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1812.9092 868.5864)" font-family="'GillSans'" font-size="72">241</text>
+	<text transform="matrix(1 0 0 1 1812.9092 868.5864)" font-family="'GillSans-Light'" font-size="72">241</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1791.2871 765.7749)" font-family="'GillSans'" font-size="72">242</text>
+	<text transform="matrix(1 0 0 1 1791.2871 765.7749)" font-family="'GillSans-Light'" font-size="72">242</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 1769.7471 670.2759)" font-family="'GillSans'" font-size="72">243</text>
+	<text transform="matrix(1 0 0 1 1769.7471 670.2759)" font-family="'GillSans-Light'" font-size="72">243</text>
 </g>
 <line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="1598.516" y1="598.711" x2="1693.483" y2="513.514"/>
 <line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="1717.557" y1="944.659" x2="1791.287" y2="944.659"/>
 <line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="477.083" y1="1189.395" x2="381.552" y2="1284.926"/>
 <line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="477.083" y1="1141.629" x2="381.552" y2="1237.161"/>
 <g>
-	<text transform="matrix(1 0 0 1 180.6084 1237.1606)" font-family="'GillSans'" font-size="48">HAVANA</text>
+	<text transform="matrix(1 0 0 1 180.6084 1237.1606)" font-family="'GillSans-Light'" font-size="48">HAVANA</text>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 118.8916 1303.8892)" font-family="'GillSans'" font-size="48">BORDEAUX</text>
+	<text transform="matrix(1 0 0 1 118.8916 1303.8892)" font-family="'GillSans-Light'" font-size="48">BORDEAUX</text>
 </g>
 <g>
 	<g>
