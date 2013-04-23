@@ -341,7 +341,7 @@
         $("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
 
         console.log("Globals.width - (position.x + 280)", Globals.width - (position.x + 280));
-        if(Globals.width - (position.x + 280) > 5 ){
+        if(Globals.width - (position.x + 280) > 75 ){
           $("#event_list").css("left", position.x + DIS + 50 + "px")
         }else{
           var newX = position.x - 280;
@@ -350,7 +350,7 @@
 
         var numEvents =  listOfEvents.length < 5 ? listOfEvents.length :5;
 
-        if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 5 ){
+        if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 25 ){
           $("#event_list").css("top", position.y + "px");
         }else{
           $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 1)))) + "px"));
