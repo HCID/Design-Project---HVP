@@ -178,7 +178,7 @@
         }
 
       })
-        .style("font-family", "Gill Sans")
+        .style("font-family", "GillSans-Light")
         .style("text-anchor", "middle")
         .on("mousedown", function(d) {
         ClickHandler.circleClicked(d)

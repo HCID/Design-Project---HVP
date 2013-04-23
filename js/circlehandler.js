@@ -37,8 +37,11 @@
 
 	/* Sets the tick behaviour for each mode*/
 	CircleHandler.tick = function(e) {
+	  	if(Globals.mode !== "comm") {
 	  _.each(force.nodes(), function(d) {
-	    console.log(d.y)
+	 
+
+
 	    if(d.y <= 70) {
 	      d.y += 30;
 	    }
@@ -52,6 +55,7 @@
 	      d.x -= 1;
 	    }
 	  })
+	  }
 
 	  if(e !== undefined) {
 	        // Push nodes toward their designated focus.
