@@ -216,8 +216,13 @@
       $('.legend').show();
 
 
+      $(".comButton").css('background-image', 'url(/img/commsIcon.png)');
+      $(".eventsButton").css('background-image', 'url(/img/events.png)');
+      $(".mapButton").css('background-image', 'url(/img/commsIcon.png)');
+      $(".sessionButton").css('background-image', 'url(/img/sessionsIcon.png)');
 
       if ($(this).find("button").data("grouping") == "comm") {
+        $(".comButton").css('background-image', 'url(/img/commsUnsel.png)');
         Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");
         d3.selectAll("path.award").style("display", "none");;
@@ -225,11 +230,14 @@
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Communities.communities();
+
       } else if ($(this).find("button").data("grouping") == "events") {
+        $(".eventsButton").css('background-image', 'url(/img/eventsUnsel.png)');
         ClickHandler.loadParallelData();
         Globals.mode = "events";
         main();
       } else if ($(this).find("button").data("grouping") == "map") {
+        $(".mapButton").css('background-image', 'url(/img/commsUnsel.png)');
         ClickHandler.loadParallelData();
         Globals.mode = "map";
         main();
@@ -237,6 +245,7 @@
         filterHistory = [];
         restart();
       } else if ($(this).find("button").data("grouping") == "sessions") {
+        $(".sessionButton").css('background-image', 'url(/img/sessionsUnsel.png)');
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Globals.mode = "sessions";

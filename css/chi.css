@@ -33,7 +33,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 .sessionButton{
-  background: url('/img/sessionsIcon.png') no-repeat;
+  background: url('/img/sessionsUnsel.png') no-repeat;
   background-size:80px 80px;
 }
 
