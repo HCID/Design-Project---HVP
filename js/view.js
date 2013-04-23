@@ -353,8 +353,8 @@
 
         var numEvents =  listOfEvents.length < 5 ? listOfEvents.length :5;
 
-        if((Globals.height - ((position.y - 100) + (49 * (numEvents + 1)))) > 5 ){
-          $("#event_list").css("top", position.y - 100 + "px");
+        if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 5 ){
+          $("#event_list").css("top", position.y + "px");
         }else{
           $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 1)))) + "px"));
         }
@@ -385,7 +385,7 @@
 
         $("#outer_container li").each(function(i, ele) {
 
-            var newY = i == 0 ? - 120 : 30;
+            var newY = i == 0 ? - 20 : 130;
 
           $(ele).show();
           $(ele).css({
