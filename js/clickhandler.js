@@ -298,8 +298,10 @@
 
       $(".comButton").css('background-image', 'url(/img/commsIcon.png)');
       $(".eventsButton").css('background-image', 'url(/img/events.png)');
-      $(".mapButton").css('background-image', 'url(/img/commsIcon.png)');
+      $(".mapButton").css('background-image', 'url(/img/mapIcon.png)');
       $(".sessionButton").css('background-image', 'url(/img/sessionsIcon.png)');
+
+      d3.selectAll("g.arc").remove();
 
       if ($(this).find("button").data("grouping") == "comm") {
         $(".comButton").css('background-image', 'url(/img/commsUnsel.png)');
@@ -317,7 +319,7 @@
         Globals.mode = "events";
         main();
       } else if ($(this).find("button").data("grouping") == "map") {
-        $(".mapButton").css('background-image', 'url(/img/commsUnsel.png)');
+        $(".mapButton").css('background-image', 'url(/img/mapIconUnsel.png)');
         ClickHandler.loadParallelData();
         Globals.mode = "map";
         main();
