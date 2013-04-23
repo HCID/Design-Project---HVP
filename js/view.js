@@ -341,7 +341,7 @@
         $("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
 
         console.log("Globals.width - (position.x + 280)", Globals.width - (position.x + 280));
-        if(Globals.width - (position.x + 280) > 75 ){
+        if(Globals.width - (position.x + 280) > 100 ){
           $("#event_list").css("left", position.x + DIS + 50 + "px")
         }else{
           var newX = position.x - 280;
