@@ -41,7 +41,7 @@
 
     Globals.vennEvent = null;
 
-    Globals.threshold = 25; //Threshold for the venn diagram
+    Globals.threshold = 12; //Threshold for the venn diagram
 
     Globals.textThreshold = 8;  // Text threshold
 
