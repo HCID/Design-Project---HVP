@@ -67,7 +67,7 @@
 
     sessionXSpace = 350;
 
-    sessionYSpace = Globals.clcScreen ? 170 : 225;
+    sessionYSpace = Globals.clcScreen ? 110 : 163; //225
 
     whiteSpace = 20;
 

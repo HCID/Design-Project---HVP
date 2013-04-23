@@ -6,6 +6,25 @@
     View.changeImage = function() {
 
 
+      // if (Globals.mode == "sessions") {
+
+      //   $("#bgimg").hide();
+      //   $("#bgimgMap").hide();
+      //   $("#bgimgSessions").show();
+
+      // } else if (Globals.mode == "map") {
+      //   $("#bgimgSessions").hide();
+      //   $("#bgimg").hide();
+      //   $("#bgimgMap").show();
+      //   // image = "/img/mapLevels.svg";
+      //   // opacity = 1;
+      // } else {
+      //   $("#bgimgMap").hide();
+      //   $("#bgimg").show();
+      //   var opacity = 0;
+      //   var image = "";
+      //   d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
+      // }
 
       if (Globals.mode == "sessions") {
 
