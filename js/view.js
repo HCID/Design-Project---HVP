@@ -361,11 +361,13 @@
 
         var numEvents = listOfEvents.length < 5 ? listOfEvents.length : 5;
 
-        if ((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 35) {
-          $("#event_list").css("top", position.y + "px");
+        if ((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 10) {
+          console.log("fits");
+          $("#event_list").css("top", position.y - 100 + "px");
 
         } else {
-          $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
+          console.log("doesn't fit");
+          $("#event_list").css("top", (position.y + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
         }
 
         $(".menu_option li").data("circle-id", menuId);
