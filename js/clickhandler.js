@@ -111,6 +111,10 @@
           $("#g" + node.id + " text").css("fill", "black");
         }        
       });
+      View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
+          return event.award ? 1 : -1;
+        }));
+
     };
 
 
