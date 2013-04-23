@@ -42,13 +42,13 @@
         if (Globals.mode === "comm") {
           var position = {
             x: d3.event.offsetX-20,
-            y: d3.event.offsetY+40
+            y: d3.event.offsetY+40+ Globals.topMargin
           };
         } else {
           menuId = circle.id;
           var position = {
             x: circle.x - circle.radius + 8,
-            y: circle.y + circle.radius + 8
+            y: circle.y + circle.radius + 8 + Globals.topMargin
           };
           //$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );       
         }

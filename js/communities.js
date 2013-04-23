@@ -290,11 +290,12 @@
           //.on("mousedown", function () {Globals.vennEvent = d3.event; $("#outer_container").trigger("communitiesClick")})
 
           .attr("d", circle);
-      circles.append("text")
+          
+        circles.append("text")
           .attr("text-anchor", "middle")
           .text(function(d, i) { return gr[i]; })
           .style("font-size", 40)
-          .style("font-family", "Gill Sans")
+          .style("font-family", "GillSans-Light")
           .on("mousedown",  ClickHandler.circleClicked )
           .attr("stroke-size", 1)
           .attr("fill", function(d, i) { return "#ffffff";})

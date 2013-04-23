@@ -168,6 +168,7 @@
 
       nodeEnterG.append("text")
         .attr("class", "talkName")
+        .style("fill", "#ffffff")
         .style("font-size", function(d) {
 
         if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
@@ -177,9 +178,9 @@
         }
 
       })
-        .on("mousedown", function(d) {
-        ClickHandler.circleClicked(d)
-      })
+        .style("font-family", "GillSans-Light")
+        .style("text-anchor", "middle")
+        .on("mousedown", ClickHandler.circleClicked)
         .text(function(d) {
 
         if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
@@ -352,6 +353,7 @@
 
         if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 35 ){
           $("#event_list").css("top", position.y + "px");
+
         }else{
           $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
         }
@@ -382,7 +384,7 @@
 
         $("#outer_container li").each(function(i, ele) {
 
-            var newY = i == 0 ? - 20 : 130;
+            var newY = i == 0 ? - 120 : 30;
 
           $(ele).show();
           $(ele).css({
