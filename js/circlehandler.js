@@ -42,8 +42,8 @@
 	 
 
 
-	    if(d.y <= 70) {
-	      d.y += 30;
+	    if(d.y <= 90) {
+	      d.y += 40;
 	    }
 	    if(d.y >= Globals.height) {
 	      d.y -= 30;

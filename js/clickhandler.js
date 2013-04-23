@@ -33,7 +33,7 @@
     ClickHandler.circleClicked = function(circle) {
 
       d3.event.stopPropagation()
-
+      console.log(d3.event)
 
       if (Globals.mode === "events") {
         View.showDetails(circle);
@@ -41,8 +41,8 @@
         var menuId = "";
         if (Globals.mode === "comm") {
           var position = {
-            x: d3.event.clientX,
-            y: d3.event.clientY
+            x: d3.event.offsetX-20,
+            y: d3.event.offsetY+40
           };
         } else {
           menuId = circle.id;
@@ -122,9 +122,8 @@
               data: _.reject(force.nodes(), function(node) {
                 return ClickHandler.filterCommunitieClick(list, node.communities);
               })
-            };
-            ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
-              console.log("coom", node.communities)
+            };            
+            ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {              
               return ClickHandler.filterCommunitieClick(list, node.communities);
             });
           }
@@ -251,7 +250,7 @@
 
 
       var cX = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
-      var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0]);
+      var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0])+Globals.topMargin;
       var radius = b.get(0).getBBox().height / 2;
       //distance between two points
 

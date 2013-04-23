@@ -576,6 +576,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 #tab_menu > div:hover {
   cursor: pointer;
+  background-color: #fafafa;
 }
 #tab_menu div.active {
   background-color: #fff;

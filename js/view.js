@@ -168,7 +168,6 @@
 
       nodeEnterG.append("text")
         .attr("class", "talkName")
-        .style("fill", "#ffffff")
         .style("font-size", function(d) {
 
         if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
@@ -178,8 +177,6 @@
         }
 
       })
-        .style("font-family", "GillSans-Light")
-        .style("text-anchor", "middle")
         .on("mousedown", function(d) {
         ClickHandler.circleClicked(d)
       })

@@ -71,6 +71,8 @@
 
     whiteSpace = 20;
 
+    Globals.topMargin = 100;
+
     Globals.fociFree = [
       {
         x: Globals.width / 2,
