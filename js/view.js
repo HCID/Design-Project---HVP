@@ -4,19 +4,27 @@
 
     // Changes the background image
     View.changeImage = function() {
-      var image = "";
-      var opacity = 0;
+
 
 
       if (Globals.mode == "sessions") {
-        image = "/img/sessions.svg";
-        opacity = 1;
-      } else if (Globals.mode == "map") {
-        image = "/img/mapLevels.svg";
-        opacity = 1;
-      }
 
-      d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
+        $("#bgimg").hide();
+        $("#bgimgSessions").show();
+
+      } else {
+        $("#bgimg").show();
+        $("#bgimgSessions").hide();
+        var opacity = 0;
+        if (Globals.mode == "map") {
+          image = "/img/mapLevels.svg";
+          opacity = 1;
+        } else {
+          var image = "";
+        }
+
+        d3.select("body").select("svg").select("image").attr("xlink:href", image).attr("opacity", opacity);
+      }
     };
 
     // View.generateLegend = function () {
@@ -59,7 +67,7 @@
     View.update = function() {
       var l = force.nodes().length;
       View.changeImage();
-      nodes = vis.selectAll("g").data(force.nodes(), function(d) {
+      nodes = vis.selectAll("g.circle_class").data(force.nodes(), function(d) {
         return d.id;
       })
       var nodeEnterG = nodes.enter().append("g");
@@ -70,82 +78,84 @@
 
       nodeEnterG.append("path")
         .attr("class", "award")
-        .attr("r", View.calculateR).each(function(d) { d.radius = View.calculateR(d) } )
+        .attr("r", View.calculateR).each(function(d) {
+        d.radius = View.calculateR(d)
+      })
         .attr("d", function(d) {
-          if (Globals.mode === "events") {
-            if (d.award && d.award !== "") {
-              console.log("path for ", d.name);
-              var str = renderStar(d);
-              return str;
-            }
-          } else if (Globals.mode === "sessions") {
-            console.log("code", d.code);
-            if (d.award > 0) {
-              var str = renderStar(d);
-              return str;
-            }
-          } 
-          return "M 0 0 Z"; // Non-visible Path
+        if (Globals.mode === "events") {
+          if (d.award && d.award !== "") {
+            console.log("path for ", d.name);
+            var str = renderStar(d);
+            return str;
+          }
+        } else if (Globals.mode === "sessions") {
+          console.log("code", d.code);
+          if (d.award > 0) {
+            var str = renderStar(d);
+            return str;
+          }
+        }
+        return "M 0 0 Z"; // Non-visible Path
 
-         })
+      })
         .style("fill", function(d, i) {
-          if (Globals.mode === "events") {
-            if (d.award && d.award !== "") {
-              return "#ffdd03";
-            }
-          } else if (Globals.mode === "sessions") {
-            if (d.award > 0) {
-              return "#ffdd03";
-            }
-          } 
-          return "#ffffff"; 
-        })
+        if (Globals.mode === "events") {
+          if (d.award && d.award !== "") {
+            return "#ffdd03";
+          }
+        } else if (Globals.mode === "sessions") {
+          if (d.award > 0) {
+            return "#ffdd03";
+          }
+        }
+        return "#ffffff";
+      })
 
       nodeEnterG.append("circle")
         .on("mousedown", ClickHandler.circleClicked)
         .style("fill", function(d, i) {
 
-          if (d.sessions) {
-            return View.sessionsColors(d.sessions[0]);
-          } else {
-            return View.sessionsColors(d);
-          }
+        if (d.sessions) {
+          return View.sessionsColors(d.sessions[0]);
+        } else {
+          return View.sessionsColors(d);
+        }
 
-        })
+      })
         .style("stroke-width", function(d, i) {
-          if (Globals.mode === "events") {
-            return 2;
-          } else if (Globals.mode === "sessions") {
-            return 2;
-          } else {
-            return 0;
-          }
-        })
+        if (Globals.mode === "events") {
+          return 2;
+        } else if (Globals.mode === "sessions") {
+          return 2;
+        } else {
+          return 0;
+        }
+      })
         .style("opacity", function(d) {
-          if (Globals.mode === "events") {
-            return 1.0;
-          } else if (Globals.mode === "sessions"){
-            if (d.award > 0) {
-              return 0.9;
-            }
+        if (Globals.mode === "events") {
+          return 1.0;
+        } else if (Globals.mode === "sessions") {
+          if (d.award > 0) {
+            return 0.9;
           }
-          return 0.5;
-        })
+        }
+        return 0.5;
+      })
         .style("stroke", function(d) {
-          if (Globals.mode === "events") {
-            if (d.award && d.award !== "") {
-              return "#ffdd03";
-            } else if (d.type === "panel") {
-              return "#000000";
-            }
-          } else if (Globals.mode === "sessions") {
-            if (d.award > 0) {
-              return "#ffdd03";
-            } else if (d.type === "panel") {
-              return "#000000";
-            }          
-          } 
-          return "#ffffff"; 
+        if (Globals.mode === "events") {
+          if (d.award && d.award !== "") {
+            return "#ffdd03";
+          } else if (d.type === "panel") {
+            return "#000000";
+          }
+        } else if (Globals.mode === "sessions") {
+          if (d.award > 0) {
+            return "#ffdd03";
+          } else if (d.type === "panel") {
+            return "#000000";
+          }
+        }
+        return "#ffffff";
       })
 
       // .$(".logo img").attr("src", "images/logo.png");
@@ -242,7 +252,7 @@
       $("#detail_title").html(circle.name);
       $("#detail_time").html("");
       $("#detail_thirty_words").html(circle.cbStatement);
-      
+
       if (circle.award) {
         $("#detail_award_image").show();
         var str = circle.award;
@@ -266,15 +276,15 @@
       $("#detail_date").html("Date: " + circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime);
       $("#detail_location").html("Room: " + circle.sessions[0].room);
       $("#detail_type").html("Type: " + circle.type);
-      
-      if (circle.authors && (circle.authors.length > 0) ) {
+
+      if (circle.authors && (circle.authors.length > 0)) {
         var str = "Authors:";
-        for (var i=0; i<circle.authors.length; i++) {
-          if (i == (circle.authors.length - 1) ) {
+        for (var i = 0; i < circle.authors.length; i++) {
+          if (i == (circle.authors.length - 1)) {
             str = str + " " + circle.authors[i].givenName + " " + circle.authors[i].familyName;
           } else {
             str = str + " " + circle.authors[i].givenName + " " + circle.authors[i].familyName + ",";
-          } 
+          }
         }
 
         $("#detail_authors").html(str);
@@ -282,7 +292,7 @@
 
       if (circle.speaker) {
         var str = "Speaker: " + circle.speaker.name + "<br><br>" + "Type: " + circle.speaker.type;
-        
+
         if (circle.speaker.title) {
           str = str + "<br><br>" + "Title: " + circle.speaker.title;
         }
@@ -290,12 +300,12 @@
         $("#detail_speaker").html(str);
       }
 
-      if(Globals.clcScreen) {        
+      if (Globals.clcScreen) {
         $("#detail_image").attr("src", "/videos/" + circle.video);
       } else {
         $("#detail_image").attr("src", "/videos/chi0981-file5.mp4");
       }
-     
+
       // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
       if (circle.keywords.length > 0) {
         $("#detail_keywords").html("Keywords: " + circle.keywords.join(", "));
@@ -307,7 +317,7 @@
 
       $("#detail_background").show();
       $("#detail_close_button").on("mousedown", ClickHandler.detailCloseHandler)
-      $("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler  ); // ClickHandler.detailCloseHandler
+      $("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler); // ClickHandler.detailCloseHandler
     };
 
 
@@ -342,19 +352,19 @@
         $("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
 
         console.log("Globals.width - (position.x + 280)", Globals.width - (position.x + 280));
-        if(Globals.width - (position.x + 280) > 100 ){
+        if (Globals.width - (position.x + 280) > 100) {
           $("#event_list").css("left", position.x + DIS + 50 + "px")
-        }else{
+        } else {
           var newX = position.x - 280;
           $("#event_list").css("left", newX - (DIS) + "px")
         }
 
-        var numEvents =  listOfEvents.length < 5 ? listOfEvents.length :5;
+        var numEvents = listOfEvents.length < 5 ? listOfEvents.length : 5;
 
-        if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 35 ){
+        if ((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 35) {
           $("#event_list").css("top", position.y + "px");
 
-        }else{
+        } else {
           $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
         }
 
@@ -363,7 +373,7 @@
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(_.first(listOfEvents, 5), function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
-              pict: (obj.award) ? ( (obj.award === "Honorable") ? "img/medal.png" : (obj.award === "Best") ? "img/trophy.png" : "img/blank.png") : "img/blank.png",
+              pict: (obj.award) ? ((obj.award === "Honorable") ? "img/medal.png" : (obj.award === "Best") ? "img/trophy.png" : "img/blank.png") : "img/blank.png",
               title: obj.name.length > 27 ? obj.name.substr(0, 24) + "..." : obj.name,
               id: obj.id
             })
@@ -384,7 +394,7 @@
 
         $("#outer_container li").each(function(i, ele) {
 
-            var newY = i == 0 ? - 120 : 30;
+          var newY = i == 0 ? -120 : 30;
 
           $(ele).show();
           $(ele).css({
@@ -467,12 +477,12 @@
 
     d.r = View.calculateR(d);
     rrr = d.r;
-  
+
     var radiuso = rrr + 5;
     var radiusi = rrr;
 
     var npoints = 16;
-    if ((force.nodes().length < Globals.textThreshold) && (Globals.mode === "events") ) {
+    if ((force.nodes().length < Globals.textThreshold) && (Globals.mode === "events")) {
       npoints = 80;
       radiuso += 10;
     }
@@ -523,8 +533,8 @@
       counter++;
     }
 
-      result += "Z";
-      return result;
+    result += "Z";
+    return result;
   }
 
   /* Figure out window size. */

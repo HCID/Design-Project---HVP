@@ -28,10 +28,16 @@
     }
 
 
+    ClickHandler.selectTimeRange = function (e) {
+      console.log($(e.currentTarget).data("day") + " - " + $(e.currentTarget).data("start"));
+      $(e.currentTarget).attr("fill", "#aaa");
+    };
+
+
     /* Funtion triggered when one of the bubbles is clicked */
 
     ClickHandler.circleClicked = function(circle) {
-     
+
 
       d3.event.stopPropagation()
       console.log(d3.event)

@@ -95,13 +95,13 @@
 	    } 
 	  }
 
-	    d3.selectAll("g").attr("transform", function(d) {
+	    d3.selectAll("g.circle_class").attr("transform", function(d) {
 	      return "translate(" + d.x + "," + d.y + ")";});
 	};
 	
 
 	var toggleVisibility = function(force, key, value){
-	    force.selectAll("g").attr("visibility", function(d) {
+	    force.selectAll("g.circle_class").attr("visibility", function(d) {
 	      return d[key] === value ? "visible" : "hidden";
 	  });
 	}

@@ -53,6 +53,9 @@ $(document).ready(function() {
   $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
   $('#detail_image').simpleVideo();
 
+  $(".schedule_time").on("mousedown", ClickHandler.selectTimeRange );
+
+
   $("#detail_background").css({ 
     left: ($(window).width() - $('#detail_background').outerWidth())/2,
     top: ($(window).height() - $('#detail_background').outerHeight())/2
