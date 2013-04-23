@@ -37,7 +37,7 @@
 
 	/* Sets the tick behaviour for each mode*/
 	CircleHandler.tick = function(e) {
-	  	if(Globals.mode !== "comm") {
+	  	if(Globals.mode === "events") {
 	  _.each(force.nodes(), function(d) {
 	 
 
