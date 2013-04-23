@@ -350,10 +350,10 @@
 
         var numEvents =  listOfEvents.length < 5 ? listOfEvents.length :5;
 
-        if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 25 ){
+        if((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 35 ){
           $("#event_list").css("top", position.y + "px");
         }else{
-          $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 1)))) + "px"));
+          $("#event_list").css("top", (position.y + 5 + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
         }
 
         $(".menu_option li").data("circle-id", menuId);
