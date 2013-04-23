@@ -54,6 +54,9 @@ $(document).ready(function() {
   $('#detail_image').simpleVideo();
 
   $(".schedule_time").on("mousedown", ClickHandler.selectTimeRange );
+  $(".schedule_day").on("mousedown", ClickHandler.selectDayRange );
+
+
 
 
   $("#detail_background").css({ 

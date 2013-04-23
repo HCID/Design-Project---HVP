@@ -28,9 +28,89 @@
     }
 
 
+
+    ClickHandler.selectDayRange = function (e) {
+      e.stopPropagation()
+      var day = $(e.currentTarget).data("day");
+      
+      $(".schedule_time, .schedule_day").attr("fill", "#000");
+      $("[data-day=" + day +"]" ).attr("fill", "red");
+      $(e.currentTarget).attr("fill", "red");
+      console.log(".schedule_time.schedule_" + day.toLowerCase())
+
+       ClickHandler.listOfOldEvents = {
+         title: day,
+        data: _.reject(parallelData, function(node) {          
+          return _.contains(_.pluck(node.sessions, "day"), day);
+        })
+       };
+      ClickHandler.listOfEvents = _.filter(parallelData, function(node) {
+        return _.contains(_.pluck(node.sessions, "day"), day);
+      });
+      d3.selectAll("circle").style("fill", function(d, i) {
+
+        if (d.sessions) {
+          return View.sessionsColors(d.sessions[0]);
+        } else {
+          return View.sessionsColors(d);
+        }
+
+      })
+ 
+      _.each(force.nodes(), function (node) {
+        
+        if(node.day == day) {
+          console.log(node.id)
+          $("#g" + node.id + " circle").css("fill", "white");
+          $("#g" + node.id + " text").css("fill", "black");
+        }        
+      });
+
+      View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
+          return event.award ? 1 : -1;
+        }));
+
+    };    
+
+
     ClickHandler.selectTimeRange = function (e) {
-      console.log($(e.currentTarget).data("day") + " - " + $(e.currentTarget).data("start"));
-      $(e.currentTarget).attr("fill", "#aaa");
+      e.stopPropagation()
+      var day = $(e.currentTarget).data("day");
+      var start = $(e.currentTarget).data("start");
+      var wholeDay = $(e.currentTarget).text();
+
+      
+      $(".schedule_time, .schedule_day").attr("fill", "#000");
+      $(e.currentTarget).attr("fill", "red");
+       //View.generateSessionTitle(circle.name);
+
+       ClickHandler.listOfOldEvents = {
+         title: day + " " + wholeDay ,
+        data: _.reject(parallelData, function(node) {          
+          return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
+        })
+       };
+      ClickHandler.listOfEvents = _.filter(parallelData, function(node) {
+        return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
+      });
+      d3.selectAll("circle").style("fill", function(d, i) {
+
+        if (d.sessions) {
+          return View.sessionsColors(d.sessions[0]);
+        } else {
+          return View.sessionsColors(d);
+        }
+
+      })
+ 
+      _.each(force.nodes(), function (node) {
+        
+        if(node.day == day && node.starTime == start) {
+          console.log(node.id)
+          $("#g" + node.id + " circle").css("fill", "white");
+          $("#g" + node.id + " text").css("fill", "black");
+        }        
+      });
     };
 
 
