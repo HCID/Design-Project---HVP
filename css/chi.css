@@ -19,27 +19,27 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 .comButton{
   background: url('/img/tab1gray.png') no-repeat;
-  background-size:80px 80px;
+  /*background-size:80px 80px;*/
 }
 
 .eventsButton{
   background: url('/img/tab2gray.png') no-repeat;
-  background-size:80px 80px;
+  /*background-size:80px 80px;*/
 }
 
 .mapButton{
   background: url('/img/tab3gray.png') no-repeat;
-  background-size:80px 80px;
+  /*background-size:80px 80px;*/
 }
 
 .sessionButton{
   background: url('/img/tab4gray.png') no-repeat;
-  background-size:80px 80px;
+  /*background-size:80px 80px;*/
 }
 
 .restartButton{
   background: url('/img/restart.png') no-repeat;
-  background-size:80px 80px;
+  /*background-size:80px 80px;*/
 }
 
 
