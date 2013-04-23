@@ -303,35 +303,36 @@
       {
       case "comm":
         $(".comButton").fadeTo('fast', 0, function(){
-            $(this).css('background-image', 'url(/img/commsIcon.png)');
+            $(this).css('background-image', 'url(/img/tab1blue.png)');
         }).fadeTo('fast', 0.5);
         break;
       case "events":
         $(".eventsButton").fadeTo('fast', 0, function(){
-            $(this).css('background-image', 'url(/img/events.png)');
+            $(this).css('background-image', 'url(/img/tab2blue.png)');
         }).fadeTo('fast', 0.5);
         break;
       case "map":
         $(".mapButton").fadeTo('fast', 0, function(){
-            $(this).css('background-image', 'url(/img/mapIcon.png)');
+            $(this).css('background-image', 'url(/img/tab3blue.png)');
         }).fadeTo('fast', 0.5);
         break;
       case "sessions":
         $(".sessionButton").fadeTo('fast', 0, function(){
-            $(this).css('background-image', 'url(/img/sessionsIcon.png)');
+            $(this).css('background-image', 'url(/img/tab4blue.png)');
         }).fadeTo('fast', 0.5);
       }
-      
+
+      $(".comButton").css('background-image', 'url(/img/tab1blue.png)');
+      $(".eventsButton").css('background-image', 'url(/img/tab2blue.png)');
+      $(".mapButton").css('background-image', 'url(/img/tab3blue.png)');
+      $(".sessionButton").css('background-image', 'url(/img/tab4blue.png)');
 
       d3.selectAll("g.arc").remove();
 
       if ($(this).find("button").data("grouping") == "comm") {
-
         $(".comButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/commsUnsel.png)');
+            $(this).css('background-image', 'url(/img/tab1gray.png)');
         }).fadeTo('fast', 0.5);
-
-        
         Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");
         d3.selectAll("path.award").style("display", "none");;
@@ -341,20 +342,16 @@
         Communities.communities();
 
       } else if ($(this).find("button").data("grouping") == "events") {
-
         $(".eventsButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/eventsUnsel.png)');
+            $(this).css('background-image', 'url(/img/tab2gray.png)');
         }).fadeTo('fast', 0.5);
-
         ClickHandler.loadParallelData();
         Globals.mode = "events";
         main();
       } else if ($(this).find("button").data("grouping") == "map") {
-
         $(".mapButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/mapIconUnsel.png)');
+            $(this).css('background-image', 'url(/img/tab3gray.png)');
         }).fadeTo('fast', 0.5);
-
         ClickHandler.loadParallelData();
         Globals.mode = "map";
         main();
@@ -364,9 +361,8 @@
       } else if ($(this).find("button").data("grouping") == "sessions") {
 
         $(".sessionButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/sessionsUnsel.png)');
+            $(this).css('background-image', 'url(/img/tab4gray.png)');
         }).fadeTo('fast', 0.5);
-
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Globals.mode = "sessions";

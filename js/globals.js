@@ -43,7 +43,7 @@
 
     Globals.threshold = 12; //Threshold for the venn diagram
 
-    Globals.textThreshold = 8;  // Text threshold
+    Globals.textThreshold = 20;  // Text threshold
 
     Globals.height = $(window).height();
 

@@ -135,13 +135,13 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         .on("mousedown", ClickHandler.circleClicked)
         .style("fill", function(d, i) {
 
-        if (d.sessions) {
-          return View.sessionsColors(d.sessions[0]);
-        } else {
-          return View.sessionsColors(d);
-        }
+          if (d.sessions) {
+            return View.sessionsColors(d.sessions[0]);
+          } else {
+            return View.sessionsColors(d);
+          }
 
-      })
+        })
         .style("stroke-width", function(d, i) {
         if (Globals.mode === "events") {
           return 2;
@@ -152,14 +152,15 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         }
       })
         .style("opacity", function(d) {
-        if (Globals.mode === "events") {
-          return 1.0;
-        } else if (Globals.mode === "sessions") {
-          if (d.award > 0) {
-            return 0.9;
-          }
-        }
-        return 0.5;
+        // if (Globals.mode === "events") {
+        //   return 1.0;
+        // } else if (Globals.mode === "sessions") {
+        //   if (d.award > 0) {
+        //     return 1.0;
+        //   }
+        // }
+        // return 0.5;
+        return 1.0;
       })
         .style("stroke", function(d) {
         if (Globals.mode === "events") {
@@ -168,11 +169,14 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
           } else if (d.type === "panel") {
             return "#000000";
           }
+
         } else if (Globals.mode === "sessions") {
           if (d.award > 0) {
             return "#ffdd03";
           } else if (d.type === "panel") {
             return "#000000";
+          } else  {
+            return View.sessionsColors(d);
           }
         }
         return "#ffffff";
@@ -203,6 +207,8 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
 
         if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
           return 16;
+        } else if (Globals.mode == "sessions") {
+          return 18;
         } else {
           return 12;
         }
