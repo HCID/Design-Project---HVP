@@ -45,7 +45,7 @@ var restart = function() {
 };
 
 $(document).ready(function() {
-  $(".size_button").on("mousedown", ClickHandler.menuHandler);
+  $(".size_button").parent().on("mousedown", ClickHandler.menuHandler);
   $("svg").attr("height", Globals.height + "px");
   $("svg").attr("width", Globals.width + "px");
   $("#bgimg").attr("height", Globals.height);

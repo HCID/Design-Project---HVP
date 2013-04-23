@@ -211,7 +211,7 @@
 
 
 
-      if ($(this).data("grouping") == "comm") {
+      if ($(this).find("button").data("grouping") == "comm") {
         Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");
         d3.selectAll("path.award").style("display", "none");;
@@ -219,18 +219,18 @@
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Communities.communities();
-      } else if ($(this).data("grouping") == "events") {
+      } else if ($(this).find("button").data("grouping") == "events") {
         ClickHandler.loadParallelData();
         Globals.mode = "events";
         main();
-      } else if ($(this).data("grouping") == "map") {
+      } else if ($(this).find("button").data("grouping") == "map") {
         ClickHandler.loadParallelData();
         Globals.mode = "map";
         main();
-      } else if ($(this).data("grouping") == "restart") {
+      } else if ($(this).find("button").data("grouping") == "restart") {
         filterHistory = [];
         restart();
-      } else if ($(this).data("grouping") == "sessions") {
+      } else if ($(this).find("button").data("grouping") == "sessions") {
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Globals.mode = "sessions";

@@ -574,6 +574,9 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   border-bottom: 1px solid #68afd4;
   border-left: 1px solid #aae4d6; 
 }
+#tab_menu > div:hover {
+  cursor: pointer;
+}
 #tab_menu div.active {
   background-color: #fff;
   border-bottom: 0px none #fff;
