@@ -109,13 +109,8 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 #detail_left_view {
   float: left;
   display:inline-block;
-<<<<<<< HEAD
-  width: 640px; 
-  height: 480px; 
-=======
   width: 640; 
   height: 600; 
->>>>>>> position image
 }
 
 #detail_right_view {
@@ -605,7 +600,8 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   padding-bottom: 5px;
   border-bottom: 1px solid #68afd4;
   border-top: 1px solid #68afd4;
-  border-left: 1px solid #aae4d6; 
+  border-left: 1px solid #68afd4; 
+  border-right: 1px solid #68afd4; 
 }
 
 

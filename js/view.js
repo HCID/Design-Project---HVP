@@ -317,7 +317,7 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         $("#detail_award").html("");
       }
 
-      $("#detail_session").html("Session: " + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
+
       $("#detail_date").html(circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime +", Room: " + circle.sessions[0].room);
 
 

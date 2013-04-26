@@ -9,7 +9,7 @@
     }
 
     Communities.communities = function() {
-    $("#tab_menu > div").removeClass("active");
+    $(".tab_menu_class > div").removeClass("active");
     $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
     parallelData = force.nodes().slice(0);
 
