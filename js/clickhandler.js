@@ -158,9 +158,9 @@
               return node.sessions[0]["room"] == circle["room"]
             })
           };
-          ClickHandler.listOfEvents = _.filter(parallelData, function(node) {
+          ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
             return node.sessions[0]["room"] == circle["room"]
-          });
+          }));
 
         } else if (Globals.mode == "sessions") {
           View.generateSessionTitle(circle.name);
@@ -171,9 +171,9 @@
               return _.contains(_.pluck(node.sessions, "id"), circle["id"])
             })
           };
-          ClickHandler.listOfEvents = _.filter(parallelData, function(node) {
+          ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
             return _.contains(_.pluck(node.sessions, "id"), circle["id"])
-          })
+          }));
 
         } else if (Globals.mode == "comm") {
 
@@ -202,11 +202,11 @@
                 })
               })
             };
-            ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {
+            ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
               return node.communities.length === 0 || _.every(node.communities, function(n) {
                 return _.indexOf(["ux", "design", "engineering"], n) !== -1
               })
-            });
+            }));
           } else {
             ClickHandler.listOfOldEvents = {
               title: filterFor,
@@ -214,23 +214,26 @@
                 return ClickHandler.filterCommunitieClick(list, node.communities);
               })
             };            
-            ClickHandler.listOfEvents = _.filter(force.nodes(), function(node) {              
+            ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {              
               return ClickHandler.filterCommunitieClick(list, node.communities);
-            });
+            }));
           }
 
           //.attr("opacity", 1);   
         }
 
 
-
+        View.highlightCircle(circle.id);
         /* 
           position is an array containg [x, y] 
           list of events if a list of max 5 events
         */
-        View.showPieMenu(position, _.sortBy(ClickHandler.listOfEvents, function(event) {
-          return event.award
-        }), menuId);
+        // View.showPieMenu(position, _.sortBy(ClickHandler.listOfEvents, function(event) {
+        //   return event.award
+        // }), menuId);
+        
+  
+
         //        CircleHandler.filterData(circle, newMode, d3event);  
       }
 
@@ -334,6 +337,7 @@
         d3.selectAll("path.award").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
+        force.nodes(ClickHandler.listOfEvents)
         ClickHandler.loadParallelData();
         Communities.communities();
 
@@ -343,14 +347,14 @@
         }).fadeTo('fast', 0.5);
         ClickHandler.loadParallelData();
         Globals.mode = "events";
-        main();
+        main(ClickHandler.listOfEvents);
       } else if ($(this).find("button").data("grouping") == "map") {
         $(".mapButton").fadeTo('fast', 0.3, function(){
             $(this).css('background-image', 'url(/img/tab3gray.png)');
         }).fadeTo('fast', 0.5);
         ClickHandler.loadParallelData();
         Globals.mode = "map";
-        main();
+        main(ClickHandler.listOfEvents);
       } else if ($(this).find("button").data("grouping") == "restart") {
         filterHistory = [];
         restart();
@@ -362,7 +366,7 @@
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Globals.mode = "sessions";
-        main();
+        main(ClickHandler.listOfEvents);
       }
     };
 

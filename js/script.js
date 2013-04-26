@@ -11,8 +11,9 @@ var force = d3.layout.force()
       .charge(0)
       .on("tick", CircleHandler.tick);
 var filterHistory = [];
-var main = function (fociUsed) {
-
+var main = function (listOfEvents) {
+  //listOfEvents = listOfEvents || []
+   // force.nodes(listOfEvents);
 
     $("#tab_menu > div").removeClass("active");
     $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
@@ -41,7 +42,7 @@ var restart = function() {
   Globals.mode = "sessions";
   parallelData = [];
   force.nodes(data);
-  main();
+  main(data);
 };
 
 $(document).ready(function() {

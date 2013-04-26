@@ -84,6 +84,14 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
     }
 
 
+
+
+    View.highlightCircle = function (circleId) {      
+      $("#g" + circleId+ " circle").css("fill", "white");
+      $("#g" + circleId+ " text").css("fill", "black");
+    };
+
+
     View.update = function() {
       var l = force.nodes().length;
       View.changeImage();
