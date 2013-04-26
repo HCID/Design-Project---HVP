@@ -117,6 +117,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   display:inline-block;
   width: 650px; 
   height: 450px; 
+  line-height: 25px;
 }
 
 #detail_image {
