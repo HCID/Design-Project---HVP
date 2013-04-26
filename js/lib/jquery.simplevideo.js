@@ -43,7 +43,7 @@
 				if(video.play && typeof(video.play) === "function" && !is_ios) {
 					$video.wrap(elements.wrapper).before(elements.overlay);
 					$video.bind({
-						click: function() {
+						mousedown: function() {
 							$video.trigger("toggle");
 						},
 						pause: function() {
@@ -64,7 +64,7 @@
 						}
 					});
 					elements.overlay.bind({
-						click: function() {
+						mousedown: function() {
 							$video.trigger("toggle");
 						}
 					});
