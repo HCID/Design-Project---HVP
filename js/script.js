@@ -15,7 +15,7 @@ var main = function (listOfEvents) {
   //listOfEvents = listOfEvents || []
    // force.nodes(listOfEvents);
 
-    $("#tab_menu > div").removeClass("active");
+    $(".tab_menu_class > div").removeClass("active");
     $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
 
   vis = d3.select("body").select("svg");
@@ -64,8 +64,9 @@ $(document).ready(function() {
     left: ($(window).width() - $('#detail_background').outerWidth())/2,
     top: ($(window).height() - $('#detail_background').outerHeight())/2
   });
-
  
+
+
 
   d3.json('data/data.json', function (importedData) {
     data = importedData;
