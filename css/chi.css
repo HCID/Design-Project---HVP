@@ -108,8 +108,13 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 #detail_left_view {
   float: left;
   display:inline-block;
+<<<<<<< HEAD
   width: 640px; 
   height: 480px; 
+=======
+  width: 640; 
+  height: 600; 
+>>>>>>> position image
 }
 
 #detail_right_view {
@@ -121,7 +126,11 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 #detail_image {
+<<<<<<< HEAD
   width: 640px; 
+=======
+  width: 720px; 
+>>>>>>> position image
   height: 480px; 
   background-color: #f6f6f6; 
   border: 1px solid #eee; 
@@ -553,7 +562,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   margin: 0 auto;
   margin-top: 30px;
   position: relative;
-  width: 640px;
+  width: 720px;
   
 }
 
