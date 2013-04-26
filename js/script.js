@@ -58,7 +58,7 @@ $(document).ready(function() {
   $(".schedule_time").on("mousedown", ClickHandler.selectTimeRange );
   $(".schedule_day").on("mousedown", ClickHandler.selectDayRange );
 
-
+  $("#right_side").height((Globals.height-209)+"px");
 
 
   $("#detail_background").css({ 
