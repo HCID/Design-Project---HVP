@@ -160,9 +160,10 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         }
       })
         .style("opacity", function(d) {
-        // if (Globals.mode === "events") {
-        //   return 1.0;
-        // } else if (Globals.mode === "sessions") {
+        if (Globals.mode === "map") {
+          return 0.6;
+        }
+        // else if (Globals.mode === "sessions") {
         //   if (d.award > 0) {
         //     return 1.0;
         //   }

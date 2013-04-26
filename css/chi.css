@@ -254,6 +254,14 @@ h1, h3, h4, h5, h6, p, div, li, ul {
  z-index:100000 
 }
 
+#bgimg {
+  -webkit-transform:scale(0.9);
+  -moz-transform:scale(0.9);
+  -ms-transform:scale(0.9);
+  -o-transform:scale(0.9);
+  transform:scale(0.9)
+}
+
 
 
 /*************************** PIE MENU CSS ***********************/
