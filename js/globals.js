@@ -148,13 +148,13 @@
       "252b":     {x: mapXSpace + 212, y: 420},
       "252a":     {x: mapXSpace + 121, y: 442},
       "251":      {x: mapXSpace + 32,  y: 467},
-      "blue":     {x: mapXSpace + 455, y: 433},
+      "blue":     {x: mapXSpace + 452, y: 433},
       "243":      {x: mapXSpace + 463, y: 492},
-      "242b":     {x: mapXSpace + 427, y: 542},
-      "242ab":    {x: mapXSpace + 372, y: 542},
-      "242a":     {x: mapXSpace + 372, y: 582},
-      "241":      {x: mapXSpace + 310, y: 618},
-      "grand":    {x: mapXSpace + 48,  y: 858},
+      "242b":     {x: mapXSpace + 425, y: 540},
+      "242ab":    {x: mapXSpace + 372, y: 545},
+      "242a":     {x: mapXSpace + 370, y: 582},
+      "241":      {x: mapXSpace + 308, y: 618},
+      "grand":    {x: mapXSpace + 402,  y: 857},
       undefined:  {x: 2 * mapXSpace + 1000,  y: 600}
     };
 
