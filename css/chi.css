@@ -509,14 +509,10 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 
     .flipper.top_flipper {
-      -webkit-transform: rotate(180deg);
-      top: 10px;
-      right: 10px;
+      bottom: 20px;
+      right: 20px;
     }
-    .bottom_flipper {
-      bottom: 10px;
-      left: 10px;
-    }
+
 
     .flipper {
       position: absolute;

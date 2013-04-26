@@ -307,22 +307,22 @@
       case "comm":
         $(".comButton").fadeTo('fast', 0, function(){
             $(this).css('background-image', 'url(/img/tab1blue.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         break;
       case "events":
         $(".eventsButton").fadeTo('fast', 0, function(){
             $(this).css('background-image', 'url(/img/tab2blue.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         break;
       case "map":
         $(".mapButton").fadeTo('fast', 0, function(){
             $(this).css('background-image', 'url(/img/tab3blue.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         break;
       case "sessions":
         $(".sessionButton").fadeTo('fast', 0, function(){
             $(this).css('background-image', 'url(/img/tab4blue.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
       }
 
 
@@ -331,7 +331,7 @@
       if ($(this).find("button").data("grouping") == "comm") {
         $(".comButton").fadeTo('fast', 0.3, function(){
             $(this).css('background-image', 'url(/img/tab1gray.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");
         d3.selectAll("path.award").style("display", "none");;
@@ -344,14 +344,14 @@
       } else if ($(this).find("button").data("grouping") == "events") {
         $(".eventsButton").fadeTo('fast', 0.3, function(){
             $(this).css('background-image', 'url(/img/tab2gray.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         ClickHandler.loadParallelData();
         Globals.mode = "events";
         main(ClickHandler.listOfEvents);
       } else if ($(this).find("button").data("grouping") == "map") {
         $(".mapButton").fadeTo('fast', 0.3, function(){
             $(this).css('background-image', 'url(/img/tab3gray.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         ClickHandler.loadParallelData();
         Globals.mode = "map";
         main(ClickHandler.listOfEvents);
@@ -362,7 +362,7 @@
 
         $(".sessionButton").fadeTo('fast', 0.3, function(){
             $(this).css('background-image', 'url(/img/tab4gray.png)');
-        }).fadeTo('fast', 0.5);
+        }).fadeTo('fast', 1);
         $('.legend').hide();
         ClickHandler.loadParallelData();
         Globals.mode = "sessions";
