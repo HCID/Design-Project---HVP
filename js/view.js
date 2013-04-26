@@ -74,7 +74,7 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
           return s;
         }
       } else if (Globals.mode === "map") {
-        return d.radius;
+        return 20;
       } else if (Globals.mode === "sessions") {
         return 25;
       } else {

@@ -61,7 +61,7 @@
 
     parallelData = void 0;
 
-    mapXSpace = 655;
+    mapXSpace = 670;
 
     sessionIntSpace = Globals.clcScreen ? 52 : 55;
 
