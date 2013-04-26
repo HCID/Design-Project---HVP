@@ -38,6 +38,7 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         var opacity = 0;
         if (Globals.mode == "map") {
           image = "/img/mapLevels.svg";
+
           opacity = 1;
         } else {
           var image = "";
@@ -308,12 +309,11 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
       }
 
       $("#detail_session").html("Session: " + circle.sessions[0].name + " (" + circle.sessions[0].code + ")");
-      $("#detail_date").html("Date: " + circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime);
-      $("#detail_location").html("Room: " + circle.sessions[0].room);
-      $("#detail_type").html("Type: " + circle.type);
+      $("#detail_date").html(circle.sessions[0].day + ", " + circle.sessions[0].starTime + " to " + circle.sessions[0].endTime +", Room: " + circle.sessions[0].room);
+
 
       if (circle.authors && (circle.authors.length > 0)) {
-        var str = "Authors:";
+        var str = "";
         for (var i = 0; i < circle.authors.length; i++) {
           if (i == (circle.authors.length - 1)) {
             str = str + " " + circle.authors[i].givenName + " " + circle.authors[i].familyName;
