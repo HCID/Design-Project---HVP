@@ -269,11 +269,12 @@
       var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight - 2*Globals.topMargin]);
       var circle = d3.svg.arc().innerRadius(0).startAngle(0).endAngle(2*Math.PI);
 
+      var vennSpace = 10;
+
       vis = d3.select("body").select("svg")
         .data([vn])
-          .attr("width", Globals.width).attr("height", Globals.height - 2*Globals.topMargin);
+          .attr("width", Globals.width).attr("height", Globals.height - Globals.topMargin - 2*vennSpace);
 
-      var vennSpace = 0;
 
       var circles = vis.selectAll("g.arc")
           .data(venn)              
