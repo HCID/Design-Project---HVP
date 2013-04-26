@@ -273,7 +273,7 @@
         .data([vn])
           .attr("width", Globals.width).attr("height", Globals.height);
 
-      var vennSpace = 100;
+      var vennSpace = 0;
 
       var circles = vis.selectAll("g.arc")
           .data(venn)              
