@@ -322,10 +322,6 @@
         }).fadeTo('fast', 0.5);
       }
 
-      $(".comButton").css('background-image', 'url(/img/tab1blue.png)');
-      $(".eventsButton").css('background-image', 'url(/img/tab2blue.png)');
-      $(".mapButton").css('background-image', 'url(/img/tab3blue.png)');
-      $(".sessionButton").css('background-image', 'url(/img/tab4blue.png)');
 
       d3.selectAll("g.arc").remove();
 
