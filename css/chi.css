@@ -108,8 +108,8 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 #detail_left_view {
   float: left;
   display:inline-block;
-  width: 640; 
-  height: 480; 
+  width: 640px; 
+  height: 480px; 
 }
 
 #detail_right_view {
@@ -121,7 +121,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 #detail_image {
-  width: 640; 
+  width: 640px; 
   height: 480px; 
   background-color: #f6f6f6; 
   border: 1px solid #eee; 
