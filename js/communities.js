@@ -298,7 +298,7 @@
           .style("font-family", "GillSans-Light")
           .on("mousedown",  ClickHandler.circleClicked )
           .attr("stroke-size", 1)
-          .attr("fill", function(d, i) { return "#ffffff";})
+          .attr("fill", function(d, i) { return fill2(i);})
           .attr("stroke", function(d, i) { return fill2(i);})
           .attr("x", function(d, i) { return d.labelX; })
           .attr("y", function(d, i) { return d.labelY; });
