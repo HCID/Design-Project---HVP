@@ -136,7 +136,7 @@
     ];
 
     Globals.fociMap = {
-      "352ab":    {x: mapXSpace + 253,  y: 47},
+      "352ab":    {x: mapXSpace + 253,  y: 7},
       "351":      {x: mapXSpace + 77,  y: 138},
       "havane":   {x: mapXSpace + 1,  y: 260},
       "362/363":  {x: mapXSpace + 493, y: 158},
