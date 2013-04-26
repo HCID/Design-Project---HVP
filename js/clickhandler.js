@@ -4,7 +4,7 @@
 
     function ClickHandler() {}
 
-
+    ClickHandler.selected = false;
     ClickHandler.listOfEvents = [];
     ClickHandler.listOfOldEvents = [];
 
@@ -29,91 +29,127 @@
 
 
 
-    ClickHandler.selectDayRange = function (e) {
+    ClickHandler.selectDayRange = function(e) {
+      if (!ClickHandler.selected) {
+        ClickHandler.listOfEvents = [];
+        ClickHandler.selected = true;
+      }
+
+
+
       e.stopPropagation()
       var day = $(e.currentTarget).data("day");
-      
-      $(".schedule_time, .schedule_day").attr("fill", "#000");
-      $("[data-day=" + day +"]" ).attr("fill", "red");
-      $(e.currentTarget).attr("fill", "red");
-      console.log(".schedule_time.schedule_" + day.toLowerCase())
 
-       ClickHandler.listOfOldEvents = {
-         title: day,
-        data: _.reject(parallelData, function(node) {          
-          return _.contains(_.pluck(node.sessions, "day"), day);
-        })
-       };
-      ClickHandler.listOfEvents = _.filter(parallelData, function(node) {
-        return _.contains(_.pluck(node.sessions, "day"), day);
-      });
-      d3.selectAll("circle").style("fill", function(d, i) {
 
-        if (d.sessions) {
-          return View.sessionsColors(d.sessions[0]);
-        } else {
-          return View.sessionsColors(d);
+
+
+      if (!_.find(force.nodes(), function(oldEvents) {
+        if (oldEvents.day == day && !oldEvents.selected) {
+          return true;
         }
+      })) {
 
-      })
- 
-      _.each(force.nodes(), function (node) {
-        
-        if(node.day == day) {
-          console.log(node.id)
-          $("#g" + node.id + " circle").css("fill", "white");
-          $("#g" + node.id + " text").css("fill", "black");
-        }        
-      });
+        _.each(force.nodes(), function(node) {
 
-      View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
-          return event.award ? 1 : -1;
+          if (node.day == day) {
+            node.selected = false;
+            d3.select("#g" + node.id + " circle").style("fill", function(d, i) {
+              if (d.sessions) {
+                return View.sessionsColors(d.sessions[0]);
+              } else {
+                return View.sessionsColors(d);
+              }
+            })
+            $("#g" + node.id + " text").css("fill", "white");
+          }
+        });
+
+
+
+
+      } else {
+
+        $("[data-day=" + day + "]").attr("fill", "red");
+        $(e.currentTarget).attr("fill", "red");
+        console.log(".schedule_time.schedule_" + day.toLowerCase())
+
+        ClickHandler.listOfOldEvents.push({
+          title: day,
+          data: _.reject(parallelData, function(node) {
+            return _.contains(_.pluck(node.sessions, "day"), day);
+          })
+        });
+        ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
+          return _.contains(_.pluck(node.sessions, "day"), day);
         }));
 
-    };    
+
+        _.each(force.nodes(), function(node) {
+
+          if (node.day == day) {
+            node.selected = true;
+            console.log(node.id)
+            $("#g" + node.id + " circle").css("fill", "white");
+            $("#g" + node.id + " text").css("fill", "black");
+          }
+        });
+
+      }
 
 
-    ClickHandler.selectTimeRange = function (e) {
+      // View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
+      //     return event.award ? 1 : -1;
+      //   }));
+
+    };
+
+
+    ClickHandler.selectTimeRange = function(e) {
+      if (!ClickHandler.selected) {
+        ClickHandler.listOfEvents = [];
+        ClickHandler.selected = true;
+      }
+
       e.stopPropagation()
       var day = $(e.currentTarget).data("day");
       var start = $(e.currentTarget).data("start");
       var wholeDay = $(e.currentTarget).text();
 
-      
-      $(".schedule_time, .schedule_day").attr("fill", "#000");
-      $(e.currentTarget).attr("fill", "red");
-       //View.generateSessionTitle(circle.name);
 
-       ClickHandler.listOfOldEvents = {
-         title: day + " " + wholeDay ,
-        data: _.reject(parallelData, function(node) {          
+      //$(".schedule_time, .schedule_day").attr("fill", "#000");
+      //$(e.currentTarget).attr("fill", "red");
+      //View.generateSessionTitle(circle.name);
+
+      ClickHandler.listOfOldEvents.push({
+        title: day + " " + wholeDay,
+        data: _.reject(parallelData, function(node) {
           return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
         })
-       };
-      ClickHandler.listOfEvents = _.filter(parallelData, function(node) {
-        return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
       });
-      d3.selectAll("circle").style("fill", function(d, i) {
+      ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
+        return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
+      }));
+      // d3.selectAll("circle").style("fill", function(d, i) {
 
-        if (d.sessions) {
-          return View.sessionsColors(d.sessions[0]);
-        } else {
-          return View.sessionsColors(d);
-        }
+      //   if (d.sessions) {
+      //     return View.sessionsColors(d.sessions[0]);
+      //   } else {
+      //     return View.sessionsColors(d);
+      //   }
 
-      })
- 
-      _.each(force.nodes(), function (node) {
-        
-        if(node.day == day && node.starTime == start) {
+      // })
+
+      _.each(force.nodes(), function(node) {
+
+        if (node.day == day && node.starTime == start) {
           console.log(node.id)
           $("#g" + node.id + " circle").css("fill", "white");
           $("#g" + node.id + " text").css("fill", "black");
-        }        
+        }
       });
-      View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
-          return event.award ? 1 : -1;
-        }));
+      // View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
+      //     return event.award ? 1 : -1;
+      //   }));
 
     };
 
@@ -121,6 +157,18 @@
     /* Funtion triggered when one of the bubbles is clicked */
 
     ClickHandler.circleClicked = function(circle) {
+
+      if (!ClickHandler.selected) {
+        ClickHandler.listOfEvents = [];
+        ClickHandler.selected = true;
+      }
+
+      if(circle.selected) {        
+        circle.selected = false;
+      } else {
+        circle.selected = true;      
+      }
+      View.updateCircleColor(circle);
 
 
       d3.event.stopPropagation()
@@ -132,8 +180,8 @@
         var menuId = "";
         if (Globals.mode === "comm") {
           var position = {
-            x: d3.event.offsetX-20,
-            y: d3.event.offsetY+40+ Globals.topMargin
+            x: d3.event.offsetX - 20,
+            y: d3.event.offsetY + 40 + Globals.topMargin
           };
         } else {
           menuId = circle.id;
@@ -152,12 +200,12 @@
           //var sessions = CircleHandler.groupSession(copyPD);
           //ClickHandler.loadParallelData();
 
-          ClickHandler.listOfOldEvents = {
+          ClickHandler.listOfOldEvents.push({
             title: circle["room"],
             data: _.reject(parallelData, function(node) {
               return node.sessions[0]["room"] == circle["room"]
             })
-          };
+          });
           ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
             return node.sessions[0]["room"] == circle["room"]
           }));
@@ -165,15 +213,18 @@
         } else if (Globals.mode == "sessions") {
           View.generateSessionTitle(circle.name);
 
-          ClickHandler.listOfOldEvents = {
+          ClickHandler.listOfOldEvents.push({
             title: circle["code"],
             data: _.reject(parallelData, function(node) {
               return _.contains(_.pluck(node.sessions, "id"), circle["id"])
             })
-          };
+          });
           ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
             return _.contains(_.pluck(node.sessions, "id"), circle["id"])
           }));
+
+          
+
 
         } else if (Globals.mode == "comm") {
 
@@ -194,27 +245,27 @@
           console.log("list", list);
 
           if (list[0] == "general") {
-            ClickHandler.listOfOldEvents = {
+            ClickHandler.listOfOldEvents.push({
               title: filterFor,
               data: _.reject(force.nodes(), function(node) {
                 return node.communities.length === 0 || _.every(node.communities, function(n) {
                   return _.indexOf(["ux", "design", "engineering"], n) !== -1
                 })
               })
-            };
+            });
             ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
               return node.communities.length === 0 || _.every(node.communities, function(n) {
                 return _.indexOf(["ux", "design", "engineering"], n) !== -1
               })
             }));
           } else {
-            ClickHandler.listOfOldEvents = {
+            ClickHandler.listOfOldEvents.push({
               title: filterFor,
               data: _.reject(force.nodes(), function(node) {
                 return ClickHandler.filterCommunitieClick(list, node.communities);
               })
-            };            
-            ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {              
+            });
+            ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
               return ClickHandler.filterCommunitieClick(list, node.communities);
             }));
           }
@@ -223,19 +274,19 @@
         }
 
 
-        View.highlightCircle(circle.id);
-        /* 
+                /* 
           position is an array containg [x, y] 
           list of events if a list of max 5 events
         */
         // View.showPieMenu(position, _.sortBy(ClickHandler.listOfEvents, function(event) {
         //   return event.award
         // }), menuId);
-        
-  
+
+
 
         //        CircleHandler.filterData(circle, newMode, d3event);  
       }
+      console.log(ClickHandler.listOfEvents)
 
     };
 
@@ -297,15 +348,15 @@
 
     /* Funtion triggered when one of the menu buttons is clicked */
     ClickHandler.menuHandler = function() {
+      ClickHandler.selected = false;
       d3.selectAll("circle").style("display", "block");
       d3.selectAll("path.award").style("display", "block");;
       $('.talkName').show();
       $('.legend').show();
 
-      switch(Globals.mode)
-      {
-      case "comm":
-        $(".comButton").fadeTo('fast', 0, function(){
+      switch (Globals.mode) {
+        case "comm":
+          $(".comButton").fadeTo('fast', 0, function() {
             $(this).css('background-image', 'url(/img/tab1blue.png)');
         }).fadeTo('fast', 1);
         break;
@@ -337,34 +388,42 @@
         d3.selectAll("path.award").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
-        force.nodes(ClickHandler.listOfEvents)
-        ClickHandler.loadParallelData();
+        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+
+        //ClickHandler.loadParallelData();
         Communities.communities();
 
       } else if ($(this).find("button").data("grouping") == "events") {
-        $(".eventsButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/tab2gray.png)');
+        $(".eventsButton").fadeTo('fast', 0.3, function() {
+          $(this).css('background-image', 'url(/img/tab2gray.png)');
         }).fadeTo('fast', 1);
-        ClickHandler.loadParallelData();
+        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        console.log(ClickHandler.listOfEvents)
+        console.log(force.nodes());
+        //force.nodes(ClickHandler.listOfEvents)
+        //console.log(force.nodes())
+        //ClickHandler.loadParallelData();
         Globals.mode = "events";
-        main(ClickHandler.listOfEvents);
+        main();
       } else if ($(this).find("button").data("grouping") == "map") {
-        $(".mapButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/tab3gray.png)');
+        $(".mapButton").fadeTo('fast', 0.3, function() {
+          $(this).css('background-image', 'url(/img/tab3gray.png)');
         }).fadeTo('fast', 1);
-        ClickHandler.loadParallelData();
+        //ClickHandler.loadParallelData();
+        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
         Globals.mode = "map";
-        main(ClickHandler.listOfEvents);
+        main();
       } else if ($(this).find("button").data("grouping") == "restart") {
         filterHistory = [];
         restart();
       } else if ($(this).find("button").data("grouping") == "sessions") {
 
-        $(".sessionButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/tab4gray.png)');
+        $(".sessionButton").fadeTo('fast', 0.3, function() {
+          $(this).css('background-image', 'url(/img/tab4gray.png)');
         }).fadeTo('fast', 1);
         $('.legend').hide();
-        ClickHandler.loadParallelData();
+        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        //ClickHandler.loadParallelData();
         Globals.mode = "sessions";
         main(ClickHandler.listOfEvents);
       }
@@ -383,7 +442,7 @@
 
 
       var cX = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
-      var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0])+Globals.topMargin;
+      var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
       var radius = b.get(0).getBBox().height / 2;
       //distance between two points
 
@@ -399,7 +458,7 @@
     ClickHandler.removeFilter = function() {
       var id = $(this).parent().attr("id").substring(7, $(this).parent().attr("id").length);
       $(this).parent().remove();
-      console.log("bef",force.nodes()[0].code)
+      console.log("bef", force.nodes()[0].code)
       if (filterHistory[id]) {
         ClickHandler.loadParallelData();
         console.log("par", force.nodes().length)

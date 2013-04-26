@@ -86,10 +86,21 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
 
 
 
+    View.updateCircleColor = function(circle) {
+      if (circle.selected) {
+        $("#g" + circle.id + " circle").css("fill", "white");
+        $("#g" + circle.id + " text").css("fill", "black");
+      } else {
+        d3.select("#g" + circle.id + " circle").style("fill", function(d, i) {
+          if (d.sessions) {
+            return View.sessionsColors(d.sessions[0]);
+          } else {
+            return View.sessionsColors(d);
+          }
+        })
+        $("#g" + circle.id + " text").css("fill", "white");
+      }
 
-    View.highlightCircle = function (circleId) {      
-      $("#g" + circleId+ " circle").css("fill", "white");
-      $("#g" + circleId+ " text").css("fill", "black");
     };
 
 
@@ -113,12 +124,10 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         .attr("d", function(d) {
         if (Globals.mode === "events") {
           if (d.award && d.award !== "") {
-            console.log("path for ", d.name);
             var str = renderStar(d);
             return str;
           }
         } else if (Globals.mode === "sessions") {
-          console.log("code", d.code);
           if (d.award > 0) {
             var str = renderStar(d);
             return str;
@@ -144,13 +153,13 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
         .on("mousedown", ClickHandler.circleClicked)
         .style("fill", function(d, i) {
 
-          if (d.sessions) {
-            return View.sessionsColors(d.sessions[0]);
-          } else {
-            return View.sessionsColors(d);
-          }
+        if (d.sessions) {
+          return View.sessionsColors(d.sessions[0]);
+        } else {
+          return View.sessionsColors(d);
+        }
 
-        })
+      })
         .style("stroke-width", function(d, i) {
         if (Globals.mode === "events") {
           return 2;
@@ -185,7 +194,7 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
             return "#ffdd03";
           } else if (d.type === "panel") {
             return "#000000";
-          } else  {
+          } else {
             return View.sessionsColors(d);
           }
         }
@@ -377,7 +386,7 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
     }
 
 
-    View.showPieMenu = function(position, listOfEvents, menuId) {      
+    View.showPieMenu = function(position, listOfEvents, menuId) {
       if (listOfEvents.length > 0) {
         $("#outer_container, #event_list").show();
 
@@ -403,10 +412,10 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
           console.log("doesn't fit");
           $("#event_list").css("top", (position.y + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
         }
-        if(menuId != undefined) {
+        if (menuId != undefined) {
           $(".menu_option li").data("circle-id", menuId);
         }
-        
+
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(_.first(listOfEvents, 5), function(obj) {

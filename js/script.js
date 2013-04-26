@@ -11,9 +11,7 @@ var force = d3.layout.force()
       .charge(0)
       .on("tick", CircleHandler.tick);
 var filterHistory = [];
-var main = function (listOfEvents) {
-  //listOfEvents = listOfEvents || []
-   // force.nodes(listOfEvents);
+var main = function () {
 
     $(".tab_menu_class > div").removeClass("active");
     $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
@@ -77,6 +75,7 @@ $(document).ready(function() {
     maxDomainValue = d3.max(data, function(d) {
       return d.bookmarks;
     });
+    ClickHandler.listOfEvents = data;
     rScale.domain([0, maxDomainValue]);
     restart();
   });
