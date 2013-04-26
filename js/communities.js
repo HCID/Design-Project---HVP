@@ -266,12 +266,12 @@
        gr: array of groups
       */
     var drawVennEuler = function (vn, gr) {
-      var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight]);
+      var venn = d3.layout.venn().size([window.screen.availWidth, window.screen.availHeight - 2*Globals.topMargin]);
       var circle = d3.svg.arc().innerRadius(0).startAngle(0).endAngle(2*Math.PI);
 
       vis = d3.select("body").select("svg")
         .data([vn])
-          .attr("width", Globals.width).attr("height", Globals.height - Globals.topMargin);
+          .attr("width", Globals.width).attr("height", Globals.height - 2*Globals.topMargin);
 
       var vennSpace = 0;
 
