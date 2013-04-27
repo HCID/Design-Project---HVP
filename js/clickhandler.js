@@ -271,7 +271,7 @@
 
           _.each(superList, function(yRow, y) {
             _.each(yRow, function(xRow, x) {
-              if (xRow === true && (!yRow[x - 1] || !yRow[x + 1])) {
+              if (xRow && ((!yRow[x - 1] || !yRow[x + 1]) || (!xRow[y-1] || !xRow[y+1])) ) {
                 megaList.push([x, y]);
               }
             })
@@ -285,7 +285,7 @@
           var first = true;
           var patrikvar = "";
           _.each(megaList, function(coord) {
-            patrikvar += " (" + coord[0] + "," + coord[1] + ")";
+            //patrikvar += " (" + coord[0] + "," + coord[1] + ")";
             if (first) {
               d = "M" + coord[0] + " " + coord[1];
               first = false;
@@ -298,7 +298,7 @@
           // <path d="M530 245L529 246L531 246Z" stroke="red" stroke-width="2" fill="none"></path>
 
 
-          d3.select("#mainSvg").append("path").attr("d", d).attr("stroke", "red").attr("stroke-with", "2");
+          d3.select("#mainSvg").append("path").attr("class", "comm_overlay").attr("d", d).attr("fill", "transparent").attr("stroke", "red").attr("stroke-with", "1");
           
 
           var filterFor = "";
@@ -324,15 +324,23 @@
               })
             }));
           } else {
-            ClickHandler.listOfOldEvents.push({
-              title: filterFor,
-              data: _.reject(force.nodes(), function(node) {
-                return ClickHandler.filterCommunitieClick(list, node.communities);
-              })
-            });
-            ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
-              return ClickHandler.filterCommunitieClick(list, node.communities);
-            }));
+            // ClickHandler.listOfOldEvents.push({
+            //   title: filterFor,
+            //   data: _.reject(force.nodes(), function(node) {
+            //     return ClickHandler.filterCommunitieClick(list, node.communities);
+            //   })
+            // });
+            // ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
+            //   return ClickHandler.filterCommunitieClick(list, node.communities);
+            // }));
+
+              CircleHandler.filters.communities.push(list)
+              CircleHandler.filters.communities = _.unique(_.flatten(CircleHandler.filters.communities));
+            
+    
+
+
+            
           }
 
           //.attr("opacity", 1);   
@@ -347,9 +355,7 @@
 
 
 
-    ClickHandler.filterCommunitieClick = function(list, communities) {
-      return (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0) || (list.length == 1 && list[0] === "N/A" && communities.length === 0)
-    }
+ 
 
 
     /* closes the detail view */

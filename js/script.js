@@ -19,7 +19,7 @@ var main = function () {
   vis = d3.select("body").select("svg");
 
 
-
+  d3.selectAll(".comm_overlay").remove();
   if (Globals.mode === "map") {
     var array = CircleHandler.groupMap(force.nodes());
     parallelData = force.nodes().slice(0);

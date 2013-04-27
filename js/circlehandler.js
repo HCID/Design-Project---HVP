@@ -309,7 +309,8 @@
 					var matchedSessions = false,
           matchedDay = false,
           matchTime = false,
-          matchRoom = false;
+          matchRoom = false,
+          matchComm = false;
 
 					if(filters.sessions.length > 0) {
             _.each(d.sessions, function(s) {
@@ -338,6 +339,16 @@
           } else {
             matchTime = true;
           }
+
+          if(filters.communities.length > 0) {
+            console.log(CircleHandler.filterCommunitieClick(filters.communities, d.communities), filters.communities, d.communities)
+            if(CircleHandler.filterCommunitieClick(filters.communities, d.communities)) {
+                matchComm = true;
+            }                   
+          } else {
+            matchComm = true;
+          }
+
           if(filters.room.length > 0) {
             var smallPass = false;
             _.each(filters.room, function (f) {
@@ -351,10 +362,16 @@
           } else {
             matchRoom = true;
           }
-					return matchRoom && matchTime && matchedDay && matchedSessions;
+					return matchRoom && matchTime && matchedDay && matchedSessions && matchComm;
 				})
 			}
 		}
+
+
+
+    CircleHandler.filterCommunitieClick = function(list, communities) {
+      return (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0) || (list.length == 1 && list[0] === "N/A" && communities.length === 0)
+    }
 
 
     var filterSessions = function(session, filters) {
