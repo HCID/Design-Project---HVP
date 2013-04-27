@@ -319,6 +319,36 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   margin-left: 10px;
 }
 
+#right_side_legend {
+  height: 300px;
+  display: inline-block;
+  float:left;
+  width: 200px;
+}
+
+#right_side_legend_2 {
+  display: inline-block;
+  float:left;
+  width: 200px;
+}
+
+#right_side_legend img {
+  float: left;
+  display: inline-block;
+  width: 100px;
+}
+
+#right_side_legend p {
+  height: 10px;
+  width: 200px;
+  text-align: center;
+  float: left;
+  display: inline-block;
+  margin-top: 5px;
+  color: #000;
+  /*background-color: #ccc;*/
+}
+
 /*************************** PIE MENU CSS ***********************/
 
     article,aside,details,figcaption,figure,footer,header,hgroup,nav,section {
