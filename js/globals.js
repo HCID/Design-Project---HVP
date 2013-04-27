@@ -6,6 +6,8 @@
 
     function Globals() {}
 
+
+
     Globals.colors = {
       bordeaux: {
         color: "#98343c",
@@ -72,6 +74,7 @@
     whiteSpace = 20;
 
     Globals.topMargin = 100;
+    Globals.leftMargin = 100;
 
     Globals.fociFree = [
       {

@@ -85,7 +85,7 @@
 
       if (!_.find(force.nodes(), function(oldEvents) {
         
-        if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {
+        if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {          
           return true;
         }
       })) {
@@ -101,8 +101,7 @@
         });
 
 
-        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function(d) {
-          console.log(d.day, day, d.starTime, start)
+        CircleHandler.filters.time = _.reject(CircleHandler.filters.time, function(d) {
           return d.day === day && d.starTime == start
         });
 
@@ -187,23 +186,55 @@
             });
           }
         } else if (Globals.mode == "comm") {
+          
+         
+
           var list = _.map($('svg g.arc').filter(function(b, a) {
             var radius = $(a).get(0).getBBox().height / 2;
             var cX = parseFloat($(a).attr("transform").split(",")[0].split("(")[1]);
-            var cY = parseFloat($(a).attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
-            if (pointInCirclePath(cX, cY, radius, d3.event.pageX, d3.event.pageY)) {
+            var cY = parseFloat($(a).attr("transform").split(",")[1].split(")")[0]);
+            var pX = d3.event.offsetX
+            var pY = d3.event.offsetY;
+            
+            //d3.select("#mainSvg").append("line").attr("x1", 0).attr("y1", 0).attr("x1", cX).attr("y1", cY).attr("stroke", "blue").attr("stroke-with", "2").style("z-index", 9999);
+            //d3.select("#mainSvg").append("line").attr("x1", 0).attr("y1", 0).attr("x1", pX).attr("y1", pY).attr("stroke", "green").attr("stroke-with", "2").style("z-index", 9999);
+            
+
+
+            if (pointInCirclePath(cX, cY, radius, pX, pY)) {
               return true;
             }
           }), function(el) {
             return el.id
           });
 
+
+
+
+
+
+          var exludeList = _.difference(_.map($('svg g.arc'), function(el) { return el.id }), list);
+          
+          console.log("include: ", list)
+          console.log("exclude: ", exludeList)
           $pathList = _.map(list, function(b) {
+            var radius = $("#" + b).get(0).getBBox().height / 2;
+            var cX = parseFloat($("#" + b).attr("transform").split(",")[0].split("(")[1]) ;
+            var cY = parseFloat($("#" + b).attr("transform").split(",")[1].split(")")[0]);
+
+            return [cX, cY, radius];
+          });
+
+
+          var corExludeList = _.map(exludeList, function(b) {
             var radius = $("#" + b).get(0).getBBox().height / 2;
             var cX = parseFloat($("#" + b).attr("transform").split(",")[0].split("(")[1]);
             var cY = parseFloat($("#" + b).attr("transform").split(",")[1].split(")")[0]);
+
             return [cX, cY, radius];
           });
+
+
           var superList = [];
           var xList = [];
           var yList = [];
@@ -216,10 +247,18 @@
               if($pathList.length > 0) {
                 var checker = true;
                  _.each($pathList, function(c) {
-                if (!pointInCirclePath(c[0], c[1], c[2], x, y)) {
-                  checker = false;
-                }
-              })
+                  if (!pointInCirclePath(c[0], c[1], c[2], x, y)) {
+                    checker = false;
+                  }
+                });
+
+                _.each(corExludeList, function(c) {
+                  if (pointInCirclePath(c[0], c[1], c[2], x, y)) {
+                    checker = false;
+                  }
+                });
+
+                 
               if (checker) {
                 superList[y][x] = true;
               }
