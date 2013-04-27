@@ -21,12 +21,12 @@ var main = function () {
 
 
   if (Globals.mode === "map") {
-    var array = CircleHandler.groupMap();
+    var array = CircleHandler.groupMap(force.nodes());
     parallelData = force.nodes().slice(0);
     force.nodes(array);
     clearCircleSelections();
   } else if (Globals.mode === "sessions") {
-    var array = CircleHandler.groupSession();
+    var array = CircleHandler.groupSession(force.nodes());
     parallelData = force.nodes().slice(0);
     force.nodes(array);
     clearCircleSelections();
@@ -36,6 +36,7 @@ var main = function () {
   
   View.update();
   // View.generateLegend();
+  View.updateFilterHistory();
 };
 
 var clearCircleSelections = function () {

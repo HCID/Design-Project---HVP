@@ -260,9 +260,9 @@
 		}
 
 		// Gruops by room to create later concentric circles in the map view
-		CircleHandler.groupMap = function() {
+		CircleHandler.groupMap = function(nodes) {
 			var auxArray = [];
-			var sessions = CircleHandler.groupSession(force.nodes());
+			var sessions = CircleHandler.groupSession(nodes);
 
 			var id = 0;
 
@@ -302,7 +302,6 @@
 
 
 		CircleHandler.filterData = function(data, filters) {
-      console.log(filters, data)
 			if (filters.countFilters() === 0) {
         return data;
 			} else {
@@ -371,10 +370,10 @@
       if(filters.time.length !== 0) {
          var smallPass = false;
          _.each(filters.time, function(t) {
-          console.log(t, session.day, session.starTime)
+          
 
           if(t.day == session.day && t.starTime == session.starTime) {
-            console.log("passes!");
+            
             smallPass = true;
           }
          })
@@ -387,11 +386,11 @@
 
 
 		// Gruops by Session to create later concentric circles in the map view
-		CircleHandler.groupSession = function() {
+		CircleHandler.groupSession = function(nodes) {
 
 			var auxArray = [];
-			console.log(force.nodes())
-			force.nodes().forEach(function(o, i) {
+			
+			nodes.forEach(function(o, i) {
 				o.sessions.forEach(function(u, j) {
           if(CircleHandler.filters.countFilters() === 0 || filterSessions(u, CircleHandler.filters)) {
 
@@ -422,7 +421,7 @@
 				});
 
 			});
-			console.log(auxArray);
+			
 			return auxArray;
 		}
 

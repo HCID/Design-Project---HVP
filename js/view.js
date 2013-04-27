@@ -49,7 +49,7 @@
 
     }
 
-    View.updateFilterHistory = function() {
+    View.updateFilterHistory = function () {
 
       $("#right_side_filter_history #session_filters").html(CircleHandler.filters.sessions.join(", "))
       $("#right_side_filter_history #day_filters").html(CircleHandler.filters.day.join(", "))
@@ -59,8 +59,23 @@
       $("#right_side_filter_history #time_filters").html(_.map(CircleHandler.filters.time, function(t) {
         return t.day + " - " + t.starTime;
       }).join(", "))
+      View.updateTabFilters();
+    }
 
-
+    View.updateTabFilters = function () {
+      var filteredData = CircleHandler.filterData(data, CircleHandler.filters);
+      var comList = [];
+      _.each(filteredData, function(node) {
+        if(node.communities.length === 0) {
+          node.communities = ["N/A"];
+        }
+        comList.push(node.communities)
+      });
+      
+      $("[data-grouping=comm] div").html(_.unique(_.flatten(comList)).length + " communities");
+      $("[data-grouping=events] div").html(filteredData.length + " events");
+      $("[data-grouping=map] div").html(CircleHandler.groupMap(filteredData).length + " rooms");      
+      $("[data-grouping=sessions] div").html(CircleHandler.groupSession(filteredData).length + " sessions");
     }
 
 

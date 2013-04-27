@@ -82,7 +82,9 @@
       var start = $(e.currentTarget).data("start");
       var wholeDay = $(e.currentTarget).text();
 
+
       if (!_.find(force.nodes(), function(oldEvents) {
+        
         if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {
           return true;
         }
@@ -100,6 +102,7 @@
 
 
         CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function(d) {
+          console.log(d.day, day, d.starTime, start)
           return d.day === day && d.starTime == start
         });
 
@@ -111,7 +114,7 @@
           starTime: start
         });
         _.each(force.nodes(), function(node) {
-          console.log(node)
+          
           if (node.day == day && node.starTime == start) {
             node.selected = true;
             View.updateCircleColor(node)
@@ -142,7 +145,7 @@
 
 
       d3.event.stopPropagation()
-      console.log(d3.event)
+      
 
       if (Globals.mode === "events") {
         View.showDetails(circle);
@@ -198,7 +201,7 @@
           $pathList = _.map(list, function(b) {
             var radius = $("#" + b).get(0).getBBox().height / 2;
             var cX = parseFloat($("#" + b).attr("transform").split(",")[0].split("(")[1]);
-            var cY = parseFloat($("#" + b).attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
+            var cY = parseFloat($("#" + b).attr("transform").split(",")[1].split(")")[0]);
             return [cX, cY, radius];
           });
           var superList = [];
@@ -209,8 +212,10 @@
             for (var x = 0; x < Globals.width; x++) {
               superList[y][x] = false;
 
-              var checker = true;
-              _.each($pathList, function(c) {
+              
+              if($pathList.length > 0) {
+                var checker = true;
+                 _.each($pathList, function(c) {
                 if (!pointInCirclePath(c[0], c[1], c[2], x, y)) {
                   checker = false;
                 }
@@ -218,6 +223,8 @@
               if (checker) {
                 superList[y][x] = true;
               }
+              }
+             
             }
           }
 
@@ -247,13 +254,13 @@
               d += "L" + coord[0] + " " + coord[1];
             }
           });
-          console.log(patrikvar);
+          
 
           // <path d="M530 245L529 246L531 246Z" stroke="red" stroke-width="2" fill="none"></path>
 
 
-          $("#mainSvg").append('<g class="arc" transform="translate(0,0)"><path d="' + d + '" stroke="red" stroke-width="2" fill="none" /></g>');
-          console.log(megaList);
+          d3.select("#mainSvg").append("path").attr("d", d).attr("stroke", "red").attr("stroke-with", "2");
+          
 
           var filterFor = "";
 
@@ -261,7 +268,7 @@
           _.each(list, function(item) {
             filterFor += item + ", ";
           })
-          console.log("list", list);
+          
 
           if (list[0] == "general") {
             ClickHandler.listOfOldEvents.push({
@@ -408,7 +415,7 @@
         }).fadeTo('fast', 1);
         //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
         force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
-        console.log("aa", CircleHandler.filters)
+        
         // console.log(ClickHandler.listOfEvents)
         // console.log(force.nodes());
         //force.nodes(ClickHandler.listOfEvents)
@@ -436,7 +443,7 @@
         $('.legend').hide();
         //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
         force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
-        console.log("bb", force.nodes())
+        
         //ClickHandler.loadParallelData();
         Globals.mode = "sessions";
         main(ClickHandler.listOfEvents);
@@ -469,10 +476,10 @@
     ClickHandler.removeFilter = function() {
       var id = $(this).parent().attr("id").substring(7, $(this).parent().attr("id").length);
       $(this).parent().remove();
-      console.log("bef", force.nodes()[0].code)
+      
       if (filterHistory[id]) {
         ClickHandler.loadParallelData();
-        console.log("par", force.nodes().length)
+        
         _.forEach(filterHistory[id].data, function(d) {
           force.nodes().push(d);
         });
