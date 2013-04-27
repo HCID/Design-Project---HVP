@@ -124,8 +124,8 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 #detail_image {
 
-  width: 720px; 
-  /*height: 480px; */
+  /*width: 720px; */
+  /*height: 320px; */
   background-color: #f6f6f6; 
   border: 1px solid #eee; 
   float: left;
@@ -628,11 +628,12 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   -moz-box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-  height: 480px;
+  /*height: 480px;*/
   margin: 0 auto;
   margin-top: 30px;
   position: relative;
-  width: 720px;
+  /*width: 720px;*/
+  height: 320px;
   
 }
 

@@ -341,11 +341,11 @@
         $("#detail_speaker").html(str);
       }
 
-      if (Globals.clcScreen) {
+      // if (Globals.clcScreen) {
         $("#detail_image").attr("src", "/videos/" + circle.video);
-      } else {
-        $("#detail_image").attr("src", "/videos/chi0981-file5.mp4");
-      }
+      // } else {
+      //   $("#detail_image").attr("src", "/videos/chi0981-file5.mp4");
+      // }
 
       // $("#detail_authors").html(circle.authors.map(function(a) { return a.givenName + " " + a.familyName }));
       if (circle.keywords.length > 0) {

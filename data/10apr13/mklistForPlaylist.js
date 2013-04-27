@@ -1,10 +1,10 @@
 
 var fs = require('fs');
-// require('../extensions.js');
+require('../extensions.js');
 
 
-// var previewsDir = '/Users/carlagriggio/Movies/chiPreviews/';	// put here the path to the directory with the video previews (with trailing '/')
-// var thumbnailsDir = '../thumbnails/';
+var previewsDir = '/Users/carlagriggio/Movies/chiPreviews/';	// put here the path to the directory with the video previews (with trailing '/')
+var thumbnailsDir = '../thumbnails/';
 
 var submissions = require('./submissions.json');
 var sessions = require('./sessions.json');
@@ -49,6 +49,7 @@ var roomMapping = {
 function makeIndex(table) {
 	for (var i = 0; i < table.rows.length; i++) {
 		var item = table.rows[i].value;
+		console.log(item._id);
 		var code = item._id;
 		var match = code.match(/([a-z]+)([0-9]+)/);
 		var prefix = PCSprefix[match[1]];
