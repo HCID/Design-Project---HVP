@@ -720,9 +720,15 @@ WKxhxCKPQyzqMGJRB4jFiNwsIzQaxZqK7Kwc27gY2Yz6icUVIBY3IxZ274/cCRCLLIxYZAFiUZnY
             <div style="width: 24.8%; float: left;" class="active"><button class="size_button sessionButton" data-grouping="sessions"></button></div>
         </div>
          <div id="right_side" style="width: 200px;  position: absolute; right: 0px; top: 109px;">
-            <div>History</div> 
+            <ul id="right_side_filter_history">
+                <li>Sessions: <span id="session_filters"></span></li>
+                <li>Rooms: <span id="room_filters"></span></li>
+                <li>Days: <span id="day_filters"></span></li>
+                <li>Time: <span id="time_filters"></span></li>
+                <li>Communities: <span id="community_filters"></span></li>
+            </ul> 
             <div>Legend</div>
-            <ul id="right_side_events">Events</ul>
+            <ul id="right_side_events" style="position: absolute; bottom: 0px; right: 0px;">Events</ul>
 
          </div>
 	</body>

@@ -84,12 +84,23 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
 
     }
 
+    View.updateFilterHistory = function () {
+      
+      $("#right_side_filter_history #session_filters").html(CircleHandler.filters.sessions.join(", "))
+      $("#right_side_filter_history #day_filters").html(CircleHandler.filters.day.join(", "))
+      $("#right_side_filter_history #room_filters").html(CircleHandler.filters.room.join(", "))
+      $("#right_side_filter_history #room_filters").html(CircleHandler.filters.room.join(", "))
+      $("#right_side_filter_history #community_filters").html(CircleHandler.filters.communities.join(", "))
+      $("#right_side_filter_history #time_filters").html(_.map(CircleHandler.filters.time, function(t) {return t.day + " - " + t.starTime; }).join(", "))
+      
+      
+    }
 
 
     View.updateCircleColor = function(circle, mode) {
       if (circle.selected) {
         var color = "#ffffff";
-        if(mode === "map") {
+        if(mode === "map" || mode === "events") {
           color = "purple";
         }
         $("#g" + circle.id + " circle").css("fill", color);

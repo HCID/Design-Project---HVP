@@ -29,18 +29,16 @@
 
 
 
+
+
     ClickHandler.selectDayRange = function(e) {
       if (!ClickHandler.selected) {
         ClickHandler.listOfEvents = [];
         ClickHandler.selected = true;
       }
 
-
-
       e.stopPropagation()
       var day = $(e.currentTarget).data("day");
-
-
 
 
       if (!_.find(force.nodes(), function(oldEvents) {
@@ -48,22 +46,19 @@
           return true;
         }
       })) {
+         $("[data-day=" + day + "]").attr("fill", "black");
+        $(e.currentTarget).attr("fill", "black");
 
         _.each(force.nodes(), function(node) {
-
           if (node.day == day) {
             node.selected = false;
-            d3.select("#g" + node.id + " circle").style("fill", function(d, i) {
-              if (d.sessions) {
-                return View.sessionsColors(d.sessions[0]);
-              } else {
-                return View.sessionsColors(d);
-              }
-            })
-            $("#g" + node.id + " text").css("fill", "white");
+            View.updateCircleColor(node)           
           }
         });
 
+
+        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function (d) { return d === day });
+          
 
 
 
@@ -71,31 +66,32 @@
 
         $("[data-day=" + day + "]").attr("fill", "red");
         $(e.currentTarget).attr("fill", "red");
-        console.log(".schedule_time.schedule_" + day.toLowerCase())
+        // console.log(".schedule_time.schedule_" + day.toLowerCase())
 
-        ClickHandler.listOfOldEvents.push({
-          title: day,
-          data: _.reject(parallelData, function(node) {
-            return _.contains(_.pluck(node.sessions, "day"), day);
-          })
-        });
-        ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-          return _.contains(_.pluck(node.sessions, "day"), day);
-        }));
+        // ClickHandler.listOfOldEvents.push({
+        //   title: day,
+        //   data: _.reject(parallelData, function(node) {
+        //     return _.contains(_.pluck(node.sessions, "day"), day);
+        //   })
+        // });
+        // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
+        //   return _.contains(_.pluck(node.sessions, "day"), day);
+        // }));
 
-
+        //if(!_.find(CircleHandler.filters, function (f) { if(f.type === 'day' && f.value === day) { return true } })) {
+          CircleHandler.filters.day.push(day);  
+        //}
+        
+          
         _.each(force.nodes(), function(node) {
-
           if (node.day == day) {
             node.selected = true;
-            console.log(node.id)
-            $("#g" + node.id + " circle").css("fill", "white");
-            $("#g" + node.id + " text").css("fill", "black");
+            View.updateCircleColor(node)           
           }
         });
 
       }
-
+View.updateFilterHistory();
 
       // View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
       //     return event.award ? 1 : -1;
@@ -105,6 +101,7 @@
 
 
     ClickHandler.selectTimeRange = function(e) {
+
       if (!ClickHandler.selected) {
         ClickHandler.listOfEvents = [];
         ClickHandler.selected = true;
@@ -120,15 +117,57 @@
       //$(e.currentTarget).attr("fill", "red");
       //View.generateSessionTitle(circle.name);
 
-      ClickHandler.listOfOldEvents.push({
-        title: day + " " + wholeDay,
-        data: _.reject(parallelData, function(node) {
-          return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
-        })
-      });
-      ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-        return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
-      }));
+      // ClickHandler.listOfOldEvents.push({
+      //   title: day + " " + wholeDay,
+      //   data: _.reject(parallelData, function(node) {
+      //     return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
+      //   })
+      // });
+      // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
+      //   return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
+      // }));
+  
+      console.log(!_.find(force.nodes(), function(oldEvents) {
+        
+        if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {
+          return true;
+        }
+      }))
+
+      if (!_.find(force.nodes(), function(oldEvents) {
+        
+        if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {
+          return true;
+        }
+      })) {
+
+
+          $(e.currentTarget).attr("fill", "black");
+
+        _.each(force.nodes(), function(node) {
+          if (node.day == day && node.starTime == start) {
+            node.selected = false;
+            View.updateCircleColor(node)           
+          }
+        });
+
+
+        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function (d) { return d === day });
+          
+      
+    } else {
+      $(e.currentTarget).attr("fill", "red");
+      CircleHandler.filters.time.push({day: day, starTime: start}); 
+       console.log("ojoj", force.nodes())
+       _.each(force.nodes(), function(node) {
+        console.log(node)
+          if (node.day == day && node.starTime == start) {
+            node.selected = true;
+            View.updateCircleColor(node)           
+          }
+        });
+    }
+
       // d3.selectAll("circle").style("fill", function(d, i) {
 
       //   if (d.sessions) {
@@ -139,18 +178,18 @@
 
       // })
 
-      _.each(force.nodes(), function(node) {
+      // _.each(force.nodes(), function(node) {
 
-        if (node.day == day && node.starTime == start) {
-          console.log(node.id)
-          $("#g" + node.id + " circle").css("fill", "white");
-          $("#g" + node.id + " text").css("fill", "black");
-        }
-      });
+      //   if (node.day == day && node.starTime == start) {
+      //     console.log(node.id)
+      //     $("#g" + node.id + " circle").css("fill", "white");
+      //     $("#g" + node.id + " text").css("fill", "black");
+      //   }
+      // });
       // View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
       //     return event.award ? 1 : -1;
       //   }));
-
+View.updateFilterHistory();
     };
 
 
@@ -202,29 +241,41 @@
           //var sessions = CircleHandler.groupSession(copyPD);
           //ClickHandler.loadParallelData();
 
-          ClickHandler.listOfOldEvents.push({
-            title: circle["room"],
-            data: _.reject(parallelData, function(node) {
-              return node.sessions[0]["room"] == circle["room"]
-            })
-          });
-          ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-            return node.sessions[0]["room"] == circle["room"]
-          }));
+          // ClickHandler.listOfOldEvents.push({
+          //   title: circle["room"],
+          //   data: _.reject(parallelData, function(node) {
+          //     return node.sessions[0]["room"] == circle["room"]
+          //   })
+          // });
+          // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
+          //   return node.sessions[0]["room"] == circle["room"]
+          // }));
+
+          if(circle.selected) {
+            CircleHandler.filters.room.push(circle.room);
+          } else {
+            CircleHandler.filters.room = _.reject(CircleHandler.filters.room, function (f) { return f === circle.room });
+          }
+
 
         } else if (Globals.mode == "sessions") {
-          View.generateSessionTitle(circle.name);
+          // View.generateSessionTitle(circle.name);
 
-          ClickHandler.listOfOldEvents.push({
-            title: circle["code"],
-            data: _.reject(parallelData, function(node) {
-              return _.contains(_.pluck(node.sessions, "id"), circle["id"])
-            })
-          });
-          ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-            return _.contains(_.pluck(node.sessions, "id"), circle["id"])
-          }));
+          // ClickHandler.listOfOldEvents.push({
+          //   title: circle["code"],
+          //   data: _.reject(parallelData, function(node) {
+          //     return _.contains(_.pluck(node.sessions, "id"), circle["id"])
+          //   })
+          // });
+          // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
+          //   return _.contains(_.pluck(node.sessions, "id"), circle["id"])
+          // }));
 
+          if(circle.selected) {
+            CircleHandler.filters.sessions.push(circle.id);
+          } else {
+            CircleHandler.filters.sessions = _.reject(CircleHandler.filters.sessions, function (f) { return f === circle.id });
+          }
           
 
 
@@ -362,8 +413,8 @@
           position is an array containg [x, y] 
           list of events if a list of max 5 events
         */
-         View.showPieMenu(position, _.flatten(ClickHandler.listOfEvents, true), menuId);
-
+         View.showPieMenu(position, CircleHandler.filterData(data, CircleHandler.filters), menuId);
+         View.updateFilterHistory();
 
 
         //        CircleHandler.filterData(circle, newMode, d3event);  
@@ -470,8 +521,8 @@
         d3.selectAll("path.award").style("display", "none");;
         $('.talkName').hide();
         $('.legend').hide();
-        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
-
+        //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
         //ClickHandler.loadParallelData();
         Communities.communities();
 
@@ -479,9 +530,11 @@
         $(".eventsButton").fadeTo('fast', 0.3, function() {
           $(this).css('background-image', 'url(/img/tab2gray.png)');
         }).fadeTo('fast', 1);
-        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
-        console.log(ClickHandler.listOfEvents)
-        console.log(force.nodes());
+        //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
+        console.log("aa", CircleHandler.filters)
+        // console.log(ClickHandler.listOfEvents)
+        // console.log(force.nodes());
         //force.nodes(ClickHandler.listOfEvents)
         //console.log(force.nodes())
         //ClickHandler.loadParallelData();
@@ -492,7 +545,8 @@
           $(this).css('background-image', 'url(/img/tab3gray.png)');
         }).fadeTo('fast', 1);
         //ClickHandler.loadParallelData();
-        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
+        //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
         Globals.mode = "map";
         main();
       } else if ($(this).find("button").data("grouping") == "restart") {
@@ -504,7 +558,9 @@
           $(this).css('background-image', 'url(/img/tab4gray.png)');
         }).fadeTo('fast', 1);
         $('.legend').hide();
-        force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
+        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));  
+        console.log("bb", force.nodes())      
         //ClickHandler.loadParallelData();
         Globals.mode = "sessions";
         main(ClickHandler.listOfEvents);
