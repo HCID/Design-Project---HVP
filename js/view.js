@@ -86,9 +86,13 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
 
 
 
-    View.updateCircleColor = function(circle) {
+    View.updateCircleColor = function(circle, mode) {
       if (circle.selected) {
-        $("#g" + circle.id + " circle").css("fill", "white");
+        var color = "#ffffff";
+        if(mode === "map") {
+          color = "purple";
+        }
+        $("#g" + circle.id + " circle").css("fill", color);
         $("#g" + circle.id + " text").css("fill", "black");
       } else {
         d3.select("#g" + circle.id + " circle").style("fill", function(d, i) {
@@ -388,37 +392,37 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
 
     View.showPieMenu = function(position, listOfEvents, menuId) {
       if (listOfEvents.length > 0) {
-        $("#outer_container, #event_list").show();
+        //$("#outer_container, #event_list").show();
 
         var DIS = 70;
 
-        $("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
+        //$("#outer_container").css("left", position.x + "px").css("top", position.y + "px");
 
-        console.log("Globals.width - (position.x + 280)", Globals.width - (position.x + 280));
-        if (Globals.width - (position.x + 280) > 100) {
-          $("#event_list").css("left", position.x + DIS + 50 + "px")
-        } else {
-          var newX = position.x - 280;
-          $("#event_list").css("left", newX - (DIS) + "px")
-        }
+        // console.log("Globals.width - (position.x + 280)", Globals.width - (position.x + 280));
+        // if (Globals.width - (position.x + 280) > 100) {
+        //   $("#event_list").css("left", position.x + DIS + 50 + "px")
+        // } else {
+        //   var newX = position.x - 280;
+        //   $("#event_list").css("left", newX - (DIS) + "px")
+        // }
 
-        var numEvents = listOfEvents.length < 5 ? listOfEvents.length : 5;
+        // var numEvents = listOfEvents.length < 5 ? listOfEvents.length : 5;
 
-        if ((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 10) {
-          console.log("fits");
-          $("#event_list").css("top", position.y - 100 + "px");
+        // if ((Globals.height - ((position.y) + (49 * (numEvents + 1)))) > 10) {
+        //   console.log("fits");
+        //   $("#event_list").css("top", position.y - 100 + "px");
 
-        } else {
-          console.log("doesn't fit");
-          $("#event_list").css("top", (position.y + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
-        }
-        if (menuId != undefined) {
-          $(".menu_option li").data("circle-id", menuId);
-        }
+        // } else {
+        //   console.log("doesn't fit");
+        //   $("#event_list").css("top", (position.y + (Globals.height - (position.y + (49 * (numEvents + 2)))) + "px"));
+        // }
+        // if (menuId != undefined) {
+        //   $(".menu_option li").data("circle-id", menuId);
+        // }
 
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
-          _.each(_.first(listOfEvents, 5), function(obj) {
+          _.each(_.first(listOfEvents, 5), function(obj) {            
             htmlTmpl += _.template($("#event_list_item").html(), {
               pict: (obj.award) ? ((obj.award === "Honorable") ? "img/medal.png" : (obj.award === "Best") ? "img/trophy.png" : "img/blank.png") : "img/blank.png",
               title: obj.name.length > 27 ? obj.name.substr(0, 24) + "..." : obj.name,
@@ -429,52 +433,52 @@ $(".schedule_time, .schedule_day").attr("fill", "#000");
             amount: listOfEvents.length
           })
         }
-        $("#event_list").html(htmlTmpl).show();
+        $("#right_side_events").html(htmlTmpl).show();
 
 
-        $("#event_list li, #outer_container li *").off("mousedown");
-        $("#outer_container li .pie_menu_link").on("mousedown", ClickHandler.pieMenuHandler);
+        // $("#event_list li, #outer_container li *").off("mousedown");
+        // $("#outer_container li .pie_menu_link").on("mousedown", ClickHandler.pieMenuHandler);
 
 
-        $("#event_list li").on("mousedown", ClickHandler.eventListItemClick);
+        $("#right_side_events li").on("mousedown", ClickHandler.eventListItemClick);
 
 
-        $("#outer_container li").each(function(i, ele) {
+        // $("#outer_container li").each(function(i, ele) {
 
-          var newY = i == 0 ? -120 : 30;
+        //   var newY = i == 0 ? -120 : 30;
 
-          $(ele).show();
-          $(ele).css({
-            'left': -25 + "px",
-            'top': newY + "px",
-          });
-        });
-        //setPosition(1);
-        $("#outer_container").addClass('active');
-        $("#outer_container").removeClass('inactive');
+        //   $(ele).show();
+        //   $(ele).css({
+        //     'left': -25 + "px",
+        //     'top': newY + "px",
+        //   });
+        // });
+        // //setPosition(1);
+        // $("#outer_container").addClass('active');
+        // $("#outer_container").removeClass('inactive');
 
       } else {
-        $("#outer_container").hide();
-        $("#event_list").show();
+        // $("#outer_container").hide();
+        // $("#event_list").show();
         htmlTmpl = _.template($("#event_no_list_item").html(), {});
-        $("#event_list").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
+        $("#right_side_events").html(htmlTmpl).show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
       }
       //$(this).toggleClass("btn-rotate");
-      $("#outer_container li .pie_menu_link, #event_list li, #detail_background, .schedule_time, .schedule_day").on("mousedownoutside", function() {
-        $("#outer_container li").each(function(i, ele) {
-          $(ele).css({
-            'left': 0,
-            'top': 0,
-          });
-          $(ele).hide();
-          force.start();
-          $("#outer_container").removeClass('active');
-          $("#outer_container").addClass('inactive');
-        });
-        $("#outer_container, #event_list").hide();
-        $("#event_list li, #outer_container li *").off("mousedown");
-        $("#outer_container li .pie_menu_link, #event_list li").off("mousedownoutside");
-      })
+      // $("#outer_container li .pie_menu_link, #event_list li, #detail_background, .schedule_time, .schedule_day").on("mousedownoutside", function() {
+      //   $("#outer_container li").each(function(i, ele) {
+      //     $(ele).css({
+      //       'left': 0,
+      //       'top': 0,
+      //     });
+      //     $(ele).hide();
+      //     force.start();
+      //     $("#outer_container").removeClass('active');
+      //     $("#outer_container").addClass('inactive');
+      //   });
+      //   $("#outer_container, #event_list").hide();
+      //   $("#event_list li, #outer_container li *").off("mousedown");
+      //   $("#outer_container li .pie_menu_link, #event_list li").off("mousedownoutside");
+      //})
     }
 
 

@@ -168,7 +168,7 @@
       } else {
         circle.selected = true;      
       }
-      View.updateCircleColor(circle);
+      View.updateCircleColor(circle, Globals.mode);
 
 
       d3.event.stopPropagation()
@@ -190,7 +190,9 @@
             y: circle.y + circle.radius + 8 + Globals.topMargin
           };
           //$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );       
+          
         }
+
 
         //ClickHandler.loadParallelData();
 
@@ -227,14 +229,96 @@
 
 
         } else if (Globals.mode == "comm") {
+          
+
+
+
+
+
+
 
           var list = _.map($('svg g.arc').filter(function(b, a) {
-            if (pointInCirclePath($(a), d3.event)) {
+            var radius = $(a).get(0).getBBox().height / 2;
+            var cX = parseFloat($(a).attr("transform").split(",")[0].split("(")[1]);
+            var cY = parseFloat($(a).attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
+            if (pointInCirclePath(cX, cY, radius, d3.event.pageX, d3.event.pageY)) {
               return true;
             }
           }), function(el) {
             return el.id
           });
+
+          $pathList = _.map(list, function(b) {
+            var radius = $("#" + b).get(0).getBBox().height / 2;
+            var cX = parseFloat($("#" + b).attr("transform").split(",")[0].split("(")[1]);
+            var cY = parseFloat($("#" + b).attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
+            return [cX,cY, radius]; });
+          var superList = [];
+          var xList = [];
+          var yList = [];
+          for(var y = 0; y < Globals.height; y++) {            
+            superList[y] =  [];
+            for(var x = 0; x < Globals.width; x++) {  
+              superList[y][x] =  false;
+          
+                var checker = true;
+                _.each($pathList, function (c) {
+                  if (!pointInCirclePath(c[0], c[1], c[2], x, y)) {
+                    checker = false;
+                  }
+                })
+                if(checker) {                  
+                  superList[y][x] = true;
+                }
+                
+                
+              
+              //list.push();
+            }
+          }
+
+          var megaList = [];
+
+          _.each(superList, function (yRow, y) {
+            _.each(yRow, function (xRow, x) {
+              if(xRow === true && (!yRow[x-1] || !yRow[x+1])) {
+                megaList.push( [x, y] );
+              }
+            })
+          });
+
+      
+
+//         $("svg").append('<g class="arc" transform="translate(0,0)" id="management" idPx="465.0813620239828"><path fill="#7f7f7f" opacity="0.5" id="management" d="M0,114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,-114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,114.12486891177014Z"></path><text text-anchor="middle" style="font-size: 40px; font-family: GillSans-Light;" stroke-size="1" fill="#7f7f7f" stroke="#7f7f7f" x="-34.89285815434488" y="-8.475033418850842">management</text></g>')
+// d="M0,114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,-114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,114.12486891177014Z"
+           var d = ""
+           var first = true;
+           var patrikvar = "";
+           _.each(megaList, function (coord) {
+            patrikvar += " ("+coord[0]+","+coord[1]+")";
+            if (first) {
+              d = "M" + coord[0] + " " + coord[1];
+              first = false;
+            } else {
+              d += "L" + coord[0] + " " + coord[1];
+            }
+           });
+           console.log(patrikvar);
+
+           // <path d="M530 245L529 246L531 246Z" stroke="red" stroke-width="2" fill="none"></path>
+
+
+           $("#mainSvg").append('<g class="arc" transform="translate(0,0)"><path d="'+d+'" stroke="red" stroke-width="2" fill="none" /></g>');
+            console.log(megaList);
+            
+          // _.reject(superList, function(sl, i) {
+          //   if(superList[i-1] !== undefined && superList[i+1] !== undefined) {
+          //     return true;
+          //   }            
+
+          // });
+
+          // console.log(superList);
 
           var filterFor = "";
 
@@ -278,9 +362,7 @@
           position is an array containg [x, y] 
           list of events if a list of max 5 events
         */
-        // View.showPieMenu(position, _.sortBy(ClickHandler.listOfEvents, function(event) {
-        //   return event.award
-        // }), menuId);
+         View.showPieMenu(position, _.flatten(ClickHandler.listOfEvents, true), menuId);
 
 
 
@@ -438,21 +520,18 @@
     }
 
     /* Tells if a point is inside a circle path or not */
-    var pointInCirclePath = function(b, ev) {
+    var pointInCirclePath = function(cX, cY, r, x, y) {
 
-
-      var cX = parseFloat(b.attr("transform").split(",")[0].split("(")[1]);
-      var cY = parseFloat(b.attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
-      var radius = b.get(0).getBBox().height / 2;
+      
       //distance between two points
 
-      var xs = Math.pow(cX - ev.pageX, 2);
+      var xs = Math.pow(cX - x, 2);
 
-      var ys = Math.pow(cY - ev.pageY, 2);
-      console.log(cY - ev.pageY)
+      var ys = Math.pow(cY - y, 2);
+      
       var distance = Math.sqrt(xs + ys);
 
-      return (distance <= radius);
+      return (distance <= r);
     }
 
     ClickHandler.removeFilter = function() {

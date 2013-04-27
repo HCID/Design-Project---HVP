@@ -1,5 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0//EN">
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 
     <script type="text/javascript" src="js/lib/d3.v3.min.js" ></script>
@@ -127,7 +130,7 @@
             <div style="width: 24.8%; float: left;"><button class="size_button mapButton"  data-grouping="map"></button></div>
             <div style="width: 24.8%; float: left;" class="active"><button class="size_button sessionButton" data-grouping="sessions"></button></div>
         </div>
-    	<svg style="margin-top: 30px; margin-bottom: 100px; -webkit-transform: scale(0.85); margin-left: -100px"> 
+    	<svg style="margin-top: 30px; margin-bottom: 100px; -webkit-transform: scale(0.85); margin-left: -100px" id="mainSvg"> 
         <image id="bgimg" xlink:href="" x="0" y="0" />
         
         <!-- <svg  id="bgimgMap" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -716,6 +719,11 @@ WKxhxCKPQyzqMGJRB4jFiNwsIzQaxZqK7Kwc27gY2Yz6icUVIBY3IxZ274/cCRCLLIxYZAFiUZnY
             <div style="width: 24.8%; float: left;"><button class="size_button mapButton"  data-grouping="map"></button></div>
             <div style="width: 24.8%; float: left;" class="active"><button class="size_button sessionButton" data-grouping="sessions"></button></div>
         </div>
-        <div id="right_side" style="width: 200px; background-color: orange; position: absolute; right: 0px; top: 109px;"></div>
+         <div id="right_side" style="width: 200px;  position: absolute; right: 0px; top: 109px;">
+            <div>History</div> 
+            <div>Legend</div>
+            <ul id="right_side_events">Events</ul>
+
+         </div>
 	</body>
 </html>
