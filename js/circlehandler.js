@@ -341,7 +341,6 @@
           }
 
           if(filters.communities.length > 0) {
-            console.log(CircleHandler.filterCommunitieClick(filters.communities, d.communities), filters.communities, d.communities)
             if(CircleHandler.filterCommunitieClick(filters.communities, d.communities)) {
                 matchComm = true;
             }                   

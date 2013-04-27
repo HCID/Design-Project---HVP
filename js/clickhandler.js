@@ -233,9 +233,10 @@
 
             return [cX, cY, radius];
           });
-
+          console.log(exludeList)
 
           var superList = [];
+          var superList2 = [];
           var xList = [];
           var yList = [];
           for (var y = 0; y < Globals.height; y++) {
@@ -261,21 +262,27 @@
                  
               if (checker) {
                 superList[y][x] = true;
+                superList2.push({x: x, y: y});
               }
               }
              
             }
-          }
-
+          }          
           var megaList = [];
-
-          _.each(superList, function(yRow, y) {
-            _.each(yRow, function(xRow, x) {
-              if (xRow && ((!yRow[x - 1] || !yRow[x + 1]) || (!xRow[y-1] || !xRow[y+1])) ) {
-                megaList.push([x, y]);
-              }
-            })
+          _.each(superList2, function(pos, y) {
+            
+            if((superList[pos.y - 1] && superList[pos.y - 1][pos.x] === false) || (superList[pos.y + 1] && superList[pos.y + 1][pos.x] === false) || (superList[pos.y] && superList[pos.y][pos.x - 1] === false) || (superList[pos.y] && superList[pos.y][pos.x + 1] === false)) {
+              megaList.push([pos.x, pos.y]);
+            }
           });
+
+          // _.each(superList, function(yRow, y) {
+          //   _.each(yRow, function(xRow, x) {
+          //     if (xRow && (!yRow[x - 1] || !yRow[x + 1] || !superList[y-1][x] || !superList[y+1][x]) ) {
+          //       megaList.push([x, y]);
+          //     }
+          //   })
+          // });
 
 
 
@@ -298,8 +305,8 @@
           // <path d="M530 245L529 246L531 246Z" stroke="red" stroke-width="2" fill="none"></path>
 
 
-          d3.select("#mainSvg").append("path").attr("class", "comm_overlay").attr("d", d).attr("fill", "transparent").attr("stroke", "red").attr("stroke-with", "1");
-          
+          d3.select("#mainSvg").append("path").attr("class", "comm_overlay").attr("d", d).attr("id", "overlay_"+list.join("_")).attr("fill", "transparent").attr("stroke", "black").style("stroke-opacity", 0.2).attr("stroke-witdh", "1").on("mousedown", ClickHandler.commOverLayHandler);
+          $("#overlay_"+list.join("_")).data("filter", list);
 
           var filterFor = "";
 
@@ -355,7 +362,24 @@
 
 
 
- 
+  ClickHandler.commOverLayHandler = function (d) {
+    var other = _.map($(".comm_overlay"), function (a) {
+      if($(a).attr("id") !== $(d3.event.target).attr("id")) {
+        return $(a).data("filter");  
+      }
+      
+    });
+    var remove = _.difference( $(d3.event.target).data("filter"), _.compact(_.flatten(other)));
+    CircleHandler.filters.communities = _.reject(CircleHandler.filters.communities, function(com) {
+      if(_.contains(remove, com)) {
+        return true;
+      }
+    })
+
+    d3.event.target.remove();
+     View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
+        View.updateFilterHistory();
+  }
 
 
     /* closes the detail view */
