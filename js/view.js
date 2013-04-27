@@ -342,7 +342,14 @@
       }
 
       // if (Globals.clcScreen) {
+      if (circle.video) {
+        console.log(circle.video);
+        $("#detail_image").show();
         $("#detail_image").attr("src", "/videos/" + circle.video);
+      } else {
+        console.log("hidding");
+        $("#detail_image").hide();
+      }
       // } else {
       //   $("#detail_image").attr("src", "/videos/chi0981-file5.mp4");
       // }
