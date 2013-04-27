@@ -18,14 +18,18 @@ var main = function () {
 
   vis = d3.select("body").select("svg");
 
+
+
   if (Globals.mode === "map") {
     var array = CircleHandler.groupMap();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
+    clearCircleSelections();
   } else if (Globals.mode === "sessions") {
     var array = CircleHandler.groupSession();
     parallelData = force.nodes().slice(0);
     force.nodes(array);
+    clearCircleSelections();
   } else if (Globals.mode === "events") {
     parallelData = force.nodes().slice(0);
   }
@@ -33,6 +37,14 @@ var main = function () {
   View.update();
   // View.generateLegend();
 };
+
+var clearCircleSelections = function () {
+  _.each(force.nodes(), function(node) {
+    node.selected = false;
+    View.updateCircleColor(node, Globals.mode);
+  });
+}
+  
       
 // Restarts the data 
 var restart = function() {

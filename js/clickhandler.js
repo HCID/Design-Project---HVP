@@ -11,24 +11,20 @@
 
     ClickHandler.eventListItemClick = function(e) {
       e.stopPropagation();
-      if ($(e.currentTarget).hasClass("event_item")) {
-        View.showDetails(_.find(ClickHandler.listOfEvents, function(node) {
+      if ($(e.currentTarget).hasClass("event_item")) {       
+        View.showDetails(_.find(data, function(node) {
           return node.id == $(e.currentTarget).data("event-id")
         }));
       } else if ($(e.currentTarget).hasClass("show_all_events")) {
-        prepareAndAddFilter(Globals.mode, ClickHandler.listOfOldEvents);
+        //prepareAndAddFilter(Globals.mode, ClickHandler.listOfOldEvents);
         Globals.mode = "events";
         d3.selectAll("circle").style("display", "block");
-        force.nodes(ClickHandler.listOfEvents);
+        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
         main();
         $("#outer_container, #event_list").hide();
         $("#event_list li").off("mousedown");
       }
-
     }
-
-
-
 
 
     ClickHandler.selectDayRange = function(e) {
@@ -40,68 +36,42 @@
       e.stopPropagation()
       var day = $(e.currentTarget).data("day");
 
-
       if (!_.find(force.nodes(), function(oldEvents) {
         if (oldEvents.day == day && !oldEvents.selected) {
           return true;
         }
       })) {
-         $("[data-day=" + day + "]").attr("fill", "black");
+        $("[data-day=" + day + "]").attr("fill", "black");
         $(e.currentTarget).attr("fill", "black");
 
         _.each(force.nodes(), function(node) {
           if (node.day == day) {
             node.selected = false;
-            View.updateCircleColor(node)           
+            View.updateCircleColor(node)
           }
         });
 
-
-        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function (d) { return d === day });
-          
-
-
-
+        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function(d) {
+          return d === day
+        });
       } else {
 
         $("[data-day=" + day + "]").attr("fill", "red");
         $(e.currentTarget).attr("fill", "red");
-        // console.log(".schedule_time.schedule_" + day.toLowerCase())
-
-        // ClickHandler.listOfOldEvents.push({
-        //   title: day,
-        //   data: _.reject(parallelData, function(node) {
-        //     return _.contains(_.pluck(node.sessions, "day"), day);
-        //   })
-        // });
-        // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-        //   return _.contains(_.pluck(node.sessions, "day"), day);
-        // }));
-
-        //if(!_.find(CircleHandler.filters, function (f) { if(f.type === 'day' && f.value === day) { return true } })) {
-          CircleHandler.filters.day.push(day);  
-        //}
-        
-          
+        CircleHandler.filters.day.push(day);
         _.each(force.nodes(), function(node) {
           if (node.day == day) {
             node.selected = true;
-            View.updateCircleColor(node)           
+            View.updateCircleColor(node)
           }
         });
-
       }
-View.updateFilterHistory();
-
-      // View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
-      //     return event.award ? 1 : -1;
-      //   }));
+      View.updateFilterHistory();
+      View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
 
     };
 
-
     ClickHandler.selectTimeRange = function(e) {
-
       if (!ClickHandler.selected) {
         ClickHandler.listOfEvents = [];
         ClickHandler.selected = true;
@@ -112,84 +82,45 @@ View.updateFilterHistory();
       var start = $(e.currentTarget).data("start");
       var wholeDay = $(e.currentTarget).text();
 
-
-      //$(".schedule_time, .schedule_day").attr("fill", "#000");
-      //$(e.currentTarget).attr("fill", "red");
-      //View.generateSessionTitle(circle.name);
-
-      // ClickHandler.listOfOldEvents.push({
-      //   title: day + " " + wholeDay,
-      //   data: _.reject(parallelData, function(node) {
-      //     return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
-      //   })
-      // });
-      // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-      //   return _.contains(_.pluck(node.sessions, "day"), day) && _.contains(_.pluck(node.sessions, "starTime"), start);
-      // }));
-  
-      console.log(!_.find(force.nodes(), function(oldEvents) {
-        
-        if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {
-          return true;
-        }
-      }))
-
       if (!_.find(force.nodes(), function(oldEvents) {
-        
         if (oldEvents.day == day && oldEvents.starTime == start && !oldEvents.selected) {
           return true;
         }
       })) {
 
 
-          $(e.currentTarget).attr("fill", "black");
+        $(e.currentTarget).attr("fill", "black");
 
         _.each(force.nodes(), function(node) {
           if (node.day == day && node.starTime == start) {
             node.selected = false;
-            View.updateCircleColor(node)           
+            View.updateCircleColor(node)
           }
         });
 
 
-        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function (d) { return d === day });
-          
-      
-    } else {
-      $(e.currentTarget).attr("fill", "red");
-      CircleHandler.filters.time.push({day: day, starTime: start}); 
-       console.log("ojoj", force.nodes())
-       _.each(force.nodes(), function(node) {
-        console.log(node)
+        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function(d) {
+          return d.day === day && d.starTime == start
+        });
+
+
+      } else {
+        $(e.currentTarget).attr("fill", "red");
+        CircleHandler.filters.time.push({
+          day: day,
+          starTime: start
+        });
+        _.each(force.nodes(), function(node) {
+          console.log(node)
           if (node.day == day && node.starTime == start) {
             node.selected = true;
-            View.updateCircleColor(node)           
+            View.updateCircleColor(node)
           }
         });
-    }
+      }
 
-      // d3.selectAll("circle").style("fill", function(d, i) {
-
-      //   if (d.sessions) {
-      //     return View.sessionsColors(d.sessions[0]);
-      //   } else {
-      //     return View.sessionsColors(d);
-      //   }
-
-      // })
-
-      // _.each(force.nodes(), function(node) {
-
-      //   if (node.day == day && node.starTime == start) {
-      //     console.log(node.id)
-      //     $("#g" + node.id + " circle").css("fill", "white");
-      //     $("#g" + node.id + " text").css("fill", "black");
-      //   }
-      // });
-      // View.showPieMenu({x: e.pageX, y: e.pageY}, _.sortBy(ClickHandler.listOfEvents, function(event) {
-      //     return event.award ? 1 : -1;
-      //   }));
-View.updateFilterHistory();
+      View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
+      View.updateFilterHistory();
     };
 
 
@@ -202,10 +133,10 @@ View.updateFilterHistory();
         ClickHandler.selected = true;
       }
 
-      if(circle.selected) {        
+      if (circle.selected) {
         circle.selected = false;
       } else {
-        circle.selected = true;      
+        circle.selected = true;
       }
       View.updateCircleColor(circle, Globals.mode);
 
@@ -229,7 +160,7 @@ View.updateFilterHistory();
             y: circle.y + circle.radius + 8 + Globals.topMargin
           };
           //$(".menu_button").css("background-color", $(this).find("circle").css("fill")).css("width", (data.radius*2)+"px").css("height", (data.radius*2)+"px").text(data.code );       
-          
+
         }
 
 
@@ -237,57 +168,22 @@ View.updateFilterHistory();
 
 
         if (Globals.mode == "map") {
-          //var copyPD = parallelData.slice(0);
-          //var sessions = CircleHandler.groupSession(copyPD);
-          //ClickHandler.loadParallelData();
-
-          // ClickHandler.listOfOldEvents.push({
-          //   title: circle["room"],
-          //   data: _.reject(parallelData, function(node) {
-          //     return node.sessions[0]["room"] == circle["room"]
-          //   })
-          // });
-          // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-          //   return node.sessions[0]["room"] == circle["room"]
-          // }));
-
-          if(circle.selected) {
+          if (circle.selected) {
             CircleHandler.filters.room.push(circle.room);
           } else {
-            CircleHandler.filters.room = _.reject(CircleHandler.filters.room, function (f) { return f === circle.room });
+            CircleHandler.filters.room = _.reject(CircleHandler.filters.room, function(f) {
+              return f === circle.room
+            });
           }
-
-
         } else if (Globals.mode == "sessions") {
-          // View.generateSessionTitle(circle.name);
-
-          // ClickHandler.listOfOldEvents.push({
-          //   title: circle["code"],
-          //   data: _.reject(parallelData, function(node) {
-          //     return _.contains(_.pluck(node.sessions, "id"), circle["id"])
-          //   })
-          // });
-          // ClickHandler.listOfEvents.push(_.filter(parallelData, function(node) {
-          //   return _.contains(_.pluck(node.sessions, "id"), circle["id"])
-          // }));
-
-          if(circle.selected) {
+          if (circle.selected) {
             CircleHandler.filters.sessions.push(circle.id);
           } else {
-            CircleHandler.filters.sessions = _.reject(CircleHandler.filters.sessions, function (f) { return f === circle.id });
+            CircleHandler.filters.sessions = _.reject(CircleHandler.filters.sessions, function(f) {
+              return f === circle.id
+            });
           }
-          
-
-
         } else if (Globals.mode == "comm") {
-          
-
-
-
-
-
-
-
           var list = _.map($('svg g.arc').filter(function(b, a) {
             var radius = $(a).get(0).getBBox().height / 2;
             var cX = parseFloat($(a).attr("transform").split(",")[0].split("(")[1]);
@@ -303,73 +199,61 @@ View.updateFilterHistory();
             var radius = $("#" + b).get(0).getBBox().height / 2;
             var cX = parseFloat($("#" + b).attr("transform").split(",")[0].split("(")[1]);
             var cY = parseFloat($("#" + b).attr("transform").split(",")[1].split(")")[0]) + Globals.topMargin;
-            return [cX,cY, radius]; });
+            return [cX, cY, radius];
+          });
           var superList = [];
           var xList = [];
           var yList = [];
-          for(var y = 0; y < Globals.height; y++) {            
-            superList[y] =  [];
-            for(var x = 0; x < Globals.width; x++) {  
-              superList[y][x] =  false;
-          
-                var checker = true;
-                _.each($pathList, function (c) {
-                  if (!pointInCirclePath(c[0], c[1], c[2], x, y)) {
-                    checker = false;
-                  }
-                })
-                if(checker) {                  
-                  superList[y][x] = true;
+          for (var y = 0; y < Globals.height; y++) {
+            superList[y] = [];
+            for (var x = 0; x < Globals.width; x++) {
+              superList[y][x] = false;
+
+              var checker = true;
+              _.each($pathList, function(c) {
+                if (!pointInCirclePath(c[0], c[1], c[2], x, y)) {
+                  checker = false;
                 }
-                
-                
-              
-              //list.push();
+              })
+              if (checker) {
+                superList[y][x] = true;
+              }
             }
           }
 
           var megaList = [];
 
-          _.each(superList, function (yRow, y) {
-            _.each(yRow, function (xRow, x) {
-              if(xRow === true && (!yRow[x-1] || !yRow[x+1])) {
-                megaList.push( [x, y] );
+          _.each(superList, function(yRow, y) {
+            _.each(yRow, function(xRow, x) {
+              if (xRow === true && (!yRow[x - 1] || !yRow[x + 1])) {
+                megaList.push([x, y]);
               }
             })
           });
 
-      
 
-//         $("svg").append('<g class="arc" transform="translate(0,0)" id="management" idPx="465.0813620239828"><path fill="#7f7f7f" opacity="0.5" id="management" d="M0,114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,-114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,114.12486891177014Z"></path><text text-anchor="middle" style="font-size: 40px; font-family: GillSans-Light;" stroke-size="1" fill="#7f7f7f" stroke="#7f7f7f" x="-34.89285815434488" y="-8.475033418850842">management</text></g>')
-// d="M0,114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,-114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,114.12486891177014Z"
-           var d = ""
-           var first = true;
-           var patrikvar = "";
-           _.each(megaList, function (coord) {
-            patrikvar += " ("+coord[0]+","+coord[1]+")";
+
+          //         $("svg").append('<g class="arc" transform="translate(0,0)" id="management" idPx="465.0813620239828"><path fill="#7f7f7f" opacity="0.5" id="management" d="M0,114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,-114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,114.12486891177014Z"></path><text text-anchor="middle" style="font-size: 40px; font-family: GillSans-Light;" stroke-size="1" fill="#7f7f7f" stroke="#7f7f7f" x="-34.89285815434488" y="-8.475033418850842">management</text></g>')
+          // d="M0,114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,-114.12486891177014A114.12486891177014,114.12486891177014 0 1,1 0,114.12486891177014Z"
+          var d = ""
+          var first = true;
+          var patrikvar = "";
+          _.each(megaList, function(coord) {
+            patrikvar += " (" + coord[0] + "," + coord[1] + ")";
             if (first) {
               d = "M" + coord[0] + " " + coord[1];
               first = false;
             } else {
               d += "L" + coord[0] + " " + coord[1];
             }
-           });
-           console.log(patrikvar);
+          });
+          console.log(patrikvar);
 
-           // <path d="M530 245L529 246L531 246Z" stroke="red" stroke-width="2" fill="none"></path>
+          // <path d="M530 245L529 246L531 246Z" stroke="red" stroke-width="2" fill="none"></path>
 
 
-           $("#mainSvg").append('<g class="arc" transform="translate(0,0)"><path d="'+d+'" stroke="red" stroke-width="2" fill="none" /></g>');
-            console.log(megaList);
-            
-          // _.reject(superList, function(sl, i) {
-          //   if(superList[i-1] !== undefined && superList[i+1] !== undefined) {
-          //     return true;
-          //   }            
-
-          // });
-
-          // console.log(superList);
+          $("#mainSvg").append('<g class="arc" transform="translate(0,0)"><path d="' + d + '" stroke="red" stroke-width="2" fill="none" /></g>');
+          console.log(megaList);
 
           var filterFor = "";
 
@@ -408,18 +292,10 @@ View.updateFilterHistory();
           //.attr("opacity", 1);   
         }
 
+        View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
+        View.updateFilterHistory();
 
-                /* 
-          position is an array containg [x, y] 
-          list of events if a list of max 5 events
-        */
-         View.showPieMenu(position, CircleHandler.filterData(data, CircleHandler.filters), menuId);
-         View.updateFilterHistory();
-
-
-        //        CircleHandler.filterData(circle, newMode, d3event);  
       }
-      console.log(ClickHandler.listOfEvents)
 
     };
 
@@ -491,30 +367,30 @@ View.updateFilterHistory();
         case "comm":
           $(".comButton").fadeTo('fast', 0, function() {
             $(this).css('background-image', 'url(/img/tab1blue.png)');
-        }).fadeTo('fast', 1);
-        break;
-      case "events":
-        $(".eventsButton").fadeTo('fast', 0, function(){
+          }).fadeTo('fast', 1);
+          break;
+        case "events":
+          $(".eventsButton").fadeTo('fast', 0, function() {
             $(this).css('background-image', 'url(/img/tab2blue.png)');
-        }).fadeTo('fast', 1);
-        break;
-      case "map":
-        $(".mapButton").fadeTo('fast', 0, function(){
+          }).fadeTo('fast', 1);
+          break;
+        case "map":
+          $(".mapButton").fadeTo('fast', 0, function() {
             $(this).css('background-image', 'url(/img/tab3blue.png)');
-        }).fadeTo('fast', 1);
-        break;
-      case "sessions":
-        $(".sessionButton").fadeTo('fast', 0, function(){
+          }).fadeTo('fast', 1);
+          break;
+        case "sessions":
+          $(".sessionButton").fadeTo('fast', 0, function() {
             $(this).css('background-image', 'url(/img/tab4blue.png)');
-        }).fadeTo('fast', 1);
+          }).fadeTo('fast', 1);
       }
 
 
       d3.selectAll("g.arc").remove();
 
       if ($(this).find("button").data("grouping") == "comm") {
-        $(".comButton").fadeTo('fast', 0.3, function(){
-            $(this).css('background-image', 'url(/img/tab1gray.png)');
+        $(".comButton").fadeTo('fast', 0.3, function() {
+          $(this).css('background-image', 'url(/img/tab1gray.png)');
         }).fadeTo('fast', 1);
         Globals.mode = "comm";
         d3.selectAll("circle").style("display", "none");
@@ -559,8 +435,8 @@ View.updateFilterHistory();
         }).fadeTo('fast', 1);
         $('.legend').hide();
         //force.nodes(_.flatten(ClickHandler.listOfEvents, true))
-        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));  
-        console.log("bb", force.nodes())      
+        force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
+        console.log("bb", force.nodes())
         //ClickHandler.loadParallelData();
         Globals.mode = "sessions";
         main(ClickHandler.listOfEvents);
@@ -578,13 +454,13 @@ View.updateFilterHistory();
     /* Tells if a point is inside a circle path or not */
     var pointInCirclePath = function(cX, cY, r, x, y) {
 
-      
+
       //distance between two points
 
       var xs = Math.pow(cX - x, 2);
 
       var ys = Math.pow(cY - y, 2);
-      
+
       var distance = Math.sqrt(xs + ys);
 
       return (distance <= r);

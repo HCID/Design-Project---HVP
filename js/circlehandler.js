@@ -332,7 +332,7 @@
           }
           if(filters.time.length > 0) {
             _.each(filters.time, function (f) {
-              if(_.contains(_.pluck(d.sessions, "day"), f.day) && !_.contains(_.pluck(d.sessions, "starTime"), f.starTime)) {
+              if(_.contains(_.pluck(d.sessions, "day"), f.day) && _.contains(_.pluck(d.sessions, "starTime"), f.starTime)) {
                 matchTime = true;
               }
             });            
@@ -360,18 +360,21 @@
 
     var filterSessions = function(session, filters) {
       var pass = true;
-      if(filters.sessions.length !== 0 && !_.contains(filters.sessions, u.id)) {
+      if(filters.sessions.length !== 0 && !_.contains(filters.sessions, session.id)) {
         pass = false;
       
       }
-      if(filters.day.length !== 0 && !_.contains(filters.day, u.day)) {
+      if(filters.day.length !== 0 && !_.contains(filters.day, session.day)) {
          pass = false;
       } 
       
       if(filters.time.length !== 0) {
          var smallPass = false;
          _.each(filters.time, function(t) {
+          console.log(t, session.day, session.starTime)
+
           if(t.day == session.day && t.starTime == session.starTime) {
+            console.log("passes!");
             smallPass = true;
           }
          })
@@ -379,7 +382,7 @@
           pass = false;
          }
       } 
-
+      return pass;
     }
 
 
@@ -390,7 +393,7 @@
 			console.log(force.nodes())
 			force.nodes().forEach(function(o, i) {
 				o.sessions.forEach(function(u, j) {
-          if(CircleHandler.filters.sessions.length === 0 || _.contains(CircleHandler.filters.sessions, u.id)) {
+          if(CircleHandler.filters.countFilters() === 0 || filterSessions(u, CircleHandler.filters)) {
 
 
 					var session = _.find(auxArray, function(a) {
