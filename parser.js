@@ -29,7 +29,7 @@ _.forEach(submissions.rows, function(ev) {
     award: ev.value.award,
     //bookmarks: Math.floor((Math.random()*200)),
     keywords: ev.value.authorKeywords ? ev.value.authorKeywords.split("; ") : [],
-    communities: _.map(ev.value.communities, function (a) {return a.toLowerCase()}) ,
+    communities: ev.value.communities ? _.map(ev.value.communities, function (a) {return a.toLowerCase()}) : [],
   }
   
   // Video
