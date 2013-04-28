@@ -87,16 +87,18 @@
 
       var nodesLength = force.nodes().length;      
       d3.selectAll("g.arc").remove();
-      console.log("createCommNodesArray", nodesLength);
 
-      if (nodesLength < Globals.threshold) {
-        console.log("nodes to show in communities", force.nodes());
-        for (var i = 0; i < force.nodes().length; i++) {
-          console.log(force.nodes()[i].communities);
+      var comList = [];
+        _.each(a, function(node) {
+        if(node.coms === 0) {
+          node.coms = ["N/A"];
         }
-      }
+        comList.push(node.coms)
+      });
 
-      if (nodesLength >= Globals.threshold) {
+      var auxComsList = _.unique(_.flatten(comList))
+
+      if (auxComsList.length >= 8) {
 
         a.forEach (function (d) {
 
@@ -115,10 +117,10 @@
       var array = [];
       var id = 0;
       var groups = [];
-      var baseCase = (nodesLength < Globals.threshold) ? "N/A" : "general";
+      var baseCase = (auxComsList.length < 8) ? "N/A" : "general";
       var preGroups = [baseCase, "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
 
-      if (nodesLength < Globals.threshold) {
+      if (auxComsList.length < 8) {
         preGroups = [baseCase, "ux", "design", "engineering", "sustainability", "hci4d", "games", "cci", "arts", "health", "management"];
       } 
 
@@ -220,32 +222,35 @@
 
         if (d.coms.length == 0) {
           i1 = t << 0; 
-          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 1;
+          vennData[i1] = (auxComsList.length >= 8) ? 8 : 1;
+        } else if ((d.coms.length == 1) && (d.coms[0] === "N/A") ) {
+          i1 = t << 0; 
+          vennData[i1] = (auxComsList.length >= 8) ? 8 : 1;
         } else if (d.coms.length == 1) {
           i1 = t << groups.indexOf(d.coms[0]);
-          vennData[i1] = (nodesLength >= Globals.threshold) ? 8 : 2;
+          vennData[i1] = (auxComsList.length >= 8) ? 8 : 2;
         } else if (d.coms.length == 2) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
-          vennData[i1|i2] = (nodesLength >= Globals.threshold) ? 6 : 4;
+          vennData[i1|i2] = (auxComsList.length >= 8) ? 6 : 4;
         } else if (d.coms.length == 3) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
           i3 = t << groups.indexOf(d.coms[2]);
-          vennData[i1|i2|i3] = (nodesLength >= Globals.threshold) ? 4 : 3;
+          vennData[i1|i2|i3] = (auxComsList.length >= 8) ? 4 : 3;
         } else if (d.coms.length == 4) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
           i3 = t << groups.indexOf(d.coms[2]);
           i4 = t << groups.indexOf(d.coms[3]);
-          vennData[i1|i2|i3|i4] = (nodesLength >= Globals.threshold) ? 4 : 3;
+          vennData[i1|i2|i3|i4] = (auxComsList.length >= 8) ? 4 : 3;
         } else if (d.coms.length == 5) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
           i3 = t << groups.indexOf(d.coms[2]);
           i4 = t << groups.indexOf(d.coms[3]);
           i5 = t << groups.indexOf(d.coms[4]);
-          vennData[i1|i2|i3|i4|i5] = (nodesLength >= Globals.threshold) ? 3 : 2;
+          vennData[i1|i2|i3|i4|i5] = (auxComsList.length >= 8) ? 3 : 2;
         } else if (d.coms.length == 6) {
           i1 = t << groups.indexOf(d.coms[0]);
           i2 = t << groups.indexOf(d.coms[1]);
@@ -253,7 +258,7 @@
           i4 = t << groups.indexOf(d.coms[3]);
           i5 = t << groups.indexOf(d.coms[4]);
           i6 = t << groups.indexOf(d.coms[5]);
-          vennData[i1|i2|i3|i4|i5|i6] = (nodesLength >= Globals.threshold) ? 2 : 1;
+          vennData[i1|i2|i3|i4|i5|i6] = (auxComsList.length >= 8) ? 2 : 1;
         }
 
       });
