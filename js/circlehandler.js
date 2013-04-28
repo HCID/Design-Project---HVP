@@ -366,10 +366,18 @@
 			}
 		}
 
-
+//_.indexOf(["ux", "design", "engineering"], n) !== -1
 
     CircleHandler.filterCommunitieClick = function(list, communities) {
-      return (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0) || (list.length == 1 && list[0] === "N/A" && communities.length === 0)
+      //var na = list.length == 1 && list[0] === "N/A" && communities.length === 0;
+      if(_.contains(list, "general")) {
+        communities = _.reject(communities, function(c) { return c === "ux" || c === "design" || c === "engineering"});
+        communities.push("general");
+      }
+
+      var listsAreTheSameSize = (communities.length > 0 && _.difference(communities, list).length == 0 && _.difference(list, communities).length == 0);
+
+      return listsAreTheSameSize
     }
 
 

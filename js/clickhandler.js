@@ -314,21 +314,22 @@
           })
           
 
-          if (list[0] == "general") {
-            ClickHandler.listOfOldEvents.push({
-              title: filterFor,
-              data: _.reject(force.nodes(), function(node) {
-                return node.communities.length === 0 || _.every(node.communities, function(n) {
-                  return _.indexOf(["ux", "design", "engineering"], n) !== -1
-                })
-              })
-            });
-            ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
-              return node.communities.length === 0 || _.every(node.communities, function(n) {
-                return _.indexOf(["ux", "design", "engineering"], n) !== -1
-              })
-            }));
-          } else {
+          // if (list[0] == "general") {
+          //   ClickHandler.listOfOldEvents.push({
+          //     title: filterFor,
+          //     data: _.reject(force.nodes(), function(node) {
+          //       return node.communities.length === 0 || _.every(node.communities, function(n) {
+          //         return _.indexOf(["ux", "design", "engineering"], n) !== -1
+          //       })
+          //     })
+          //   });
+          //   ClickHandler.listOfEvents.push(_.filter(force.nodes(), function(node) {
+          //     return node.communities.length === 0 || _.every(node.communities, function(n) {
+          //       return _.indexOf(["ux", "design", "engineering"], n) !== -1
+          //     })
+          //   }));
+
+          // } else {
             // ClickHandler.listOfOldEvents.push({
             //   title: filterFor,
             //   data: _.reject(force.nodes(), function(node) {
@@ -346,7 +347,7 @@
 
 
             
-          }
+       //   }
 
           //.attr("opacity", 1);   
         }

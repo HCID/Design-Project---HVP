@@ -13,7 +13,9 @@
             "human interface",
             "human-robot interaction"
         ],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "video": "vp-alt101.mp4",
         "sessions": [
             {
@@ -1692,7 +1694,9 @@
             "reflection",
             "journaling"
         ],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "video": "vp-alt184.mp4",
         "sessions": [
             {
@@ -2179,7 +2183,9 @@
             "anonymity",
             "publication."
         ],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "video": "vp-alt195.mp4",
         "sessions": [
             {
@@ -4269,7 +4275,9 @@
         "abstract": "Title \\ Empirical Research Methods for Human-Computer Interaction \\  \\ Instructors \\ Scott MacKenzie and Steven Castellucci, York University, Canada \\  \\ Benefits \\ Attendees will learn how to conduct empirical research in human-computer interaction (HCI).  A \"user study\" is an experiment conforming to the \\ norms for empirical inquiry and the scientific method.  It is founded on \\ observation, measurement, and posing and answering testable research \\ questions.  This Course delivers an A-to-Z tutorial on conducting a user \\ study and demonstrates how to write a successful CHI paper. \\  \\ Features \\ -An overview of the definition, purpose, and method of empirical research \\ -A detailed description of experiment components, and their design \\ \t-Research questions will be posed and refined to highlight important \\ characteristics \\ \t-Experiment design issues will be addressed  \\ \t-Methods for data analysis and reporting will be outlined \\ -Participation in a real experiment \\ \t-Attendees will work in pairs and take turns acting as both participant \\ and investigator \\ -A demonstration on how to write a successful CHI paper, including \\ pitfalls to avoid \\  \\ Presentation \\ PowerPoint slides, real-time demos, group participation \\  \\ Instructor Backgrounds \\ Scott MacKenzie's research is in HCI with an emphasis on human \\ performance measurement and modeling, experimental methods and \\ evaluation, interaction devices and techniques, alphanumeric entry, \\ language modeling, and mobile computing.  He has more than 135 HCI \\ publications (including more than 35 from the SIGCHI conference) and has \\ given numerous invited talks over the past 20 years.  Since 1999, he has \\ been Associate Professor of Computer Science and Engineering at York \\ University, Canada. \\  \\ Steven Castellucci is a PhD student and research assistant in the \\ Department of Computer Science and Engineering at York University, \\ Canada.  His research interests include gesture-based text entry, mobile \\ text entry, and remote pointing techniques.  In addition to having SIGCHI \\ publications, he has lectured university courses on user interfaces and \\ HCI, and has served as course director.",
         "cbStatement": "This Course delivers an A-to-Z tutorial on conducting a user study and demonstrates how to write a successful CHI paper.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "video": "vp-crs110.mp4",
         "sessions": [
             {
@@ -5347,7 +5355,9 @@
         "abstract": "Speech remains the \"holy grail\" of interaction, as this is the most natural form of communication that humans employ. Unfortunately, it is also one of the most difficult modalities to be understood by machines – despite, and perhaps, because it is the highest-bandwidth communication channel we possess. While significant research effort, in engineering, linguistics and psychology, have been spent on improving machines’ ability to understand and synthesize speech, the HCI community has been relatively timid in embracing this modality as a central focus of research. This can be attributed in part to the relatively discouraging levels of accuracy in understanding speech, in contrast with often-unfounded claims of success from industry, but also to the intrinsic difficulty of designing and especially evaluating interfaces that use speech and natural language as an input or output modality. While the accuracies of understanding speech input are still discouraging for many applications under less-than-ideal conditions, several interesting areas have yet to be explored that could make speech-based interaction truly hands-free. The goal of this course is to inform the HCI community of the current state of speech and natural language research, to dispel some of the myths surrounding speech-based interaction, as well as to provide an opportunity for HCI researchers and practitioners to learn more about how speech recognition and synthesis work, what are their limitations, and how these could be used to enhance current interaction paradigms.",
         "cbStatement": "Learn how speech recognition and synthesis works, what are its limitations and usability challenges, how can it enhance interaction paradigms, and what is the current research and commercial state-of-the-art. \\ ",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "video": "vp-crs161.mp4",
         "sessions": [
             {
@@ -41415,7 +41425,9 @@
         "code": "KOP",
         "type": "special",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s304",
@@ -41445,7 +41457,9 @@
         "abstract": "The vast amount of data available on singularizing networks (what could be called 'monads') raise a new problem for social theorists, statisticians, designers, computer scientists and end users: how to vizualize their various components without resorting to the aggregation in which too many details are necessarily lost. The flood of digital traces and the new ways to handle them show that many of the basic epistemological assumptions about what it is to know something in the social science are actually dependent upon data structures and visualizing tools. This presentation will draw a few possible paths in this new situation and propose a few challenges to the audience.",
         "cbStatement": "From aggregation to navigation: a few challenges for social theory.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s308",
@@ -41475,7 +41489,9 @@
         "abstract": "There have been efforts to achieve dialog with computer-based systems since the origins of computing. From the 1960s, serious efforts have been mounted to engage in natural language dialog. There were false starts with simple dictionary-based efforts. Syntactic/Semantic efforts gave way to statistical methods with some successes. The Bayesian approach appears to be reaching an asymptote so it is likely that attention must refocus on syntactic/semantic approaches. Interestingly, efforts to achieve communication between humans and other species have also demonstrated the value of shared experiences. Holding something in common seems a critical element of establishing communication. One wonders to what extent such efforts might also inform any plan to deal with communication between humans and extra-terrestrials, should any ever show up in our vicinity!",
         "cbStatement": "Conversation with a Computer",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s309",
@@ -41503,7 +41519,9 @@
         "code": "LRA",
         "type": "special",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s300",
@@ -41528,7 +41546,9 @@
         "code": "LPA",
         "type": "special",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s301",
@@ -41553,7 +41573,9 @@
         "code": "SIA",
         "type": "special",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s302",
@@ -41579,7 +41601,9 @@
         "type": "special",
         "cbStatement": "We have created various technologies for exploring the CHI 2013 program, including video previews, large-screen interactive schedules, the mobile app and even author sourcing the program. Find out how we did this and give us feedback for next year.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s325",
@@ -41600,7 +41624,9 @@
         "type": "special",
         "cbStatement": "The Student Research Competition (SRC) is a forum for undergraduate and graduate students to showcase their research, exchange ideas, and improve their communication skills while competing for prizes at CHI 2013. Sponsored by Microsoft Research, the CHI SRC competition is a branch of the ACM Student Research Competition which hosts similar competitions at other ACM conferences.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s305",
@@ -41621,7 +41647,9 @@
         "type": "special",
         "cbStatement": "This year’s challenge is to design an object, interface, system, or service intended to help us to develop and share awareness, understanding or appreciation for our collective and collaborative crowd experience as it relates to our changing perspectives through collaboration.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s306",
@@ -41642,7 +41670,9 @@
         "type": "special",
         "cbStatement": "The competition provides an opportunity for students from a variety of backgrounds to demonstrate their game design and development skills in an international competition, and provides CHI attendees with engaging and playable exemplar games that showcase emerging student talent, and inspire future work.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s307",
@@ -41663,7 +41693,9 @@
         "type": "special",
         "cbStatement": "This first round of the Student Research Competition is reserved to the competition participants and jury. The second round, Wednesday at 11am, is open to all CHI 2013 attendees.",
         "keywords": [],
-        "communities": [],
+        "communities": [
+            "N/A"
+        ],
         "sessions": [
             {
                 "id": "s323",

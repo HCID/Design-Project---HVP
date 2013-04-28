@@ -11,6 +11,7 @@
     Communities.communities = function() {
     $(".tab_menu_class > div").removeClass("active");
     $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
+    d3.selectAll(".comm_overlay").remove();
     parallelData = force.nodes().slice(0);
 
       var gComs = [];
