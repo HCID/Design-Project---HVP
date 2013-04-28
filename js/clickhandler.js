@@ -24,6 +24,65 @@
         $("#outer_container, #event_list").hide();
         $("#event_list li").off("mousedown");
       }
+    };
+
+    ClickHandler.firstRoomOnPage = true;
+
+    ClickHandler.selectRoomRange = function(e) {
+           if(ClickHandler.firstRoomOnPage) {
+        CircleHandler.filters.room = [];
+        CircleHandler.filters.sessionRoom = [];
+        ClickHandler.firstRoomOnPage = false;
+      }
+      e.stopPropagation();
+      var room = $(e.currentTarget).data("room")+"";
+      if (!_.find(force.nodes(), function(oldEvents) {
+        if (oldEvents.room == room && !oldEvents.selected) {
+          return true;
+        }
+      })) {
+
+
+
+        $("[data-room='" + room + "']").attr("fill", "black");
+        $(e.currentTarget).attr("fill", "black");
+
+        _.each(force.nodes(), function(node) {
+          if (node.room == room) {
+            node.selected = false;
+            View.updateCircleColor(node)
+          }
+          if(room === "242ab" && (node.room == "242a" || node.room == "242b")) {
+            node.selected = false;
+            View.updateCircleColor(node)
+          }
+        });
+
+        CircleHandler.filters.sessionRoom = _.reject(CircleHandler.filters.sessionRoom, function(d) {
+          return (d === room) || (room == "242ab" && (d == "242a" || d == "242b"))
+        });
+      } else {        
+        $("[data-room='" + room + "']").attr("fill", "red");
+        $(e.currentTarget).attr("fill", "red");
+        CircleHandler.filters.sessionRoom.push(room);
+        if(room === "242ab") {
+          CircleHandler.filters.sessionRoom.push("242a");
+          CircleHandler.filters.sessionRoom.push("242b");
+        }
+
+        _.each(force.nodes(), function(node) {
+          if (node.room == room) {
+            node.selected = true;
+            View.updateCircleColor(node)
+          }
+          if(room === "242ab" && (node.room == "242a" || node.room == "242b")) {
+            node.selected = true;
+            View.updateCircleColor(node)
+          }
+        });
+      }
+
+      ClickHandler.updateFilters();
     }
 
 
@@ -170,6 +229,11 @@
 
 
         if (Globals.mode == "map") {
+          if(ClickHandler.firstRoomOnPage) {
+        CircleHandler.filters.room = [];
+        CircleHandler.filters.sessionRoom = [];
+        ClickHandler.firstRoomOnPage = false;
+      }
           if (circle.selected) {
             CircleHandler.filters.room.push(circle.room);
           } else {
@@ -540,7 +604,7 @@
     }
 
     ClickHandler.removeFilterHandler = function (e) {
-
+e.stopPropagation();
       switch($(e.currentTarget).data("rm-type")) {
         case 'sessions':
           if(Globals.mode === "sessions") {
@@ -621,6 +685,29 @@
         CircleHandler.filters.time.push({day: day, starTime: "9:00"},{ day: day, starTime: "11:00"},{ day: day, starTime: "14:00"}, {day: day, starTime: "16:00"});
       });
 
+      var failedRooms = [];
+      _.each(CircleHandler.filters.sessionRoom, function(room) {        
+        _.each(force.nodes(), function(node) {                    
+          if(node.room === room && !node.selected) {
+            failedRooms.push(room)
+          }
+        });
+      });
+      failedRooms = _.unique(failedRooms);
+      _.each(failedRooms, function(room) {
+        CircleHandler.filters.sessionRoom = _.reject(CircleHandler.filters.sessionRoom, function(d) {
+          console.log(room, d, d===room)
+          return d === room
+        });
+        $("[data-room='"+room+"']").attr("fill", "black");
+        _.each(force.nodes(), function(node) {
+          if(node.room == room && node.selected) {
+            CircleHandler.filters.sessions.push(node.id);
+          } 
+        });
+        
+      });
+
       var failedTime = [];
       var stillSelected = [];
 
@@ -679,13 +766,93 @@
           $("[data-day='"+day+"']").attr("fill", "red");
         }
       });
-      
+      _.each(_.difference($(".scedule_room").map(function () { return $(this).data("room")+"" }).toArray(), CircleHandler.filters.sessionRoom), function (room) {
+          var theNodes = [];
+          var failedRoom = false;
+          _.each(force.nodes(), function (node) {            
+            if(node.room == room) {
+              theNodes.push(node.id);
+              if(!node.selected) {
+                failedRoom = true;
+              }
+            }
+          })
+          if(theNodes.length > 0 && !failedRoom) {
+            CircleHandler.filters.sessions = _.difference(CircleHandler.filters.sessions, theNodes);
+            CircleHandler.filters.sessionRoom.push(room);
+            $("[data-start='"+room+"']").attr("fill", "red");
+          }
+      });
 
 
 
 
       View.updateFilterHistory();
       View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
+    }
+
+    ClickHandler.selectFilters = function (e) {      
+      e.stopPropagation();
+      if(Globals.mode === "sessions") {
+      switch($(e.currentTarget).data("select-type")) {              
+        case 'sessions':
+          _.each(force.nodes(), function(node) {
+            if(_.contains(CircleHandler.filters.sessions, node.id) ) {
+              node.selected = true;
+              View.updateCircleColor(node)
+            }
+          })
+        break;
+        case 'room':
+          _.each(force.nodes(), function(node) {
+            if(_.contains(CircleHandler.filters.sessionRoom, node.room) ) {
+              node.selected = true;
+              View.updateCircleColor(node)
+              $("[data-room='"+room+"']").attr("fill", "red");
+            }
+          })
+        break;
+        case 'day':
+          _.each(force.nodes(), function(node) {
+            if(_.contains(CircleHandler.filters.day, node.day) ) {
+              node.selected = true;
+              View.updateCircleColor(node)
+              $("[data-day='"+node.day+"']").attr("fill", "red");
+            }
+          })
+        break;
+        case 'time':
+          _.each(force.nodes(), function(node) {
+            var pass = false;
+            _.each(CircleHandler.filters.time, function(time) {
+              if(time.day == node.day && time.starTime == node.starTime) {
+                pass = true;                
+              }
+            } );
+            if (pass) {
+              node.selected = true;
+                View.updateCircleColor(node)
+                $("[data-day='"+node.day+"'][data-start='"+node.starTime+"']").attr("fill", "red");
+            }
+          })
+        break;
+      }
+      }
+    }
+
+    ClickHandler.restart = function () {
+      CircleHandler.filters.sessions = [];
+      CircleHandler.filters.day = [];
+      CircleHandler.filters.time = [];
+      CircleHandler.filters.room = [];
+      CircleHandler.filters.sessionRoom = [];
+      CircleHandler.filters.communities = [];
+  
+      if(Globals.mode == "comm") {
+
+      } else {
+
+      }
     }
 
     ClickHandler.removeFilter = function() {

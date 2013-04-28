@@ -85,7 +85,7 @@
       */
     var createCommNodesArray = function (a) {
 
-      var nodesLength = force.nodes().length;
+      var nodesLength = force.nodes().length;      
       d3.selectAll("g.arc").remove();
       console.log("createCommNodesArray", nodesLength);
 

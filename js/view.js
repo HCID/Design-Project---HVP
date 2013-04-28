@@ -51,10 +51,10 @@
 
     View.updateFilterHistory = function () {
 
-      $("#right_side_filter_history #session_filters").html(CircleHandler.filters.sessions.join(", "))
+    
+      $("#right_side_filter_history #session_filters").html(_.map(CircleHandler.filters.sessions, function (ses) { return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), {id: ses} )).code } ).join(", "))
       $("#right_side_filter_history #day_filters").html(CircleHandler.filters.day.join(", "))
-      $("#right_side_filter_history #room_filters").html(CircleHandler.filters.room.join(", "))
-      $("#right_side_filter_history #room_filters").html(CircleHandler.filters.room.join(", "))
+      $("#right_side_filter_history #room_filters").html(CircleHandler.filters.room.join(", ") + CircleHandler.filters.sessionRoom.join(", "))      
       $("#right_side_filter_history #community_filters").html(CircleHandler.filters.communities.join(", "))
       $("#right_side_filter_history #time_filters").html(_.map(CircleHandler.filters.time, function(t) {
         return t.day + " - " + t.starTime;
@@ -71,6 +71,7 @@
         }
         comList.push(node.communities)
       });
+
       
       $("[data-grouping=comm] div").html(_.unique(_.flatten(comList)).length + " communities");
       $("[data-grouping=events] div").html(filteredData.length + " events");
@@ -365,7 +366,7 @@
 
       $("#detail_background").show();
       $("#detail_close_button").on("mousedown", ClickHandler.detailCloseHandler)
-      $("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler); // ClickHandler.detailCloseHandler
+      //$("#detail_background").on("mousedownoutside", ClickHandler.detailCloseHandler); // ClickHandler.detailCloseHandler
     };
 
 

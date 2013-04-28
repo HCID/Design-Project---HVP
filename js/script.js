@@ -17,7 +17,7 @@ var main = function () {
     $("[data-grouping="+Globals.mode+"]").parent().addClass("active");
 
   vis = d3.select("body").select("svg");
-
+  ClickHandler.firstRoomOnPage = true;
 
   d3.selectAll(".comm_overlay").remove();
   if (Globals.mode === "map") {
@@ -64,6 +64,8 @@ $(document).ready(function() {
   $("#bgimg").attr("height", Globals.height);
   $("#bgimg").attr("width", Globals.width);
   $(".side_remove_filter").on("mousedown", ClickHandler.removeFilterHandler);
+  $(".applied_filters").on("mousedown", ClickHandler.selectFilters);
+  $(".restart_now").on("mousedown", ClickHandler.restart);
   $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
   $("#tab_menu").on("mousedown", function () {  if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") }})
   $("#tab_menu_down").on("mousedown", function () { $("html").css("-webkit-transform", "none")  })
@@ -72,6 +74,8 @@ $(document).ready(function() {
 
   $(".schedule_time").on("mousedown", ClickHandler.selectTimeRange );
   $(".schedule_day").on("mousedown", ClickHandler.selectDayRange );
+  $(".scedule_room").on("mousedown", ClickHandler.selectRoomRange );
+  
 
   $("#right_side").height((Globals.height-209)+"px");
 

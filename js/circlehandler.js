@@ -9,9 +9,10 @@
       day: [],
       time: [],
       room: [],
+      sessionRoom: [],
       communities: [],
       countFilters: function () {
-        return this.sessions.length + this.day.length + this.time.length + this.room.length + this.communities.length;
+        return this.sessions.length + this.day.length + this.time.length + this.room.length + this.communities.length + this.sessionRoom.length;
       }
     };
 
@@ -60,13 +61,13 @@
 					if (d.y <= 90) {
 						d.y += 40;
 					}
-					if (d.y >= Globals.height) {
+					if (d.y >= Globals.height-120) {
 						d.y -= 30;
 					}
 					if (d.x <= 0) {
 						d.x += 1;
 					}
-					if (d.x >= Globals.width) {
+					if (d.x >= Globals.width-200) {
 						d.x -= 1;
 					}
 				})
@@ -310,7 +311,8 @@
           matchedDay = false,
           matchTime = false,
           matchRoom = false,
-          matchComm = false;
+          matchComm = false,
+          sessionRoom = false;
 
 					if(filters.sessions.length > 0) {
             _.each(d.sessions, function(s) {
@@ -318,7 +320,7 @@
                 matchedSessions = true;
               }
             });
-          } else if(filters.time.length === 0 && filters.day.length === 0) {
+          } else if(filters.time.length === 0 && filters.day.length === 0 && filters.sessionRoom.length === 0) {
             matchedSessions = true;
           }
           if(filters.day.length > 0) {
@@ -327,7 +329,7 @@
                 matchedDay = true;
               }
             });            
-          } else if(filters.time.length === 0 && filters.sessions.length === 0) {
+          } else if(filters.time.length === 0 && filters.sessions.length === 0 && filters.sessionRoom.length === 0) {
             matchedDay = true;
           }
           if(filters.time.length > 0) {
@@ -336,7 +338,7 @@
                 matchTime = true;
               }
             });            
-          } else if(filters.day.length === 0 && filters.sessions.length === 0) {
+          } else if(filters.day.length === 0 && filters.sessions.length === 0 && filters.sessionRoom.length === 0) {
             matchTime = true;
           }
 
@@ -361,7 +363,21 @@
           } else {
             matchRoom = true;
           }
-					return matchRoom && matchComm && (matchedSessions || matchTime || matchedDay);
+          if(filters.sessionRoom.length > 0) {
+            var smallPass = false;
+            _.each(filters.sessionRoom, function (f) {
+              if(_.contains(_.pluck(d.sessions, "room"), f)) {
+
+                smallPass = true;
+              }
+            });   
+            if(smallPass) {
+              sessionRoom = true;
+            }         
+          } else if(filters.day.length === 0 && filters.sessions.length === 0 && filters.time.length === 0){
+            sessionRoom = true;
+          }
+					return matchRoom && matchComm && (matchedSessions || matchTime || matchedDay || sessionRoom);
 				})
 			}
 		}
@@ -387,6 +403,10 @@
         pass = true;
       
       }
+      if(_.contains(filters.sessionRoom, session.room)) {
+        pass = true;
+      
+      }
       if(_.contains(filters.day, session.day)) {
          pass = true;
       } 
@@ -403,7 +423,7 @@
          if(smallPass) {
           pass = true;
          }
-      if(filters.sessions.length === 0 && filters.day.length === 0 && filters.time.length === 0) {
+      if(filters.sessions.length === 0 && filters.day.length === 0 && filters.time.length === 0 && filters.sessionRoom.length === 0) {
         pass = true;
       }
 
