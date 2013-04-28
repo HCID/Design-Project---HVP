@@ -349,6 +349,10 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   /*background-color: #ccc;*/
 }
 
+.event_item {
+  height:100px;
+}
+
 /*************************** PIE MENU CSS ***********************/
 
     article,aside,details,figcaption,figure,footer,header,hgroup,nav,section {
