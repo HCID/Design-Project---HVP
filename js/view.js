@@ -36,7 +36,7 @@
         if (n > 100) {
           return 21;
         } else {
-          var s = 0.2 * Math.sqrt((Globals.width * Globals.height) / n);
+          var s = 0.3 * Math.sqrt((Globals.width * Globals.height) / n);
           return s;
         }
       } else if (Globals.mode === "map") {
@@ -257,8 +257,8 @@
         .style("text-anchor", "middle")
         .on("mousedown", ClickHandler.circleClicked)
         .text(function(d) {
-
-        if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
+          console.log("d.radius in text", d.radius);
+        if ((d.radius > 70) && (Globals.mode == "events")) {
           if ((d.name != undefined) || (d.name !== "undefined")) {
             return d.name.length > 27 ? d.name.substr(0, 24) + "..." : d.name;
           } else {
