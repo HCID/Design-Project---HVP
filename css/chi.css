@@ -712,6 +712,9 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   border-right: 1px solid #68afd4;
 }
 
+#right_side_filter_history .applied_filters {
+  display: none;
+}
 
 
 .tab_menu_class div.active:last-child {
