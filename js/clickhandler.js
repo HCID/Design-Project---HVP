@@ -538,6 +538,7 @@
             })
           }
           CircleHandler.filters.room = [];
+          CircleHandler.filters.sessionRoom = [];
           break;
         case 'day':
           if (Globals.mode === "sessions") {
@@ -742,7 +743,7 @@
               if (_.contains(CircleHandler.filters.sessionRoom, node.room)) {
                 node.selected = true;
                 View.updateCircleColor(node)
-                $("[data-room='" + room + "']").attr("fill", "red");
+                $("[data-room='" + node.room + "']").attr("fill", "red");
               }
             })
             break;
@@ -774,7 +775,7 @@
       }
     }
 
-    ClickHandler.restart = function() {
+    ClickHandler.restart = function() {    
       CircleHandler.filters.sessions = [];
       CircleHandler.filters.day = [];
       CircleHandler.filters.time = [];
