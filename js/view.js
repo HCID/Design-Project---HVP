@@ -151,6 +151,7 @@
         .attr("d", function(d) {
         if (Globals.mode === "events") {
           if (d.award && d.award !== "") {
+            console.log("rendering star");
             var str = renderStar(d);
             return str;
           }
@@ -269,7 +270,7 @@
           if ((d.name != undefined) || (d.name !== "undefined")) {
             return d.name.length > 27 ? d.name.substr(0, 24) + "..." : d.name;
           } else {
-            return "";
+            return d.code;
           }
         } else {
           if ((d.code != undefined) || (d.code !== "undefined")) {

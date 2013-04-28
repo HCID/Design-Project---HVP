@@ -577,8 +577,24 @@
       } else {
         if (Globals.mode === "events") {
           d3.selectAll("path.award").remove();
-        // d3.selectAll("text.talkName").remove();
-        };
+          d3.selectAll("text.talkName")
+            .text(function(d) {
+              d.radius = View.calculateR(d);
+              if ((d.radius > 70) && (Globals.mode == "events")) {
+                if ((d.name != undefined) || (d.name !== "undefined")) {
+                  return d.name.length > 27 ? d.name.substr(0, 24) + "..." : d.name;
+                } else {
+                  return d.code;
+                }
+              } else {
+                if ((d.code != undefined) || (d.code !== "undefined")) {
+                  return d.code;
+                } else {
+                  return "";
+                }
+              }        
+          });
+        }
 
         main();
       }
@@ -781,10 +797,7 @@
     }
 
     ClickHandler.restart = function() {
-      if (Globals.mode === "events") {
-        d3.selectAll("path.award").remove();
-      // d3.selectAll("text.talkName").remove(); 
-      }
+
    
       CircleHandler.filters.sessions = [];
       CircleHandler.filters.day = [];
@@ -796,7 +809,25 @@
       if (Globals.mode === "comm") {
         Communities.communities();
       } else {
-        main()
+        if (Globals.mode === "events") {
+          
+          d3.selectAll("path.award").remove();
+          // d3.selectAll("path.award")
+            // .attr("d", function(d) {
+            //   if (d.award && d.award !== "") {
+            //     d.radius = 21;
+            //     var str = renderStar(d);
+            //     return str;
+            //   }
+            //   return "M 0 0 Z";
+            // });
+
+          d3.selectAll("text.talkName")
+          .text(function(d) {
+            return d.code;
+          });
+        } 
+        main();
       }
     }
 
