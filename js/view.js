@@ -49,33 +49,40 @@
 
     }
 
+    var countExtraFilters = function (length) {
+      return length > 4 ? ' (+'+length+')' : ''
+    }
+
     View.updateFilterHistory = function () {
       $(".applied_filters, .no_filters").hide();
       var noFilters = true;
       if (CircleHandler.filters.sessions.length > 0) {
-        $("#right_side_filter_history #session_filters").html(_.map(CircleHandler.filters.sessions, function (ses) { return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), {id: ses} )).code } ).join(", ")).parents(".applied_filters").show();
+        var filters = _.first(_.map(CircleHandler.filters.sessions, function (ses) { return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), {id: ses} )).code } ),4).join(", ");
+        $("#right_side_filter_history #session_filters").html(filters + countExtraFilters(CircleHandler.filters.sessions.length)).parents(".applied_filters").show();
         noFilters = false;
       }
       
       if(CircleHandler.filters.day.length > 0) {
-        $("#right_side_filter_history #day_filters").html(CircleHandler.filters.day.join(", ")).parents(".applied_filters").show();
+        $("#right_side_filter_history #day_filters").html(_.first(CircleHandler.filters.day, 4).join(", ") + countExtraFilters(CircleHandler.filters.day.length)).parents(".applied_filters").show();
         noFilters = false;
       }
 
       if (CircleHandler.filters.room.length > 0 || CircleHandler.filters.sessionRoom.length > 0) {
-        $("#right_side_filter_history #room_filters").html(CircleHandler.filters.room.join(", ") + CircleHandler.filters.sessionRoom.join(", ")).parents(".applied_filters").show();
+
+
+        $("#right_side_filter_history #room_filters").html(_.first(_.union(CircleHandler.filters.room, CircleHandler.filters.sessionRoom), 4).join(", ") + countExtraFilters(CircleHandler.filters.room.length + CircleHandler.filters.sessionRoom.length)).parents(".applied_filters").show();
         noFilters = false;
       }
       
       if ( CircleHandler.filters.communities.length > 0) {
-        $("#right_side_filter_history #community_filters").html(CircleHandler.filters.communities.join(", ")).parents(".applied_filters").show();
+        $("#right_side_filter_history #community_filters").html(_.first(CircleHandler.filters.communities, 4).join(", ") + countExtraFilters(CircleHandler.filters.communities.length)).parents(".applied_filters").show();
         noFilters = false;
       }
       
       if (CircleHandler.filters.time.length > 0) {
-        $("#right_side_filter_history #time_filters").html(_.map(CircleHandler.filters.time, function(t) {  
+        $("#right_side_filter_history #time_filters").html(_.first(_.map(CircleHandler.filters.time, function(t) {  
           return t.day + " - " + t.starTime;
-        }).join(", ")).parents(".applied_filters").show();
+        }), 4).join(", ") + countExtraFilters(CircleHandler.filters.time.length)).parents(".applied_filters").show();
         noFilters = false;
       }  
       if(noFilters) {
