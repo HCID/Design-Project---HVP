@@ -847,11 +847,11 @@ e.stopPropagation();
       CircleHandler.filters.room = [];
       CircleHandler.filters.sessionRoom = [];
       CircleHandler.filters.communities = [];
-  
-      if(Globals.mode == "comm") {
-
+      force.nodes(CircleHandler.filterData(data, CircleHandler.filters));      
+      if (Globals.mode === "comm") {
+        Communities.communities();
       } else {
-
+        main()
       }
     }
 
