@@ -1,5 +1,5 @@
 var vis;
-var side = "up";
+
 var data = [],
     rScale = d3.scale.sqrt().range([0, 15]),
     fill = d3.scale.category20(),
@@ -68,20 +68,7 @@ $(document).ready(function() {
   $(".applied_filters").on("mousedown", ClickHandler.selectFilters);
   $(".restart_now").on("mousedown", ClickHandler.restart);
   $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
-  $("#tab_menu").on("mousedown", function () {  
-      if(side == "up"){
-        $("html").css("-webkit-transform", "rotate(180deg)"); 
-        side = "up";
-        console.log("up");
-      }
-    })
-  $("#tab_menu_down").on("mousedown", function () {  
-      if(side == "down"){
-        $("html").css("-webkit-transform", "none") 
-        side = "down";
-        console.log("down");
-      }
-    })
+  $("#tab_menu").on("mousedown", function () {  if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") }  })
   
   $('#detail_image').simpleVideo();
 
