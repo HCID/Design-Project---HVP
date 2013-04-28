@@ -575,9 +575,11 @@
       if (Globals.mode === "comm") {
         Communities.communities();
       } else {
+        if (Globals.mode === "events") {
+          d3.selectAll("path.award").remove();
+        // d3.selectAll("text.talkName").remove();
+        };
 
-        d3.selectAll("path.award").remove();
-        d3.selectAll("text.talkName").remove();
         main();
       }
     }
@@ -779,8 +781,11 @@
     }
 
     ClickHandler.restart = function() {
-      d3.selectAll("path.award").remove();
-      d3.selectAll("text.talkName").remove();    
+      if (Globals.mode === "events") {
+        d3.selectAll("path.award").remove();
+      // d3.selectAll("text.talkName").remove(); 
+      }
+   
       CircleHandler.filters.sessions = [];
       CircleHandler.filters.day = [];
       CircleHandler.filters.time = [];
