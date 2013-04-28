@@ -70,7 +70,11 @@ $(document).ready(function() {
   $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
   $("#tab_menu").on("mousedown", function () {  if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") }  })
   
-  $('#detail_image').simpleVideo();
+   $('#detail_image').simpleVideo();
+
+
+
+
 
   $(".schedule_time").on("mousedown", ClickHandler.selectTimeRange );
   $(".schedule_day").on("mousedown", ClickHandler.selectDayRange );

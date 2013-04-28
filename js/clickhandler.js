@@ -398,6 +398,7 @@
 
     /* closes the detail view */
     ClickHandler.detailCloseHandler = function(e) {
+      $("#detail_image").get(0).pause();
       View.hideDetails();
       e.stopPropagation();
     }
