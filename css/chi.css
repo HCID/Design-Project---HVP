@@ -349,9 +349,6 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   /*background-color: #ccc;*/
 }
 
-.event_item {
-  height:100px;
-}
 
 /*************************** PIE MENU CSS ***********************/
 
@@ -568,7 +565,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
     }
     
     #right_side_events li {
-      height: 30px;
+      height: 40px;
       text-align: left;
       float: left;
       width: 100%;
@@ -586,10 +583,19 @@ h1, h3, h4, h5, h6, p, div, li, ul {
       height: 30px;
       width: 30px;
       float: left;
-      margin-top: -10px;
+      margin-top: -5px;
       margin-left: 5px;
       margin-right: 5px;
     }
+
+    #right_side_events li p {
+      width: 165px;
+      margin-left: 30px;
+      margin-top: -12px;
+      font-size: 18px;
+      line-height: 25px;
+    }
+
 
     #right_side_events li:last-child {
       border-bottom: 0px none #fff;
@@ -605,6 +611,9 @@ h1, h3, h4, h5, h6, p, div, li, ul {
       display: none;
     }
 
+    #event_list_item {
+      height: 100px;
+    }
 
     .flipper.top_flipper {
       bottom: 20px;
