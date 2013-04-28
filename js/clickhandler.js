@@ -575,6 +575,12 @@
       if (Globals.mode === "comm") {
         Communities.communities();
       } else {
+
+        if (Globals.mode === "events") {
+          d3.selectAll("path.award").remove();
+          d3.selectAll("text.talkName").remove();
+        }
+
         main();
       }
     }
