@@ -318,7 +318,7 @@
                 matchedSessions = true;
               }
             });
-          } else {
+          } else if(filters.time.length === 0 && filters.day.length === 0) {
             matchedSessions = true;
           }
           if(filters.day.length > 0) {
@@ -327,7 +327,7 @@
                 matchedDay = true;
               }
             });            
-          } else {
+          } else if(filters.time.length === 0 && filters.sessions.length === 0) {
             matchedDay = true;
           }
           if(filters.time.length > 0) {
@@ -336,7 +336,7 @@
                 matchTime = true;
               }
             });            
-          } else {
+          } else if(filters.day.length === 0 && filters.sessions.length === 0) {
             matchTime = true;
           }
 
@@ -361,7 +361,7 @@
           } else {
             matchRoom = true;
           }
-					return matchRoom && matchTime && matchedDay && matchedSessions && matchComm;
+					return matchRoom && matchComm && (matchedSessions || matchTime || matchedDay);
 				})
 			}
 		}
@@ -374,16 +374,15 @@
 
 
     var filterSessions = function(session, filters) {
-      var pass = true;
-      if(filters.sessions.length !== 0 && !_.contains(filters.sessions, session.id)) {
-        pass = false;
+      var pass = false;
+      if(_.contains(filters.sessions, session.id)) {
+        pass = true;
       
       }
-      if(filters.day.length !== 0 && !_.contains(filters.day, session.day)) {
-         pass = false;
+      if(_.contains(filters.day, session.day)) {
+         pass = true;
       } 
-      
-      if(filters.time.length !== 0) {
+
          var smallPass = false;
          _.each(filters.time, function(t) {
           
@@ -393,10 +392,13 @@
             smallPass = true;
           }
          })
-         if(!smallPass) {
-          pass = false;
+         if(smallPass) {
+          pass = true;
          }
-      } 
+      if(filters.sessions.length === 0 && filters.day.length === 0 && filters.time.length === 0) {
+        pass = true;
+      }
+
       return pass;
     }
 

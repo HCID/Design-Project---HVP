@@ -391,7 +391,7 @@
 
 
     View.updateEventList = function(listOfEvents) {
-      if (listOfEvents.length > 0 && CircleHandler.filters.countFilters() > 0) {
+      if (listOfEvents.length > 0) { //  && CircleHandler.filters.countFilters() > 0=
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(_.first(listOfEvents, 5), function(obj) {

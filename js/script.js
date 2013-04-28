@@ -37,6 +37,7 @@ var main = function () {
   View.update();
   // View.generateLegend();
   View.updateFilterHistory();
+  View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters))
 };
 
 var clearCircleSelections = function () {
@@ -62,6 +63,7 @@ $(document).ready(function() {
   $("svg").attr("width", Globals.width + "px");
   $("#bgimg").attr("height", Globals.height);
   $("#bgimg").attr("width", Globals.width);
+  $(".side_remove_filter").on("mousedown", ClickHandler.removeFilterHandler);
   $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
   //$("#tab_menu").on("mousedown", function () { $("html").css("-webkit-transform", "rotate(180deg)") })
   //$("#tab_menu_down").on("mousedown", function () { $("html").css("-webkit-transform", "none")  })

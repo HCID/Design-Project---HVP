@@ -66,8 +66,7 @@
           }
         });
       }
-      View.updateFilterHistory();
-      View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
+      ClickHandler.updateFilters();
 
     };
 
@@ -121,8 +120,7 @@
         });
       }
 
-      View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
-      View.updateFilterHistory();
+      ClickHandler.updateFilters();
     };
 
 
@@ -134,13 +132,15 @@
         ClickHandler.listOfEvents = [];
         ClickHandler.selected = true;
       }
-
-      if (circle.selected) {
+      if(Globals.mode !== "comm") {
+              if (circle.selected) {
         circle.selected = false;
       } else {
         circle.selected = true;
       }
       View.updateCircleColor(circle, Globals.mode);
+      }
+
 
 
       d3.event.stopPropagation()
@@ -215,8 +215,6 @@
 
           var exludeList = _.difference(_.map($('svg g.arc'), function(el) { return el.id }), list);
           
-          console.log("include: ", list)
-          console.log("exclude: ", exludeList)
           $pathList = _.map(list, function(b) {
             var radius = $("#" + b).get(0).getBBox().height / 2;
             var cX = parseFloat($("#" + b).attr("transform").split(",")[0].split("(")[1]) ;
@@ -233,7 +231,7 @@
 
             return [cX, cY, radius];
           });
-          console.log(exludeList)
+
 
           var superList = [];
           var superList2 = [];
@@ -353,8 +351,7 @@
           //.attr("opacity", 1);   
         }
 
-        View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
-        View.updateFilterHistory();
+        ClickHandler.updateFilters();
 
       }
 
@@ -377,8 +374,7 @@
     })
 
     d3.event.target.remove();
-     View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
-        View.updateFilterHistory();
+     ClickHandler.updateFilters();
   }
 
 
@@ -540,6 +536,155 @@
       var distance = Math.sqrt(xs + ys);
 
       return (distance <= r);
+    }
+
+    ClickHandler.removeFilterHandler = function (e) {
+
+      switch($(e.currentTarget).data("rm-type")) {
+        case 'sessions':
+          if(Globals.mode === "sessions") {
+             _.each(force.nodes(), function(node) {
+            if (_.contains(CircleHandler.filters.sessions, node.id)) {
+              node.selected = false;
+              View.updateCircleColor(node)
+            }
+          })
+          }         
+          CircleHandler.filters.sessions = [];
+        break;
+        case 'room':
+          if(Globals.mode === "room") {
+             _.each(force.nodes(), function(node) {
+            if (_.contains(CircleHandler.filters.room, node.room)) {
+              node.selected = false;
+              View.updateCircleColor(node)
+            }
+          })
+          }         
+          CircleHandler.filters.room = [];
+        break;
+        case 'day':
+          if(Globals.mode === "sessions") {
+             _.each(force.nodes(), function(node) {
+            if (_.contains(CircleHandler.filters.day, node.day)) {
+              node.selected = false;
+              View.updateCircleColor(node)
+            }
+          })
+          }         
+          CircleHandler.filters.day = [];
+        break;
+        case 'time':
+          if(Globals.mode === "sessions") {
+             _.each(force.nodes(), function(node) {
+              _.each(CircleHandler.filters.day, function(f) {
+                if(_.contains(_.pluck(node.sessions, "day"), f.day) && _.contains(_.pluck(node.sessions, "starTime"), f.starTime)) {
+                  node.selected = false;
+                  View.updateCircleColor(node)
+                }
+              })            
+          })
+          }         
+          CircleHandler.filters.time = [];
+        break;
+        case 'communities':         
+          $(".comm_overlay").remove();
+          CircleHandler.filters.communities = [];
+        break;
+      }
+      force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
+      ClickHandler.updateFilters();
+
+      if (Globals.mode === "comm") {
+        Communities.communities();
+      } else {
+        main();
+      }
+    }
+
+    ClickHandler.updateFilters = function () {
+      var failedDays = [];
+      _.each(CircleHandler.filters.day, function(day) {        
+        _.each(force.nodes(), function(node) {                    
+          if(node.day === day && !node.selected) {
+            failedDays.push(day)
+          }
+        });
+      });
+      failedDays = _.unique(failedDays);
+      _.each(failedDays, function(day) {
+        CircleHandler.filters.day = _.reject(CircleHandler.filters.day, function(d) {
+          return d === day
+        });
+        $(".schedule_day[data-day='"+day+"']").attr("fill", "black");
+        CircleHandler.filters.time.push({day: day, starTime: "9:00"},{ day: day, starTime: "11:00"},{ day: day, starTime: "14:00"}, {day: day, starTime: "16:00"});
+      });
+
+      var failedTime = [];
+      var stillSelected = [];
+
+      _.each(CircleHandler.filters.time, function(time) {        
+        stillSelected[time.day+"-"+time.starTime] = [];
+        _.each(force.nodes(), function(node) {     
+          if(node.day === time.day && node.starTime === time.starTime && !node.selected) {
+            failedTime.push({day: time.day, starTime: time.starTime});
+          } else if(node.day === time.day && node.starTime === time.starTime && node.selected) {
+            stillSelected[time.day+"-"+time.starTime].push(node);
+          }
+        });
+      });
+      failedTime = _.unique(failedTime);
+
+      _.each(failedTime, function(time) {
+        CircleHandler.filters.time = _.reject(CircleHandler.filters.time, function(d) {          
+          return d.day === time.day && d.starTime === time.starTime;
+        });
+        $("[data-day='"+time.day+"'][data-start='"+time.starTime+"']").attr("fill", "black");
+        _.each(stillSelected[time.day+"-"+time.starTime], function(sel) {
+          CircleHandler.filters.sessions.push(sel.id);  
+        });
+        
+      });
+      CircleHandler.filters.sessions = _.unique(CircleHandler.filters.sessions);
+
+
+      _.each(_.difference(["Monday", "Tuesday", "Wednesday", "Thursday"],CircleHandler.filters.day), function(day) {
+        _.each(_.difference(["9:00", "11:00", "14:00", "16:00"], _.pluck(_.where(CircleHandler.filters.time, {day: day}), "starTime")), function(time) {
+          var theNodes = [];
+          var failedTime = false;
+          _.each(force.nodes(), function (node) {            
+            if(node.starTime == time && node.day == day) {
+              theNodes.push(node.id);
+              if(!node.selected) {
+                failedTime = true;
+              }
+            }
+          })
+          if(theNodes.length > 0 && !failedTime) {
+            CircleHandler.filters.sessions = _.difference(CircleHandler.filters.sessions, theNodes);
+            CircleHandler.filters.time.push({day: day, starTime: time});
+            $("[data-day='"+day+"'][data-start='"+time+"']").attr("fill", "red");
+          }
+        });
+        var theTimes = [];        
+        _.each(CircleHandler.filters.time, function(time) {
+          if(time.day == day) {
+              theTimes.push(time);        
+            }
+        });
+        if(theTimes.length === 4) {
+          CircleHandler.filters.time = _.reject(CircleHandler.filters.time, function(t) {return t.day === day});
+          CircleHandler.filters.day.push(day);
+          $("[data-day='"+day+"']").attr("fill", "red");
+        }
+      });
+      
+
+
+
+
+      View.updateFilterHistory();
+      View.updateEventList(CircleHandler.filterData(data, CircleHandler.filters));
     }
 
     ClickHandler.removeFilter = function() {
