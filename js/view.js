@@ -99,25 +99,32 @@
       $("[data-grouping=events] div").html(filteredData.length + " events");
       $("[data-grouping=map] div").html(CircleHandler.groupMap(filteredData).length + " rooms");      
       $("[data-grouping=sessions] div").html(CircleHandler.groupSession(filteredData).length + " sessions");
+
+
+      _.each(force.nodes(), function (node) {
+        View.updateCircleColor(node);
+      })
+
     }
 
 
     View.updateCircleColor = function(circle, mode) {
-      if (circle.selected) {
-        var color = "#ffffff";
-        if (mode === "map" || mode === "events") {
-          color = "purple";
-        }
-        $("#g" + circle.id + " circle").css("fill", color);
-        $("#g" + circle.id + " text").css("fill", "black");
+      if (!circle.selected && CircleHandler.filters.countFilters() > 0) {
+        // var color = "#ffffff";
+        // if (mode === "map" || mode === "events") {
+        //   color = "purple";
+        // }
+        $("#g" + circle.id + " circle").css("opacity",0.3).parent().find("path").css("opacity",0.3);
+        //$("#g" + circle.id + " text").css("fill", "black");
       } else {
-        d3.select("#g" + circle.id + " circle").style("fill", function(d, i) {
-          if (d.sessions) {
-            return View.sessionsColors(d.sessions[0]);
-          } else {
-            return View.sessionsColors(d);
-          }
-        })
+        $("#g" + circle.id + " circle").css("opacity",1).parent().find("path").css("opacity",1);
+        // d3.select("#g" + circle.id + " circle").style("fill", function(d, i) {
+        //   if (d.sessions) {
+        //     return View.sessionsColors(d.sessions[0]);
+        //   } else {
+        //     return View.sessionsColors(d);
+        //   }
+        // })
         $("#g" + circle.id + " text").css("fill", "white");
       }
 
