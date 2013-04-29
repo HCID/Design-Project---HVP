@@ -57,7 +57,7 @@
       $(".applied_filters, .no_filters").hide();
       var noFilters = true;
       if (CircleHandler.filters.sessions.length > 0) {
-        var filters = _.first(_.map(CircleHandler.filters.sessions, function(ses) { console.log(ses); return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), { id: ses })).code
+        var filters = _.first(_.map(CircleHandler.filters.sessions, function(ses) { return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), { id: ses })).code
         }), 4).join(", ");
         $("#right_side_filter_history #session_filters").html(filters + countExtraFilters(CircleHandler.filters.sessions.length)).parents(".applied_filters").show();
         noFilters = false;
@@ -448,7 +448,7 @@
       } else {
         $("#right_side_events").show();
         if (listOfEvents.length > 0) { //  && =
-        htmlTmpl = "";
+        htmlTmpl = '<li style="text-align: center; font-size: 26px; background-color: #61BBDE;border-top-left-radius: 5px; color: #fff;">Selected events</li>';
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(_.first(listOfEvents, 5), function(obj) {
             htmlTmpl += _.template($("#event_list_item").html(), {
