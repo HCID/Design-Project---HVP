@@ -442,7 +442,11 @@
 
 
     View.updateEventList = function(listOfEvents) {
-      if (listOfEvents.length > 0) { //  && CircleHandler.filters.countFilters() > 0=
+      if (CircleHandler.filters.countFilters() == 0) {
+        $("#right_side_events").hide();
+      } else {
+        $("#right_side_events").show();
+        if (listOfEvents.length > 0) { //  && =
         htmlTmpl = "";
         if (listOfEvents && listOfEvents.length > 0) {
           _.each(_.first(listOfEvents, 5), function(obj) {
@@ -462,6 +466,8 @@
         htmlTmpl = _.template($("#event_no_list_item").html(), {});
         $("#right_side_events").html(htmlTmpl); //.show().css("left", (position.x + 150) + "px").css("top", (position.y - 150) + "px");
       }
+      }
+      
     };
 
 

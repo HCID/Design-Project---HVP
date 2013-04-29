@@ -554,14 +554,17 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 
 /***************** END OF PIE MENU CSS *********************/
     
-    
+
+
     #right_side_events {
+      dipslay: none;
       background-color: rgba(255, 255, 255, 0.7);
       list-style: none;
       position: absolute;
       width: 100%;
       padding: 0px;
       border: 1px solid #68afd4;
+      bottom: 0px;
     }
     #right_side_events li.no_events {
       height: 50px;

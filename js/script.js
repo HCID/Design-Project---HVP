@@ -84,7 +84,7 @@ $(document).ready(function() {
   $(".scedule_room").on("mousedown", ClickHandler.selectRoomRange );
   
 
-  $("#right_side").height((Globals.height-209)+"px");
+  $("#right_side").height((Globals.height-91)+"px");
 
 
   $("#detail_background").css({ 
