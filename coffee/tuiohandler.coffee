@@ -64,7 +64,7 @@ class window.TUIOHandler
   client.on "addTuioCursor", onAddTuioCursor
   client.on "updateTuioCursor", onUpdateTuioCursor
   client.on "removeTuioCursor", onRemoveTuioCursor
-  client.on "updateTuioHand", onUpdateTuioHand
+  #client.on "updateTuioHand", onUpdateTuioHand
   client.on "removeTuioHand", onRemoveTuioHand
   client.connect()
 

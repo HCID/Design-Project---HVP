@@ -600,14 +600,21 @@
       }
     }
 
-    ClickHandler.updateFilters = function() {
+    ClickHandler.updateFilters = function() {      
       var failedDays = [];
       _.each(CircleHandler.filters.day, function(day) {
-        _.each(force.nodes(), function(node) {
-          if (node.day === day && !node.selected) {
-            failedDays.push(day)
-          }
-        });
+
+        if(_.where(CircleHandler.groupSession(data, true), { day: day }).length == _.where(force.nodes(), { day: day }).length) {
+          failedDays.push(day)
+        } else {
+           _.each(force.nodes(), function(node) {
+            if (node.day === day && !node.selected) {
+              failedDays.push(day)
+            }
+          });
+        }
+         
+        
       });
       failedDays = _.unique(failedDays);
       _.each(failedDays, function(day) {
@@ -632,11 +639,21 @@
 
       var failedRooms = [];
       _.each(CircleHandler.filters.sessionRoom, function(room) {
-        _.each(force.nodes(), function(node) {
+        
+        console.log(room)
+        console.log(_.where(CircleHandler.groupSession(data, true), { room: room }),  _.where(force.nodes(), { room: room }), _.where(CircleHandler.groupSession(data, true), { room: room }).length != _.where(force.nodes(), { room: room }).length);
+        
+        if(_.where(CircleHandler.groupSession(data, true), { room: room }).length != _.where(force.nodes(), { room: room }).length) {
+          failedRooms.push(room)
+        } else {
+          _.each(force.nodes(), function(node) {
           if (node.room === room && !node.selected) {
             failedRooms.push(room)
           }
         });
+        }
+        
+      
       });
       failedRooms = _.unique(failedRooms);
       _.each(failedRooms, function(room) {
@@ -653,11 +670,48 @@
 
       });
 
+      var failedRooms = [];
+      _.each(CircleHandler.filters.room, function(room) {
+        
+        if(_.where(CircleHandler.groupSession(data, true), { room: room }).length != _.where(force.nodes(), { room: room }).length ) {
+          failedRooms.push(room)
+        } else {
+           _.each(force.nodes(), function(node) {
+          if (node.room === room && !node.selected) {
+            failedRooms.push(room)
+          }
+        });
+        }
+       
+      
+      });
+      failedRooms = _.unique(failedRooms);
+      _.each(failedRooms, function(room) {
+        CircleHandler.filters.room = _.reject(CircleHandler.filters.room, function(d) {
+          console.log(room, d, d === room)
+          return d === room
+        });
+        $("[data-room='" + room + "']").attr("fill", "black");
+        _.each(force.nodes(), function(node) {
+          if (node.room == room && node.selected) {
+            CircleHandler.filters.sessions.push(node.id);
+          }
+        });
+
+      });
+
+
       var failedTime = [];
       var stillSelected = [];
 
       _.each(CircleHandler.filters.time, function(time) {
-        stillSelected[time.day + "-" + time.starTime] = [];
+        if(_.where(CircleHandler.groupSession(data, true), { day: time.day, starTime: time.starTime }).length != _.where(force.nodes(), { day: time.day, starTime: time.starTime }).length) {
+          failedTime.push({
+              day: time.day,
+              starTime: time.starTime
+            });
+        } else {
+          stillSelected[time.day + "-" + time.starTime] = [];
         _.each(force.nodes(), function(node) {
           if (node.day === time.day && node.starTime === time.starTime && !node.selected) {
             failedTime.push({
@@ -668,6 +722,9 @@
             stillSelected[time.day + "-" + time.starTime].push(node);
           }
         });
+        }
+        
+      
       });
       failedTime = _.unique(failedTime);
 
@@ -685,11 +742,7 @@
 
 
       _.each(_.difference(["Monday", "Tuesday", "Wednesday", "Thursday"], CircleHandler.filters.day), function(day) {
-        if (_.difference(_.where(data, {
-          day: day
-        }), _.where(force.nodes(), {
-          day: day
-        })).length == 0) {
+        if (_.where(CircleHandler.groupSession(data, true), { day: day }).length != _.where(force.nodes(), { day: day }).length) {
           _.each(_.difference(["9:00", "11:00", "14:00", "16:00"], _.pluck(_.where(CircleHandler.filters.time, {
             day: day
           }), "starTime")), function(time) {
@@ -733,11 +786,8 @@
       _.each(_.difference($(".scedule_room").map(function() {
         return $(this).data("room") + ""
       }).toArray(), CircleHandler.filters.sessionRoom), function(room) {
-        if (_.difference(_.where(data, {
-          room: room
-        }), _.where(force.nodes(), {
-          room: room
-        })).length == 0) {
+       // console.log(_.where(CircleHandler.groupSession(data, true), { room: room }), _.where(force.nodes(), { room: room }));
+         if (_.where(CircleHandler.groupSession(data, true), { room: room }).length == _.where(force.nodes(), { room: room }).length) {        
           var theNodes = [];
           var failedRoom = false;
           _.each(force.nodes(), function(node) {
@@ -753,7 +803,7 @@
             CircleHandler.filters.sessionRoom.push(room);
             $("[data-start='" + room + "']").attr("fill", "red");
           }
-        }
+         }
 
       });
 

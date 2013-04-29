@@ -432,13 +432,13 @@
 
 
 		// Gruops by Session to create later concentric circles in the map view
-		CircleHandler.groupSession = function(nodes) {
-
+		CircleHandler.groupSession = function(nodes, skipFilters) {
+      var skipFilters = skipFilters || false;
 			var auxArray = [];
 			
 			nodes.forEach(function(o, i) {
 				o.sessions.forEach(function(u, j) {
-          if(CircleHandler.filters.countFilters() === 0 || filterSessions(u, CircleHandler.filters)) {
+          if(skipFilters || CircleHandler.filters.countFilters() === 0 || filterSessions(u, CircleHandler.filters)) {
 
 
 					var session = _.find(auxArray, function(a) {
