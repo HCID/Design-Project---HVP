@@ -670,35 +670,35 @@
 
       });
 
-      var failedRooms = [];
-      _.each(CircleHandler.filters.room, function(room) {
+      // var failedRooms = [];
+      // _.each(CircleHandler.filters.room, function(room) {
         
-        if(_.where(CircleHandler.groupSession(data, true), { room: room }).length != _.where(force.nodes(), { room: room }).length ) {
-          failedRooms.push(room)
-        } else {
-           _.each(force.nodes(), function(node) {
-          if (node.room === room && !node.selected) {
-            failedRooms.push(room)
-          }
-        });
-        }
+      //   if(_.where(CircleHandler.groupSession(data, true), { room: room }).length != _.where(force.nodes(), { room: room }).length ) {
+      //     failedRooms.push(room)
+      //   } else {
+      //      _.each(force.nodes(), function(node) {
+      //     if (node.room === room && !node.selected) {
+      //       failedRooms.push(room)
+      //     }
+      //   });
+      //   }
        
       
-      });
-      failedRooms = _.unique(failedRooms);
-      _.each(failedRooms, function(room) {
-        CircleHandler.filters.room = _.reject(CircleHandler.filters.room, function(d) {
-          console.log(room, d, d === room)
-          return d === room
-        });
-        $("[data-room='" + room + "']").attr("fill", "black");
-        _.each(force.nodes(), function(node) {
-          if (node.room == room && node.selected) {
-            CircleHandler.filters.sessions.push(node.id);
-          }
-        });
+      // });
+      // failedRooms = _.unique(failedRooms);
+      // _.each(failedRooms, function(room) {
+      //   CircleHandler.filters.room = _.reject(CircleHandler.filters.room, function(d) {
+      //     console.log(room, d, d === room)
+      //     return d === room
+      //   });
+      //   $("[data-room='" + room + "']").attr("fill", "black");
+      //   _.each(force.nodes(), function(node) {
+      //     if (node.room == room && node.selected) {
+      //       CircleHandler.filters.sessions.push(node.id);
+      //     }
+      //   });
 
-      });
+      // });
 
 
       var failedTime = [];
