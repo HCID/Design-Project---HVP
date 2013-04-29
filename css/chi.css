@@ -673,9 +673,6 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   left: 0px;
 }
 
-#tab_menu > div{
-  -webkit-transform: rotate(180deg);
-}
 
 
 #tab_menu_down{

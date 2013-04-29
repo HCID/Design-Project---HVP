@@ -70,8 +70,8 @@ $(document).ready(function() {
   $(".side_remove_filter").on("mousedown", ClickHandler.removeFilterHandler);
   $(".applied_filters").on("mousedown", ClickHandler.selectFilters);
   $(".restart_now").on("mousedown", ClickHandler.restart);
-  $(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
-  $("#tab_menu").on("mousedown", function () {  if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") }  })
+  //$(".flipper").on("mousedown", function () { if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") } })
+  //$("#tab_menu").on("mousedown", function () {  if($("html").css("-webkit-transform") === "none") { $("html").css("-webkit-transform", "rotate(180deg)") } else { $("html").css("-webkit-transform", "none") }  })
   
    $('#detail_image').simpleVideo();
 
