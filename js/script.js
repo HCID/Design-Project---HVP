@@ -30,6 +30,9 @@ var main = function () {
     var array = CircleHandler.groupSession(force.nodes());
     parallelData = force.nodes().slice(0);
     force.nodes(array);
+    _.each(force.nodes(), function(node) {
+      node.selected = false;
+    })
     clearCircleSelections();
   } else if (Globals.mode === "events") {
     parallelData = force.nodes().slice(0);

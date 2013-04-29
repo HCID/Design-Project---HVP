@@ -49,20 +49,24 @@
 
     }
 
-    var countExtraFilters = function (length) {
-      return length > 4 ? ' (+'+length+')' : ''
+    var countExtraFilters = function(length) {
+      return length > 4 ? ' (+' + length + ')' : ''
     }
 
-    View.updateFilterHistory = function () {
+    View.updateFilterHistory = function() {
       $(".applied_filters, .no_filters").hide();
       var noFilters = true;
       if (CircleHandler.filters.sessions.length > 0) {
-        var filters = _.first(_.map(CircleHandler.filters.sessions, function (ses) { return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), {id: ses} )).code } ),4).join(", ");
+        var filters = _.first(_.map(CircleHandler.filters.sessions, function(ses) {
+          return _.first(_.where(_.unique(_.flatten(_.pluck(data, "sessions"), true)), {
+            id: ses
+          })).code
+        }), 4).join(", ");
         $("#right_side_filter_history #session_filters").html(filters + countExtraFilters(CircleHandler.filters.sessions.length)).parents(".applied_filters").show();
         noFilters = false;
       }
-      
-      if(CircleHandler.filters.day.length > 0) {
+
+      if (CircleHandler.filters.day.length > 0) {
         $("#right_side_filter_history #day_filters").html(_.first(CircleHandler.filters.day, 4).join(", ") + countExtraFilters(CircleHandler.filters.day.length)).parents(".applied_filters").show();
         noFilters = false;
       }
@@ -73,46 +77,60 @@
         $("#right_side_filter_history #room_filters").html(_.first(_.union(CircleHandler.filters.room, CircleHandler.filters.sessionRoom), 4).join(", ") + countExtraFilters(CircleHandler.filters.room.length + CircleHandler.filters.sessionRoom.length)).parents(".applied_filters").show();
         noFilters = false;
       }
-      
-      if ( CircleHandler.filters.communities.length > 0) {
+
+      if (CircleHandler.filters.communities.length > 0) {
         $("#right_side_filter_history #community_filters").html(_.first(CircleHandler.filters.communities, 4).join(", ") + countExtraFilters(CircleHandler.filters.communities.length)).parents(".applied_filters").show();
         noFilters = false;
       }
-      
+
       if (CircleHandler.filters.time.length > 0) {
-        $("#right_side_filter_history #time_filters").html(_.first(_.map(CircleHandler.filters.time, function(t) {  
+        $("#right_side_filter_history #time_filters").html(_.first(_.map(CircleHandler.filters.time, function(t) {
           return t.day + " - " + t.starTime;
         }), 4).join(", ") + countExtraFilters(CircleHandler.filters.time.length)).parents(".applied_filters").show();
         noFilters = false;
-      }  
-      if(noFilters) {
+      }
+      if (noFilters) {
         $(".no_filters").show();
       }
       View.updateTabFilters();
+      // if (Globals.mode == "sessions") {        
+      //   var sel = _.pluck(force.nodes(), "selected");
+      //   _.each(force.nodes(), function(node) {
+      //     console.log(node.selected)
+      //     if (!_.contains(sel, true) || node.selected || CircleHandler.filters.countFilters() === 0) {
+      //       $("#g" + node.id + " circle").css("opacity", 1).parent().find("path").css("opacity", 1);
+      //     } else {
+      //       $("#g" + node.id + " circle").css("opacity", 0.3).parent().find("path").css("opacity", 0.3);
+      //     }
+      //   })
+      // }
     }
 
-    View.updateTabFilters = function () {
+    View.updateTabFilters = function() {
       var filteredData = CircleHandler.filterData(data, CircleHandler.filters);
       var comList = [];
       _.each(filteredData, function(node) {
-        if(node.communities.length === 0) {
+        if (node.communities.length === 0) {
           node.communities = ["N/A"];
         }
         comList.push(node.communities)
       });
 
-      
+
       $("[data-grouping=comm] div").html(_.unique(_.flatten(comList)).length + " communities");
       $("[data-grouping=events] div").html(filteredData.length + " events");
-      $("[data-grouping=map] div").html(CircleHandler.groupMap(filteredData).length + " rooms");      
+      $("[data-grouping=map] div").html(CircleHandler.groupMap(filteredData).length + " rooms");
       $("[data-grouping=sessions] div").html(CircleHandler.groupSession(filteredData).length + " sessions");
+      
     }
 
 
+
     View.updateCircleColor = function(circle, mode) {
-      if (circle.selected) {
+      // if(Globals.mode != "sessions") {
+        if (circle.selected && Globals.mode != "events") {
         var color = "#ffffff";
-        if (mode === "map" || mode === "events") {
+        if (mode === "map") {
           color = "purple";
         }
         $("#g" + circle.id + " circle").css("fill", color);
@@ -128,6 +146,8 @@
         $("#g" + circle.id + " text").css("fill", "white");
       }
 
+      // }
+      
     };
 
 
@@ -265,7 +285,7 @@
         .style("text-anchor", "middle")
         .on("mousedown", ClickHandler.circleClicked)
         .text(function(d) {
-          console.log("d.radius in text", d.radius);
+        console.log("d.radius in text", d.radius);
         if ((d.radius > 70) && (Globals.mode == "events")) {
           if ((d.name != undefined) || (d.name !== "undefined")) {
             return d.name.length > 27 ? d.name.substr(0, 24) + "..." : d.name;
