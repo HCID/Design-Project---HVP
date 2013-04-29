@@ -64,7 +64,7 @@ var restart = function() {
 
 $(document).ready(function() {
   $(".size_button").parent().on("mousedown", ClickHandler.menuHandler);
-  $("svg").attr("height", Globals.height+100 + "px");
+  $("svg").attr("height", Globals.height + "px");
   $("svg").attr("width", Globals.width + "px");
   $("#bgimg").attr("height", Globals.height);
   $("#bgimg").attr("width", Globals.width);
