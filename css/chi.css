@@ -725,6 +725,7 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 .tab_menu_class button > div {
+  margin-top: 40px;
   font-size: 20px;
   float: right;
 
