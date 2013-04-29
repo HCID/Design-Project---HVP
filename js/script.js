@@ -62,6 +62,11 @@ var restart = function() {
   main(data);
 };
 
+function failed(error) {
+  $("#detail_image_text").show();
+        $("#detail_image").hide();
+}
+
 $(document).ready(function() {
   $(".size_button").parent().on("mousedown", ClickHandler.menuHandler);
   $("svg").attr("height", Globals.height + "px");
