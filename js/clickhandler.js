@@ -874,6 +874,7 @@
       force.nodes(CircleHandler.filterData(data, CircleHandler.filters));
       if (Globals.mode === "comm") {
         Communities.communities();
+        ClickHandler.updateFilters();
       } else {
         if (Globals.mode === "events") {
 
@@ -895,6 +896,7 @@
         }
         main();
       }
+
     }
 
 
