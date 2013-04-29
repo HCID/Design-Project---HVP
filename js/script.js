@@ -27,6 +27,7 @@ var main = function () {
     force.nodes(array);
     clearCircleSelections();
   } else if (Globals.mode === "sessions") {
+    d3.selectAll(".scedule_room").attr("fill", "#000000")
     var array = CircleHandler.groupSession(force.nodes());
     parallelData = force.nodes().slice(0);
     force.nodes(array);
