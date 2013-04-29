@@ -176,7 +176,7 @@
 					if (d !== d2) {
 						x = d.x - d2.x;
 						y = d.y - d2.y;
-						distance = Math.sqrt(x * x + y * y) * 0.6;
+						distance = Math.sqrt(x * x + y * y) * 0.8;
 						minDistance = d.radius + d2.radius;
 						if (distance < minDistance) {
 							distance = (distance - minDistance) / distance * jitter;
