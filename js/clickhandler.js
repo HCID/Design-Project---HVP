@@ -602,9 +602,8 @@
 
     ClickHandler.updateFilters = function() {      
       var failedDays = [];
-      _.each(CircleHandler.filters.day, function(day) {
-
-        if(_.where(CircleHandler.groupSession(data, true), { day: day }).length == _.where(force.nodes(), { day: day }).length) {
+      _.each(CircleHandler.filters.day, function(day) {        
+        if(_.where(CircleHandler.groupSession(data, true), { day: day }).length != _.where(force.nodes(), { day: day }).length) {
           failedDays.push(day)
         } else {
            _.each(force.nodes(), function(node) {
