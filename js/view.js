@@ -272,9 +272,11 @@
         .style("fill", "#ffffff")
         .style("font-size", function(d) {
 
-        if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
-          return 16;
-        } else if (Globals.mode == "sessions") {
+        if ((l < 12) && (Globals.mode == "events")) {
+          return 24;
+        } else if ((l < Globals.textThreshold) && (Globals.mode == "events")) {
+          return 18;
+        } else  if (Globals.mode == "sessions") {
           return 18;
         } else {
           return 12;
