@@ -397,10 +397,12 @@
       // if (Globals.clcScreen) {
       if (circle.video) {
         console.log(circle.video);
+        $("#detail_image_text").hide();
         $("#detail_image").show();
         $("#detail_image").attr("src", "/videos/" + circle.video);
       } else {
         console.log("hidding");
+        $("#detail_image_text").show();
         $("#detail_image").hide();
       }
       // } else {

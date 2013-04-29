@@ -132,6 +132,13 @@ h1, h3, h4, h5, h6, p, div, li, ul {
   
 }
 
+#detail_image_text {
+  margin-top: 300px;
+  width: 700px;
+  font-size: 25px;
+  text-align: center;
+}
+
 #detail_title {
   float: left; 
   width: 550px; 
@@ -264,11 +271,19 @@ h1, h3, h4, h5, h6, p, div, li, ul {
 }
 
 #bgimg {
+/*    -webkit-transform:transform(x:100px, y:100px);
+  -moz-transform:transform(x:100px, y:100px);
+  -ms-transform:transform(x:100px, y:100px);
+  -o-transform:transform(x:100px, y:100px);
+  transform:transform(x:100px, y:100px);*/
+  /*margin-top: 200px;*/
   -webkit-transform:scale(0.9);
   -moz-transform:scale(0.9);
   -ms-transform:scale(0.9);
   -o-transform:scale(0.9);
   transform:scale(0.9);
+
+  /*margin-top:100px;*/
   /*margin-left: -100px;*/
 }
 
