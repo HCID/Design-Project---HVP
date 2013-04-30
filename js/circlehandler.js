@@ -343,9 +343,12 @@
           }
 
           if(filters.communities.length > 0) {
-            if(CircleHandler.filterCommunitieClick(filters.communities, d.communities)) {
-                matchComm = true;
-            }                   
+          	_.each(filters.communities, function (communities) {
+          		if(CircleHandler.filterCommunitieClick(communities, d.communities)) {
+                	matchComm = true;
+            	}   
+          	})
+                            
           } else {
             matchComm = true;
           }

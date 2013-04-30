@@ -363,7 +363,7 @@
 
 
           CircleHandler.filters.communities.push(list)
-          CircleHandler.filters.communities = _.unique(_.flatten(CircleHandler.filters.communities));
+          //CircleHandler.filters.communities = _.unique(_.flatten(CircleHandler.filters.communities));
 
 
 
