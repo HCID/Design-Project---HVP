@@ -363,7 +363,7 @@
 
 
           CircleHandler.filters.communities.push(list)
-          //CircleHandler.filters.communities = _.unique(_.flatten(CircleHandler.filters.communities));
+          CircleHandler.filters.communities = _.unique(CircleHandler.filters.communities);
 
 
 
@@ -378,15 +378,8 @@
 
 
     ClickHandler.commOverLayHandler = function(d) {
-      var other = _.map($(".comm_overlay"), function(a) {
-        if ($(a).attr("id") !== $(d3.event.target).attr("id")) {
-          return $(a).data("filter");
-        }
-
-      });
-      var remove = _.difference($(d3.event.target).data("filter"), _.compact(_.flatten(other)));
       CircleHandler.filters.communities = _.reject(CircleHandler.filters.communities, function(com) {
-        if (_.contains(remove, com)) {
+        if (com == $(d3.event.target).data("filter")) {
           return true;
         }
       })
